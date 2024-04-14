@@ -974,7 +974,7 @@ public:
 		Config.Save(std::format(L"{}/{}", outputFolder, CONFIG_NAME));
 	}
 
-	void Pack(const std::wstring &inputFolder, const std::wstring &outputFile)
+	void Pack(const std::wstring &outputFile)
 	{
 		FileWriter fileWriter;
 		fileWriter.Open(outputFile);
@@ -1111,21 +1111,54 @@ private:
 	ProjectSection m_pSec = {};
 };
 
-int main()
+int main(int argc, char *argv[])
 {
+	if (argc < 2)
+	{
+		std::string exeName = fs::path(argv[0]).filename().string();
+
+		std::cout << "Usage: " << std::endl
+				  << "Extract: " << exeName << " <IN_DTS> <OUT_FOLDER>" << std::endl
+				  << "Pack: " << exeName << " <FOLDER> <OUT_DTS>" << std::endl;
+		return 0;
+	}
+
 	try
 	{
+		LPWSTR *szArgList;
+		int32_t nArgs;
+
+		szArgList = CommandLineToArgvW(GetCommandLineW(), &nArgs);
+
 		// Initialize the CryptEngine
 		Crypt::GetInstance();
 
-#if 1
-		FileHeader fh(L"output");
-		fh.Pack(L"output", L"output.dts");
-#else
-		FileHeader fh(L"data.dts");
-		fh.InitSections();
-		fh.Unpack(L"output");
-#endif
+		fs::path arg1 = fs::path(szArgList[1]);
+
+		if (arg1.extension() == L".dts")
+		{
+			std::wstring outFolder = L"output";
+			if (nArgs == 3)
+				outFolder = fs::path(szArgList[2]).wstring();
+
+			FileHeader fh(arg1.wstring());
+			fh.InitSections();
+			fh.Unpack(outFolder);
+		}
+		else if (fs::is_directory(arg1))
+		{
+			std::wstring outFile = L"output.dts";
+			if (nArgs == 3)
+				outFile = fs::path(szArgList[2]).wstring();
+
+			FileHeader fh(arg1.wstring());
+			fh.Pack(outFile);
+		}
+		else
+		{
+			std::wcerr << "Invalid argument provided: " << szArgList[1] << std::endl;
+			return 1;
+		}
 	}
 	catch (const std::exception &e)
 	{
