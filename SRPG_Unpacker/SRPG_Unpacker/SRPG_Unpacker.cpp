@@ -1,4 +1,4 @@
-/*
+﻿/*
  *  File: SRPG_Unpacker.cpp
  *  Copyright (c) 2024 Sinflower
  *
@@ -40,6 +40,7 @@
 
 namespace fs  = std::filesystem;
 using SecInfo = std::pair<uint32_t, uint32_t>;
+using SecMap  = std::map<uint32_t, uint32_t>;
 
 // TODO:
 // - Write file order to a json file
@@ -81,7 +82,8 @@ static const std::vector<std::string> SECTION_NAMES = {
 	"Audio\\sound",
 	"Font",
 	"Video",
-	"Script"
+	"Script",
+	"ScriptMaterial"
 };
 
 class DataBase
@@ -462,6 +464,88 @@ protected:
 	}
 };
 
+class ScriptMaterialData : public DataBase
+{
+public:
+	ScriptMaterialData(FileReader *pFileReader, const uint32_t idx = -1) :
+		DataBase(pFileReader, idx)
+	{
+		m_decrypt = false;
+		loadData();
+	}
+
+	ScriptMaterialData(const std::wstring &inputFolder, const uint32_t &idx) :
+		DataBase(idx)
+	{
+		buildData(inputFolder);
+	}
+
+	void Pack(FileWriter &fileWriter) const override
+	{
+		if (m_data.empty())
+			return;
+
+		fileWriter.Write<uint32_t>(m_name.size);
+		fileWriter.WriteBytesVec(m_name.data);
+
+		for (const MemData<uint32_t> &data : m_data)
+		{
+			std::vector<uint8_t> dat;
+
+			// Read the file associated with data from disk
+			readFromFile(data.fileName, dat);
+
+			fileWriter.Write<uint32_t>(static_cast<uint32_t>(dat.size()));
+			fileWriter.WriteBytesVec(dat);
+		}
+	}
+
+	uint32_t Size() const override
+	{
+		uint32_t size = 0;
+		size += 4;           // Name size
+		size += m_name.size; // Name data
+
+		for (const MemData<uint32_t> &data : m_data)
+		{
+			size += 4; // Data size
+			size += data.size;
+		}
+
+		return size;
+	}
+
+protected:
+	void add2Config(const fs::path &file) const override
+	{
+		Config.Add2Array(SECTION_NAMES[m_idx], file.wstring(), {});
+	}
+
+	void loadData() override
+	{
+		InitMemData<uint32_t>(m_name, *m_pFileReader);
+
+		m_data.push_back(InitMemData<uint32_t>(*m_pFileReader, ~0, false));
+	}
+
+	void buildData(const std::wstring &inputFolder) override
+	{
+		const std::wstring dirPath     = std::format(L"{}/{}", inputFolder, s2ws(SECTION_NAMES[m_idx]));
+		const nlohmann::ordered_json j = Config.GetNext(SECTION_NAMES[m_idx]);
+
+		if (j.empty()) return;
+
+		m_name = s2ws(j["name"].get<std::string>());
+
+		const std::wstring filePath = std::format(L"{}/{}", dirPath, m_name.ToWString());
+
+		if (!fs::exists(filePath))
+			throw std::runtime_error(std::format("File not found: {}", ws2s(filePath)));
+
+		m_data.push_back(MemData<uint32_t>(filePath, static_cast<uint32_t>(fs::file_size(filePath))));
+	}
+};
+
 class ProjectData : public DataBase
 {
 	inline static const std::wstring SECTION_NAME = L"project.dat";
@@ -530,10 +614,14 @@ public:
 
 	virtual ~SectionBase() = default;
 
-	void Init(FileReader *pFileReader, std::deque<SecInfo> &secInfos)
+	void Init(FileReader *pFileReader, const bool &present, std::deque<SecInfo> &secInfos)
 	{
 		m_pFileReader = pFileReader;
-		loadSections(secInfos);
+
+		if (present)
+			loadSections(secInfos);
+		else
+			consumeSections(secInfos);
 	}
 
 	virtual std::vector<uint32_t> SecSizes() const
@@ -542,19 +630,27 @@ public:
 
 		std::size_t dataIdx = 0;
 
-		for (const auto &[secIdx, cnt] : m_secElemCnt)
+		if (!m_secElemCnt.empty())
 		{
-			uint32_t size = 0;
-			size += 4; // Element count
+			for (const auto &[secIdx, cnt] : m_secElemCnt)
+			{
+				uint32_t size = 0;
+				size += 4; // Element count
 
-			size += cnt * 4; // Element offsets
+				size += cnt * 4; // Element offsets
 
-			for (uint32_t i = 0; i < cnt; i++)
-				size += m_data[dataIdx + i].Size();
+				for (uint32_t i = 0; i < cnt; i++)
+					size += m_data[dataIdx + i].Size();
 
-			dataIdx += cnt;
+				dataIdx += cnt;
 
-			sizes.push_back(size);
+				sizes.push_back(size);
+			}
+		}
+		else
+		{
+			for (uint32_t i = 0; i < m_sections; i++)
+				sizes.push_back(0);
 		}
 
 		return sizes;
@@ -564,10 +660,9 @@ public:
 	{
 		std::cout << std::format("Unpacking {} ... ", name()) << std::flush;
 
-		Config.Add(name(), m_secElemCnt);
+		unpack(outputFolder);
 
-		for (const T &data : m_data)
-			data.Unpack(outputFolder);
+		Config.Add(name(), m_secElemCnt);
 
 		std::cout << "Done" << std::endl;
 	}
@@ -577,17 +672,13 @@ public:
 		m_data.clear();
 	}
 
-	virtual void Build(const std::wstring &inputFolder)
+	void Build(const std::wstring &inputFolder)
 	{
 		std::cout << std::format("Building {} ... ", name()) << std::flush;
 
-		m_secElemCnt = Config.Get<std::map<uint32_t, uint32_t>>(name());
+		m_secElemCnt = Config.Get<SecMap>(name());
 
-		for (const auto &[secIdx, cnt] : m_secElemCnt)
-		{
-			for (uint32_t i = 0; i < cnt; i++)
-				m_data.push_back(T(inputFolder, secIdx));
-		}
+		build(inputFolder);
 
 		std::cout << "Done" << std::endl;
 	}
@@ -600,6 +691,15 @@ public:
 	}
 
 protected:
+	virtual void build(const std::wstring &inputFolder)
+	{
+		for (const auto &[secIdx, cnt] : m_secElemCnt)
+		{
+			for (uint32_t i = 0; i < cnt; i++)
+				m_data.push_back(T(inputFolder, secIdx));
+		}
+	}
+
 	virtual void loadSections(std::deque<SecInfo> &secInfos)
 	{
 		for (uint32_t i = 0; i < m_sections; i++)
@@ -630,6 +730,18 @@ protected:
 				m_data.push_back(T(m_pFileReader, secInfo.first));
 			}
 		}
+	}
+
+	virtual void consumeSections(std::deque<SecInfo> &secInfos)
+	{
+		for (uint32_t i = 0; i < m_sections; i++)
+			secInfos.pop_front();
+	}
+
+	virtual void unpack(const std::wstring &outputFolder) const
+	{
+		for (const T &data : m_data)
+			data.Unpack(outputFolder);
 	}
 
 	virtual void writeSections(FileWriter &fileWriter) const
@@ -674,10 +786,10 @@ protected:
 	}
 
 protected:
-	FileReader *m_pFileReader                 = nullptr;
-	std::vector<T> m_data                     = {};
-	uint32_t m_sections                       = 0;
-	std::map<uint32_t, uint32_t> m_secElemCnt = {};
+	FileReader *m_pFileReader = nullptr;
+	std::vector<T> m_data     = {};
+	uint32_t m_sections       = 0;
+	SecMap m_secElemCnt       = {};
 };
 
 class GraphicSection : public SectionBase<SectionData>
@@ -733,6 +845,8 @@ public:
 
 class ScriptSection : public SectionBase<ScriptData>
 {
+	inline static const std::string MAT_SEC_NAME = "ScriptMaterialSection";
+
 public:
 	ScriptSection() :
 		SectionBase()
@@ -743,23 +857,39 @@ public:
 	{
 		uint32_t size = 0;
 
-		for (const auto &[secIdx, cnt] : m_secElemCnt)
-		{
-			size += 4; // Element count
+		size += 4; // Element count
 
-			for (uint32_t i = 0; i < cnt; i++)
-				size += m_data[i].Size();
-		}
+		for (const ScriptData &data : m_data)
+			size += data.Size();
 
 		size += 4; // Material count
 
-		for (const ScriptData &data : m_matData)
+		for (const ScriptMaterialData &data : m_matData)
 			size += data.Size();
 
 		return { size };
 	}
 
 protected:
+	void build(const std::wstring &inputFolder) override
+	{
+		for (const auto &[secIdx, cnt] : m_secElemCnt)
+		{
+			for (uint32_t i = 0; i < cnt; i++)
+				m_data.push_back(ScriptData(inputFolder, secIdx));
+		}
+
+		SecMap matSecElemCnt = Config.Get<SecMap>(MAT_SEC_NAME);
+		if (matSecElemCnt.empty())
+			return;
+
+		const uint32_t matSecIdx = static_cast<uint32_t>(SECTION_NAMES.size() - 1);
+		const uint32_t matCnt    = matSecElemCnt[matSecIdx];
+
+		for (uint32_t i = 0; i < matCnt; i++)
+			m_matData.push_back(ScriptMaterialData(inputFolder, matSecIdx));
+	}
+
 	void loadSections(std::deque<SecInfo> &secInfos) override
 	{
 		SecInfo secInfo = secInfos.front();
@@ -779,6 +909,22 @@ protected:
 			m_data.push_back(ScriptData(m_pFileReader, secInfo.first));
 
 		loadScriptMaterials();
+	}
+
+	void unpack(const std::wstring &outputFolder) const override
+	{
+		for (const ScriptData &data : m_data)
+			data.Unpack(outputFolder);
+
+		for (const ScriptMaterialData &data : m_matData)
+			data.Unpack(outputFolder);
+
+		if (!m_matData.empty())
+		{
+			SecMap matSecElemCnt;
+			matSecElemCnt[static_cast<uint32_t>(SECTION_NAMES.size() - 1)] = static_cast<uint32_t>(m_matData.size());
+			Config.Add(MAT_SEC_NAME, matSecElemCnt);
+		}
 	}
 
 	void writeSections(FileWriter &fileWriter) const override
@@ -801,10 +947,8 @@ private:
 
 		if (matCount != 0x0)
 		{
-			throw std::runtime_error("Script materials are not supported yet");
-
 			for (uint32_t elem = 0; elem < matCount; elem++)
-				m_matData.push_back(ScriptData(m_pFileReader));
+				m_matData.push_back(ScriptMaterialData(m_pFileReader, static_cast<uint32_t>(SECTION_NAMES.size() - 1)));
 		}
 	}
 
@@ -812,12 +956,12 @@ private:
 	{
 		fileWriter.Write<uint32_t>(static_cast<uint32_t>(m_matData.size()));
 
-		for (const ScriptData &data : m_matData)
+		for (const ScriptMaterialData &data : m_matData)
 			data.Pack(fileWriter);
 	}
 
 private:
-	std::vector<ScriptData> m_matData = {};
+	std::vector<ScriptMaterialData> m_matData = {};
 };
 
 class ProjectSection : public SectionBase<ProjectData>
@@ -844,16 +988,12 @@ public:
 		return { size };
 	}
 
-	void Build(const std::wstring &inputFolder) override
+protected:
+	void build(const std::wstring &inputFolder) override
 	{
-		std::cout << std::format("Building {} ... ", name()) << std::flush;
-
 		m_data.push_back(ProjectData(inputFolder));
-
-		std::cout << "Done" << std::endl;
 	}
 
-protected:
 	void loadSections(const uint32_t &offset)
 	{
 		if (offset != m_pFileReader->GetOffset())
@@ -931,20 +1071,13 @@ public:
 
 		std::deque<SecInfo> secInfos = m_sectionDataAddresses;
 
-		if (m_presentSegments & Sections::Graphics)
-			m_gSec.Init(&m_fileReader, secInfos);
-		if (m_presentSegments & Sections::UI)
-			m_uSec.Init(&m_fileReader, secInfos);
-		if (m_presentSegments & Sections::Audio)
-			m_aSec.Init(&m_fileReader, secInfos);
-		if (m_presentSegments & Sections::Font)
-			m_fSec.Init(&m_fileReader, secInfos);
-		if (m_presentSegments & Sections::Video)
-			m_vSec.Init(&m_fileReader, secInfos);
+		m_gSec.Init(&m_fileReader, (m_presentSegments & Sections::Graphics), secInfos);
+		m_uSec.Init(&m_fileReader, (m_presentSegments & Sections::UI), secInfos);
+		m_aSec.Init(&m_fileReader, (m_presentSegments & Sections::Audio), secInfos);
+		m_fSec.Init(&m_fileReader, (m_presentSegments & Sections::Font), secInfos);
+		m_vSec.Init(&m_fileReader, (m_presentSegments & Sections::Video), secInfos);
 
-		// if (m_presentSegments & Sections::Script)
-		m_sSec.Init(&m_fileReader, secInfos);
-
+		m_sSec.Init(&m_fileReader, true, secInfos);
 		m_pSec.Init(&m_fileReader, m_projectDataAddress);
 
 		if (!m_fileReader.IsEoF())
@@ -994,6 +1127,7 @@ public:
 
 		uint32_t allSecSize = SumVector(gSecSize) + SumVector(uSecSize) + SumVector(aSecSize) + SumVector(fSecSize) + SumVector(vSecSize) + SumVector(sSecSize);
 
+		// Write project data address
 		fileWriter.Write<uint32_t>(allSecSize);
 
 		uint32_t offset = 0;
@@ -1164,4 +1298,6 @@ int main(int argc, char *argv[])
 	{
 		std::cerr << e.what() << std::endl;
 	}
+
+	return 0;
 }
