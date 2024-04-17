@@ -83,8 +83,10 @@ static const std::vector<std::string> SECTION_NAMES = {
 	"Font",
 	"Video",
 	"Script",
-	"ScriptMaterial"
+	"Material"
 };
+
+// v1.140 (0x474) Added support for video archiving, before that it was not present in the archive
 
 class DataBase
 {
@@ -127,7 +129,7 @@ public:
 			if (fs::path(fileName).extension().empty())
 				ext = getFileExtension(dat.data());
 
-			fileName                    = std::format(L"{}{}{}", fileName, (subElemIdx > 0 ? std::to_wstring(subElemIdx) : L""), ext);
+			fileName                    = std::format(L"{}{}{}", fileName, (subElemIdx == 0 ? L"" : std::format(L"-{}", wchar_t(0x60 + subElemIdx))), ext);
 			const std::wstring filePath = std::format(L"{}{}", dirPath, fileName);
 
 			if (subElemIdx == 0)
@@ -244,7 +246,7 @@ protected:
 		if (j.empty()) return;
 
 		const std::string file = j["name"].get<std::string>();
-		const std::wstring ext = s2ws(fs::path(file).extension().string());
+		std::wstring ext = s2ws(fs::path(file).extension().string());
 
 		m_name         = s2ws(fs::path(file).stem().string());
 		m_reserved0    = j["elems"][0].get<uint32_t>();
@@ -255,9 +257,30 @@ protected:
 
 		for (uint32_t i = 0; i < m_subElemCount; i++)
 		{
-			const std::wstring filePath = std::format(L"{}/{}{}{}", dirPath, m_name.ToWString(), (i > 0 ? std::to_wstring(i) : L""), ext);
+			const std::wstring name = std::format(L"{}{}", m_name.ToWString(), (i == 0 ? L"" : std::format(L"-{}", wchar_t(0x60 + i))));
+			const std::wstring basePath = std::format(L"{}/{}", dirPath, name);
+			std::wstring filePath = std::format(L"{}{}", basePath, ext);
+			// If the file does not exist, try to find it with a different extension
 			if (!fs::exists(filePath))
-				throw std::runtime_error(std::format("File not found: {}", ws2s(filePath)));
+			{
+				std::wcout << std::format(L"File not found: {} - Trying to find it with a different extension ...", filePath) << std::endl;
+
+				ext = L"";
+				for (const auto &entry : fs::directory_iterator(dirPath))
+				{
+					if (entry.path().filename().stem().wstring() == name)
+					{
+						std::cout << std::format("Found file: {}", ws2s(entry.path().wstring())) << std::endl;
+						ext = entry.path().extension().wstring();
+						break;
+					}
+				}
+
+				if (ext.empty())
+					throw std::runtime_error(std::format("File not found: {}", ws2s(filePath)));
+				else
+					filePath = std::format(L"{}{}", basePath, ext);
+			}
 
 			m_data.push_back(MemData<uint32_t>(filePath, static_cast<uint32_t>(fs::file_size(filePath))));
 		}
@@ -464,17 +487,17 @@ protected:
 	}
 };
 
-class ScriptMaterialData : public DataBase
+class MaterialData : public DataBase
 {
 public:
-	ScriptMaterialData(FileReader *pFileReader, const uint32_t idx = -1) :
+	MaterialData(FileReader *pFileReader, const uint32_t idx = -1) :
 		DataBase(pFileReader, idx)
 	{
 		m_decrypt = false;
 		loadData();
 	}
 
-	ScriptMaterialData(const std::wstring &inputFolder, const uint32_t &idx) :
+	MaterialData(const std::wstring &inputFolder, const uint32_t &idx) :
 		DataBase(idx)
 	{
 		buildData(inputFolder);
@@ -845,12 +868,19 @@ public:
 
 class ScriptSection : public SectionBase<ScriptData>
 {
-	inline static const std::string MAT_SEC_NAME = "ScriptMaterialSection";
+	inline static const std::string MAT_SEC_NAME = "MaterialSection";
 
 public:
 	ScriptSection() :
 		SectionBase()
 	{
+	}
+
+	void Init(FileReader *pFileReader, const bool &present, const bool &matPresent, std::deque<SecInfo> &secInfos)
+	{
+		m_matPresent = matPresent;
+		// Call the base class Init
+		SectionBase::Init(pFileReader, present, secInfos);
 	}
 
 	virtual std::vector<uint32_t> SecSizes() const override
@@ -864,7 +894,7 @@ public:
 
 		size += 4; // Material count
 
-		for (const ScriptMaterialData &data : m_matData)
+		for (const MaterialData &data : m_matData)
 			size += data.Size();
 
 		return { size };
@@ -883,11 +913,13 @@ protected:
 		if (matSecElemCnt.empty())
 			return;
 
+		m_matPresent = true;
+
 		const uint32_t matSecIdx = static_cast<uint32_t>(SECTION_NAMES.size() - 1);
 		const uint32_t matCnt    = matSecElemCnt[matSecIdx];
 
 		for (uint32_t i = 0; i < matCnt; i++)
-			m_matData.push_back(ScriptMaterialData(inputFolder, matSecIdx));
+			m_matData.push_back(MaterialData(inputFolder, matSecIdx));
 	}
 
 	void loadSections(std::deque<SecInfo> &secInfos) override
@@ -908,7 +940,8 @@ protected:
 		for (uint32_t elem = 0; elem < elementCount; elem++)
 			m_data.push_back(ScriptData(m_pFileReader, secInfo.first));
 
-		loadScriptMaterials();
+		if (m_matPresent)
+			loadMaterials();
 	}
 
 	void unpack(const std::wstring &outputFolder) const override
@@ -916,7 +949,7 @@ protected:
 		for (const ScriptData &data : m_data)
 			data.Unpack(outputFolder);
 
-		for (const ScriptMaterialData &data : m_matData)
+		for (const MaterialData &data : m_matData)
 			data.Unpack(outputFolder);
 
 		if (!m_matData.empty())
@@ -937,31 +970,33 @@ protected:
 				data.Pack(fileWriter);
 		}
 
-		writeScriptMaterials(fileWriter);
+		if (m_matPresent)
+			writeMaterials(fileWriter);
 	}
 
 private:
-	void loadScriptMaterials()
+	void loadMaterials()
 	{
 		uint32_t matCount = m_pFileReader->ReadUInt32();
 
 		if (matCount != 0x0)
 		{
 			for (uint32_t elem = 0; elem < matCount; elem++)
-				m_matData.push_back(ScriptMaterialData(m_pFileReader, static_cast<uint32_t>(SECTION_NAMES.size() - 1)));
+				m_matData.push_back(MaterialData(m_pFileReader, static_cast<uint32_t>(SECTION_NAMES.size() - 1)));
 		}
 	}
 
-	void writeScriptMaterials(FileWriter &fileWriter) const
+	void writeMaterials(FileWriter &fileWriter) const
 	{
 		fileWriter.Write<uint32_t>(static_cast<uint32_t>(m_matData.size()));
 
-		for (const ScriptMaterialData &data : m_matData)
+		for (const MaterialData &data : m_matData)
 			data.Pack(fileWriter);
 	}
 
 private:
-	std::vector<ScriptMaterialData> m_matData = {};
+	std::vector<MaterialData> m_matData = {};
+	bool m_matPresent                   = false;
 };
 
 class ProjectSection : public SectionBase<ProjectData>
@@ -1021,6 +1056,9 @@ class FileHeader
 	static constexpr uint32_t DATA_START_OFFSET = 0xA8;
 	static constexpr uint32_t SECTION_COUNT     = 36;
 
+	static constexpr uint32_t DATA_START_OFFSET_OLD = 0xA4;
+	static constexpr uint32_t SECTION_COUNT_OLD     = 35;
+
 	static inline const std::wstring CONFIG_NAME = L"config.json";
 
 	enum Sections
@@ -1075,9 +1113,11 @@ public:
 		m_uSec.Init(&m_fileReader, (m_presentSegments & Sections::UI), secInfos);
 		m_aSec.Init(&m_fileReader, (m_presentSegments & Sections::Audio), secInfos);
 		m_fSec.Init(&m_fileReader, (m_presentSegments & Sections::Font), secInfos);
-		m_vSec.Init(&m_fileReader, (m_presentSegments & Sections::Video), secInfos);
+	
+		if (!m_oldFormat)
+			m_vSec.Init(&m_fileReader, (m_presentSegments & Sections::Video), secInfos);
 
-		m_sSec.Init(&m_fileReader, true, secInfos);
+		m_sSec.Init(&m_fileReader, (m_encrypted == 1), (m_presentSegments & Sections::Script), secInfos);
 		m_pSec.Init(&m_fileReader, m_projectDataAddress);
 
 		if (!m_fileReader.IsEoF())
@@ -1100,7 +1140,9 @@ public:
 		m_uSec.Unpack(outputFolder);
 		m_aSec.Unpack(outputFolder);
 		m_fSec.Unpack(outputFolder);
-		m_vSec.Unpack(outputFolder);
+
+		if (!m_oldFormat)
+			m_vSec.Unpack(outputFolder);
 		m_sSec.Unpack(outputFolder);
 		m_pSec.Unpack(outputFolder);
 
@@ -1136,14 +1178,16 @@ public:
 		writeOffsets(fileWriter, uSecSize, offset);
 		writeOffsets(fileWriter, aSecSize, offset);
 		writeOffsets(fileWriter, fSecSize, offset);
-		writeOffsets(fileWriter, vSecSize, offset);
+		if (!m_oldFormat)
+			writeOffsets(fileWriter, vSecSize, offset);
 		writeOffsets(fileWriter, sSecSize, offset);
 
 		m_gSec.Pack(fileWriter);
 		m_uSec.Pack(fileWriter);
 		m_aSec.Pack(fileWriter);
 		m_fSec.Pack(fileWriter);
-		m_vSec.Pack(fileWriter);
+		if (!m_oldFormat)
+			m_vSec.Pack(fileWriter);
 		m_sSec.Pack(fileWriter);
 		m_pSec.Pack(fileWriter);
 	}
@@ -1174,19 +1218,24 @@ private:
 		m_encrypted   = m_fileReader.ReadUInt32();
 		m_fileVersion = m_fileReader.ReadUInt32();
 
+		if (m_fileVersion < 0x474)
+			m_oldFormat = true;
+
 		m_loadRuntime     = m_fileReader.ReadUInt32();
 		m_presentSegments = m_fileReader.ReadUInt32();
 
-		m_projectDataAddress = m_fileReader.ReadUInt32() + DATA_START_OFFSET;
+		m_projectDataAddress = m_fileReader.ReadUInt32() + (m_oldFormat ? DATA_START_OFFSET_OLD : DATA_START_OFFSET);
 
-		for (uint32_t i = 0; i < SECTION_COUNT; i++)
-			m_sectionDataAddresses.push_back({ i, m_fileReader.ReadUInt32() + DATA_START_OFFSET });
+		for (uint32_t i = 0; i < (m_oldFormat ? SECTION_COUNT_OLD : SECTION_COUNT); i++)
+			m_sectionDataAddresses.push_back({ i, m_fileReader.ReadUInt32() + (m_oldFormat ? DATA_START_OFFSET_OLD : DATA_START_OFFSET) });
 
 		Config.Add("magicNumber", m_magicNumber);
 		Config.Add("encrypted", m_encrypted);
 		Config.Add("fileVersion", m_fileVersion);
 		Config.Add("loadRuntime", m_loadRuntime);
 		Config.Add("segments", m_presentSegments);
+
+		EnableCrypt(m_encrypted == 1);
 	}
 
 	void initFolder(const std::wstring &inputFolder)
@@ -1198,6 +1247,9 @@ private:
 		m_fileVersion     = Config.Get<uint32_t>("fileVersion");
 		m_loadRuntime     = Config.Get<uint32_t>("loadRuntime");
 		m_presentSegments = Config.Get<uint32_t>("segments");
+
+		if (m_fileVersion < 0x474)
+			m_oldFormat = true;
 
 		m_gSec.Reset();
 		m_uSec.Reset();
@@ -1215,7 +1267,7 @@ private:
 			m_aSec.Build(inputFolder);
 		if (m_presentSegments & Sections::Font)
 			m_fSec.Build(inputFolder);
-		if (m_presentSegments & Sections::Video)
+		if (m_presentSegments & Sections::Video && !m_oldFormat)
 			m_vSec.Build(inputFolder);
 
 		m_sSec.Build(inputFolder);
@@ -1235,6 +1287,7 @@ private:
 	std::deque<SecInfo> m_sectionDataAddresses = {};
 
 	bool m_initSections = false;
+	bool m_oldFormat    = false;
 
 	GraphicSection m_gSec = {};
 	UiSection m_uSec      = {};

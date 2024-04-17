@@ -32,6 +32,7 @@
 
 #define DecryptData Crypt::GetInstance().Decrypt
 #define EncryptData Crypt::GetInstance().Encrypt
+#define EnableCrypt Crypt::GetInstance().SetDoCrypt
 
 class Crypt
 {
@@ -44,6 +45,11 @@ public:
 
 	Crypt(Crypt const &)          = delete;
 	void operator=(Crypt const &) = delete;
+
+	void SetDoCrypt(const bool& en)
+	{
+		m_doCrypt = en;
+	}
 
 	void Decrypt(std::vector<uint8_t> &data)
 	{
@@ -108,6 +114,9 @@ private:
 
 	void crypt(std::vector<uint8_t> &data, bool decrypt = true)
 	{
+		if (!m_doCrypt)
+			return;
+
 		BOOL res;
 		DWORD length = static_cast<DWORD>(data.size());
 
@@ -119,10 +128,12 @@ private:
 			res = CryptEncrypt(m_hKey, NULL, TRUE, NULL, pData, &length, length);
 
 		if (!res)
-			std::cerr << "Error: CryptDecrypt/CryptEncrypt failed." << std::endl;
+			std::cerr << "Error: CryptDecrypt/CryptEncrypt failed: " << GetLastError() << std::endl;
 	}
 
 private:
 	HCRYPTKEY m_hKey        = NULL;
 	HCRYPTPROV m_hCryptProv = NULL;
+
+	bool m_doCrypt = true;
 };
