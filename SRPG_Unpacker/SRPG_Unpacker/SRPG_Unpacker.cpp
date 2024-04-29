@@ -45,6 +45,7 @@ using SecMap  = std::map<uint32_t, uint32_t>;
 // TODO:
 // - Write file order to a json file
 // - Add information if given file is a sub element
+// - Split scripts into default and plugins
 
 static const std::vector<std::string> SECTION_NAMES = {
 	"Graphics\\mapchip",
@@ -85,6 +86,54 @@ static const std::vector<std::string> SECTION_NAMES = {
 	"Script",
 	"Material"
 };
+
+struct FileExt
+{
+	FileExt(const std::vector<uint8_t> &header, const uint32_t &offset, const std::wstring &ext) :
+		header(header),
+		offset(offset),
+		ext(ext)
+	{
+	}
+
+	FileExt(const std::vector<uint8_t> &header, const std::wstring &ext) :
+		header(header),
+		offset(0),
+		ext(ext)
+	{
+	}
+
+	std::vector<uint8_t> header;
+	uint32_t offset;
+	std::wstring ext;
+};
+
+static const std::vector<FileExt> FILE_HEADERS = {
+	{ { 0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a }, L".png" },
+	{ { 0x4F, 0x67, 0x67, 0x53 }, L".ogg" },
+	{ { 0xFF, 0xD8, 0xFF, 0xE0 }, L".jpg" },
+	{ { 0xFF, 0xD8, 0xFF, 0xE1 }, L".jpg" },
+	{ { 0x38, 0x42, 0x50, 0x53 }, L".psd" },
+	{ { 0x49, 0x44, 0x33 }, L".mp3" },
+	{ { 0xFF, 0xFB }, L".mp3" },
+	{ { 0xFF, 0xF3 }, L".mp3" },
+	{ { 0xFF, 0xF2 }, L".mp3" },
+	{ { 0x66, 0x74, 0x79, 0x70, 0x69, 0x73, 0x6F, 0x6D }, 4, L".mp4" },
+	{ { 0x00, 0x01, 0x00, 0x00, 0x00 }, L".ttf" },
+	{ { 0x4F, 0x54, 0x54, 0x4F }, L".otf" },
+	{ { 0x57, 0x41, 0x56, 0x45 }, 8, L".wav" }
+};
+
+inline static std::wstring GetFileExtension(const std::vector<uint8_t>& data)
+{
+	for (const FileExt &header : FILE_HEADERS)
+	{
+		if (std::equal(header.header.begin(), header.header.end(), data.begin() + header.offset))
+			return header.ext;
+	}
+
+	return L".txt";
+}
 
 // v1.140 (0x474) Added support for video archiving, before that it was not present in the archive
 
@@ -127,7 +176,7 @@ public:
 
 			// Check if the file already has an extension
 			if (fs::path(fileName).extension().empty())
-				ext = getFileExtension(dat.data());
+				ext = GetFileExtension(dat);
 
 			fileName                    = std::format(L"{}{}{}", fileName, (subElemIdx == 0 ? L"" : std::format(L"-{}", wchar_t(0x60 + subElemIdx))), ext);
 			const std::wstring filePath = std::format(L"{}{}", dirPath, fileName);
@@ -246,7 +295,7 @@ protected:
 		if (j.empty()) return;
 
 		const std::string file = j["name"].get<std::string>();
-		std::wstring ext = s2ws(fs::path(file).extension().string());
+		std::wstring ext       = s2ws(fs::path(file).extension().string());
 
 		m_name         = s2ws(fs::path(file).stem().string());
 		m_reserved0    = j["elems"][0].get<uint32_t>();
@@ -257,9 +306,9 @@ protected:
 
 		for (uint32_t i = 0; i < m_subElemCount; i++)
 		{
-			const std::wstring name = std::format(L"{}{}", m_name.ToWString(), (i == 0 ? L"" : std::format(L"-{}", wchar_t(0x60 + i))));
+			const std::wstring name     = std::format(L"{}{}", m_name.ToWString(), (i == 0 ? L"" : std::format(L"-{}", wchar_t(0x60 + i))));
 			const std::wstring basePath = std::format(L"{}/{}", dirPath, name);
-			std::wstring filePath = std::format(L"{}{}", basePath, ext);
+			std::wstring filePath       = std::format(L"{}{}", basePath, ext);
 			// If the file does not exist, try to find it with a different extension
 			if (!fs::exists(filePath))
 			{
@@ -306,30 +355,6 @@ protected:
 		file.close();
 
 		return static_cast<uint32_t>(size);
-	}
-
-private:
-	std::wstring getFileExtension(const uint8_t *pData) const
-	{
-		unsigned char pngHeader[]  = { 0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a };
-		unsigned char oggHeader[]  = { 0x4F, 0x67, 0x67, 0x53 };
-		unsigned char jpgHeader[]  = { 0xFF, 0xD8, 0xFF, 0xE0 };
-		unsigned char jpgHeader2[] = { 0xFF, 0xD8, 0xFF, 0xE1 };
-		unsigned char psHeader[]   = { 0x38, 0x42, 0x50, 0x53 };
-
-		if (std::memcmp(pData, pngHeader, 8) == 0)
-			return L".png";
-
-		if (std::memcmp(pData, oggHeader, 4) == 0)
-			return L".ogg";
-
-		if (std::memcmp(pData, jpgHeader, 4) == 0 || std::memcmp(pData, jpgHeader2, 4) == 0)
-			return L".jpg";
-
-		if (std::memcmp(pData, psHeader, 4) == 0)
-			return L".psd";
-
-		return L".txt";
 	}
 
 protected:
@@ -1113,7 +1138,7 @@ public:
 		m_uSec.Init(&m_fileReader, (m_presentSegments & Sections::UI), secInfos);
 		m_aSec.Init(&m_fileReader, (m_presentSegments & Sections::Audio), secInfos);
 		m_fSec.Init(&m_fileReader, (m_presentSegments & Sections::Font), secInfos);
-	
+
 		if (!m_oldFormat)
 			m_vSec.Init(&m_fileReader, (m_presentSegments & Sections::Video), secInfos);
 
@@ -1340,6 +1365,41 @@ int main(int argc, char *argv[])
 
 			FileHeader fh(arg1.wstring());
 			fh.Pack(outFile);
+		}
+		else if (std::wstring(szArgList[1]) == L"dec" && nArgs >= 3)
+		{
+			for (int32_t i = 2; i < nArgs; i++)
+			{
+				std::wstring folder = szArgList[i];
+
+				// Iterate over all files in the folder and its subfolders and decrypt them
+				for (const auto &entry : fs::recursive_directory_iterator(folder))
+				{
+					if (entry.is_regular_file())
+					{
+						std::wstring filePath = entry.path().wstring();
+						std::wstring ext      = entry.path().extension().wstring();
+
+						if (ext == L".srk")
+						{
+							std::wcout << L"Decrypting: " << filePath << std::endl;
+
+							std::vector<uint8_t> data;
+							FileReader::ReadFile(filePath, data);
+
+							Crypt::GetInstance().Decrypt(data);
+
+							std::wstring ext = GetFileExtension(data);
+
+							fs::path outPath = entry.path();
+							outPath.replace_extension(ext);
+
+							std::wcout << L"Writing: " << outPath << std::endl;
+							FileWriter::WriteFile(outPath, data);
+						}
+					}
+				}
+			}
 		}
 		else
 		{

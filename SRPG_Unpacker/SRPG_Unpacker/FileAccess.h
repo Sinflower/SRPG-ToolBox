@@ -310,6 +310,20 @@ public:
 		return *(m_pData + offset);
 	}
 
+	static void ReadFile(const std::wstring& filename, std::vector<uint8_t>& buffer)
+	{
+		try
+		{
+			FileReader fileReader(filename);
+			buffer.resize(fileReader.GetSize());
+			fileReader.ReadBytesVec(buffer);
+		}
+		catch (const FileReaderException& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
+	}
+
 private:
 	void close()
 	{
@@ -497,6 +511,19 @@ public:
 			m_file.write(static_cast<const char*>(pBuffer), size);
 		else
 			throw(FileWriterException("FileWriter not initialized"));
+	}
+
+	static void WriteFile(const std::wstring& filename, const std::vector<uint8_t>& buffer)
+	{
+		try
+		{
+			FileWriter fileWriter(filename);
+			fileWriter.WriteBytes(buffer.data(), buffer.size());
+		}
+		catch (const FileWriterException& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
 	}
 
 private:
