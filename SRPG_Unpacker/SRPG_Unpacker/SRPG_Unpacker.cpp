@@ -40,12 +40,110 @@
 namespace fs = std::filesystem;
 
 // TODO:
-// - Check for existing graphics, audio etc. files and if encrypted decrypt them
 // - Redesign section name handling, current solution is not great
 
 // v1.140 (0x474) Added support for video archiving, before that it was not present in the archive
 
-int main(int argc, char *argv[])
+std::wstring RestoreFileName(const std::string& filename, const std::string& secName, const nlohmann::ordered_json& j)
+{
+	std::wstring fN = s2ws(filename);
+
+	if (secName != "" && j.contains(secName))
+	{
+		try
+		{
+			std::string suffix = "";
+			// Check if the file name contains a '-'
+			const size_t pos = filename.find('-');
+
+			// Get the '-' and everything after it
+			if (pos != std::string::npos)
+				suffix = filename.substr(pos);
+
+			// Convert the name to a number
+			const uint32_t num = std::stoul(filename.substr(0, pos), nullptr, 10);
+
+			// Get the correct file name from the json
+			const std::string correctName = j[secName][std::to_string(num)].get<std::string>();
+
+			// Build the new file name
+			const std::string newFilename = std::format("{}{}", correctName, suffix);
+
+			// Update the file name
+			fN = s2ws(newFilename);
+		}
+		catch ([[maybe_unused]] const std::exception& e)
+		{
+			std::cerr << "Error: " << e.what() << std::endl;
+		}
+	}
+
+	return fN;
+}
+
+void ProcessFile(const std::wstring& dtsFolder, const fs::path& path, const std::wstring& outFolder, const nlohmann::ordered_json& j)
+{
+	const std::wstring parentFolder = path.parent_path().wstring();
+	std::wstring localPath          = parentFolder.substr(dtsFolder.size() + 1);
+
+	const std::string secName = GetSecNameFromPath(ws2s(localPath));
+	std::wstring ext          = path.extension().wstring();
+
+	std::wstring fN = path.stem().wstring();
+
+	std::vector<uint8_t> data;
+	FileReader::ReadFile(path.wstring(), data);
+
+	if (ext == L".srk")
+	{
+		std::wstring inSecPath = localPath.substr(secName.size());
+
+		std::vector<std::wstring> folders = SplitString(inSecPath, L'\\');
+
+		// Restore the name of each folder
+		for (std::wstring& f : folders)
+		{
+			if (f.empty()) continue;
+			f = RestoreFileName(ws2s(f), secName, j);
+		}
+
+		// Rebuild the path
+		localPath = std::format(L"{}/{}", s2ws(secName), JoinString(folders, L'\\'));
+
+		fN = RestoreFileName(ws2s(fN), secName, j);
+		DecryptData(data);
+	}
+
+	ext = GetFileExtension(data);
+
+	fs::path outPath = std::format(L"{}/{}/{}{}", outFolder, localPath, fN, ext);
+
+	// Make sure the folder exists
+	fs::create_directories(outPath.parent_path());
+
+	FileWriter::WriteFile(outPath.wstring(), data);
+}
+
+void CopyAndDecryptOpenData(const std::wstring& dtsFolder, const std::wstring& outFolder, const nlohmann::ordered_json& j)
+{
+	static std::vector<std::wstring> FOLDER_NAMES = { L"Graphics", L"UI", L"Audio", L"Fonts", L"Video" };
+
+	for (const auto& folder : FOLDER_NAMES)
+	{
+		std::wstring folderPath = std::format(L"{}/{}", dtsFolder, folder);
+
+		if (fs::exists(folderPath))
+		{
+			for (const auto& entry : fs::recursive_directory_iterator(folderPath))
+			{
+				if (entry.is_regular_file())
+					ProcessFile(dtsFolder, entry.path(), outFolder, j);
+			}
+		}
+	}
+}
+
+int main(int argc, char* argv[])
 {
 	if (argc < 2)
 	{
@@ -59,7 +157,7 @@ int main(int argc, char *argv[])
 
 	try
 	{
-		LPWSTR *szArgList;
+		LPWSTR* szArgList;
 		int32_t nArgs;
 
 		DTSTool dtsT;
@@ -81,6 +179,8 @@ int main(int argc, char *argv[])
 
 			SRPG_Project sp({ dtsT.GetVersion(), dtsT.GetResourceFlags(), dtsT.GetProjectData() });
 			sp.Dump(outFolder);
+
+			CopyAndDecryptOpenData(arg1.parent_path().wstring(), outFolder, sp.GetResMapping());
 		}
 		else if (fs::is_directory(arg1))
 		{
@@ -90,123 +190,13 @@ int main(int argc, char *argv[])
 
 			dtsT.Pack(arg1.wstring(), outFile);
 		}
-		else if (std::wstring(szArgList[1]) == L"dec" && nArgs >= 3)
-		{
-			// If res_mapping.json exists, use it to get the correct file names
-			nlohmann::ordered_json j;
-			if (fs::exists("res_mapping.json"))
-			{
-				std::ifstream f("res_mapping.json");
-				f >> j;
-				f.close();
-
-				nlohmann::ordered_json j2;
-
-				// Build a new json with the correct mapping
-				// Iterate over all objects in the json
-				for (const auto &[key, value] : j.items())
-				{
-					nlohmann::ordered_json j3;
-					// Iterate over the array in the object
-					for (const auto &v : value)
-					{
-						// Get the name of the object
-						std::string name = v["data"]["name"].get<std::string>();
-
-						// Get the number of the object
-						uint32_t id = v["id"].get<uint32_t>();
-
-						// Add the object to the new json
-						j3[std::to_string(id)] = name;
-					}
-
-					// Add the object to the new json
-					j2[key] = j3;
-				}
-
-				// Update the json
-				j = j2;
-			}
-
-			for (int32_t i = 2; i < nArgs; i++)
-			{
-				std::wstring folder = szArgList[i];
-
-				// Iterate over all files in the folder and its subfolders and decrypt them
-				for (const auto &entry : fs::recursive_directory_iterator(folder))
-				{
-					if (entry.is_regular_file())
-					{
-						std::wstring filePath = entry.path().wstring();
-						std::wstring ext      = entry.path().extension().wstring();
-
-						if (ext == L".srk")
-						{
-							// Get the parent folder name
-							std::wstring parentFolder = entry.path().parent_path().wstring();
-
-							std::string secName = GetSecNameFromPath(ws2s(parentFolder));
-							std::wstring fN     = entry.path().filename().wstring();
-
-							if (secName != "" && j.contains(secName))
-							{
-								try
-								{
-									// Get the file name of the current file without the extension
-									std::string filename = ws2s(entry.path().filename().stem().wstring());
-
-									std::string suffix = "";
-									// Check if the file name contains a '-'
-									size_t pos = filename.find('-');
-									// Get the '-' and everything after it
-									if (pos != std::string::npos)
-										suffix = filename.substr(pos);
-
-									// Convert the name to a number
-									uint32_t num = std::stoul(filename.substr(0, pos), nullptr, 10);
-
-									// Get the correct file name from the json
-									std::string correctName = j[secName][std::to_string(num)].get<std::string>();
-
-									// Build the new file name
-									std::string newFilename = std::format("{}{}.srk", correctName, suffix);
-
-									// Update the file name
-									fN = s2ws(newFilename);
-								}
-								catch ([[maybe_unused]] const std::exception &e)
-								{
-									std::cerr << "Error: " << e.what() << std::endl;
-								}
-							}
-
-							std::wcout << L"Decrypting: " << filePath << std::endl;
-
-							std::vector<uint8_t> data;
-							FileReader::ReadFile(filePath, data);
-
-							DecryptData(data);
-
-							std::wstring ext = GetFileExtension(data);
-
-							fs::path outPath = entry.path();
-							outPath.replace_filename(fN);
-							outPath.replace_extension(ext);
-
-							// std::wcout << L"Writing: " << outPath << std::endl;
-							FileWriter::WriteFile(outPath, data);
-						}
-					}
-				}
-			}
-		}
 		else
 		{
 			std::wcerr << "Invalid argument provided: " << szArgList[1] << std::endl;
 			return 1;
 		}
 	}
-	catch (const std::exception &e)
+	catch (const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}

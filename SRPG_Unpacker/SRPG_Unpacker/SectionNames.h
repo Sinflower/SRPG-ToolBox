@@ -82,7 +82,7 @@ static inline std::string GetSecNameFromPath(const std::string& path)
 	// Check if the path ends with one of the section names
 	for (const auto& secName : SECTION_NAMES)
 	{
-		if (path.ends_with(secName))
+		if (path.starts_with(secName))
 			return secName;
 	}
 

@@ -97,3 +97,24 @@ static inline std::wstring GetFileExtension(const std::vector<uint8_t> &data)
 
 	return L".txt";
 }
+
+static inline std::vector<std::wstring> SplitString(const std::wstring &str, const wchar_t &delim)
+{
+	std::vector<std::wstring> tokens;
+	std::wistringstream ss(str);
+	std::wstring token;
+
+	while (std::getline(ss, token, delim))
+		tokens.push_back(token);
+
+	return tokens;
+}
+
+static inline std::wstring JoinString(const std::vector<std::wstring> &strs, const wchar_t &delim)
+{
+	std::wstring result;
+	for (const std::wstring& str : strs)
+		result += str + delim;
+
+	return result;
+}

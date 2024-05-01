@@ -1368,7 +1368,6 @@ void SRPG_Project::dumpDatabase(FileWriter& fw) const
 		m_pStateData->dump(fw);
 
 	m_pPassData1->dump(fw);
-
 	m_pPassData2->dump(fw);
 	m_pFontData->dump(fw);
 
@@ -1945,7 +1944,31 @@ nlohmann::ordered_json SRPG_Project::getResMapping() const
 		secIdx++;
 	}
 
-	return j;
+	nlohmann::ordered_json j2;
+
+	// Build a new json with the correct mapping
+	// Iterate over all objects in the json
+	for (const auto& [key, value] : j.items())
+	{
+		nlohmann::ordered_json j3;
+		// Iterate over the array in the object
+		for (const auto& v : value)
+		{
+			// Get the name of the object
+			std::string name = v["data"]["name"].get<std::string>();
+
+			// Get the number of the object
+			uint32_t id = v["id"].get<uint32_t>();
+
+			// Add the object to the new json
+			j3[std::to_string(id)] = name;
+		}
+
+		// Add the object to the new json
+		j2[key] = j3;
+	}
+
+	return j2;
 }
 
 // ---------------------------------
