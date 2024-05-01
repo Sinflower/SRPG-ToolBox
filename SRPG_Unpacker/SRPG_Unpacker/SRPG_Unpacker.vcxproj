@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Crypt.cpp" />
     <ClCompile Include="DataBase.cpp" />
     <ClCompile Include="FileHeader.cpp" />
     <ClCompile Include="MaterialData.cpp" />

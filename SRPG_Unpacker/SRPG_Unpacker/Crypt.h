@@ -27,7 +27,7 @@
 #pragma once
 
 #include <Windows.h>
-#include <iostream>
+#include <string>
 #include <vector>
 
 #define DecryptData Crypt::GetInstance().Decrypt
@@ -36,6 +36,8 @@
 
 class Crypt
 {
+	inline static const std::wstring CRYPT_KEY = L"keyset";
+
 public:
 	static Crypt &GetInstance()
 	{
@@ -72,64 +74,11 @@ private:
 		destoryCryptEngine();
 	}
 
-	bool initCryptEngine()
-	{
-		DWORD dwDataLen;
-		HCRYPTHASH phHash;
+	bool initCryptEngine();
 
-		if (m_hKey == NULL)
-		{
-			if (!CryptAcquireContext(&m_hCryptProv, NULL, NULL, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT))
-			{
-				std::cerr << "Error: Unable to create Crypt Context." << std::endl;
-				return false;
-			}
+	void destoryCryptEngine();
 
-			dwDataLen = lstrlenW(L"keyset");
-			if (CryptCreateHash(m_hCryptProv, CALG_MD5, 0, 0, &phHash))
-			{
-				CryptHashData(phHash, (const BYTE *)L"keyset", dwDataLen, 0);
-				CryptDeriveKey(m_hCryptProv, CALG_RC4, phHash, 0, &m_hKey);
-				CryptDestroyHash(phHash);
-			}
-			else
-			{
-				std::cerr << "Error: Unable to create Crypt Hash." << std::endl;
-				CryptReleaseContext(m_hCryptProv, 0);
-				m_hCryptProv = NULL;
-				return false;
-			}
-		}
-
-		return true;
-	}
-
-	void destoryCryptEngine()
-	{
-		if (m_hKey)
-			CryptDestroyKey(m_hKey);
-		if (m_hCryptProv)
-			CryptReleaseContext(m_hCryptProv, 0);
-	}
-
-	void crypt(std::vector<uint8_t> &data, bool decrypt = true)
-	{
-		if (!m_doCrypt)
-			return;
-
-		BOOL res;
-		DWORD length = static_cast<DWORD>(data.size());
-
-		uint8_t *pData = data.data();
-
-		if (decrypt)
-			res = CryptDecrypt(m_hKey, NULL, TRUE, NULL, pData, &length);
-		else
-			res = CryptEncrypt(m_hKey, NULL, TRUE, NULL, pData, &length, length);
-
-		if (!res)
-			std::cerr << "Error: CryptDecrypt/CryptEncrypt failed: " << GetLastError() << std::endl;
-	}
+	void crypt(std::vector<uint8_t> &data, bool decrypt = true);
 
 private:
 	HCRYPTKEY m_hKey        = NULL;
