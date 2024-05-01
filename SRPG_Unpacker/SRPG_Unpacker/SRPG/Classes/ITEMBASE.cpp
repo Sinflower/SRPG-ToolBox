@@ -1,20 +1,20 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "ITEMBASE.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void ITEMBASE::init(FileReader& fw)
 {
-	this_8 = fw.ReadDWord();
-	uses = fw.ReadDWord();
+	this_8  = fw.ReadDWord();
+	uses    = fw.ReadDWord();
 	this_37 = fw.ReadDWord();
-	price = fw.ReadDWord();
-	weight = fw.ReadDWord();
+	price   = fw.ReadDWord();
+	weight  = fw.ReadDWord();
 	this_34 = fw.ReadDWord();
 	this_35 = fw.ReadDWord();
 
-	//if (g_ArcVersion < 0x437)
+	// if (g_ArcVersion < 0x437)
 	//	this_35 = (this_35 == 0);
 
 	sub_36E310(fw);
@@ -111,18 +111,18 @@ void ITEMBASE::dump(FileWriter& fw) const
 	if (g_ArcVersion < 0x41D)
 	{
 		NOT_IMPLEMENTED
-			/*
-			Block = alloc_CMenuOperation((void *)0x9C6);
-			CMenuInit(Block, a2);
-			v3 = alloc_CMenuOperation((void *)0x9C6);
-			CMenuInit(v3, a2);
-			sub_1019F0(0);
-			sub_1019F0(1);
-			if ( Block )
-			sub_1212F0(Block);
-			if ( v3 )
-			sub_1212F0(v3);
-			*/
+		/*
+		Block = alloc_CMenuOperation((void *)0x9C6);
+		CMenuInit(Block, a2);
+		v3 = alloc_CMenuOperation((void *)0x9C6);
+		CMenuInit(v3, a2);
+		sub_1019F0(0);
+		sub_1019F0(1);
+		if ( Block )
+		sub_1212F0(Block);
+		if ( v3 )
+		sub_1212F0(v3);
+		*/
 	}
 	else
 	{
@@ -150,18 +150,18 @@ void ITEMBASE::sub_101AB0(FileReader& fw)
 	if (g_ArcVersion < 0x41D)
 	{
 		NOT_IMPLEMENTED
-			/*
-			Block = alloc_CMenuOperation((void *)0x9C6);
-			CMenuInit(Block, a2);
-			v3 = alloc_CMenuOperation((void *)0x9C6);
-			CMenuInit(v3, a2);
-			sub_1019F0(0);
-			sub_1019F0(1);
-			if ( Block )
-				sub_1212F0(Block);
-			if ( v3 )
-				sub_1212F0(v3);
-			*/
+		/*
+		Block = alloc_CMenuOperation((void *)0x9C6);
+		CMenuInit(Block, a2);
+		v3 = alloc_CMenuOperation((void *)0x9C6);
+		CMenuInit(v3, a2);
+		sub_1019F0(0);
+		sub_1019F0(1);
+		if ( Block )
+			sub_1212F0(Block);
+		if ( v3 )
+			sub_1212F0(v3);
+		*/
 	}
 	else
 	{
@@ -174,7 +174,7 @@ void ITEMBASE::sub_36E310(FileReader& fw)
 {
 	if (g_ArcVersion < 0x418)
 	{
-		paramBonusHp = fw.ReadDWord();
+		paramBonusHp  = fw.ReadDWord();
 		paramBonusStr = fw.ReadDWord();
 		paramBonusMag = fw.ReadDWord();
 		paramBonusSkl = fw.ReadDWord();
@@ -186,7 +186,7 @@ void ITEMBASE::sub_36E310(FileReader& fw)
 		paramBonusWlv = 0;
 		paramBonusBld = 0;
 
-		grothBonusHp = fw.ReadDWord();
+		grothBonusHp  = fw.ReadDWord();
 		grothBonusStr = fw.ReadDWord();
 		grothBonusMag = fw.ReadDWord();
 		grothBonusSkl = fw.ReadDWord();
@@ -203,7 +203,7 @@ void ITEMBASE::sub_36E310(FileReader& fw)
 		res1 = fw.ReadDWord();
 		if (res1)
 		{
-			paramBonusHp = 0;
+			paramBonusHp  = 0;
 			paramBonusStr = 0;
 			paramBonusMag = 0;
 			paramBonusSkl = 0;
@@ -217,7 +217,7 @@ void ITEMBASE::sub_36E310(FileReader& fw)
 		}
 		else
 		{
-			paramBonusHp = fw.ReadDWord();
+			paramBonusHp  = fw.ReadDWord();
 			paramBonusStr = fw.ReadDWord();
 			paramBonusMag = fw.ReadDWord();
 			paramBonusSkl = fw.ReadDWord();
@@ -233,7 +233,7 @@ void ITEMBASE::sub_36E310(FileReader& fw)
 		res2 = fw.ReadDWord();
 		if (res2)
 		{
-			grothBonusHp = 0;
+			grothBonusHp  = 0;
 			grothBonusStr = 0;
 			grothBonusMag = 0;
 			grothBonusSkl = 0;
@@ -247,7 +247,7 @@ void ITEMBASE::sub_36E310(FileReader& fw)
 		}
 		else
 		{
-			grothBonusHp = fw.ReadDWord();
+			grothBonusHp  = fw.ReadDWord();
 			grothBonusStr = fw.ReadDWord();
 			grothBonusMag = fw.ReadDWord();
 			grothBonusSkl = fw.ReadDWord();
@@ -261,7 +261,6 @@ void ITEMBASE::sub_36E310(FileReader& fw)
 		}
 	}
 }
-
 
 void ITEMBASE::print(std::ostream& os) const
 {

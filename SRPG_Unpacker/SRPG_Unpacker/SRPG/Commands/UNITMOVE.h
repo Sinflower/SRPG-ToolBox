@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../Classes/EDITDATA.h"
 #include "../CMenuOperation.h"
+#include "../Classes/EDITDATA.h"
 #include "UNITAPPEAR.h"
 #include "UNITREMOVE.h"
 
@@ -15,7 +15,7 @@ struct UNITMOVE : public EDITDATA
 	DWORD this_6 = 0;
 	DWORD this_7 = 0;
 	MemData this_8;
-	DWORD this_9 = 0;
+	DWORD this_9  = 0;
 	DWORD this_10 = 0;
 	DWORD this_11 = 0;
 	DWORD this_12 = 0;

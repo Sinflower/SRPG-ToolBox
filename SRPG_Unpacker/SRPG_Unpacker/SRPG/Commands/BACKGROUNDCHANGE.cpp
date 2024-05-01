@@ -15,7 +15,6 @@ void BACKGROUNDCHANGE::init(FileReader& fw)
 			this_13 = fw.ReadDWord();
 			this_14 = fw.ReadDWord();
 			this_15 = fw.ReadDWord();
-
 		}
 	}
 
@@ -39,7 +38,6 @@ void BACKGROUNDCHANGE::dump(FileWriter& fw) const
 			fw.Write(this_13);
 			fw.Write(this_14);
 			fw.Write(this_15);
-
 		}
 	}
 

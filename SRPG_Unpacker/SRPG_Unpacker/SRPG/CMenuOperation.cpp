@@ -2,20 +2,20 @@
 #include "Classes/EDITDATA.h"
 #include "Functions.h"
 
-CMenuOperation::CMenuOperation(SRPGClasses const& type)
-	: m_type(static_cast<uint32_t>(type))
+CMenuOperation::CMenuOperation(SRPGClasses const& type) :
+	m_type(static_cast<uint32_t>(type))
 {
 }
 
-CMenuOperation::CMenuOperation(DWORD const& type)
-	: m_type(type)
+CMenuOperation::CMenuOperation(DWORD const& type) :
+	m_type(type)
 {
 }
 
 CMenuOperation::~CMenuOperation()
 {
 	for (EDITDATA*& p : m_data)
-		delete(p);
+		delete (p);
 }
 
 std::size_t CMenuOperation::GetElemCount() const
@@ -31,7 +31,7 @@ void CMenuOperation::init(FileReader& fw)
 	{
 		// v9 points to the class object
 		EDITDATA* pObj = createSRPGClass(m_type);
-		pObj->id = fw.ReadDWord();
+		pObj->id       = fw.ReadDWord();
 		pObj->init(fw);
 
 		m_data.push_back(pObj);
@@ -63,7 +63,7 @@ nlohmann::ordered_json CMenuOperation::ToJson() const
 	return j;
 }
 
-std::ostream& operator << (std::ostream& os, CMenuOperation const& dt)
+std::ostream& operator<<(std::ostream& os, CMenuOperation const& dt)
 {
 	os << "CMenuOperation: " << dt.m_type << std::endl;
 	for (const EDITDATA* p : dt.m_data)
@@ -72,7 +72,7 @@ std::ostream& operator << (std::ostream& os, CMenuOperation const& dt)
 	return os;
 }
 
-std::wostream& operator << (std::wostream& os, CMenuOperation const& dt)
+std::wostream& operator<<(std::wostream& os, CMenuOperation const& dt)
 {
 	os << L"CMenuOperation: " << dt.m_type << std::endl;
 	for (const EDITDATA* p : dt.m_data)
@@ -80,7 +80,6 @@ std::wostream& operator << (std::wostream& os, CMenuOperation const& dt)
 
 	return os;
 }
-
 
 void allocAndSetCMenuOp(CMenuOperation** ppCMenuOperation, const SRPGClasses& type, FileReader& fw)
 {

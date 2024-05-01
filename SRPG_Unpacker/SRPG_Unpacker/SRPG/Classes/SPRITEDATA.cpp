@@ -1,18 +1,18 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "SPRITEDATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void SPRITEDATA::init(FileReader& fw)
 {
-	this_3 = fw.ReadDWord();
-	this_4 = fw.ReadDWord();
-	this_5 = fw.ReadDWord();
-	this_6 = fw.ReadDWord();
-	this_7 = fw.ReadByte();
-	this_8 = fw.ReadDWord();
-	this_9 = fw.ReadDWord();
+	this_3  = fw.ReadDWord();
+	this_4  = fw.ReadDWord();
+	this_5  = fw.ReadDWord();
+	this_6  = fw.ReadDWord();
+	this_7  = fw.ReadByte();
+	this_8  = fw.ReadDWord();
+	this_9  = fw.ReadDWord();
 	this_13 = fw.ReadDWord();
 	this_14 = fw.ReadDWord();
 	this_10 = fw.ReadDWord();
@@ -36,13 +36,13 @@ void SPRITEDATA::init(FileReader& fw)
 
 void SPRITEDATA::dump(FileWriter& fw) const
 {
-	fw.Write(this_3 );
-	fw.Write(this_4 );
-	fw.Write(this_5 );
-	fw.Write(this_6 );
-	fw.Write(this_7 );
-	fw.Write(this_8 );
-	fw.Write(this_9 );
+	fw.Write(this_3);
+	fw.Write(this_4);
+	fw.Write(this_5);
+	fw.Write(this_6);
+	fw.Write(this_7);
+	fw.Write(this_8);
+	fw.Write(this_9);
 	fw.Write(this_13);
 	fw.Write(this_14);
 	fw.Write(this_10);

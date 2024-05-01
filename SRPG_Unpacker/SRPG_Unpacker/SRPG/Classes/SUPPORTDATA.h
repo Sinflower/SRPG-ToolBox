@@ -4,7 +4,7 @@
 
 struct SUPPORTDATA : public EDITDATA
 {
-	DWORD this_3 = 0;
+	DWORD this_3                 = 0;
 	class CMenuOperation* this_4 = nullptr;
 	DWORD this_5                 = 0;
 	DWORD this_6                 = 0;
@@ -15,7 +15,6 @@ struct SUPPORTDATA : public EDITDATA
 	DWORD this_11                = 0;
 
 	class CMenuOperation* this_12 = nullptr;
-
 
 	virtual void init(FileReader& fw);
 	virtual void dump([[maybe_unused]] FileWriter& fw) const;

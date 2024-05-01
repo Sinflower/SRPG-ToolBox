@@ -1,19 +1,19 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "CLASSDATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 #include "UNITPROTOTYPEDATA.h"
 
 void CLASSDATA::init(FileReader& fw)
 {
-	this_8 = fw.ReadDWord();
-	this_9 = fw.ReadDWord();
+	this_8      = fw.ReadDWord();
+	this_9      = fw.ReadDWord();
 	optionalExp = fw.ReadDWord();
-	this_12 = fw.ReadDWord();
-	this_13 = fw.ReadDWord();
-	this_18 = fw.ReadDWord();
-	this_19 = fw.ReadDWord();
+	this_12     = fw.ReadDWord();
+	this_13     = fw.ReadDWord();
+	this_18     = fw.ReadDWord();
+	this_19     = fw.ReadDWord();
 
 	if (g_ArcVersion >= 0x41D)
 	{
@@ -21,26 +21,26 @@ void CLASSDATA::init(FileReader& fw)
 		{
 			DWORD v19 = fw.ReadDWord();
 			NOT_IMPLEMENTED
-				/*
-				v6 = *(_DWORD **)(this + 96);
+			/*
+			v6 = *(_DWORD **)(this + 96);
 
-				Sizea = (*(int (__thiscall **)(_DWORD *))*v6)(v6);
-				*(_DWORD *)(Sizea + 8) = sub_381340(v6);
-				v7 = v6[1];
-				v8 = v7 + 4;
-				if ( *(_DWORD *)(v7 + 4) )
+			Sizea = (*(int (__thiscall **)(_DWORD *))*v6)(v6);
+			*(_DWORD *)(Sizea + 8) = sub_381340(v6);
+			v7 = v6[1];
+			v8 = v7 + 4;
+			if ( *(_DWORD *)(v7 + 4) )
+			{
+				do
 				{
-					do
-					{
-						v7 = *(_DWORD *)v8;
-						v9 = *(_DWORD *)(*(_DWORD *)v8 + 4) == 0;
-						v8 = *(_DWORD *)v8 + 4;
-					}
-					while ( !v9 );
+					v7 = *(_DWORD *)v8;
+					v9 = *(_DWORD *)(*(_DWORD *)v8 + 4) == 0;
+					v8 = *(_DWORD *)v8 + 4;
 				}
-				*(_DWORD *)(v7 + 4) = Sizea;
-				*(_DWORD *)(Sizea + 12) = v19;
-				*/
+				while ( !v9 );
+			}
+			*(_DWORD *)(v7 + 4) = Sizea;
+			*(_DWORD *)(Sizea + 12) = v19;
+			*/
 		}
 		else
 			allocAndSetCMenuOp(&m_pTypeIDData3, SRPGClasses::TYPEIDDATA, fw);
@@ -64,7 +64,8 @@ void CLASSDATA::init(FileReader& fw)
 		m_pUnitPrototypeData = new UNITPROTOTYPEDATA();
 	else
 	{
-		std::cerr << __FILE__ << ":" << __LINE__ << " : " << __FUNCTION__ << " : " << "m_pUnitPrototypeData is not null, this needs to be checked, as there might be a different function call requried" << std::endl;
+		std::cerr << __FILE__ << ":" << __LINE__ << " : " << __FUNCTION__ << " : "
+				  << "m_pUnitPrototypeData is not null, this needs to be checked, as there might be a different function call requried" << std::endl;
 		// might require a call to m_pUnitPrototypeData->init()
 		// but m_pUnitPrototypeData might actually not be a UNITPROTOTYPEDATA object
 		exit(-1);
@@ -97,27 +98,27 @@ void CLASSDATA::dump(FileWriter& fw) const
 		if (g_ArcVersion < 0x461)
 		{
 			NOT_IMPLEMENTED
-				/*
-				DWORD v19 = fw.ReadDWord();
-				v6 = *(_DWORD **)(this + 96);
+			/*
+			DWORD v19 = fw.ReadDWord();
+			v6 = *(_DWORD **)(this + 96);
 
-				Sizea = (*(int (__thiscall **)(_DWORD *))*v6)(v6);
-				*(_DWORD *)(Sizea + 8) = sub_381340(v6);
-				v7 = v6[1];
-				v8 = v7 + 4;
-				if ( *(_DWORD *)(v7 + 4) )
-				{
-				do
-				{
-				v7 = *(_DWORD *)v8;
-				v9 = *(_DWORD *)(*(_DWORD *)v8 + 4) == 0;
-				v8 = *(_DWORD *)v8 + 4;
-				}
-				while ( !v9 );
-				}
-				*(_DWORD *)(v7 + 4) = Sizea;
-				*(_DWORD *)(Sizea + 12) = v19;
-				*/
+			Sizea = (*(int (__thiscall **)(_DWORD *))*v6)(v6);
+			*(_DWORD *)(Sizea + 8) = sub_381340(v6);
+			v7 = v6[1];
+			v8 = v7 + 4;
+			if ( *(_DWORD *)(v7 + 4) )
+			{
+			do
+			{
+			v7 = *(_DWORD *)v8;
+			v9 = *(_DWORD *)(*(_DWORD *)v8 + 4) == 0;
+			v8 = *(_DWORD *)v8 + 4;
+			}
+			while ( !v9 );
+			}
+			*(_DWORD *)(v7 + 4) = Sizea;
+			*(_DWORD *)(Sizea + 12) = v19;
+			*/
 		}
 		else
 			m_pTypeIDData3->dump(fw);
@@ -189,7 +190,6 @@ void CLASSDATA::dump(FileWriter& fw) const
 
 	/////
 
-
 	fw.Write(this_25);
 
 	/////
@@ -197,33 +197,33 @@ void CLASSDATA::dump(FileWriter& fw) const
 	if (g_ArcVersion < 0x43F)
 	{
 		NOT_IMPLEMENTED
-			/*
-			lpMem = 0;
-			v12 = 0;
-			v13 = 0;
-			sub_360240(&lpMem, a3);
-			sub_3602E0(&lpMem, a2, (void*)a3);
-			sub_360010(&lpMem, this);
-			if (lpMem)
-			{
-			v8 = lpMem;
-			v5 = GetProcessHeap();
-			HeapFree(v5, 0, v8);
-			}
-			if (v12)
-			{
-			v9 = v12;
-			v6 = GetProcessHeap();
-			HeapFree(v6, 0, v9);
-			}
-			result = (int*)v13;
-			if (v13)
-			{
-			v10 = v13;
-			v7 = GetProcessHeap();
-			result = (int*)HeapFree(v7, 0, v10);
-			}
-			*/
+		/*
+		lpMem = 0;
+		v12 = 0;
+		v13 = 0;
+		sub_360240(&lpMem, a3);
+		sub_3602E0(&lpMem, a2, (void*)a3);
+		sub_360010(&lpMem, this);
+		if (lpMem)
+		{
+		v8 = lpMem;
+		v5 = GetProcessHeap();
+		HeapFree(v5, 0, v8);
+		}
+		if (v12)
+		{
+		v9 = v12;
+		v6 = GetProcessHeap();
+		HeapFree(v6, 0, v9);
+		}
+		result = (int*)v13;
+		if (v13)
+		{
+		v10 = v13;
+		v7 = GetProcessHeap();
+		result = (int*)HeapFree(v7, 0, v10);
+		}
+		*/
 	}
 	else
 	{
@@ -309,7 +309,6 @@ void CLASSDATA::dump(FileWriter& fw) const
 
 	/////
 
-
 	this_76.Write(fw);
 
 	LEGENDDATA::dump(fw);
@@ -324,7 +323,7 @@ void CLASSDATA::sub_360EA0(FileReader& fw)
 		if (g_ArcVersion < 0x418)
 		{
 			fw.ReadBytes(this_53.data(), 36);
-			this_53[9] = 30;
+			this_53[9]  = 30;
 			this_53[10] = 30;
 		}
 		else
@@ -342,7 +341,7 @@ void CLASSDATA::sub_360EA0(FileReader& fw)
 			if (this_9 == 1)
 			{
 				this_14 = this_12;
-				this_9 = 2;
+				this_9  = 2;
 				this_15 = this_13;
 				this_12 = 0;
 				this_13 = 0x20000;
@@ -350,7 +349,7 @@ void CLASSDATA::sub_360EA0(FileReader& fw)
 			else if (this_9 == 2)
 			{
 				this_16 = this_12;
-				this_9 = 4;
+				this_9  = 4;
 				this_17 = this_13;
 				this_12 = 0;
 				this_13 = 0x20000;
@@ -441,7 +440,7 @@ void CLASSDATA::sub_36E310(FileReader& fw)
 {
 	if (g_ArcVersion < 0x418)
 	{
-		paramBonusHp = fw.ReadDWord();
+		paramBonusHp  = fw.ReadDWord();
 		paramBonusStr = fw.ReadDWord();
 		paramBonusMag = fw.ReadDWord();
 		paramBonusSkl = fw.ReadDWord();
@@ -452,7 +451,7 @@ void CLASSDATA::sub_36E310(FileReader& fw)
 		paramBonusMov = fw.ReadDWord();
 		paramBonusWlv = 0;
 		paramBonusBld = 0;
-		grothBonusHp = fw.ReadDWord();
+		grothBonusHp  = fw.ReadDWord();
 		grothBonusStr = fw.ReadDWord();
 		grothBonusMag = fw.ReadDWord();
 		grothBonusSkl = fw.ReadDWord();
@@ -469,7 +468,7 @@ void CLASSDATA::sub_36E310(FileReader& fw)
 		res2 = fw.ReadDWord();
 		if (res2)
 		{
-			paramBonusHp = 0;
+			paramBonusHp  = 0;
 			paramBonusStr = 0;
 			paramBonusMag = 0;
 			paramBonusSkl = 0;
@@ -483,7 +482,7 @@ void CLASSDATA::sub_36E310(FileReader& fw)
 		}
 		else
 		{
-			paramBonusHp = fw.ReadDWord();
+			paramBonusHp  = fw.ReadDWord();
 			paramBonusStr = fw.ReadDWord();
 			paramBonusMag = fw.ReadDWord();
 			paramBonusSkl = fw.ReadDWord();
@@ -499,7 +498,7 @@ void CLASSDATA::sub_36E310(FileReader& fw)
 		res3 = fw.ReadDWord();
 		if (res3)
 		{
-			grothBonusHp = 0;
+			grothBonusHp  = 0;
 			grothBonusStr = 0;
 			grothBonusMag = 0;
 			grothBonusSkl = 0;
@@ -513,7 +512,7 @@ void CLASSDATA::sub_36E310(FileReader& fw)
 		}
 		else
 		{
-			grothBonusHp = fw.ReadDWord();
+			grothBonusHp  = fw.ReadDWord();
 			grothBonusStr = fw.ReadDWord();
 			grothBonusMag = fw.ReadDWord();
 			grothBonusSkl = fw.ReadDWord();
@@ -532,33 +531,33 @@ void CLASSDATA::sub_35FF20(FileReader& fw, int a3)
 	if (g_ArcVersion < 0x43F)
 	{
 		NOT_IMPLEMENTED
-			/*
-			lpMem = 0;
-			v12 = 0;
-			v13 = 0;
-			sub_360240(&lpMem, a3);
-			sub_3602E0(&lpMem, a2, (void*)a3);
-			sub_360010(&lpMem, this);
-			if (lpMem)
-			{
-				v8 = lpMem;
-				v5 = GetProcessHeap();
-				HeapFree(v5, 0, v8);
-			}
-			if (v12)
-			{
-				v9 = v12;
-				v6 = GetProcessHeap();
-				HeapFree(v6, 0, v9);
-			}
-			result = (int*)v13;
-			if (v13)
-			{
-				v10 = v13;
-				v7 = GetProcessHeap();
-				result = (int*)HeapFree(v7, 0, v10);
-			}
-			*/
+		/*
+		lpMem = 0;
+		v12 = 0;
+		v13 = 0;
+		sub_360240(&lpMem, a3);
+		sub_3602E0(&lpMem, a2, (void*)a3);
+		sub_360010(&lpMem, this);
+		if (lpMem)
+		{
+			v8 = lpMem;
+			v5 = GetProcessHeap();
+			HeapFree(v5, 0, v8);
+		}
+		if (v12)
+		{
+			v9 = v12;
+			v6 = GetProcessHeap();
+			HeapFree(v6, 0, v9);
+		}
+		result = (int*)v13;
+		if (v13)
+		{
+			v10 = v13;
+			v7 = GetProcessHeap();
+			result = (int*)HeapFree(v7, 0, v10);
+		}
+		*/
 	}
 	else
 	{

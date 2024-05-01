@@ -1,8 +1,8 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "RESTAREADATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void RESTAREADATA::init(FileReader& fw)
 {
@@ -10,10 +10,10 @@ void RESTAREADATA::init(FileReader& fw)
 
 	this_4 = fw.ReadDWord();
 
-	this_6 = fw.ReadDWord();
-	this_7 = fw.ReadDWord();
-	this_8 = fw.ReadDWord();
-	this_9 = fw.ReadDWord();
+	this_6  = fw.ReadDWord();
+	this_7  = fw.ReadDWord();
+	this_8  = fw.ReadDWord();
+	this_9  = fw.ReadDWord();
 	this_10 = fw.ReadDWord();
 
 	if (this_10)

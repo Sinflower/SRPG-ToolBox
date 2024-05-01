@@ -6,12 +6,12 @@
 
 void SUPPORTDATA::init(FileReader& fw)
 {
-	this_3 = fw.ReadDWord();
-	this_5 = fw.ReadDWord();
-	this_6 = fw.ReadDWord();
-	this_7 = fw.ReadDWord();
-	this_8 = fw.ReadDWord();
-	this_9 = fw.ReadDWord();
+	this_3  = fw.ReadDWord();
+	this_5  = fw.ReadDWord();
+	this_6  = fw.ReadDWord();
+	this_7  = fw.ReadDWord();
+	this_8  = fw.ReadDWord();
+	this_9  = fw.ReadDWord();
 	this_10 = fw.ReadDWord();
 
 	if (g_ArcVersion >= 1260)

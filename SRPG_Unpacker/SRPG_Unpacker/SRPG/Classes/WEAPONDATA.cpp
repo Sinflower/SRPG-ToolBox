@@ -1,19 +1,19 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "WEAPONDATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void WEAPONDATA::init(FileReader& fw)
 {
 	ITEMBASE::init(fw);
 
-	this_50 = fw.ReadDWord();
-	mt = fw.ReadDWord();
-	rangeStart = fw.ReadDWord();
-	rangeEnd = fw.ReadDWord();
-	hit = fw.ReadDWord();
-	crt = fw.ReadDWord();
+	this_50     = fw.ReadDWord();
+	mt          = fw.ReadDWord();
+	rangeStart  = fw.ReadDWord();
+	rangeEnd    = fw.ReadDWord();
+	hit         = fw.ReadDWord();
+	crt         = fw.ReadDWord();
 	attackCount = fw.ReadDWord();
 
 	if (g_ArcVersion < 1048)
@@ -168,7 +168,7 @@ void WEAPONDATA::sub_102420(FileReader& fw)
 
 	if (g_ArcVersion < 0x418)
 	{
-		//if (this_73 == 9 || this_73 == 10)
+		// if (this_73 == 9 || this_73 == 10)
 		//	this_73 += 2;
 	}
 
@@ -189,66 +189,66 @@ void WEAPONDATA::sub_100680(FileReader& fw)
 		if (res)
 		{
 			NOT_IMPLEMENTED
-				/*
-				DWORD v25[10];
-				DWORD v26[14];
-				fw.ReadBytes(v25, 0x28);
-				fw.ReadBytes(v26, 0x38);
+			/*
+			DWORD v25[10];
+			DWORD v26[14];
+			fw.ReadBytes(v25, 0x28);
+			fw.ReadBytes(v26, 0x38);
 
-				for (uint32_t i = 0; i < 5; ++i )
+			for (uint32_t i = 0; i < 5; ++i )
+			{
+				DWORD v11 = v25[2 * i + 1];
+				if ( v25[2 * i] || v11 != 327680 )
 				{
-					DWORD v11 = v25[2 * i + 1];
-					if ( v25[2 * i] || v11 != 327680 )
+					v12 = *this;
+					v13 = (_DWORD *)(**(int (__thiscall ***)(_DWORD))*this)(*this);
+					v13[2] = i;
+					v14 = *(_DWORD *)(v12 + 4);
+					v15 = v14 + 4;
+					if ( *(_DWORD *)(v14 + 4) )
 					{
-						v12 = *this;
-						v13 = (_DWORD *)(**(int (__thiscall ***)(_DWORD))*this)(*this);
-						v13[2] = i;
-						v14 = *(_DWORD *)(v12 + 4);
-						v15 = v14 + 4;
-						if ( *(_DWORD *)(v14 + 4) )
+						do
 						{
-							do
-							{
-								v14 = *(_DWORD *)v15;
-								v16 = *(_DWORD *)(*(_DWORD *)v15 + 4) == 0;
-								v15 = *(_DWORD *)v15 + 4;
-							}
-							while ( !v16 );
+							v14 = *(_DWORD *)v15;
+							v16 = *(_DWORD *)(*(_DWORD *)v15 + 4) == 0;
+							v15 = *(_DWORD *)v15 + 4;
 						}
-						v17 = v25[2 * i];
-						*(_DWORD *)(v14 + 4) = v13;
-						v13[4] = v17;
-						v13[5] = v11;
+						while ( !v16 );
 					}
+					v17 = v25[2 * i];
+					*(_DWORD *)(v14 + 4) = v13;
+					v13[4] = v17;
+					v13[5] = v11;
 				}
+			}
 
-				for (uint32_t j = 0; j < 7; ++j )
+			for (uint32_t j = 0; j < 7; ++j )
+			{
+				DWORD v19 = v26[2 * j + 1];
+				if ( v26[2 * j] || v19 != 327680 )
 				{
-					DWORD v19 = v26[2 * j + 1];
-					if ( v26[2 * j] || v19 != 327680 )
+					v20 = this_75;
+					result = (int *)(**(int (__thiscall ***)(int))this_75)(this_75);
+					result[2] = j;
+					v21 = *(_DWORD *)(v20 + 4);
+					v22 = v21 + 4;
+					if ( *(_DWORD *)(v21 + 4) )
 					{
-						v20 = this_75;
-						result = (int *)(**(int (__thiscall ***)(int))this_75)(this_75);
-						result[2] = j;
-						v21 = *(_DWORD *)(v20 + 4);
-						v22 = v21 + 4;
-						if ( *(_DWORD *)(v21 + 4) )
+						do
 						{
-							do
-							{
-								v21 = *(_DWORD *)v22;
-								v16 = *(_DWORD *)(*(_DWORD *)v22 + 4) == 0;
-								v22 = *(_DWORD *)v22 + 4;
-							}
-							while ( !v16 );
+							v21 = *(_DWORD *)v22;
+							v16 = *(_DWORD *)(*(_DWORD *)v22 + 4) == 0;
+							v22 = *(_DWORD *)v22 + 4;
 						}
-						v23 = v26[2 * j];
-						*(_DWORD *)(v21 + 4) = result;
-						result[4] = v23;
-						result[5] = v19;
+						while ( !v16 );
 					}
+					v23 = v26[2 * j];
+					*(_DWORD *)(v21 + 4) = result;
+					result[4] = v23;
+					result[5] = v19;
 				}
-				*/
+			}
+			*/
 		}
 		else
 		{
@@ -268,33 +268,33 @@ void WEAPONDATA::sub_FFF20(FileReader& fw, int a3)
 	if (g_ArcVersion < 0x43F)
 	{
 		NOT_IMPLEMENTED
-			/*
-			lpMem = 0;
-			v12 = 0;
-			v13 = 0;
-			sub_360240(&lpMem, a3);
-			sub_3602E0(&lpMem, a2, (void*)a3);
-			sub_360010(&lpMem, this);
-			if (lpMem)
-			{
-			v8 = lpMem;
-			v5 = GetProcessHeap();
-			HeapFree(v5, 0, v8);
-			}
-			if (v12)
-			{
-			v9 = v12;
-			v6 = GetProcessHeap();
-			HeapFree(v6, 0, v9);
-			}
-			result = (int*)v13;
-			if (v13)
-			{
-			v10 = v13;
-			v7 = GetProcessHeap();
-			result = (int*)HeapFree(v7, 0, v10);
-			}
-			*/
+		/*
+		lpMem = 0;
+		v12 = 0;
+		v13 = 0;
+		sub_360240(&lpMem, a3);
+		sub_3602E0(&lpMem, a2, (void*)a3);
+		sub_360010(&lpMem, this);
+		if (lpMem)
+		{
+		v8 = lpMem;
+		v5 = GetProcessHeap();
+		HeapFree(v5, 0, v8);
+		}
+		if (v12)
+		{
+		v9 = v12;
+		v6 = GetProcessHeap();
+		HeapFree(v6, 0, v9);
+		}
+		result = (int*)v13;
+		if (v13)
+		{
+		v10 = v13;
+		v7 = GetProcessHeap();
+		result = (int*)HeapFree(v7, 0, v10);
+		}
+		*/
 	}
 	else
 	{
@@ -323,13 +323,13 @@ void WEAPONDATA::sub_102390(FileReader& fw)
 	if (g_ArcVersion < 0x41D)
 	{
 		NOT_IMPLEMENTED
-			/*
-			v3 = alloc_CMenuOperation(SRPGClasses::TYPEIDDATA);
-			CMenuInit(v3, a2);
-			sub_1019F0((int)v3, (int)(this + 64), 6u);
-			if ( v3 )
-				sub_1212F0(v3);
-			*/
+		/*
+		v3 = alloc_CMenuOperation(SRPGClasses::TYPEIDDATA);
+		CMenuInit(v3, a2);
+		sub_1019F0((int)v3, (int)(this + 64), 6u);
+		if ( v3 )
+			sub_1212F0(v3);
+		*/
 	}
 	else
 	{
@@ -347,7 +347,6 @@ void WEAPONDATA::sub_102390(FileReader& fw)
 
 void WEAPONDATA::print(std::ostream& os) const
 {
-
 	os << "WEAPONDATA" << std::endl;
 	ITEMBASE::print(os);
 	os << "this_50: " << this_50 << std::endl;

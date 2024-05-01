@@ -5,7 +5,7 @@
 
 void GALLERYDATA::init(FileReader& fw)
 {
-	allocAndSetCMenuOp(&this_11, SRPGClasses::GALLERYGROUPDATA ,fw);
+	allocAndSetCMenuOp(&this_11, SRPGClasses::GALLERYGROUPDATA, fw);
 
 	this_8 = fw.ReadDWord();
 	this_9 = fw.ReadDWord();

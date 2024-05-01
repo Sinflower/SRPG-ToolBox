@@ -12,7 +12,7 @@ struct EVENTDATA : public EDITDATA, public LEGENDDATA
 		DWORD this_2 = 0;
 		MemData this_3;
 		MemData this_4;
-		friend std::ostream& operator << (std::ostream& os, ELEM_15 const& elem)
+		friend std::ostream& operator<<(std::ostream& os, ELEM_15 const& elem)
 		{
 			os << "ELEM_15: " << std::endl;
 			os << "this_1: " << elem.this_1 << std::endl;
@@ -24,16 +24,16 @@ struct EVENTDATA : public EDITDATA, public LEGENDDATA
 	};
 	struct PlaceEvent
 	{
-		DWORD x = 0;
-		DWORD y = 0;
+		DWORD x                 = 0;
+		DWORD y                 = 0;
 		DWORD locationEventType = 0;
-		DWORD itemDropsSw = 0;
-		DWORD dropItem = 0;
-		DWORD dropGold = 0;
-		DWORD dropBonus = 0;
-		DWORD this_7 = 0;
-		QWORD changeChips = 0;
-		DWORD this_10 = 0;
+		DWORD itemDropsSw       = 0;
+		DWORD dropItem          = 0;
+		DWORD dropGold          = 0;
+		DWORD dropBonus         = 0;
+		DWORD this_7            = 0;
+		QWORD changeChips       = 0;
+		DWORD this_10           = 0;
 		MemData this_11;
 		DWORD this_12 = 0;
 		DWORD this_13 = 0;
@@ -42,7 +42,7 @@ struct EVENTDATA : public EDITDATA, public LEGENDDATA
 		DWORD this_23 = 0;
 		DWORD this_24 = 0;
 
-		friend std::ostream& operator << (std::ostream& os, PlaceEvent const& elem)
+		friend std::ostream& operator<<(std::ostream& os, PlaceEvent const& elem)
 		{
 			os << "x: " << elem.x << std::endl;
 			os << "y: " << elem.y << std::endl;
@@ -65,21 +65,21 @@ struct EVENTDATA : public EDITDATA, public LEGENDDATA
 	virtual void init(FileReader& fw);
 	virtual void dump([[maybe_unused]] FileWriter& fw) const;
 	void sub_FD4620(FileReader& fw);
-	DWORD res = 0;
+	DWORD res    = 0;
 	DWORD this_8 = 0;
 	PlaceEvent this_9;
 	LPVOID this_10 = nullptr;
 	LPVOID this_11 = nullptr;
 	LPVOID this_12 = nullptr;
 	LPVOID this_13 = nullptr;
-	DWORD this_14 = 0;
+	DWORD this_14  = 0;
 	ELEM_15 this_15;
-	LPVOID this_16 = nullptr;
-	LPVOID this_17 = nullptr;
-	LPVOID this_18 = nullptr;
+	LPVOID this_16                = nullptr;
+	LPVOID this_17                = nullptr;
+	LPVOID this_18                = nullptr;
 	class CMenuOperation* this_19 = nullptr;
-	DWORD this_20 = 0;
-	DWORD this_21 = 0;
+	DWORD this_20                 = 0;
+	DWORD this_21                 = 0;
 	MemData this_22;
 	DWORD this_23 = 0;
 };

@@ -4,7 +4,7 @@
 
 struct UNITAPPEAR : public EDITDATA
 {
-	std::vector <DWORD> data;
+	std::vector<DWORD> data;
 	virtual void init(FileReader& fw);
 	virtual void dump([[maybe_unused]] FileWriter& fw) const;
 };

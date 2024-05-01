@@ -5,8 +5,8 @@
 
 struct PASSCHIPDATA : public EDITDATA, public LEGENDDATA
 {
-	DWORD this_8 = 0;
-	DWORD this_9 = 0;
+	DWORD this_8  = 0;
+	DWORD this_9  = 0;
 	DWORD this_10 = 0;
 	DWORD this_11 = 0;
 	DWORD this_12 = 0;
@@ -14,9 +14,9 @@ struct PASSCHIPDATA : public EDITDATA, public LEGENDDATA
 	DWORD this_14 = 0;
 	MemData this_15;
 	class CMenuOperation* m_pTypeIDData1 = nullptr;
-	std::array <DWORD, 24> this_17 = { 0 };
+	std::array<DWORD, 24> this_17        = { 0 };
 	MemData this_41;
-	DWORD this_42 = 0;
+	DWORD this_42                        = 0;
 	class CMenuOperation* m_pTypeIDData2 = nullptr;
 
 	// NEW

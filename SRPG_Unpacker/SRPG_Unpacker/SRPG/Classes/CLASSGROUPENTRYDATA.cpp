@@ -1,8 +1,8 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "CLASSGROUPENTRYDATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void CLASSGROUPENTRYDATA::init(FileReader& fw)
 {

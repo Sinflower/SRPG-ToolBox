@@ -1,13 +1,13 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "STATEDATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void STATEDATA::init(FileReader& fw)
 {
-	this_8 = fw.ReadDWord();
-	this_9 = fw.ReadDWord();
+	this_8  = fw.ReadDWord();
+	this_9  = fw.ReadDWord();
 	this_10 = fw.ReadDWord();
 	this_11 = fw.ReadDWord();
 	this_12 = fw.ReadDWord();
@@ -48,8 +48,8 @@ void STATEDATA::init(FileReader& fw)
 
 void STATEDATA::dump(FileWriter& fw) const
 {
-	fw.Write(this_8 );
-	fw.Write(this_9 );
+	fw.Write(this_8);
+	fw.Write(this_9);
 	fw.Write(this_10);
 	fw.Write(this_11);
 	fw.Write(this_12);

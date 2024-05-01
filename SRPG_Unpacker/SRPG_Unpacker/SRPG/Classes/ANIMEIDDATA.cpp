@@ -1,8 +1,8 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "ANIMEIDDATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void ANIMEIDDATA::init(FileReader& fw)
 {
@@ -13,4 +13,3 @@ void ANIMEIDDATA::dump(FileWriter& fw) const
 {
 	fw.Write(id);
 }
-

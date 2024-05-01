@@ -1,8 +1,8 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "UNITPROTOTYPEDATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void UNITPROTOTYPEDATA::init(FileReader& fw)
 {
@@ -12,13 +12,13 @@ void UNITPROTOTYPEDATA::init(FileReader& fw)
 	initMemData(this_16, fw);
 	initMemData(this_17, fw);
 
-	this_3 = fw.ReadDWord();
-	this_4 = fw.ReadDWord();
-	this_5 = fw.ReadDWord();
-	this_6 = fw.ReadDWord();
-	this_7 = fw.ReadDWord();
-	this_8 = fw.ReadDWord();
-	this_9 = fw.ReadDWord();
+	this_3  = fw.ReadDWord();
+	this_4  = fw.ReadDWord();
+	this_5  = fw.ReadDWord();
+	this_6  = fw.ReadDWord();
+	this_7  = fw.ReadDWord();
+	this_8  = fw.ReadDWord();
+	this_9  = fw.ReadDWord();
 	this_10 = fw.ReadDWord();
 	this_11 = fw.ReadDWord();
 

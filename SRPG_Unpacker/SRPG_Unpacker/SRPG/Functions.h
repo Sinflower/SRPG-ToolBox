@@ -2,8 +2,8 @@
 
 #include <Windows.h>
 
-#include "../MemData.h"
 #include "../FileAccess.h"
+#include "../MemData.h"
 
 void initMemData(MemData& memData, FileReader& fw, const DWORD& size = -1);
 

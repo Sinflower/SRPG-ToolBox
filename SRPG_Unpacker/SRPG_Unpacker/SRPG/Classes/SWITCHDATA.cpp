@@ -1,8 +1,8 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "SWITCHDATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void SWITCHDATA::init(FileReader& fw)
 {
@@ -20,5 +20,5 @@ void SWITCHDATA::print(std::ostream& os) const
 {
 	LEGENDDATA::print(os);
 	os << std::endl
-		<< "this_8: " << this_8;
+	   << "this_8: " << this_8;
 }

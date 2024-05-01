@@ -1,8 +1,8 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "REINFORCEDATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void REINFORCEDATA::init(FileReader& fw)
 {
@@ -17,7 +17,7 @@ void REINFORCEDATA::init(FileReader& fw)
 	else
 		this_8 = fw.ReadDWord();
 
-	this_9 = fw.ReadDWord();
+	this_9  = fw.ReadDWord();
 	this_10 = fw.ReadDWord();
 
 	if (this_10)

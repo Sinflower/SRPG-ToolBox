@@ -1,8 +1,8 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "EVENTDATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void EVENTDATA::print(std::ostream& os) const
 {
@@ -10,13 +10,15 @@ void EVENTDATA::print(std::ostream& os) const
 	LEGENDDATA::print(os);
 	os << std::endl;
 	os << "this_8: " << this_8 << std::endl;
-	os << "this_9: " << std::endl << this_9 << std::endl;
+	os << "this_9: " << std::endl
+	   << this_9 << std::endl;
 	os << "this_10: " << this_10 << std::endl;
 	os << "this_11: " << this_11 << std::endl;
 	os << "this_12: " << this_12 << std::endl;
 	os << "this_13: " << this_13 << std::endl;
 	os << "this_14: " << this_14 << std::endl;
-	os << "this_15: " << std::endl << this_15 << std::endl;
+	os << "this_15: " << std::endl
+	   << this_15 << std::endl;
 	os << "this_16: " << this_16 << std::endl;
 	os << "this_17: " << this_17 << std::endl;
 	os << "this_18: " << this_18 << std::endl;
@@ -29,7 +31,7 @@ void EVENTDATA::print(std::ostream& os) const
 
 void EVENTDATA::init(FileReader& fw)
 {
-	this_8 = fw.ReadDWord();
+	this_8  = fw.ReadDWord();
 	this_23 = fw.ReadDWord();
 
 	if (this_8)
@@ -83,10 +85,9 @@ void EVENTDATA::init(FileReader& fw)
 			if (this_8 == 2)
 			{
 				DWORD* pD = reinterpret_cast<DWORD*>(this_11);
-				pD[0] = fw.ReadDWord();
+				pD[0]     = fw.ReadDWord();
 
 				pD[1] = fw.ReadDWord();
-
 
 				if (g_ArcVersion < 0x3F7)
 					pD[2] = 0;
@@ -123,13 +124,13 @@ void EVENTDATA::init(FileReader& fw)
 						if (g_ArcVersion < 0x406)
 						{
 							DWORD* pD = reinterpret_cast<DWORD*>(this_16);
-							pD[0] = fw.ReadDWord();
-							pD[1] = fw.ReadDWord();
-							pD[2] = fw.ReadDWord();
-							pD[3] = fw.ReadDWord();
-							pD[4] = fw.ReadDWord();
-							pD[5] = fw.ReadDWord();
-							pD[6] = 1;
+							pD[0]     = fw.ReadDWord();
+							pD[1]     = fw.ReadDWord();
+							pD[2]     = fw.ReadDWord();
+							pD[3]     = fw.ReadDWord();
+							pD[4]     = fw.ReadDWord();
+							pD[5]     = fw.ReadDWord();
+							pD[6]     = 1;
 						}
 						else
 							fw.ReadBytes(this_16, 0x20);
@@ -139,7 +140,7 @@ void EVENTDATA::init(FileReader& fw)
 						if (g_ArcVersion < 0x455)
 						{
 							QWORD* pD = reinterpret_cast<QWORD*>(this_17);
-							pD[0] = fw.ReadQWord();
+							pD[0]     = fw.ReadQWord();
 						}
 						else
 							fw.ReadBytes(this_17, 0x1C);
@@ -154,18 +155,18 @@ void EVENTDATA::init(FileReader& fw)
 	}
 	else
 	{
-		this_9.x = fw.ReadDWord();
-		this_9.y = fw.ReadDWord();
+		this_9.x                 = fw.ReadDWord();
+		this_9.y                 = fw.ReadDWord();
 		this_9.locationEventType = fw.ReadDWord();
-		this_9.itemDropsSw = fw.ReadDWord();
-		this_9.dropItem = fw.ReadDWord();
-		this_9.dropGold = fw.ReadDWord();
-		this_9.dropBonus = fw.ReadDWord();
-		this_9.this_7 = fw.ReadDWord();
+		this_9.itemDropsSw       = fw.ReadDWord();
+		this_9.dropItem          = fw.ReadDWord();
+		this_9.dropGold          = fw.ReadDWord();
+		this_9.dropBonus         = fw.ReadDWord();
+		this_9.this_7            = fw.ReadDWord();
 
 		if (this_9.shopData.this_4) // v6[18]
 		{
-			delete(this_9.shopData.this_4);
+			delete (this_9.shopData.this_4);
 			this_9.shopData.this_4 = nullptr;
 		}
 
@@ -173,10 +174,10 @@ void EVENTDATA::init(FileReader& fw)
 
 		if (g_ArcVersion < 0x404)
 		{
-			this_9.shopData.id = 0;
+			this_9.shopData.id     = 0;
 			this_9.shopData.this_3 = 0;
 			NOT_IMPLEMENTED
-				//sub_FC7950((_DWORD*)Size, *(_DWORD*)(*(_DWORD*)(this + 36) + 72));
+			// sub_FC7950((_DWORD*)Size, *(_DWORD*)(*(_DWORD*)(this + 36) + 72));
 		}
 		else
 		{
@@ -185,7 +186,7 @@ void EVENTDATA::init(FileReader& fw)
 		}
 
 		this_9.changeChips = fw.ReadQWord();
-		this_9.this_10 = fw.ReadDWord();
+		this_9.this_10     = fw.ReadDWord();
 
 		initMemData(this_9.this_11, fw);
 
@@ -238,7 +239,6 @@ void EVENTDATA::dump(FileWriter& fw) const
 				DWORD* pD = reinterpret_cast<DWORD*>(this_11);
 				fw.Write(pD[0]);
 				fw.Write(pD[1]);
-
 
 				if (g_ArcVersion >= 0x3F7)
 					fw.Write(pD[2]);
@@ -357,19 +357,19 @@ void EVENTDATA::sub_FD4620(FileReader& fw)
 	{
 		// this_18
 		DWORD* pD = reinterpret_cast<DWORD*>(this_18);
-		pD[0] = 0;
-		pD[1] = 0;
-		pD[2] = 2;
-		pD[3] = 15;
-		pD[4] = 0;
-		pD[5] = 0x20000;
+		pD[0]     = 0;
+		pD[1]     = 0;
+		pD[2]     = 2;
+		pD[3]     = 15;
+		pD[4]     = 0;
+		pD[5]     = 0x20000;
 	}
 	else
 	{
 		fw.Seek(fw.GetOffset() - 4);
 		QWORD* pD = reinterpret_cast<QWORD*>(this_18);
-		pD[0] = fw.ReadQWord();
-		pD[1] = fw.ReadQWord();
-		pD[2] = fw.ReadQWord();
+		pD[0]     = fw.ReadQWord();
+		pD[1]     = fw.ReadQWord();
+		pD[2]     = fw.ReadQWord();
 	}
 }

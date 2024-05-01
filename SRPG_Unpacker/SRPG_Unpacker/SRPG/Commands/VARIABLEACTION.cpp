@@ -12,7 +12,7 @@ void VARIABLEACTION::init(FileReader& fw)
 
 	if (g_ArcVersion < 0x418 && this_5 == 4)
 	{
-		//if (this_7 > 9)
+		// if (this_7 > 9)
 		//	this_7 += 2;
 	}
 

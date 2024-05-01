@@ -52,10 +52,10 @@ void SCRIPTEXECUTE::dump(FileWriter& fw) const
 
 void SCRIPTEXECUTE::sub_EB6050(FileReader& fw)
 {
-	this_6 = fw.ReadDWord();
-	this_7 = fw.ReadDWord();
-	this_8 = fw.ReadDWord();
-	this_9 = fw.ReadDWord();
+	this_6  = fw.ReadDWord();
+	this_7  = fw.ReadDWord();
+	this_8  = fw.ReadDWord();
+	this_9  = fw.ReadDWord();
 	this_10 = fw.ReadDWord();
 
 	this_12 = fw.ReadDWord();

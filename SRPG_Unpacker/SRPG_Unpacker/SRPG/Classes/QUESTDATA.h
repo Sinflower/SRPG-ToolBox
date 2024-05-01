@@ -1,13 +1,13 @@
 #pragma once
 
 #include "EDITDATA.h"
-#include "LEGENDDATA.h"
 #include "EVENTPAGE_DATA.h"
+#include "LEGENDDATA.h"
 
 struct QUESTDATA : public EDITDATA, public LEGENDDATA
 {
-	DWORD this_8 = 0;
-	DWORD this_9 = 0;
+	DWORD this_8  = 0;
+	DWORD this_9  = 0;
 	DWORD this_10 = 0;
 	DWORD this_15 = 0;
 	DWORD this_16 = 0;

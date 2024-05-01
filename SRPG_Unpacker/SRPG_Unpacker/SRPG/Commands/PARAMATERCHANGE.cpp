@@ -58,12 +58,12 @@ void PARAMATERCHANGE::sub_EBE310(FileReader& fw)
 {
 	if (g_ArcVersion < 0x418)
 	{
-		this_4 = fw.ReadDWord();
-		this_5 = fw.ReadDWord();
-		this_6 = fw.ReadDWord();
-		this_7 = fw.ReadDWord();
-		this_8 = fw.ReadDWord();
-		this_9 = fw.ReadDWord();
+		this_4  = fw.ReadDWord();
+		this_5  = fw.ReadDWord();
+		this_6  = fw.ReadDWord();
+		this_7  = fw.ReadDWord();
+		this_8  = fw.ReadDWord();
+		this_9  = fw.ReadDWord();
 		this_10 = fw.ReadDWord();
 		this_11 = fw.ReadDWord();
 		this_12 = fw.ReadDWord();
@@ -74,12 +74,12 @@ void PARAMATERCHANGE::sub_EBE310(FileReader& fw)
 
 		if (res)
 		{
-			this_4 = 0;
-			this_5 = 0;
-			this_6 = 0;
-			this_7 = 0;
-			this_8 = 0;
-			this_9 = 0;
+			this_4  = 0;
+			this_5  = 0;
+			this_6  = 0;
+			this_7  = 0;
+			this_8  = 0;
+			this_9  = 0;
 			this_10 = 0;
 			this_11 = 0;
 			this_12 = 0;
@@ -88,12 +88,12 @@ void PARAMATERCHANGE::sub_EBE310(FileReader& fw)
 		}
 		else
 		{
-			this_4 = fw.ReadDWord();
-			this_5 = fw.ReadDWord();
-			this_6 = fw.ReadDWord();
-			this_7 = fw.ReadDWord();
-			this_8 = fw.ReadDWord();
-			this_9 = fw.ReadDWord();
+			this_4  = fw.ReadDWord();
+			this_5  = fw.ReadDWord();
+			this_6  = fw.ReadDWord();
+			this_7  = fw.ReadDWord();
+			this_8  = fw.ReadDWord();
+			this_9  = fw.ReadDWord();
 			this_10 = fw.ReadDWord();
 			this_11 = fw.ReadDWord();
 			this_12 = fw.ReadDWord();

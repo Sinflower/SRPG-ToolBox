@@ -6,11 +6,11 @@ void MESSAGETITLE::init(FileReader& fw)
 {
 	initMemData(this_3, fw);
 
-	this_6 = fw.ReadDWord();
-	this_4 = fw.ReadDWord();
-	this_5 = fw.ReadDWord();
-	this_8 = fw.ReadDWord();
-	this_9 = fw.ReadDWord();
+	this_6  = fw.ReadDWord();
+	this_4  = fw.ReadDWord();
+	this_5  = fw.ReadDWord();
+	this_8  = fw.ReadDWord();
+	this_9  = fw.ReadDWord();
 	this_10 = fw.ReadDWord();
 	this_11 = fw.ReadDWord();
 }

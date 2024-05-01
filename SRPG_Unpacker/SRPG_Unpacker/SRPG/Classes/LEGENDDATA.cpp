@@ -1,8 +1,8 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "LEGENDDATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void LEGENDDATA::init(FileReader& fw)
 {
@@ -21,6 +21,6 @@ void LEGENDDATA::dump(FileWriter& fw) const
 void LEGENDDATA::print(std::ostream& os) const
 {
 	os << "Icon: " << icon << std::endl
-		<< "Name: " << name << std::endl
-		<< "Description: " << description;
+	   << "Name: " << name << std::endl
+	   << "Description: " << description;
 }

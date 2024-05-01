@@ -35,5 +35,5 @@ void VARIABLECONDITIONDATA::dump([[maybe_unused]] FileWriter& fw) const
 	fw.Write(this_15);
 
 	if (g_ArcVersion >= 0x4D5)
-	fw.Write(this_16);
+		fw.Write(this_16);
 }

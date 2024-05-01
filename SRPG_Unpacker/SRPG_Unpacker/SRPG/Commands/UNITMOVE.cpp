@@ -13,7 +13,7 @@ void UNITMOVE::init(FileReader& fw)
 	initMemData(this_8, fw, 4 * this_7);
 
 	this_11 = fw.ReadDWord();
-	this_9 = fw.ReadDWord();
+	this_9  = fw.ReadDWord();
 
 	if (g_ArcVersion < 0x47F)
 		this_10 = 1;
@@ -23,7 +23,6 @@ void UNITMOVE::init(FileReader& fw)
 	this_12 = fw.ReadDWord();
 	this_16 = fw.ReadDWord();
 	this_17 = fw.ReadDWord();
-
 
 	if (g_ArcVersion < 0x431)
 	{
@@ -75,7 +74,6 @@ void UNITMOVE::dump(FileWriter& fw) const
 	fw.Write(this_12);
 	fw.Write(this_16);
 	fw.Write(this_17);
-
 
 	if (g_ArcVersion >= 0x431)
 	{

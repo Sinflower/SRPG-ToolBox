@@ -1,13 +1,13 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "PASSCHIPDATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void PASSCHIPDATA::init(FileReader& fw)
 {
-	this_8 = fw.ReadDWord();
-	this_9 = fw.ReadDWord();
+	this_8  = fw.ReadDWord();
+	this_9  = fw.ReadDWord();
 	this_10 = fw.ReadDWord();
 	this_11 = fw.ReadDWord();
 	this_12 = fw.ReadDWord();
@@ -63,7 +63,6 @@ void PASSCHIPDATA::dump(FileWriter& fw) const
 		fw.Write(this_42);
 		m_pTypeIDData2->dump(fw);
 
-		
 		if (g_ArcVersion >= 1277 && HIWORD(this_42))
 		{
 			fw.WriteBytes(this_130.data(), static_cast<DWORD>(this_130.size() * sizeof(DWORD)));

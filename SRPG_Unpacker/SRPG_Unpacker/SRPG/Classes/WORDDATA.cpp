@@ -1,8 +1,8 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "WORDDATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void WORDDATA::init(FileReader& fw)
 {

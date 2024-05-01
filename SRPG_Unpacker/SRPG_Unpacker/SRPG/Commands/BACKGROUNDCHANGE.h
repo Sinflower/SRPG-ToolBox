@@ -4,7 +4,7 @@
 
 struct BACKGROUNDCHANGE : public EDITDATA
 {
-	std::array <DWORD, 7> data;
+	std::array<DWORD, 7> data;
 	DWORD this_11 = 0;
 	DWORD this_12 = 0;
 	DWORD this_13 = 0;

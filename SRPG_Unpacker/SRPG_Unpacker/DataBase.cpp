@@ -115,7 +115,7 @@ uint32_t DataBase::Size() const
 	return size;
 }
 
-std::vector<uint8_t> DataBase::GetData(const std::size_t& idx) const
+std::vector<uint8_t> DataBase::GetData(const std::size_t &idx) const
 {
 	if (idx >= m_data.size())
 		throw std::runtime_error("Index out of bounds");

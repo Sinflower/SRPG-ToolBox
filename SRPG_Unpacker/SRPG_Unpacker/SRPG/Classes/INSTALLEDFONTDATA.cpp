@@ -1,8 +1,8 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "INSTALLEDFONTDATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void INSTALLEDFONTDATA::init(FileReader& fw)
 {

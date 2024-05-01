@@ -1,9 +1,9 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "CHOICEDATA.h"
+#include "../CMenuOperation.h"
 #include "../Commands/SWITCHACTION.h"
+#include "EDITDATA.h"
 
 void CHOICEDATA::init(FileReader& fw)
 {
@@ -37,7 +37,7 @@ void CHOICEDATA::dump(FileWriter& fw) const
 
 	if (g_ArcVersion < 0x432)
 	{
-		if(g_ArcVersion < 0x404)
+		if (g_ArcVersion < 0x404)
 			fw.Write(res);
 
 		this_9.this_2->dump(fw);
@@ -45,7 +45,7 @@ void CHOICEDATA::dump(FileWriter& fw) const
 	else
 	{
 		fw.Write(this_8);
-		if(this_8)
+		if (this_8)
 			this_9.dump(fw);
 	}
 }

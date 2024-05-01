@@ -4,7 +4,7 @@
 
 struct LOCATIONFOCUS : public EDITDATA
 {
-	std::array <DWORD, 5> data;
+	std::array<DWORD, 5> data;
 	virtual void init(FileReader& fw);
 	virtual void dump([[maybe_unused]] FileWriter& fw) const;
 };

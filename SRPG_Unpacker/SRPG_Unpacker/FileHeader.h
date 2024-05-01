@@ -108,7 +108,7 @@ private:
 	std::deque<SecInfo> m_sectionDataAddresses = {};
 
 	bool m_sectionInitDone = false;
-	bool m_oldFormat    = false;
+	bool m_oldFormat       = false;
 
 	GraphicSection m_gSec = {};
 	UiSection m_uSec      = {};

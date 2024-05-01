@@ -1,14 +1,14 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "UNITDATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void UNITDATA::init(FileReader& fw)
 {
 	this_18 = fw.ReadDWord();
 	this_19 = fw.ReadDWord();
-	lvl = fw.ReadDWord();
+	lvl     = fw.ReadDWord();
 	this_21 = fw.ReadDWord();
 
 	item01 = fw.ReadDWord();
@@ -43,12 +43,12 @@ void UNITDATA::init(FileReader& fw)
 	this_75 = fw.ReadDWord();
 	this_76 = fw.ReadDWord();
 
-	this_65 = fw.ReadDWord();
-	this_66 = fw.ReadDWord();
-	this_42 = fw.ReadDWord();
+	this_65    = fw.ReadDWord();
+	this_66    = fw.ReadDWord();
+	this_42    = fw.ReadDWord();
 	importance = fw.ReadDWord();
-	this_55 = fw.ReadDWord();
-	this_57 = fw.ReadDWord();
+	this_55    = fw.ReadDWord();
+	this_57    = fw.ReadDWord();
 
 	if (g_ArcVersion < 0x429)
 		this_58 = -1;
@@ -71,15 +71,15 @@ void UNITDATA::init(FileReader& fw)
 
 	sub_F7E930(fw);
 
-	this_90 = fw.ReadDWord();
-	this_91 = fw.ReadDWord();
-	this_94 = fw.ReadDWord();
-	this_95 = fw.ReadDWord();
-	this_96 = fw.ReadDWord();
-	this_97 = fw.ReadDWord();
-	this_99 = fw.ReadDWord();
-	this_92 = fw.ReadDWord();
-	this_93 = fw.ReadDWord();
+	this_90  = fw.ReadDWord();
+	this_91  = fw.ReadDWord();
+	this_94  = fw.ReadDWord();
+	this_95  = fw.ReadDWord();
+	this_96  = fw.ReadDWord();
+	this_97  = fw.ReadDWord();
+	this_99  = fw.ReadDWord();
+	this_92  = fw.ReadDWord();
+	this_93  = fw.ReadDWord();
 	this_100 = fw.ReadDWord();
 
 	sub_F7E130(fw);
@@ -259,7 +259,6 @@ void UNITDATA::dump(FileWriter& fw) const
 
 	/////
 
-
 	this_79->dump(fw);
 	this_78->dump(fw);
 	this_80->dump(fw);
@@ -275,7 +274,7 @@ void UNITDATA::sub_F7E930(FileReader& fw)
 
 void UNITDATA::sub_F7E130(FileReader& fw)
 {
-	hp = fw.ReadDWord();
+	hp  = fw.ReadDWord();
 	str = fw.ReadDWord();
 	mag = fw.ReadDWord();
 	skl = fw.ReadDWord();
@@ -301,7 +300,7 @@ void UNITDATA::sub_F7E310(FileReader& fw)
 {
 	if (g_ArcVersion < 0x418)
 	{
-		grHP = fw.ReadDWord();
+		grHP  = fw.ReadDWord();
 		grStr = fw.ReadDWord();
 		grMag = fw.ReadDWord();
 		grSkl = fw.ReadDWord();
@@ -318,7 +317,7 @@ void UNITDATA::sub_F7E310(FileReader& fw)
 		checkVal = fw.ReadDWord();
 		if (checkVal)
 		{
-			grHP = 0;
+			grHP  = 0;
 			grStr = 0;
 			grMag = 0;
 			grSkl = 0;
@@ -332,7 +331,7 @@ void UNITDATA::sub_F7E310(FileReader& fw)
 		}
 		else
 		{
-			grHP = fw.ReadDWord();
+			grHP  = fw.ReadDWord();
 			grStr = fw.ReadDWord();
 			grMag = fw.ReadDWord();
 			grSkl = fw.ReadDWord();
@@ -365,48 +364,48 @@ void UNITDATA::sub_F6F1D0(FileReader& fw)
 
 		NOT_IMPLEMENTED
 
-			/*if (this_65 != -1)
+		/*if (this_65 != -1)
+		{
+			v5 = (*(int (__thiscall **)(_DWORD *))*this_85)(this_85);
+			*(_DWORD *)(v5 + 8) = 0;
+			v6 = this_85[1];
+			v7 = v6 + 4;
+			if ( *(_DWORD *)(v6 + 4) )
 			{
-				v5 = (*(int (__thiscall **)(_DWORD *))*this_85)(this_85);
-				*(_DWORD *)(v5 + 8) = 0;
-				v6 = this_85[1];
-				v7 = v6 + 4;
-				if ( *(_DWORD *)(v6 + 4) )
+				do
 				{
-					do
-					{
-						v6 = *(_DWORD *)v7;
-						v8 = *(_DWORD *)(*(_DWORD *)v7 + 4) == 0;
-						v7 = *(_DWORD *)v7 + 4;
-					}
-					while ( !v8 );
+					v6 = *(_DWORD *)v7;
+					v8 = *(_DWORD *)(*(_DWORD *)v7 + 4) == 0;
+					v7 = *(_DWORD *)v7 + 4;
 				}
-				*(_DWORD *)(v6 + 4) = v5;
-				*(_DWORD *)(v5 + 12) = v14;
+				while ( !v8 );
+			}
+			*(_DWORD *)(v6 + 4) = v5;
+			*(_DWORD *)(v5 + 12) = v14;
+		}
+
+		v15 = this_85;
+		if ( this_66 != -1 )
+		{
+			v10 = (**(int (__thiscall ***)(_DWORD))this_85)(this_85);
+			*(_DWORD *)(v10 + 8) = 1;
+			v11 = *(_DWORD *)(v15 + 4);
+			v12 = v11 + 4;
+
+			if ( *(_DWORD *)(v11 + 4) )
+			{
+				do
+				{
+					v11 = *(_DWORD *)v12;
+					v8 = *(_DWORD *)(*(_DWORD *)v12 + 4) == 0;
+					v12 = *(_DWORD *)v12 + 4;
+				}
+				while ( !v8 );
 			}
 
-			v15 = this_85;
-			if ( this_66 != -1 )
-			{
-				v10 = (**(int (__thiscall ***)(_DWORD))this_85)(this_85);
-				*(_DWORD *)(v10 + 8) = 1;
-				v11 = *(_DWORD *)(v15 + 4);
-				v12 = v11 + 4;
-
-				if ( *(_DWORD *)(v11 + 4) )
-				{
-					do
-					{
-						v11 = *(_DWORD *)v12;
-						v8 = *(_DWORD *)(*(_DWORD *)v12 + 4) == 0;
-						v12 = *(_DWORD *)v12 + 4;
-					}
-					while ( !v8 );
-				}
-
-				*(_DWORD *)(v11 + 4) = v10;
-				*(_DWORD *)(v10 + 12) = v9;
-			}*/
+			*(_DWORD *)(v11 + 4) = v10;
+			*(_DWORD *)(v10 + 12) = v9;
+		}*/
 	}
 	else
 		allocAndSetCMenuOp(&this_85, SRPGClasses::TYPEIDDATA, fw);
@@ -443,7 +442,6 @@ void UNITDATA::sub_F6F1D0(FileReader& fw)
 	if (g_ArcVersion >= 0x4A5)
 		this_105 = fw.ReadDWord();
 }
-
 
 void UNITDATA::print(std::ostream& os) const
 {

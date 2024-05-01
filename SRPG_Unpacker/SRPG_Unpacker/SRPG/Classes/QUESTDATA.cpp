@@ -1,13 +1,13 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "QUESTDATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void QUESTDATA::init(FileReader& fw)
 {
-	this_8 = fw.ReadDWord();
-	this_9 = fw.ReadDWord();
+	this_8  = fw.ReadDWord();
+	this_9  = fw.ReadDWord();
 	this_10 = fw.ReadDWord();
 	this_15 = fw.ReadDWord();
 	this_16 = fw.ReadDWord();

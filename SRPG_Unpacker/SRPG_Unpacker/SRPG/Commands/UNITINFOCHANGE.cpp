@@ -5,71 +5,71 @@
 
 void UNITINFOCHANGE::init(FileReader& fw)
 {
-	this_3 = fw.ReadDWord();
-	this_4 = fw.ReadDWord();
+	this_3  = fw.ReadDWord();
+	this_4  = fw.ReadDWord();
 	this_12 = fw.ReadDWord();
 	this_13 = fw.ReadDWord();
-	this_5 = fw.ReadDWord();
-	this_6 = fw.ReadDWord();
-	this_8 = fw.ReadDWord();
-	this_9 = fw.ReadDWord();
+	this_5  = fw.ReadDWord();
+	this_6  = fw.ReadDWord();
+	this_8  = fw.ReadDWord();
+	this_9  = fw.ReadDWord();
 	this_10 = fw.ReadDWord();
 	this_11 = fw.ReadDWord();
 
 	if (g_ArcVersion < 0x446)
 	{
 		NOT_IMPLEMENTED
-			/*
-			v6 = *(_DWORD *)Size;
-			Sizea = *(_DWORD *)(*(_DWORD *)Size + v4);
-			*(_DWORD *)(Size + 4) = v4 + 4;
-			v29 = *(_DWORD *)(v6 + v4 + 4);
-			*(_DWORD *)(Size + 4) = v4 + 8;
-			v7 = alloc_CMenuOperation((void *)0x9C6);
-			v8 = v7;
-			*(_DWORD *)(this + 68) = v7;
+		/*
+		v6 = *(_DWORD *)Size;
+		Sizea = *(_DWORD *)(*(_DWORD *)Size + v4);
+		*(_DWORD *)(Size + 4) = v4 + 4;
+		v29 = *(_DWORD *)(v6 + v4 + 4);
+		*(_DWORD *)(Size + 4) = v4 + 8;
+		v7 = alloc_CMenuOperation((void *)0x9C6);
+		v8 = v7;
+		*(_DWORD *)(this + 68) = v7;
 
-			if ( Sizea != -1 )
+		if ( Sizea != -1 )
+		{
+			v9 = (*(int (__thiscall **)(_DWORD *))*v7)(v7);
+			*(_DWORD *)(v9 + 8) = 0;
+			v10 = v8[1];
+			v11 = v10 + 4;
+
+			if ( *(_DWORD *)(v10 + 4) )
 			{
-				v9 = (*(int (__thiscall **)(_DWORD *))*v7)(v7);
-				*(_DWORD *)(v9 + 8) = 0;
-				v10 = v8[1];
-				v11 = v10 + 4;
-
-				if ( *(_DWORD *)(v10 + 4) )
+				do
 				{
-					do
-					{
-						v10 = *(_DWORD *)v11;
-						v12 = *(_DWORD *)(*(_DWORD *)v11 + 4) == 0;
-						v11 = *(_DWORD *)v11 + 4;
-					}
-					while ( !v12 );
+					v10 = *(_DWORD *)v11;
+					v12 = *(_DWORD *)(*(_DWORD *)v11 + 4) == 0;
+					v11 = *(_DWORD *)v11 + 4;
 				}
-				*(_DWORD *)(v10 + 4) = v9;
-				*(_DWORD *)(v9 + 12) = Sizea;
+				while ( !v12 );
 			}
-			v13 = *(_DWORD *)(this + 68);
+			*(_DWORD *)(v10 + 4) = v9;
+			*(_DWORD *)(v9 + 12) = Sizea;
+		}
+		v13 = *(_DWORD *)(this + 68);
 
-			if ( v29 != -1 )
+		if ( v29 != -1 )
+		{
+			v14 = (**(int (__thiscall ***)(_DWORD))v13)(*(_DWORD *)(this + 68));
+			*(_DWORD *)(v14 + 8) = 1;
+			v15 = *(_DWORD *)(v13 + 4);
+			v16 = v15 + 4;
+			if ( *(_DWORD *)(v15 + 4) )
 			{
-				v14 = (**(int (__thiscall ***)(_DWORD))v13)(*(_DWORD *)(this + 68));
-				*(_DWORD *)(v14 + 8) = 1;
-				v15 = *(_DWORD *)(v13 + 4);
-				v16 = v15 + 4;
-				if ( *(_DWORD *)(v15 + 4) )
+				do
 				{
-					do
-					{
-						v15 = *(_DWORD *)v16;
-						v12 = *(_DWORD *)(*(_DWORD *)v16 + 4) == 0;
-						v16 = *(_DWORD *)v16 + 4;
-					}
-					while ( !v12 );
+					v15 = *(_DWORD *)v16;
+					v12 = *(_DWORD *)(*(_DWORD *)v16 + 4) == 0;
+					v16 = *(_DWORD *)v16 + 4;
 				}
-				*(_DWORD *)(v15 + 4) = v14;
-				*(_DWORD *)(v14 + 12) = v29;
-			}*/
+				while ( !v12 );
+			}
+			*(_DWORD *)(v15 + 4) = v14;
+			*(_DWORD *)(v14 + 12) = v29;
+		}*/
 	}
 	else
 		allocAndSetCMenuOp(&pTypeIDData, SRPGClasses::TYPEIDDATA, fw);
@@ -98,7 +98,6 @@ void UNITINFOCHANGE::init(FileReader& fw)
 
 void UNITINFOCHANGE::dump(FileWriter& fw) const
 {
-
 	fw.Write(this_3);
 	fw.Write(this_4);
 	fw.Write(this_12);

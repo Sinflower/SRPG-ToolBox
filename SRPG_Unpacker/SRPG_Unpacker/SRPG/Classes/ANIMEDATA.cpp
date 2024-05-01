@@ -1,14 +1,14 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "ANIMEDATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void ANIMEDATA::init(FileReader& fw)
 {
 	allocAndSetCMenuOp(&m_pFrameList, SRPGClasses::FRAMELIST, fw);
 
-	this_9 = fw.ReadWord();
+	this_9  = fw.ReadWord();
 	this_10 = fw.ReadDWord();
 	this_11 = fw.ReadDWord();
 	this_12 = fw.ReadDWord();
@@ -20,7 +20,7 @@ void ANIMEDATA::init(FileReader& fw)
 
 	initMemData(this_13, fw);
 
-	//if (g_ArcVersion < 0x49B)
+	// if (g_ArcVersion < 0x49B)
 	//	this_20 = 100;
 
 	LEGENDDATA::init(fw);
@@ -71,93 +71,93 @@ void ANIMEDATA::sub_36EF00(FileReader& fw)
 	if (g_ArcVersion < 0x409)
 	{
 		NOT_IMPLEMENTED
-			/*
-			if (this_20)
+		/*
+		if (this_20)
+		{
+			if (this_10 != 2 )
 			{
-				if (this_10 != 2 )
+				for ( i = *(_DWORD *)(*(_DWORD *)(*(_DWORD *)(this + 32) + 4) + 4); i; i = *(_DWORD *)(i + 4) )
 				{
-					for ( i = *(_DWORD *)(*(_DWORD *)(*(_DWORD *)(this + 32) + 4) + 4); i; i = *(_DWORD *)(i + 4) )
+					v5 = *(_DWORD *)(this + 56);
+					v23 = (**(int (__thiscall ***)(int))v5)(v5);
+					*(_DWORD *)(v23 + 8) = (__int16)sub_381340(v5);
+					v6 = *(_DWORD *)(v5 + 4);
+					v7 = v6 + 4;
+					if ( *(_DWORD *)(v6 + 4) )
 					{
-						v5 = *(_DWORD *)(this + 56);
-						v23 = (**(int (__thiscall ***)(int))v5)(v5);
-						*(_DWORD *)(v23 + 8) = (__int16)sub_381340(v5);
-						v6 = *(_DWORD *)(v5 + 4);
-						v7 = v6 + 4;
-						if ( *(_DWORD *)(v6 + 4) )
+						do
+						{
+							v6 = *(_DWORD *)v7;
+							v8 = *(_DWORD *)(*(_DWORD *)v7 + 4) == 0;
+							v7 = *(_DWORD *)v7 + 4;
+						}
+						while ( !v8 );
+					}
+					*(_DWORD *)(v6 + 4) = v23;
+					*(_DWORD *)(v23 + 12) = *(unsigned __int16 *)(i + 20);
+				}
+			}
+		}
+		if (this_22)
+		{
+			if (this_10 != 2 )
+			{
+				for ( j = *(_DWORD *)(*(_DWORD *)(*(_DWORD *)(this + 32) + 4) + 4); j; j = *(_DWORD *)(j + 4) )
+				{
+					v10 = *(_DWORD *)(j + 24);
+					if ( v10 == 3 || v10 == 5 )
+					{
+						v11 = *(_DWORD *)(this + 56);
+						v24 = (**(int (__thiscall ***)(int))v11)(v11);
+						*(_DWORD *)(v24 + 8) = (__int16)sub_381340(v11);
+						v12 = *(_DWORD *)(v11 + 4);
+						v13 = v12 + 4;
+						if ( *(_DWORD *)(v12 + 4) )
 						{
 							do
 							{
-								v6 = *(_DWORD *)v7;
-								v8 = *(_DWORD *)(*(_DWORD *)v7 + 4) == 0;
-								v7 = *(_DWORD *)v7 + 4;
+								v12 = *(_DWORD *)v13;
+								v8 = *(_DWORD *)(*(_DWORD *)v13 + 4) == 0;
+								v13 = *(_DWORD *)v13 + 4;
 							}
 							while ( !v8 );
 						}
-						*(_DWORD *)(v6 + 4) = v23;
-						*(_DWORD *)(v23 + 12) = *(unsigned __int16 *)(i + 20);
+						*(_DWORD *)(v12 + 4) = v24;
+						*(_DWORD *)(v24 + 12) = *(unsigned __int16 *)(j + 20) | 0x10000;
 					}
 				}
 			}
-			if (this_22)
+		}
+		if ( this_21)
+		{
+			if (this_10 == 2 )
 			{
-				if (this_10 != 2 )
+				for ( k = *(_DWORD *)(*(_DWORD *)(*(_DWORD *)(this + 32) + 4) + 4); k; k = *(_DWORD *)(k + 4) )
 				{
-					for ( j = *(_DWORD *)(*(_DWORD *)(*(_DWORD *)(this + 32) + 4) + 4); j; j = *(_DWORD *)(j + 4) )
+					if ( *(_DWORD *)(k + 24) == 6 )
 					{
-						v10 = *(_DWORD *)(j + 24);
-						if ( v10 == 3 || v10 == 5 )
+						v15 = *(_DWORD *)(this + 56);
+						v25 = (**(int (__thiscall ***)(int))v15)(v15);
+						*(_DWORD *)(v25 + 8) = (__int16)sub_381340(v15);
+						v16 = *(_DWORD *)(v15 + 4);
+						v17 = v16 + 4;
+						if ( *(_DWORD *)(v16 + 4) )
 						{
-							v11 = *(_DWORD *)(this + 56);
-							v24 = (**(int (__thiscall ***)(int))v11)(v11);
-							*(_DWORD *)(v24 + 8) = (__int16)sub_381340(v11);
-							v12 = *(_DWORD *)(v11 + 4);
-							v13 = v12 + 4;
-							if ( *(_DWORD *)(v12 + 4) )
+							do
 							{
-								do
-								{
-									v12 = *(_DWORD *)v13;
-									v8 = *(_DWORD *)(*(_DWORD *)v13 + 4) == 0;
-									v13 = *(_DWORD *)v13 + 4;
-								}
-								while ( !v8 );
+								v16 = *(_DWORD *)v17;
+								v8 = *(_DWORD *)(*(_DWORD *)v17 + 4) == 0;
+								v17 = *(_DWORD *)v17 + 4;
 							}
-							*(_DWORD *)(v12 + 4) = v24;
-							*(_DWORD *)(v24 + 12) = *(unsigned __int16 *)(j + 20) | 0x10000;
+							while ( !v8 );
 						}
+						*(_DWORD *)(v16 + 4) = v25;
+						*(_DWORD *)(v25 + 12) = *(unsigned __int16 *)(k + 20) | 0x20000;
 					}
 				}
 			}
-			if ( this_21)
-			{
-				if (this_10 == 2 )
-				{
-					for ( k = *(_DWORD *)(*(_DWORD *)(*(_DWORD *)(this + 32) + 4) + 4); k; k = *(_DWORD *)(k + 4) )
-					{
-						if ( *(_DWORD *)(k + 24) == 6 )
-						{
-							v15 = *(_DWORD *)(this + 56);
-							v25 = (**(int (__thiscall ***)(int))v15)(v15);
-							*(_DWORD *)(v25 + 8) = (__int16)sub_381340(v15);
-							v16 = *(_DWORD *)(v15 + 4);
-							v17 = v16 + 4;
-							if ( *(_DWORD *)(v16 + 4) )
-							{
-								do
-								{
-									v16 = *(_DWORD *)v17;
-									v8 = *(_DWORD *)(*(_DWORD *)v17 + 4) == 0;
-									v17 = *(_DWORD *)v17 + 4;
-								}
-								while ( !v8 );
-							}
-							*(_DWORD *)(v16 + 4) = v25;
-							*(_DWORD *)(v25 + 12) = *(unsigned __int16 *)(k + 20) | 0x20000;
-						}
-					}
-				}
-			}
-			*/
+		}
+		*/
 	}
 	else
 	{

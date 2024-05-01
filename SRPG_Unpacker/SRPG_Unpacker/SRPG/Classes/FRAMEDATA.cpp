@@ -1,8 +1,8 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "FRAMEDATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 #include "SPRITEDATA.h"
 
 void FRAMEDATA::init(FileReader& fw)
@@ -15,8 +15,8 @@ void FRAMEDATA::init(FileReader& fw)
 
 	allocAndSetCMenuOp(&m_pSpriteData, SRPGClasses::SPRITEDATA, fw);
 
-	this_4 = fw.ReadDWord();
-	this_3 = fw.ReadDWord();
+	this_4  = fw.ReadDWord();
+	this_3  = fw.ReadDWord();
 	this_14 = fw.ReadDWord();
 	this_15 = fw.ReadDWord();
 
@@ -30,10 +30,10 @@ void FRAMEDATA::init(FileReader& fw)
 
 	if ((this_3 & 1) != 0)
 	{
-		this_6 = fw.ReadDWord();
-		this_7 = fw.ReadDWord();
-		this_8 = fw.ReadDWord();
-		this_9 = fw.ReadDWord();
+		this_6  = fw.ReadDWord();
+		this_7  = fw.ReadDWord();
+		this_8  = fw.ReadDWord();
+		this_9  = fw.ReadDWord();
 		this_10 = fw.ReadDWord();
 	}
 
@@ -151,15 +151,15 @@ void FRAMEDATA::sub_36F480(FileReader& fw)
 {
 	allocAndSetCMenuOp(&m_pSpriteData, SRPGClasses::SPRITEDATA, fw);
 
-	this_4 = fw.ReadDWord();
-	this_3 = fw.ReadDWord();
+	this_4  = fw.ReadDWord();
+	this_3  = fw.ReadDWord();
 	this_12 = fw.ReadDWord();
 	this_13 = fw.ReadDWord();
 
-	this_6 = fw.ReadDWord();
-	this_7 = fw.ReadDWord();
-	this_8 = fw.ReadDWord();
-	this_9 = fw.ReadDWord();
+	this_6  = fw.ReadDWord();
+	this_7  = fw.ReadDWord();
+	this_8  = fw.ReadDWord();
+	this_9  = fw.ReadDWord();
 	this_10 = fw.ReadDWord();
 
 	this_14 = fw.ReadDWord();

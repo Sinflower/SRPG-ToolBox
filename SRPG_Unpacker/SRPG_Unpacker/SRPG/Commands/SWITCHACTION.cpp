@@ -17,9 +17,9 @@ void SWITCHACTION::dump(FileWriter& fw) const
 	this_5->dump(fw);
 }
 
-//void SWITCHACTION::sub_D1B60()
+// void SWITCHACTION::sub_D1B60()
 //{
 //	this_3 = new CMenuOperation(SRPGClasses::SWITCHACTIONDATA);
 //	this_4 = new CMenuOperation(SRPGClasses::SWITCHACTIONDATA);
 //	this_5 = new CMenuOperation(SRPGClasses::SWITCHACTIONDATA);
-//}
+// }

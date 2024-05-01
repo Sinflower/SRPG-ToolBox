@@ -1,8 +1,8 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "SHOPLAYOUT.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void SHOPLAYOUT::init(FileReader& fw)
 {

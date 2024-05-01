@@ -1,8 +1,8 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "ITEMCONDITIONDATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void ITEMCONDITIONDATA::init(FileReader& fw)
 {

@@ -1,83 +1,84 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "MAPDATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void MAPDATA::print(std::ostream& os) const
 {
 	os << "MAPDATA: " << std::endl
-		<< "ID: " << id << std::endl;
+	   << "ID: " << id << std::endl;
 
 	LEGENDDATA::print(os);
 	os << std::endl
-		<< "Wdith: " << width << std::endl
-		<< "Height: " << height << std::endl
-		<< "Chapter: " << chapter << std::endl
-		<< "Max Units: " << maxUnits << std::endl
-		<< "Map Color: " << mapColor << std::endl
-		<< "Display Battle Prep: " << std::hex << dispBattlePrep << std::dec << std::endl
-		<< "Map Type: " << mapType << std::endl
-		<< "Map Scroll: " << mapScroll << std::endl
-		<< "this_115: " << this_115 << std::endl
-		<< "this_116: " << this_116 << std::endl
-		<< "Fixed Background: " << std::hex << fixedBackground << std::endl
-		<< "BGM Player Phase: " << bgmPlayerPhase << std::endl
-		<< "BGM Enemy Phase: " << bgmEnemyPhase << std::endl
-		<< "BGM Ally Phase: " << bgmAllyPhase << std::endl
-		<< "BGM Player Battle: " << bgmPlayerBattle << std::endl
-		<< "BGM Enemy Battle: " << bgmEnemyBattle << std::endl
-		<< "BGM Ally Battle: " << bgmAllyBattle << std::endl
-		<< "BGM Battle Prep: " << bgmBattlePrep << std::dec << std::endl
-		<< "this_150: " << this_150 << std::endl
-		<< "this_153: " << this_153 << std::endl
-		<< "this_154: " << this_154 << std::endl
-		<< "this_155: " << this_155 << std::endl
-		<< "this_156: " << this_156 << std::endl
-		<< "this_157: " << this_157 << std::endl
-		<< "this_167: " << this_167 << std::endl
-		<< "Victory Conditions: " << *victoryCond << std::endl
-		<< "Defeat Conditions: " << *defeatCond;
+	   << "Wdith: " << width << std::endl
+	   << "Height: " << height << std::endl
+	   << "Chapter: " << chapter << std::endl
+	   << "Max Units: " << maxUnits << std::endl
+	   << "Map Color: " << mapColor << std::endl
+	   << "Display Battle Prep: " << std::hex << dispBattlePrep << std::dec << std::endl
+	   << "Map Type: " << mapType << std::endl
+	   << "Map Scroll: " << mapScroll << std::endl
+	   << "this_115: " << this_115 << std::endl
+	   << "this_116: " << this_116 << std::endl
+	   << "Fixed Background: " << std::hex << fixedBackground << std::endl
+	   << "BGM Player Phase: " << bgmPlayerPhase << std::endl
+	   << "BGM Enemy Phase: " << bgmEnemyPhase << std::endl
+	   << "BGM Ally Phase: " << bgmAllyPhase << std::endl
+	   << "BGM Player Battle: " << bgmPlayerBattle << std::endl
+	   << "BGM Enemy Battle: " << bgmEnemyBattle << std::endl
+	   << "BGM Ally Battle: " << bgmAllyBattle << std::endl
+	   << "BGM Battle Prep: " << bgmBattlePrep << std::dec << std::endl
+	   << "this_150: " << this_150 << std::endl
+	   << "this_153: " << this_153 << std::endl
+	   << "this_154: " << this_154 << std::endl
+	   << "this_155: " << this_155 << std::endl
+	   << "this_156: " << this_156 << std::endl
+	   << "this_157: " << this_157 << std::endl
+	   << "this_167: " << this_167 << std::endl
+	   << "Victory Conditions: " << *victoryCond << std::endl
+	   << "Defeat Conditions: " << *defeatCond;
 
-	os << std::endl << "Map Name: " << mapName << std::endl;
+	os << std::endl
+	   << "Map Name: " << mapName << std::endl;
 	os << "Custom Parameters: " << customParameters << std::endl;
-	os << "Local Switches: " << std::endl << *localSwitches << std::endl;
+	os << "Local Switches: " << std::endl
+	   << *localSwitches << std::endl;
 }
 
 void MAPDATA::init(FileReader& fw)
 {
-	width = fw.ReadDWord();
-	height = fw.ReadDWord();
+	width    = fw.ReadDWord();
+	height   = fw.ReadDWord();
 	maxUnits = fw.ReadDWord();
 
 	this_12 = std::vector<QWORD>(maxUnits, 0);
 	fw.ReadBytes(this_12.data(), sizeof(QWORD) * maxUnits);
 
-	chapter = fw.ReadDWord();
-	mapColor = fw.ReadDWord();
+	chapter        = fw.ReadDWord();
+	mapColor       = fw.ReadDWord();
 	dispBattlePrep = fw.ReadDWord();
-	mapType = fw.ReadDWord();
+	mapType        = fw.ReadDWord();
 
 	sub_F7A3B0(fw);
 
 	fixedBackground = fw.ReadQWord();
 
-	bgmPlayerPhase = fw.ReadQWord();
-	bgmEnemyPhase = fw.ReadQWord();
-	bgmAllyPhase = fw.ReadQWord();
+	bgmPlayerPhase  = fw.ReadQWord();
+	bgmEnemyPhase   = fw.ReadQWord();
+	bgmAllyPhase    = fw.ReadQWord();
 	bgmPlayerBattle = fw.ReadQWord();
-	bgmEnemyBattle = fw.ReadQWord();
-	bgmAllyBattle = fw.ReadQWord();
-	bgmBattlePrep = fw.ReadQWord();
+	bgmEnemyBattle  = fw.ReadQWord();
+	bgmAllyBattle   = fw.ReadQWord();
+	bgmBattlePrep   = fw.ReadQWord();
 
 	if (g_ArcVersion < 0x404)
 	{
 		NOT_IMPLEMENTED
-			//sub_F77950((_DWORD*)Size, *(_DWORD*)(this_162));
+		// sub_F77950((_DWORD*)Size, *(_DWORD*)(this_162));
 	}
 
 	DWORD v8 = 4 * width * height;
-
 
 	initMemData(this_136, fw, v8);
 	initMemData(this_137, fw, v8);
@@ -95,7 +96,7 @@ void MAPDATA::init(FileReader& fw)
 	if (g_ArcVersion < 0x3EE)
 	{
 		if (this_165)
-			delete(this_165);
+			delete (this_165);
 		this_165 = new CMenuOperation(SRPGClasses::UNITDATA);
 	}
 	else
@@ -115,14 +116,14 @@ void MAPDATA::init(FileReader& fw)
 	allocAndSetCMenuOp(&this_148, SRPGClasses::REINFORCECONTAINER, fw);
 	allocAndSetCMenuOp(&this_149, SRPGClasses::UNITDATA, fw);
 
-	//std::cout << "======================================" << std::endl
+	// std::cout << "======================================" << std::endl
 	//	<< "Place Events:" << std::endl << *placeEvents << std::endl
 	//	<< "======================================" << std::endl;
-	//std::cout << *autoEvents << std::endl;
-	//std::cout << *talkEvents << std::endl;
-	//std::cout << *openingEvents << std::endl;
-	//std::cout << *endingEvents << std::endl;
-	//std::cout << *communicationEvents << std::endl;
+	// std::cout << *autoEvents << std::endl;
+	// std::cout << *talkEvents << std::endl;
+	// std::cout << *openingEvents << std::endl;
+	// std::cout << *endingEvents << std::endl;
+	// std::cout << *communicationEvents << std::endl;
 
 	this_150 = fw.ReadDWord();
 
@@ -153,30 +154,28 @@ void MAPDATA::init(FileReader& fw)
 	}
 }
 
-
 nlohmann::ordered_json MAPDATA::toJson() const
 {
 	nlohmann::ordered_json j;
-	j["id"] = id;
-	j["name"] = mapName.ToString();
-	j["this_136"] = this_136.ToString();
-	j["this_137"] = this_137.ToString();
-	j["this_138"] = this_138->ToJson();
-	j["this_139"] = this_139->ToJson();
-	j["this_140"] = this_140->ToJson();
-	j["this_141"] = this_141->ToJson();
-	j["placeEvents"] = placeEvents->ToJson();
-	j["autoEvents"] = autoEvents->ToJson();
-	j["talkEvents"] = talkEvents->ToJson();
-	j["openingEvents"] = openingEvents->ToJson();
-	j["endingEvents"] = endingEvents->ToJson();
+	j["id"]                  = id;
+	j["name"]                = mapName.ToString();
+	j["this_136"]            = this_136.ToString();
+	j["this_137"]            = this_137.ToString();
+	j["this_138"]            = this_138->ToJson();
+	j["this_139"]            = this_139->ToJson();
+	j["this_140"]            = this_140->ToJson();
+	j["this_141"]            = this_141->ToJson();
+	j["placeEvents"]         = placeEvents->ToJson();
+	j["autoEvents"]          = autoEvents->ToJson();
+	j["talkEvents"]          = talkEvents->ToJson();
+	j["openingEvents"]       = openingEvents->ToJson();
+	j["endingEvents"]        = endingEvents->ToJson();
 	j["communicationEvents"] = communicationEvents->ToJson();
-	j["this_148"] = this_148->ToJson();
-	j["this_149"] = this_149->ToJson();
-	j["this_162"] = this_162->ToJson();
-	j["this_165"] = this_165->ToJson();
-	j["this_166"] = this_166->ToJson();
-
+	j["this_148"]            = this_148->ToJson();
+	j["this_149"]            = this_149->ToJson();
+	j["this_162"]            = this_162->ToJson();
+	j["this_165"]            = this_165->ToJson();
+	j["this_166"]            = this_166->ToJson();
 
 	return j;
 }
@@ -216,7 +215,7 @@ void MAPDATA::dump(FileWriter& fw) const
 	if (g_ArcVersion < 0x404)
 	{
 		NOT_IMPLEMENTED
-			//sub_F77950((_DWORD*)Size, *(_DWORD*)(this_162));
+		// sub_F77950((_DWORD*)Size, *(_DWORD*)(this_162));
 	}
 
 	this_136.Write(fw);
@@ -249,7 +248,6 @@ void MAPDATA::dump(FileWriter& fw) const
 	communicationEvents->dump(fw);
 	this_148->dump(fw);
 	this_149->dump(fw);
-
 
 	fw.Write(this_150);
 
@@ -308,7 +306,7 @@ void MAPDATA::sub_F7A340(FileReader& fw)
 	if (g_ArcVersion < 0x3EE)
 	{
 		if (this_165)
-			delete(this_165);
+			delete (this_165);
 		this_165 = new CMenuOperation(SRPGClasses::UNITDATA);
 	}
 	else
@@ -318,52 +316,52 @@ void MAPDATA::sub_F7A340(FileReader& fw)
 void MAPDATA::sub_F77950(FileReader& fw)
 {
 	NOT_IMPLEMENTED
-		/*
-		int32_t v14[15];
+	/*
+	int32_t v14[15];
 
-		fw.ReadBytes(v14, 0x3Cu);
-		for (uint32_t i = 0; i < 15; ++i)
+	fw.ReadBytes(v14, 0x3Cu);
+	for (uint32_t i = 0; i < 15; ++i)
+	{
+		if (v14[i] != -1)
 		{
-			if (v14[i] != -1)
+			int16_t v6 = 0;
+			v12 = (**(int(__thiscall***)(int))a2)(a2);
+			do
 			{
-				int16_t v6 = 0;
-				v12 = (**(int(__thiscall***)(int))a2)(a2);
+				v7 = *(_DWORD*)(*(_DWORD*)(a2 + 4) + 4);
+				if (!v7)
+				{
+LABEL_7:
+					v8 = v6;
+					goto LABEL_8;
+				}
+				while (v6 != *(unsigned __int16*)(v7 + 8))
+				{
+					v7 = *(_DWORD*)(v7 + 4);
+					if (!v7)
+						goto LABEL_7;
+				}
+				++v6;
+			} while (v6 < 9999);
+			v8 = -1;
+LABEL_8:
+			*(_DWORD*)(v12 + 8) = v8;
+			v9 = *(_DWORD*)(a2 + 4);
+			v10 = v9 + 4;
+			if (*(_DWORD*)(v9 + 4))
+			{
 				do
 				{
-					v7 = *(_DWORD*)(*(_DWORD*)(a2 + 4) + 4);
-					if (!v7)
-					{
-LABEL_7:
-						v8 = v6;
-						goto LABEL_8;
-					}
-					while (v6 != *(unsigned __int16*)(v7 + 8))
-					{
-						v7 = *(_DWORD*)(v7 + 4);
-						if (!v7)
-							goto LABEL_7;
-					}
-					++v6;
-				} while (v6 < 9999);
-				v8 = -1;
-LABEL_8:
-				*(_DWORD*)(v12 + 8) = v8;
-				v9 = *(_DWORD*)(a2 + 4);
-				v10 = v9 + 4;
-				if (*(_DWORD*)(v9 + 4))
-				{
-					do
-					{
-						v9 = *(_DWORD*)v10;
-						v11 = *(_DWORD*)(*(_DWORD*)v10 + 4) == 0;
-						v10 = *(_DWORD*)v10 + 4;
-					} while (!v11);
-				}
-				result = v14[i];
-				*(_DWORD*)(v9 + 4) = v12;
-				*(_DWORD*)(v12 + 12) = result;
+					v9 = *(_DWORD*)v10;
+					v11 = *(_DWORD*)(*(_DWORD*)v10 + 4) == 0;
+					v10 = *(_DWORD*)v10 + 4;
+				} while (!v11);
 			}
-		}*/
+			result = v14[i];
+			*(_DWORD*)(v9 + 4) = v12;
+			*(_DWORD*)(v12 + 12) = result;
+		}
+	}*/
 }
 
 void MAPDATA::sub_F7A3B0(FileReader& fw)

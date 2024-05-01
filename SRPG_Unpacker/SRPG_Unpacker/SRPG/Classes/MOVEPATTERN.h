@@ -1,7 +1,7 @@
 #pragma once
 
-#include "EDITDATA.h"
 #include "BASEPATTERN.h"
+#include "EDITDATA.h"
 
 struct MOVEPATTERN : public BASEPATTERN
 {

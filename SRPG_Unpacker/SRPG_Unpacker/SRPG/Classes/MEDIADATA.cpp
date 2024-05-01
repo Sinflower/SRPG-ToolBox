@@ -1,6 +1,6 @@
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "MEDIADATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void MEDIADATA::init(FileReader& fw)
 {

@@ -7,31 +7,31 @@ struct WEAPONDATA : public ITEMBASE
 {
 	DWORD res = 0;
 
-	DWORD this_50 = 0;
-	DWORD mt          = 0;
-	DWORD rangeStart  = 0;
-	DWORD rangeEnd    = 0;
-	DWORD hit         = 0;
-	DWORD crt         = 0;
-	DWORD attackCount = 0;
-	DWORD weaponLevel = 0;
-	DWORD this_58 = 0;
-	DWORD this_60 = 0;
-	DWORD this_61 = 0;
-	DWORD this_62 = 0;
-	DWORD this_63 = 0;
-	DWORD this_64 = 0;
-	class CMenuOperation* m_pTypeIDData3 = nullptr;
-	DWORD this_66 = 0;
+	DWORD this_50                          = 0;
+	DWORD mt                               = 0;
+	DWORD rangeStart                       = 0;
+	DWORD rangeEnd                         = 0;
+	DWORD hit                              = 0;
+	DWORD crt                              = 0;
+	DWORD attackCount                      = 0;
+	DWORD weaponLevel                      = 0;
+	DWORD this_58                          = 0;
+	DWORD this_60                          = 0;
+	DWORD this_61                          = 0;
+	DWORD this_62                          = 0;
+	DWORD this_63                          = 0;
+	DWORD this_64                          = 0;
+	class CMenuOperation* m_pTypeIDData3   = nullptr;
+	DWORD this_66                          = 0;
 	class CMenuOperation* m_pMotionIDData1 = nullptr;
 	class CMenuOperation* m_pMotionIDData2 = nullptr;
 	class CMenuOperation* m_pMotionIDData3 = nullptr;
-	DWORD this_70 = 0;
-	DWORD this_71 = 0;
-	DWORD this_72 = 0;
-	DWORD this_73 = 0;
-	class CMenuOperation* m_pImageIDData1 = nullptr;
-	class CMenuOperation* m_pImageIDData2 = nullptr;
+	DWORD this_70                          = 0;
+	DWORD this_71                          = 0;
+	DWORD this_72                          = 0;
+	DWORD this_73                          = 0;
+	class CMenuOperation* m_pImageIDData1  = nullptr;
+	class CMenuOperation* m_pImageIDData2  = nullptr;
 
 	// NEW
 	std::array<DWORD, 12> this_130;

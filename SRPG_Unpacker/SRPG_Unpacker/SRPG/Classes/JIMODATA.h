@@ -1,8 +1,7 @@
 #pragma once
 
-	#include "EDITDATA.h"
+#include "EDITDATA.h"
 
-	struct JIMODATA : public EDITDATA
-	{
-	};
-	
+struct JIMODATA : public EDITDATA
+{
+};

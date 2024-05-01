@@ -1,8 +1,8 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "UNITIDDATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void UNITIDDATA::init(FileReader& fw)
 {

@@ -4,12 +4,12 @@
 
 struct SCREENSCROLL : public EDITDATA
 {
-	DWORD this_3 = 0;
-	DWORD this_4 = 0;
-	DWORD this_5 = 0;
-	DWORD this_6 = 0;
-	DWORD this_8 = 0;
-	DWORD this_9 = 0;
+	DWORD this_3  = 0;
+	DWORD this_4  = 0;
+	DWORD this_5  = 0;
+	DWORD this_6  = 0;
+	DWORD this_8  = 0;
+	DWORD this_9  = 0;
 	DWORD this_10 = 0;
 	DWORD this_11 = 0;
 	DWORD this_12 = 0;

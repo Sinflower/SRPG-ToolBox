@@ -5,9 +5,9 @@
 void MESSAGESHOW::init(FileReader& fw)
 {
 	position = fw.ReadDWord();
-	type = fw.ReadDWord();
-	unit = fw.ReadDWord();
-	this_7 = fw.ReadDWord();
+	type     = fw.ReadDWord();
+	unit     = fw.ReadDWord();
+	this_7   = fw.ReadDWord();
 
 	initMemData(message, fw);
 }

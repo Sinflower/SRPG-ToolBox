@@ -9,8 +9,8 @@ void SCREENSCROLL::init(FileReader& fw)
 	this_5 = fw.ReadDWord();
 	this_6 = fw.ReadDWord();
 
-	this_8 = fw.ReadDWord();
-	this_9 = fw.ReadDWord();
+	this_8  = fw.ReadDWord();
+	this_9  = fw.ReadDWord();
 	this_10 = fw.ReadDWord();
 	this_11 = fw.ReadDWord();
 	this_12 = fw.ReadDWord();

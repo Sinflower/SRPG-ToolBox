@@ -1,12 +1,12 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "CLASSTYPEDATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void CLASSTYPEDATA::init(FileReader& fw)
 {
-	this_8 = fw.ReadDWord();
+	this_8  = fw.ReadDWord();
 	this_10 = fw.ReadDWord();
 	this_11 = fw.ReadDWord();
 	this_12 = fw.ReadDWord();

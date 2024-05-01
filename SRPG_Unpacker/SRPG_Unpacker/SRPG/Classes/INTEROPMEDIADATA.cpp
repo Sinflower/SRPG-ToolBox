@@ -1,8 +1,8 @@
 // Compatible up to v1.292
 
-#include "EDITDATA.h"
-#include "../CMenuOperation.h"
 #include "INTEROPMEDIADATA.h"
+#include "../CMenuOperation.h"
+#include "EDITDATA.h"
 
 void INTEROPMEDIADATA::init(FileReader& fw)
 {
