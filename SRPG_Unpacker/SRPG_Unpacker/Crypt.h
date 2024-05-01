@@ -46,7 +46,7 @@ public:
 	Crypt(Crypt const &)          = delete;
 	void operator=(Crypt const &) = delete;
 
-	void SetDoCrypt(const bool& en)
+	void SetDoCrypt(const bool &en)
 	{
 		m_doCrypt = en;
 	}

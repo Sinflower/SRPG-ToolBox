@@ -49,3 +49,51 @@ static inline uint32_t SumVector(const std::vector<uint32_t> &vec)
 
 	return sum;
 }
+
+struct FileExt
+{
+	FileExt(const std::vector<uint8_t> &header, const uint32_t &offset, const std::wstring &ext) :
+		header(header),
+		offset(offset),
+		ext(ext)
+	{
+	}
+
+	FileExt(const std::vector<uint8_t> &header, const std::wstring &ext) :
+		header(header),
+		offset(0),
+		ext(ext)
+	{
+	}
+
+	std::vector<uint8_t> header;
+	uint32_t offset;
+	std::wstring ext;
+};
+
+static inline const std::vector<FileExt> FILE_HEADERS = {
+	{ { 0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a }, L".png" },
+	{ { 0x4F, 0x67, 0x67, 0x53 }, L".ogg" },
+	{ { 0xFF, 0xD8, 0xFF, 0xE0 }, L".jpg" },
+	{ { 0xFF, 0xD8, 0xFF, 0xE1 }, L".jpg" },
+	{ { 0x38, 0x42, 0x50, 0x53 }, L".psd" },
+	{ { 0x49, 0x44, 0x33 }, L".mp3" },
+	{ { 0xFF, 0xFB }, L".mp3" },
+	{ { 0xFF, 0xF3 }, L".mp3" },
+	{ { 0xFF, 0xF2 }, L".mp3" },
+	{ { 0x66, 0x74, 0x79, 0x70, 0x69, 0x73, 0x6F, 0x6D }, 4, L".mp4" },
+	{ { 0x00, 0x01, 0x00, 0x00, 0x00 }, L".ttf" },
+	{ { 0x4F, 0x54, 0x54, 0x4F }, L".otf" },
+	{ { 0x57, 0x41, 0x56, 0x45 }, 8, L".wav" }
+};
+
+static inline std::wstring GetFileExtension(const std::vector<uint8_t> &data)
+{
+	for (const FileExt &header : FILE_HEADERS)
+	{
+		if (std::equal(header.header.begin(), header.header.end(), data.begin() + header.offset))
+			return header.ext;
+	}
+
+	return L".txt";
+}

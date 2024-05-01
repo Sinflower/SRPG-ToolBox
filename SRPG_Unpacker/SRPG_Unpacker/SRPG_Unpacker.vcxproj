@@ -80,6 +80,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <AdditionalIncludeDirectories>3rdParty</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -98,6 +99,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalIncludeDirectories>3rdParty</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -116,6 +118,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <AdditionalIncludeDirectories>3rdParty</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -134,6 +137,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalIncludeDirectories>3rdParty</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -143,15 +147,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DataBase.cpp" />
+    <ClCompile Include="FileHeader.cpp" />
+    <ClCompile Include="MaterialData.cpp" />
+    <ClCompile Include="ProjectData.cpp" />
+    <ClCompile Include="ProjectSection.cpp" />
+    <ClCompile Include="ScriptData.cpp" />
+    <ClCompile Include="ScriptSection.cpp" />
+    <ClCompile Include="SectionData.cpp" />
     <ClCompile Include="SRPG_Unpacker.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="3rdParty\nlohmann\json.hpp" />
     <ClInclude Include="ConfigManager.h" />
     <ClInclude Include="Crypt.h" />
+    <ClInclude Include="DataBase.h" />
     <ClInclude Include="FileAccess.h" />
+    <ClInclude Include="FileHeader.h" />
+    <ClInclude Include="MaterialData.h" />
     <ClInclude Include="MemData.h" />
+    <ClInclude Include="ProjectData.h" />
+    <ClInclude Include="ProjectSection.h" />
+    <ClInclude Include="ScriptData.h" />
     <ClInclude Include="ScriptNames.h" />
+    <ClInclude Include="ScriptSection.h" />
+    <ClInclude Include="SectionBase.h" />
+    <ClInclude Include="SectionData.h" />
+    <ClInclude Include="SectionNames.h" />
+    <ClInclude Include="Sections.h" />
+    <ClInclude Include="Types.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
