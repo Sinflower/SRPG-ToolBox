@@ -151,6 +151,7 @@
     <ClInclude Include="Crypt.h" />
     <ClInclude Include="FileAccess.h" />
     <ClInclude Include="MemData.h" />
+    <ClInclude Include="ScriptNames.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

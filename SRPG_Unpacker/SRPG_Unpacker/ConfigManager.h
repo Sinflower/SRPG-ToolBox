@@ -26,13 +26,13 @@
 
 #pragma once
 
+#include <format>
 #include <fstream>
 #include <iostream>
+#include <map>
 #include <nlohmann\json.hpp>
 #include <string>
 #include <vector>
-#include <map>
-#include <format>
 
 #include "Utils.h"
 
@@ -84,6 +84,11 @@ public:
 		Add2Array(arr, ws2s(value), elems);
 	}
 
+	void Add2Array(const std::wstring& arr, const std::wstring& value, const std::vector<uint32_t>& elems)
+	{
+		Add2Array(ws2s(arr), ws2s(value), elems);
+	}
+
 	void Load(const std::wstring& filename)
 	{
 		load(filename);
@@ -103,6 +108,11 @@ public:
 		return m_json[key][m_map[key]++];
 	}
 
+	nlohmann::ordered_json& GetNext(const std::wstring& key)
+	{
+		return GetNext(ws2s(key));
+	}
+
 	void Clear()
 	{
 		m_json.clear();
@@ -110,7 +120,7 @@ public:
 	}
 
 private:
-	ConfigManager() = default;
+	ConfigManager()  = default;
 	~ConfigManager() = default;
 
 	void load(const std::wstring& filename)
@@ -142,8 +152,7 @@ private:
 	}
 
 private:
-	nlohmann::ordered_json m_json = {};
+	nlohmann::ordered_json m_json  = {};
 	nlohmann::ordered_json m_empty = {};
 	std::map<std::string, uint32_t> m_map;
-
 };

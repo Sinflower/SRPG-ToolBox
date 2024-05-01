@@ -36,6 +36,7 @@
 #include "Crypt.h"
 #include "FileAccess.h"
 #include "MemData.h"
+#include "ScriptNames.h"
 #include "Utils.h"
 
 namespace fs  = std::filesystem;
@@ -124,7 +125,7 @@ static const std::vector<FileExt> FILE_HEADERS = {
 	{ { 0x57, 0x41, 0x56, 0x45 }, 8, L".wav" }
 };
 
-inline static std::wstring GetFileExtension(const std::vector<uint8_t>& data)
+inline static std::wstring GetFileExtension(const std::vector<uint8_t> &data)
 {
 	for (const FileExt &header : FILE_HEADERS)
 	{
@@ -155,14 +156,13 @@ public:
 
 	void Unpack(const std::wstring &outputFolder) const
 	{
-		const std::wstring dirPath = std::format(L"{}/{}/", outputFolder, (m_idx == -1 ? L"" : s2ws(SECTION_NAMES[m_idx])));
+		const std::wstring dirPath = buildOutDir(outputFolder);
 
 		if (!fs::exists(dirPath))
 			fs::create_directories(dirPath);
 
 		uint32_t subElemIdx = 0;
 
-		// TODO: Fully implement sub elements
 		for (const MemData<uint32_t> &data : m_data)
 		{
 			std::vector<uint8_t> dat(data.size, 0);
@@ -238,6 +238,11 @@ public:
 	}
 
 protected:
+	virtual std::wstring buildOutDir(const std::wstring &outputFolder) const
+	{
+		return std::format(L"{}/{}/", outputFolder, (m_idx == -1 ? L"" : s2ws(SECTION_NAMES[m_idx])));
+	}
+
 	virtual void add2Config(const fs::path &file) const
 	{
 		if (m_idx == -1) return;
@@ -438,9 +443,14 @@ public:
 	}
 
 protected:
+	std::wstring buildOutDir(const std::wstring &outputFolder) const override
+	{
+		return std::format(L"{}/{}/", outputFolder, getFolderName());
+	}
+
 	void add2Config(const fs::path &file) const override
 	{
-		Config.Add2Array(SECTION_NAMES[m_idx], file.wstring(), {});
+		Config.Add2Array(getFolderName(), file.wstring(), {});
 	}
 
 	void write2File(const std::wstring &filePath, const std::vector<uint8_t> &data) const override
@@ -496,12 +506,15 @@ protected:
 
 	void buildData(const std::wstring &inputFolder) override
 	{
-		const std::wstring dirPath     = std::format(L"{}/{}", inputFolder, s2ws(SECTION_NAMES[m_idx]));
-		const nlohmann::ordered_json j = Config.GetNext(SECTION_NAMES[m_idx]);
+		nlohmann::ordered_json j = Config.GetNext(SECTION_NAMES[m_idx]);
+		if (j.empty())
+			j = Config.GetNext("Plugins");
 
 		if (j.empty()) return;
 
 		m_name = s2ws(j["name"].get<std::string>());
+
+		const std::wstring dirPath = std::format(L"{}/{}", inputFolder, getFolderName());
 
 		const std::wstring filePath = std::format(L"{}/{}", dirPath, m_name.ToWString());
 
@@ -509,6 +522,19 @@ protected:
 			throw std::runtime_error(std::format("File not found: {}", ws2s(filePath)));
 
 		m_data.push_back(MemData<uint32_t>(filePath, static_cast<uint32_t>(getFileSizeUTF16(filePath))));
+	}
+
+private:
+	bool isPlugin() const
+	{
+		return (std::find(SCRIPT_NAMES.begin(), SCRIPT_NAMES.end(), m_name.ToWString()) == SCRIPT_NAMES.end());
+	}
+
+	std::wstring getFolderName() const
+	{
+		if (isPlugin()) return L"Plugins";
+
+		return s2ws(SECTION_NAMES[m_idx]);
 	}
 };
 
