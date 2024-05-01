@@ -63,8 +63,28 @@ static inline const std::vector<std::string> SECTION_NAMES = {
 	"UI\\screenframe",
 	"Audio\\music",
 	"Audio\\sound",
-	"Font",
+	"Fonts",
 	"Video",
 	"Script",
 	"Material"
 };
+
+static inline std::string GetSecNameFromPath(const std::string& path)
+{
+	std::string p = path;
+
+	std::replace(p.begin(), p.end(), '/', '\\');
+
+	// If the path ends with a backslash, remove it
+	if (p.back() == '\\')
+		p.pop_back();
+
+	// Check if the path ends with one of the section names
+	for (const auto& secName : SECTION_NAMES)
+	{
+		if (path.ends_with(secName))
+			return secName;
+	}
+
+	return "";
+}
