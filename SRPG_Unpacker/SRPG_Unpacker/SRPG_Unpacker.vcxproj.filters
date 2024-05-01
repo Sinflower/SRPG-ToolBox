@@ -19,6 +19,15 @@
     <Filter Include="Header Files\3rdParty\nlohmann">
       <UniqueIdentifier>{f8252b5d-3978-4560-aa02-05f73db1e1e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SRPG">
+      <UniqueIdentifier>{8b613401-6844-474d-bd7f-b19f7f8a7461}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SRPG\Classes">
+      <UniqueIdentifier>{bdfc1fcd-b817-4f19-a667-6ffbc29e6a67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SRPG\Commands">
+      <UniqueIdentifier>{1085ebc8-eb10-4062-9919-7249006d7eb7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SRPG_Unpacker.cpp">
@@ -50,6 +59,522 @@
     </ClCompile>
     <ClCompile Include="Crypt.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\CMenuOperation.cpp">
+      <Filter>SRPG</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Functions.cpp">
+      <Filter>SRPG</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\SRPG_Project.cpp">
+      <Filter>SRPG</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\ANIMEDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\ANIMEIDDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\CHARACTERDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\CHOICEDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\CLASSDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\CLASSGROUPDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\CLASSGROUPENTRYDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\CLASSIDDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\CLASSTYPEDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\COMMANDLAYOUTDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\COMPATIBLEDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\CUSTOMPATTERN.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\DAYNIGHTDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\DICTIONARYCONDITION.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\DIFFICULTYDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\EDITDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\EVENTACTIONDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\EVENTCOMMAND.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\EVENTDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\EVENTPAGE.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\EVENTPAGE_DATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\FACIALDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\FONTDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\FORCEENTRY.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\FORCESORTIEDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\FRAMEDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\FRAMELIST.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\FRAMEORIGINAL.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\FUSIONDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\GALLERYDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\GALLERYGROUPDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\IMAGEDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\IMAGEIDDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\INSTALLEDFONTDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\INTEROPANIMEDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\INTEROPBASE.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\INTEROPGRAPHICSDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\INTEROPMEDIADATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\INTEROPSCREENDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\INTEROPSTRINGDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\INTEROPTEXTUIDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\INTEROPUIDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\ITEMBASE.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\ITEMCONDITIONDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\ITEMDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\ITEMGROUPDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\LEGENDDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\LINEPOSDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MAPDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MAPPOSDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MAPTREEDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MEDIADATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MESSAGELAYOUTDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\METAMORDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MOTIONIDDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MOVEPATTERN.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MOVETYPEDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MULTICOMMANDDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\NEWSKILLDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\NPCDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\PARAMHEADDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\PASSCHIPDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\PASSDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\PASSGROUPDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\PATTERNDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\QUESTDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\RACEDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\REINFORCECONTAINER.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\REINFORCEDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\RESDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\RESOURCELAYOUTDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\RESTAREADATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\RESTSHOPDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\REWARDDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\RPASSDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\SHOPDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\SHOPLAYOUT.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\SKILLDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\SPRITEDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\STATEDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\STRINGDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\SUPPORTDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\SWITCHACTIONDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\SWITCHDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\TESTMEMBER.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\TYPEIDDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\UIRESDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\UNITCONDITIONDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\UNITDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\UNITIDDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\UNITPROTOTYPEDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\UNITSTATUSDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\VARIABLECONDITIONDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\VARIABLEDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\VIDEODATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\WEAPONDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\WEAPONTYPEDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\WORDDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\ANIMATIONPLAY.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\ANIMATIONSTOP.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\BACKGROUNDCHANGE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\BONUSCHANGE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\CHAPTERSHOW.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\CHOICESHOW.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\CLASSCHANGE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\CONSOLELOG.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\DAICE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\DAMAGEHIT.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\ENVIRONMENTACCESS.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\EVENTSKIP.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\EVENTSTATECHANGE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\EXPERIENCEPLUS.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\FORCEBATTLE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\GOLDCHANGE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\GRAPHICSHIDE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\GRAPHICSSHOW.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\HPRECOVERY.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\INFOWINDOW.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\ITEMCHANGE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\ITEMDURABILITYCHANGE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\ITEMUSE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\LOCATIONFOCUS.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MAPCHIPCHANGE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MAPINFOCHANGE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MAPPOSCHOOSE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MAPPOSOPERATION.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MAPSCROLL.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MAPSTATECHANGE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MESSAGEERASE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MESSAGESCROLL.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MESSAGESHOW.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MESSAGETEROP.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MESSAGETITLE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MOVEOBJECTHIDE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MOVEOBJECTSHOW.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MUSICPLAY.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MUSICSTOP.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\OBJECTADJUST.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\PARAMATERCHANGE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\RELATIVETURNMEASURE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SAVECALL.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SCENECHANGE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SCREENEFFECT.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SCREENSCROLL.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SCREENSHAKE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SCREENSTATECHANGE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SCRIPTEXECUTE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SKILLCHANGE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SOUNDPLAY.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SOUNDSTOP.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\STILLMESSAGE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SWITCHACTION.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SYSTEMSETTINGS.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\TROPHYCHANGE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITALLCOMMAND.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITAPPEAR.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITASSIGN.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITCAPACITYCHANGE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITINFOCHANGE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITMETAMOR.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITMOVE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITREMOVE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITSLIDE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITSTATEADDITION.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITSTATECHANGE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\VARIABLEACTION.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\VICTORYMAP.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\VIDEOPLAY.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\WAITACTION.cpp">
+      <Filter>SRPG\Commands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +633,660 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FileHeader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\CMenuOperation.h">
+      <Filter>SRPG</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Functions.h">
+      <Filter>SRPG</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\SRPG_Project.h">
+      <Filter>SRPG</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Types.h">
+      <Filter>SRPG</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Version.h">
+      <Filter>SRPG</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\ANIMEDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\ANIMEIDDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\APPROACHPATTERN.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\BACKLOGDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\BASEPATTERN.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\CHANGEINFODATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\CHARACTERDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\CHARREPLACEDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\CHECKDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\CHOICEDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\CLASSDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\CLASSGROUPDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\CLASSGROUPENTRYDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\CLASSIDDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\CLASSTYPEDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\CLEARSAVEDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\COMMANDLAYOUTDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\COMPATIBLEDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\COMPLETEGRAPHICSDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\COMPLETEMEDIADATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\COMPLETERECOLLECTIONDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\COMPLETESWITCHDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\CUSTOMPATTERN.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\DAYNIGHTDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\DECORATIONDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\DICTIONARYCONDITION.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\DIFFICULTYDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\DYNAMICANIME.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\DYNAMICGRAPHICS.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\DYNAMICMOVEOBJECT.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\DYNAMICUNITEVENT.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\EDITDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\EVENTACTIONDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\EVENTCOMMAND.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\EVENTDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\EVENTPAGE.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\EVENTPAGE_DATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\EXECUTEREFDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\FACIALDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\FONTDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\FONTGROUPDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\FORCEENTRY.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\FORCESORTIEDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\FRAMEDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\FRAMELIST.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\FRAMEORIGINAL.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\FUSIONDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\GALLERYDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\GALLERYGROUPDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\GEN_EVDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\GEN_JSDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\IMAGEDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\IMAGEIDDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\INSTALLEDFONTDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\INTEROPANIMEDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\INTEROPBASE.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\INTEROPGRAPHICSDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\INTEROPMEDIADATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\INTEROPSCREENDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\INTEROPSTRINGDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\INTEROPTEXTUIDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\INTEROPUIDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\INVENTORYDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\ITEMBASE.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\ITEMCONDITIONDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\ITEMCONVERTDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\ITEMDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\ITEMGROUPDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\JIMODATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\JUMPIDDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\LEGENDDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\LINEPOSDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\MAPBASE.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\MAPDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\MAPPOSDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\MAPTREEDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\MATERIALDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\MEDIADATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\MEMDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\MESSAGELAYOUTDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\METAMORDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\METAMORHISTORY.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\MOSTRECENTINFO.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\MOTIONIDDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\MOVEPATTERN.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\MOVETYPEDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\MULTICOMMANDDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\MYDECODATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\NEWSKILLDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\NPCDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\OCCUPYDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\ORIGINALDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\PAIRKEYDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\PARAMHEADDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\PASSCHIPDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\PASSDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\PASSGROUPDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\PATTERNDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\QUESTDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\RACEDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\REFCUTINDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\REINFORCECONTAINER.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\REINFORCEDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\RENDERPOOLDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\RESDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\RESOURCELAYOUTDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\RESTAREADATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\RESTSHOPDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\REWARDDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\RPASSDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\SCRIPTCODEDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\SHOPDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\SHOPLAYOUT.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\SKILLDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\SOUNDMODEDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\SPRITEDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\STATEDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\STRINGDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\SUPPORTDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\SWITCHACTIONDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\SWITCHDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\TESTMEMBER.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\TITLESDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\TROPHYDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\TURNSTATEDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\TYPEIDDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\UIRESDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\UNITCONDITIONDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\UNITDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\UNITIDDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\UNITPROTOTYPEDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\UNITSTATUSDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\VARIABLECONDITIONDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\VARIABLEDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\VIDEODATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\WAITPATTERN.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\WEAPONDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\WEAPONTYPEDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Classes\WORDDATA.h">
+      <Filter>SRPG\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\ANIMATIONPLAY.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\ANIMATIONSTOP.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\BACKGROUNDCHANGE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\BONUSCHANGE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\CHAPTERSHOW.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\CHOICESHOW.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\CLASSCHANGE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\CONSOLELOG.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\DAICE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\DAMAGEHIT.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\ENVIRONMENTACCESS.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\EVENTSKIP.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\EVENTSTATECHANGE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\EXPERIENCEPLUS.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\FORCEBATTLE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\GOLDCHANGE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\GRAPHICSHIDE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\GRAPHICSSHOW.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\HPRECOVERY.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\INFOWINDOW.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\ITEMCHANGE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\ITEMDURABILITYCHANGE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\ITEMUSE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\LOCATIONFOCUS.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\MAPCHIPCHANGE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\MAPINFOCHANGE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\MAPPOSCHOOSE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\MAPPOSOPERATION.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\MAPSCROLL.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\MAPSTATECHANGE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\MESSAGEERASE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\MESSAGESCROLL.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\MESSAGESHOW.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\MESSAGETEROP.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\MESSAGETITLE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\MOVEOBJECTHIDE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\MOVEOBJECTSHOW.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\MUSICPLAY.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\MUSICSTOP.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\OBJECTADJUST.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\PARAMATERCHANGE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\RELATIVETURNMEASURE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\SAVECALL.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\SCENECHANGE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\SCREENEFFECT.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\SCREENSCROLL.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\SCREENSHAKE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\SCREENSTATECHANGE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\SCRIPTEXECUTE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\SKILLCHANGE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\SOUNDPLAY.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\SOUNDSTOP.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\STILLMESSAGE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\SWITCHACTION.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\SYSTEMSETTINGS.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\TROPHYCHANGE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\UNITALLCOMMAND.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\UNITAPPEAR.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\UNITASSIGN.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\UNITCAPACITYCHANGE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\UNITFUSION.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\UNITINFOCHANGE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\UNITMETAMOR.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\UNITMOVE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\UNITPERFORMANCE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\UNITREMOVE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\UNITSLIDE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\UNITSTATEADDITION.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\UNITSTATECHANGE.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\VARIABLEACTION.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\VICTORYMAP.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\VIDEOPLAY.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\WAITACTION.h">
+      <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="DTSTool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

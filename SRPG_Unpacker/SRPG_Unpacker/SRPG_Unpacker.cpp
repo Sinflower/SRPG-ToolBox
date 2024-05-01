@@ -32,7 +32,9 @@
 #include <string>
 
 #include "Crypt.h"
+#include "DTSTool.h"
 #include "FileHeader.h"
+#include "SRPG\SRPG_Project.h"
 #include "SectionNames.h"
 
 namespace fs = std::filesystem;
@@ -60,6 +62,8 @@ int main(int argc, char *argv[])
 		LPWSTR *szArgList;
 		int32_t nArgs;
 
+		DTSTool dtsT;
+
 		szArgList = CommandLineToArgvW(GetCommandLineW(), &nArgs);
 
 		// Initialize the CryptEngine
@@ -73,9 +77,10 @@ int main(int argc, char *argv[])
 			if (nArgs == 3)
 				outFolder = fs::path(szArgList[2]).wstring();
 
-			FileHeader fh(arg1.wstring());
-			fh.InitSections();
-			fh.Unpack(outFolder);
+			dtsT.Unpack(arg1.wstring(), outFolder);
+
+			SRPG_Project sp({ dtsT.GetVersion(), dtsT.GetResourceFlags(), dtsT.GetProjectData() });
+			sp.Dump(outFolder);
 		}
 		else if (fs::is_directory(arg1))
 		{
@@ -83,8 +88,7 @@ int main(int argc, char *argv[])
 			if (nArgs == 3)
 				outFile = fs::path(szArgList[2]).wstring();
 
-			FileHeader fh(arg1.wstring());
-			fh.Pack(outFile);
+			dtsT.Pack(arg1.wstring(), outFile);
 		}
 		else if (std::wstring(szArgList[1]) == L"dec" && nArgs >= 3)
 		{
@@ -189,7 +193,7 @@ int main(int argc, char *argv[])
 							outPath.replace_filename(fN);
 							outPath.replace_extension(ext);
 
-							//std::wcout << L"Writing: " << outPath << std::endl;
+							// std::wcout << L"Writing: " << outPath << std::endl;
 							FileWriter::WriteFile(outPath, data);
 						}
 					}
