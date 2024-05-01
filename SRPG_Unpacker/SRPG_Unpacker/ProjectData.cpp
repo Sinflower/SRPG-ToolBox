@@ -65,7 +65,7 @@ void ProjectData::Pack(FileWriter &fileWriter) const
 void ProjectData::loadData()
 {
 	m_name = SECTION_NAME;
-	m_data.push_back(InitMemData<uint32_t>(*m_pFileReader, m_pFileReader->Remaining(), false));
+	m_data.push_back(InitMemData(*m_pFileReader, m_pFileReader->Remaining(), false));
 }
 
 void ProjectData::buildData(const std::wstring &inputFolder)
@@ -77,5 +77,5 @@ void ProjectData::buildData(const std::wstring &inputFolder)
 	if (!fs::exists(filePath))
 		throw std::runtime_error(std::format("File not found: {}", ws2s(filePath)));
 
-	m_data.push_back(MemData<uint32_t>(filePath, static_cast<uint32_t>(fs::file_size(filePath))));
+	m_data.push_back(MemData(filePath, static_cast<uint32_t>(fs::file_size(filePath))));
 }

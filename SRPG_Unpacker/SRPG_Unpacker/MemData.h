@@ -95,18 +95,17 @@ static inline std::string utf82sjis(const std::string& utf8)
 }
 } // namespace memData
 
-template<typename T>
 struct MemData
 {
 	std::vector<BYTE> data = {};
-	T size                 = 0;
+	uint32_t size          = 0;
 	uint32_t offset        = 0;
 	bool readSize          = false;
 	std::wstring fileName  = L"";
 
 	MemData() = default;
 
-	MemData(const std::wstring& fileName, const T& size) :
+	MemData(const std::wstring& fileName, const uint32_t& size) :
 		fileName(fileName),
 		size(size)
 	{
@@ -141,7 +140,7 @@ struct MemData
 		if (!memData::g_isUTF8)
 			s = memData::utf82sjis(str);
 
-		size = static_cast<T>(s.size()) + 1;
+		size = static_cast<uint32_t>(s.size()) + 1;
 		data.resize(size);
 		std::copy(s.begin(), s.end(), data.begin());
 
@@ -169,7 +168,7 @@ struct MemData
 
 	void operator=(const std::wstring& str)
 	{
-		size = static_cast<T>(str.size() * 2) + 2;
+		size = static_cast<uint32_t>(str.size() * 2) + 2;
 		data.resize(size);
 		std::copy(str.begin(), str.end(), reinterpret_cast<wchar_t*>(data.data()));
 
@@ -178,27 +177,21 @@ struct MemData
 
 	friend std::ostream& operator<<(std::ostream& os, MemData const& md)
 	{
-		os << md.toString();
+		os << md.ToString();
 
 		return os;
 	}
 };
 
-template<typename T>
-void InitMemData(MemData<T>& memData, FileReader& fw, const T& size = ~0, const bool& loadData = true)
+static inline void InitMemData(MemData& memData, FileReader& fw, const uint32_t& size = ~0, const bool& loadData = true)
 {
 	memData.offset = fw.GetOffset();
 
-	if (size == static_cast<T>(~0))
+	if (size == static_cast<uint32_t>(~0))
 	{
-		if (sizeof(T) == 1)
-			memData.size = fw.ReadUInt8();
-		else if (sizeof(T) == 2)
-			memData.size = fw.ReadUInt16();
-		else if (sizeof(T) == 4)
-			memData.size = static_cast<T>(fw.ReadUInt32());
+		memData.size     = static_cast<uint32_t>(fw.ReadUInt32());
 		memData.readSize = true;
-		memData.offset += sizeof(T);
+		memData.offset += sizeof(uint32_t);
 	}
 	else
 		memData.size = size;
@@ -212,24 +205,21 @@ void InitMemData(MemData<T>& memData, FileReader& fw, const T& size = ~0, const 
 		fw.Skip(memData.size);
 }
 
-template<typename T>
-MemData<T> InitMemData(FileReader& fw, const T& size = ~0, const bool& loadData = true)
+static inline MemData InitMemData(FileReader& fw, const uint32_t& size = ~0, const bool& loadData = true)
 {
-	MemData<T> memData;
+	MemData memData;
 	InitMemData(memData, fw, size, loadData);
 
 	return memData;
 }
 
-template<typename T>
-MemData<T> InitFromData(const std::string& str, const bool& readSize = true)
+static inline MemData InitFromData(const std::string& str, const bool& readSize = true)
 {
-	MemData<T> memData;
-	memData.fromString(str);
+	MemData memData;
+	memData.FromString(str);
 	memData.readSize = readSize;
 
 	return memData;
 }
 
-template<typename T>
-using MemDataVec = std::vector<MemData<T>>;
+using MemDataVec = std::vector<MemData>;

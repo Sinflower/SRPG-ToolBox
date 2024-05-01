@@ -38,6 +38,8 @@ public:
 
 	std::vector<uint32_t> SecSizes() const override;
 
+	std::vector<uint8_t> GetData() const;
+
 protected:
 	void build(const std::wstring &inputFolder) override;
 

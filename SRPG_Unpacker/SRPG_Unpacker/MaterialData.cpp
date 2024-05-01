@@ -54,7 +54,7 @@ void MaterialData::Pack(FileWriter &fileWriter) const
 	fileWriter.Write<uint32_t>(m_name.size);
 	fileWriter.WriteBytesVec(m_name.data);
 
-	for (const MemData<uint32_t> &data : m_data)
+	for (const MemData &data : m_data)
 	{
 		std::vector<uint8_t> dat;
 
@@ -72,7 +72,7 @@ uint32_t MaterialData::Size() const
 	size += 4;           // Name size
 	size += m_name.size; // Name data
 
-	for (const MemData<uint32_t> &data : m_data)
+	for (const MemData &data : m_data)
 	{
 		size += 4; // Data size
 		size += data.size;
@@ -88,9 +88,9 @@ void MaterialData::add2Config(const fs::path &file) const
 
 void MaterialData::loadData()
 {
-	InitMemData<uint32_t>(m_name, *m_pFileReader);
+	InitMemData(m_name, *m_pFileReader);
 
-	m_data.push_back(InitMemData<uint32_t>(*m_pFileReader, ~0, false));
+	m_data.push_back(InitMemData(*m_pFileReader, ~0, false));
 }
 
 void MaterialData::buildData(const std::wstring &inputFolder)
@@ -107,5 +107,5 @@ void MaterialData::buildData(const std::wstring &inputFolder)
 	if (!fs::exists(filePath))
 		throw std::runtime_error(std::format("File not found: {}", ws2s(filePath)));
 
-	m_data.push_back(MemData<uint32_t>(filePath, static_cast<uint32_t>(fs::file_size(filePath))));
+	m_data.push_back(MemData(filePath, static_cast<uint32_t>(fs::file_size(filePath))));
 }

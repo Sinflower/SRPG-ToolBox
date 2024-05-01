@@ -36,6 +36,8 @@
 #include <string>
 #include <vector>
 
+using QWORD = uint64_t;
+
 namespace fileAccessUtils
 {
 static inline std::wstring s2ws(const std::string& str)
@@ -91,6 +93,11 @@ public:
 	FileReader& operator=(const FileReader&) = delete;
 
 	~FileReader()
+	{
+		close();
+	}
+
+	void Close()
 	{
 		close();
 	}
@@ -192,6 +199,26 @@ public:
 		return read<int8_t>();
 	}
 
+	QWORD ReadQWord()
+	{
+		return read<QWORD>();
+	}
+
+	DWORD ReadDWord()
+	{
+		return read<DWORD>();
+	}
+
+	WORD ReadWord()
+	{
+		return read<WORD>();
+	}
+
+	BYTE ReadByte()
+	{
+		return read<BYTE>();
+	}
+
 	template<std::size_t S>
 	void ReadBytesArr(std::array<BYTE, S>& buffer, const DWORD& size = -1)
 	{
@@ -231,7 +258,7 @@ public:
 	void ReadBytes(LPVOID pBuffer, const DWORD& size)
 	{
 		if (!m_init)
-			throw(FileReaderException("FileWalker not initialized"));
+			throw(FileReaderException("FileReader not initialized"));
 
 		if (m_offset + size > m_size)
 			throw(FileReaderException("ReadBytes: Attempted to read past end of file"));
@@ -254,7 +281,7 @@ public:
 	void Seek(const DWORD& offset)
 	{
 		if (!m_init)
-			throw(FileReaderException("FileWalker not initialized"));
+			throw(FileReaderException("FileReader not initialized"));
 
 		if (offset > m_size)
 			throw(FileReaderException("Seek: Attempted to seek past end of file"));
@@ -265,7 +292,7 @@ public:
 	void Skip(const DWORD& size)
 	{
 		if (!m_init)
-			throw(FileReaderException("FileWalker not initialized"));
+			throw(FileReaderException("FileReader not initialized"));
 
 		if (m_offset + size > m_size)
 			throw(FileReaderException("Skip: Attempted to skip past end of file"));
@@ -304,7 +331,7 @@ public:
 	BYTE At(const DWORD& offset) const
 	{
 		if (!m_init)
-			throw(FileReaderException("FileWalker not initialized"));
+			throw(FileReaderException("FileReader not initialized"));
 
 		if (offset >= m_size)
 			throw(FileReaderException("At: Attempted to read past end of file"));
@@ -348,13 +375,14 @@ private:
 		}
 
 		m_offset = 0;
+		m_init   = false;
 	}
 
 	template<typename T>
 	T read()
 	{
 		if (!m_init)
-			throw(FileReaderException("FileWalker not initialized"));
+			throw(FileReaderException("FileReader not initialized"));
 
 		if (m_offset + sizeof(T) > m_size)
 			throw(FileReaderException("read: End of file reached"));

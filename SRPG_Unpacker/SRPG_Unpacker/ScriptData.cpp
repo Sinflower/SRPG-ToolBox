@@ -57,7 +57,7 @@ void ScriptData::Pack(FileWriter &fileWriter) const
 	fileWriter.Write<uint32_t>(m_name.size);
 	fileWriter.WriteBytesVec(m_name.data);
 
-	for (const MemData<uint32_t> &data : m_data)
+	for (const MemData &data : m_data)
 	{
 		std::vector<uint8_t> dat;
 
@@ -75,7 +75,7 @@ uint32_t ScriptData::Size() const
 	size += 4;           // Name size
 	size += m_name.size; // Name data
 
-	for (const MemData<uint32_t> &data : m_data)
+	for (const MemData &data : m_data)
 		size += (data.size + 2 /* 2-Bytes null-terminator */);
 
 	size += 4; // Material count
@@ -139,9 +139,9 @@ void ScriptData::readFromFile(const std::wstring &filePath, std::vector<uint8_t>
 
 void ScriptData::loadData()
 {
-	InitMemData<uint32_t>(m_name, *m_pFileReader);
+	InitMemData(m_name, *m_pFileReader);
 
-	m_data.push_back(InitMemData<uint32_t>(*m_pFileReader, ~0, false));
+	m_data.push_back(InitMemData(*m_pFileReader, ~0, false));
 }
 
 void ScriptData::buildData(const std::wstring &inputFolder)
@@ -161,7 +161,7 @@ void ScriptData::buildData(const std::wstring &inputFolder)
 	if (!fs::exists(filePath))
 		throw std::runtime_error(std::format("File not found: {}", ws2s(filePath)));
 
-	m_data.push_back(MemData<uint32_t>(filePath, static_cast<uint32_t>(getFileSizeUTF16(filePath))));
+	m_data.push_back(MemData(filePath, static_cast<uint32_t>(getFileSizeUTF16(filePath))));
 }
 
 bool ScriptData::isPlugin() const

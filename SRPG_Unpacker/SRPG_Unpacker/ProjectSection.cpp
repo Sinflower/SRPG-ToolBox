@@ -49,6 +49,16 @@ std::vector<uint32_t> ProjectSection::SecSizes() const
 	return { size };
 }
 
+std::vector<uint8_t> ProjectSection::GetData() const
+{
+	std::vector<uint8_t> data;
+
+	if (!m_data.empty())
+		data = m_data.front().GetData(0);
+
+	return data;
+}
+
 void ProjectSection::build(const std::wstring &inputFolder)
 {
 	m_data.push_back(ProjectData(inputFolder));

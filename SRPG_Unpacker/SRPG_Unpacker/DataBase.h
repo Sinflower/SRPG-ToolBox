@@ -54,7 +54,11 @@ public:
 
 	virtual uint32_t Size() const;
 
+	std::vector<uint8_t> GetData(const std::size_t &idx) const;
+
 protected:
+	std::vector<uint8_t> getData(const MemData &data) const;
+
 	virtual std::wstring buildOutDir(const std::wstring &outputFolder) const;
 
 	virtual void add2Config(const std::filesystem::path &file) const;
@@ -74,11 +78,11 @@ protected:
 	uint32_t m_idx            = 0;
 	bool m_decrypt            = true;
 
-	MemData<uint32_t> m_name = {};
-	uint32_t m_reserved0     = 0;
-	uint32_t m_reserved1     = 0;
-	uint32_t m_subElemCount  = 0;
+	MemData m_name          = {};
+	uint32_t m_reserved0    = 0;
+	uint32_t m_reserved1    = 0;
+	uint32_t m_subElemCount = 0;
 
 	std::vector<uint32_t> m_dataSizes = {};
-	MemDataVec<uint32_t> m_data       = {};
+	MemDataVec m_data                 = {};
 };

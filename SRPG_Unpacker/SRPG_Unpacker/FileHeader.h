@@ -59,19 +59,36 @@ class FileHeader
 	};
 
 public:
-	FileHeader(const std::wstring fileName);
+	FileHeader() = default;
+	FileHeader(const std::wstring &fileName);
 
 	~FileHeader() = default;
 
-	void Print() const;
+	void Init(const std::wstring &fileName);
 
-	void InitSections(bool verbose = false);
+	void Print() const;
 
 	void Unpack(const std::wstring &outputFolder);
 
 	void Pack(const std::wstring &outputFile);
 
+	void Reset();
+
+	const uint32_t &GetVersion() const
+	{
+		return m_fileVersion;
+	}
+
+	const uint32_t &GetResourceFlags() const
+	{
+		return m_presentSegments;
+	}
+
+	std::vector<uint8_t> GetProjectData() const;
+
 private:
+	void initSections(bool verbose = false);
+
 	void writeOffsets(FileWriter &fileWriter, const std::vector<uint32_t> &sizes, uint32_t &offset) const;
 
 	void initDTS(const std::wstring &fileName);
@@ -90,7 +107,7 @@ private:
 	uint32_t m_projectDataAddress              = 0;
 	std::deque<SecInfo> m_sectionDataAddresses = {};
 
-	bool m_initSections = false;
+	bool m_sectionInitDone = false;
 	bool m_oldFormat    = false;
 
 	GraphicSection m_gSec = {};

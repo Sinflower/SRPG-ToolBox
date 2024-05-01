@@ -32,7 +32,12 @@
 
 namespace fs = std::filesystem;
 
-FileHeader::FileHeader(const std::wstring fileName)
+FileHeader::FileHeader(const std::wstring &fileName)
+{
+	Init(fileName);
+}
+
+void FileHeader::Init(const std::wstring &fileName)
 {
 	if (fs::path(fileName).extension() == L".dts")
 		initDTS(fileName);
@@ -54,43 +59,10 @@ void FileHeader::Print() const
 		std::cout << std::format("{:#010x}\n", addr);
 }
 
-void FileHeader::InitSections(bool verbose)
-{
-	if (m_initSections || !m_fileReader) return;
-
-	std::cout << "Initializing sections ...";
-
-	if (verbose)
-		std::cout << std::endl;
-
-	std::deque<SecInfo> secInfos = m_sectionDataAddresses;
-
-	m_gSec.Init(&m_fileReader, (m_presentSegments & Sections::Graphics), secInfos);
-	m_uSec.Init(&m_fileReader, (m_presentSegments & Sections::UI), secInfos);
-	m_aSec.Init(&m_fileReader, (m_presentSegments & Sections::Audio), secInfos);
-	m_fSec.Init(&m_fileReader, (m_presentSegments & Sections::Font), secInfos);
-
-	if (!m_oldFormat)
-		m_vSec.Init(&m_fileReader, (m_presentSegments & Sections::Video), secInfos);
-
-	m_sSec.Init(&m_fileReader, (m_encrypted == 1), (m_presentSegments & Sections::Script), secInfos);
-	m_pSec.Init(&m_fileReader, m_projectDataAddress);
-
-	if (!m_fileReader.IsEoF())
-		throw std::runtime_error("FileReader did not reach EOF");
-
-	if (verbose)
-		std::cout << "Initializing sections ... Done" << std::endl;
-	else
-		std::cout << " Done" << std::endl;
-
-	m_initSections = true;
-}
-
 void FileHeader::Unpack(const std::wstring &outputFolder)
 {
-	if (!m_initSections)
-		InitSections();
+	if (!m_sectionInitDone)
+		initSections();
 
 	m_gSec.Unpack(outputFolder);
 	m_uSec.Unpack(outputFolder);
@@ -146,6 +118,60 @@ void FileHeader::Pack(const std::wstring &outputFile)
 		m_vSec.Pack(fileWriter);
 	m_sSec.Pack(fileWriter);
 	m_pSec.Pack(fileWriter);
+}
+
+void FileHeader::Reset()
+{
+	m_gSec.Reset();
+	m_uSec.Reset();
+	m_aSec.Reset();
+	m_fSec.Reset();
+	m_vSec.Reset();
+	m_sSec.Reset();
+	m_pSec.Reset();
+
+	m_fileReader.Close();
+	m_sectionDataAddresses.clear();
+
+	m_sectionInitDone = false;
+}
+
+std::vector<uint8_t> FileHeader::GetProjectData() const
+{
+	return m_pSec.GetData();
+}
+
+void FileHeader::initSections(bool verbose)
+{
+	if (m_sectionInitDone || !m_fileReader) return;
+
+	std::cout << "Initializing sections ...";
+
+	if (verbose)
+		std::cout << std::endl;
+
+	std::deque<SecInfo> secInfos = m_sectionDataAddresses;
+
+	m_gSec.Init(&m_fileReader, (m_presentSegments & Sections::Graphics), secInfos);
+	m_uSec.Init(&m_fileReader, (m_presentSegments & Sections::UI), secInfos);
+	m_aSec.Init(&m_fileReader, (m_presentSegments & Sections::Audio), secInfos);
+	m_fSec.Init(&m_fileReader, (m_presentSegments & Sections::Font), secInfos);
+
+	if (!m_oldFormat)
+		m_vSec.Init(&m_fileReader, (m_presentSegments & Sections::Video), secInfos);
+
+	m_sSec.Init(&m_fileReader, (m_encrypted == 1), (m_presentSegments & Sections::Script), secInfos);
+	m_pSec.Init(&m_fileReader, m_projectDataAddress);
+
+	if (!m_fileReader.IsEoF())
+		throw std::runtime_error("FileReader did not reach EOF");
+
+	if (verbose)
+		std::cout << "Initializing sections ... Done" << std::endl;
+	else
+		std::cout << " Done" << std::endl;
+
+	m_sectionInitDone = true;
 }
 
 void FileHeader::writeOffsets(FileWriter &fileWriter, const std::vector<uint32_t> &sizes, uint32_t &offset) const
@@ -205,14 +231,6 @@ void FileHeader::initFolder(const std::wstring &inputFolder)
 
 	if (m_fileVersion < 0x474)
 		m_oldFormat = true;
-
-	m_gSec.Reset();
-	m_uSec.Reset();
-	m_aSec.Reset();
-	m_fSec.Reset();
-	m_vSec.Reset();
-	m_sSec.Reset();
-	m_pSec.Reset();
 
 	if (m_presentSegments & Sections::Graphics)
 		m_gSec.Build(inputFolder);

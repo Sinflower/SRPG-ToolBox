@@ -45,13 +45,9 @@ void DataBase::Unpack(const std::wstring &outputFolder) const
 
 	uint32_t subElemIdx = 0;
 
-	for (const MemData<uint32_t> &data : m_data)
+	for (const MemData &data : m_data)
 	{
-		std::vector<uint8_t> dat(data.size, 0);
-		m_pFileReader->ReadBytesVecAt(dat, data.offset, data.size);
-
-		if (m_decrypt)
-			DecryptData(dat);
+		std::vector<uint8_t> dat = getData(data);
 
 		std::wstring fileName = m_name.ToWString();
 		std::wstring ext      = L"";
@@ -86,10 +82,10 @@ void DataBase::Pack(FileWriter &fileWriter) const
 	fileWriter.Write<uint32_t>(m_reserved1);
 	fileWriter.Write<uint32_t>(m_subElemCount);
 
-	for (const MemData<uint32_t> &data : m_data)
+	for (const MemData &data : m_data)
 		fileWriter.Write<uint32_t>(data.size);
 
-	for (const MemData<uint32_t> &data : m_data)
+	for (const MemData &data : m_data)
 	{
 		std::vector<uint8_t> dat(data.size, 0);
 
@@ -113,10 +109,29 @@ uint32_t DataBase::Size() const
 	size += 4;                  // Sub element count
 	size += m_subElemCount * 4; // Sub element sizes
 
-	for (const MemData<uint32_t> &data : m_data)
+	for (const MemData &data : m_data)
 		size += data.size;
 
 	return size;
+}
+
+std::vector<uint8_t> DataBase::GetData(const std::size_t& idx) const
+{
+	if (idx >= m_data.size())
+		throw std::runtime_error("Index out of bounds");
+
+	return getData(m_data[idx]);
+}
+
+std::vector<uint8_t> DataBase::getData(const MemData &data) const
+{
+	std::vector<uint8_t> dat(data.size, 0);
+	m_pFileReader->ReadBytesVecAt(dat, data.offset, data.size);
+
+	if (m_decrypt)
+		DecryptData(dat);
+
+	return dat;
 }
 
 std::wstring DataBase::buildOutDir(const std::wstring &outputFolder) const
@@ -161,7 +176,7 @@ void DataBase::readFromFile(const std::wstring &filePath, std::vector<uint8_t> &
 
 void DataBase::loadData()
 {
-	InitMemData<uint32_t>(m_name, *m_pFileReader);
+	InitMemData(m_name, *m_pFileReader);
 	m_reserved0    = m_pFileReader->ReadUInt32();
 	m_reserved1    = m_pFileReader->ReadUInt32();
 	m_subElemCount = m_pFileReader->ReadUInt32();
@@ -170,7 +185,7 @@ void DataBase::loadData()
 		m_dataSizes.push_back(m_pFileReader->ReadUInt32());
 
 	for (const uint32_t dataSize : m_dataSizes)
-		m_data.push_back(InitMemData<uint32_t>(*m_pFileReader, dataSize, false));
+		m_data.push_back(InitMemData(*m_pFileReader, dataSize, false));
 }
 
 void DataBase::buildData(const std::wstring &inputFolder)
@@ -217,7 +232,7 @@ void DataBase::buildData(const std::wstring &inputFolder)
 				filePath = std::format(L"{}{}", basePath, ext);
 		}
 
-		m_data.push_back(MemData<uint32_t>(filePath, static_cast<uint32_t>(fs::file_size(filePath))));
+		m_data.push_back(MemData(filePath, static_cast<uint32_t>(fs::file_size(filePath))));
 	}
 }
 
