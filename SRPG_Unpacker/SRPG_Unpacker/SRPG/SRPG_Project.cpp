@@ -1211,7 +1211,7 @@ void SRPG_Project::dumpAsProj(FileWriter& fw) const
 		fw.Write(DWORD(0x0)); // Mem Data, unknown purpose
 	}
 
-	if (g_ArcVersion > 1221)
+	if (g_ArcVersion > 1226)
 		fw.WriteBytes(m_unknown.data(), m_unknown.size() * sizeof(DWORD));
 
 	dumpMap(fw);
