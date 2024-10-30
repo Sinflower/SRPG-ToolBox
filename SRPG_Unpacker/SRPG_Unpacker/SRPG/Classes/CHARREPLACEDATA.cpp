@@ -1,5 +1,5 @@
 /*
- *  File: SUPPORTDATA.cpp
+ *  File: CHARREPLACEDATA.cpp
  *  Copyright (c) 2024 Sinflower
  *
  *  MIT License
@@ -26,57 +26,78 @@
 
 // Compatible up to v1.292
 
-#include "SUPPORTDATA.h"
+#include "CHARREPLACEDATA.h"
 #include "../CMenuOperation.h"
 #include "EDITDATA.h"
 
-void SUPPORTDATA::init(FileReader& fw)
+void CHARREPLACEDATA::init(FileReader& fw)
 {
-	this_3  = fw.ReadDWord();
-	this_5  = fw.ReadDWord();
-	this_6  = fw.ReadDWord();
-	this_7  = fw.ReadDWord();
-	this_8  = fw.ReadDWord();
-	this_9  = fw.ReadDWord();
-	this_10 = fw.ReadDWord();
+	this_3 = fw.ReadDWord();
+	this_4 = fw.ReadDWord();
+	this_5 = fw.ReadDWord();
+	initMemData(this_6, fw);
+	this_7 = fw.ReadDWord();
+	allocAndSetCMenuOp(&m_pTypeIDData, SRPGClasses::TYPEIDDATA, fw);
 
-	if (g_ArcVersion >= 1260)
-		this_11 = fw.ReadDWord();
-
-	allocAndSetCMenuOp(&this_4, SRPGClasses::TYPEIDDATA, fw);
-
-	if (g_ArcVersion >= 1230)
-		allocAndSetCMenuOp(&this_12, SRPGClasses::VARIABLECONDITIONDATA, fw);
-	else
+	if (g_ArcVersion >= 1277)
 	{
-		this_13 = fw.ReadDWord();
-		if (this_13 != 0)
+		if (HIWORD(this_7))
 		{
-			fw.ReadBytesArr(this_14);
+			fw.ReadBytesArr(this_9);
+
+			if (g_ArcVersion >= 1048)
+			{
+				this_10 = fw.ReadDWord();
+				this_11 = fw.ReadDWord();
+			}
+
+			fw.ReadBytesArr(this_12);
+
+			if (g_ArcVersion >= 1048)
+			{
+				this_13 = fw.ReadDWord();
+				this_14 = fw.ReadDWord();
+			}
+
+			if (g_ArcVersion >= 1051)
+				this_15 = fw.ReadDWord();
 		}
 	}
 }
 
-void SUPPORTDATA::dump(FileWriter& fw) const
+
+void CHARREPLACEDATA::dump(FileWriter& fw) const
 {
 	fw.Write(this_3);
+	fw.Write(this_4);
 	fw.Write(this_5);
-	fw.Write(this_6);
+	this_6.Write(fw);
 	fw.Write(this_7);
-	fw.Write(this_8);
-	fw.Write(this_9);
-	fw.Write(this_10);
+	m_pTypeIDData->dump(fw);
 
-	if (g_ArcVersion >= 1260)
-		fw.Write(this_11);
-
-	this_4->dump(fw);
-	if (g_ArcVersion >= 1230)
-		this_12->dump(fw);
-	else
+	if (g_ArcVersion >= 1277)
 	{
-		fw.Write(this_13);
-		if (this_13 != 0)
-			fw.WriteBytesArr(this_14);
+		if (HIWORD(this_7))
+		{
+			fw.WriteBytesArr(this_9);
+
+			if (g_ArcVersion >= 1048)
+			{
+				fw.Write(this_10);
+				fw.Write(this_11);
+			}
+
+			fw.WriteBytesArr(this_12);
+
+			if (g_ArcVersion >= 1048)
+			{
+				fw.Write(this_13);
+				fw.Write(this_14);
+			}
+
+			if (g_ArcVersion >= 1051)
+				fw.Write(this_15);
+		}
 	}
+
 }

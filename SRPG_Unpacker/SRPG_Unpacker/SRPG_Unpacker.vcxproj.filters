@@ -576,6 +576,9 @@
     <ClCompile Include="SRPG\Commands\WAITACTION.cpp">
       <Filter>SRPG\Commands</Filter>
     </ClCompile>
+    <ClCompile Include="SRPG\Classes\CHARREPLACEDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileAccess.h">

@@ -30,4 +30,24 @@
 
 struct CHARREPLACEDATA : public EDITDATA
 {
+	DWORD this_3 = 0;
+	DWORD this_4 = 0;
+	DWORD this_5 = 0;
+	MemData this_6;
+	DWORD this_7 = 0;
+
+	class CMenuOperation* m_pTypeIDData = nullptr;
+
+	std::array<BYTE, 40> this_9;
+	DWORD this_10 = 0;
+	DWORD this_11 = 0;
+
+	std::array<BYTE, 40> this_12;
+	DWORD this_13 = 0;
+	DWORD this_14 = 0;
+	DWORD this_15 = 0;
+
+
+	virtual void init(FileReader& fw);
+	virtual void dump([[maybe_unused]] FileWriter& fw) const;
 };

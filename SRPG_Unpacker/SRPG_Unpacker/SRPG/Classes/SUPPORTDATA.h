@@ -42,6 +42,10 @@ struct SUPPORTDATA : public EDITDATA
 
 	class CMenuOperation* this_12 = nullptr;
 
+	// Ver < 1230
+	DWORD this_13 = 0;
+	std::array<BYTE, 56> this_14;
+
 	virtual void init(FileReader& fw);
 	virtual void dump([[maybe_unused]] FileWriter& fw) const;
 };

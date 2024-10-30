@@ -1060,7 +1060,7 @@ void SRPG_Project::loadResources()
 
 	// NOTE: I don't know when this was added, but I know it was not
 	//       present in this version
-	if (g_ArcVersion > 0x4C5)
+	if (g_ArcVersion > 0x4CA)
 		m_fw.ReadBytes(m_unknown.data(), static_cast<DWORD>(m_unknown.size() * sizeof(DWORD)));
 
 #ifdef DEBUG_PRINT

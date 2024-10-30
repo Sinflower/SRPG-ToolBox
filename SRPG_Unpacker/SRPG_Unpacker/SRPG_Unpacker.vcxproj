@@ -159,6 +159,7 @@
     <ClCompile Include="SRPG\Classes\ANIMEDATA.cpp" />
     <ClCompile Include="SRPG\Classes\ANIMEIDDATA.cpp" />
     <ClCompile Include="SRPG\Classes\CHARACTERDATA.cpp" />
+    <ClCompile Include="SRPG\Classes\CHARREPLACEDATA.cpp" />
     <ClCompile Include="SRPG\Classes\CHOICEDATA.cpp" />
     <ClCompile Include="SRPG\Classes\CLASSDATA.cpp" />
     <ClCompile Include="SRPG\Classes\CLASSGROUPDATA.cpp" />
