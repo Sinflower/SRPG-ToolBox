@@ -171,7 +171,7 @@ bool ScriptData::isPlugin() const
 
 std::wstring ScriptData::getFolderName() const
 {
-	if (isPlugin()) return L"Plugins";
+	if (isPlugin()) return L"Plugin";
 
 	return s2ws(SECTION_NAMES[m_idx]);
 }
