@@ -45,6 +45,9 @@ void DataBase::Unpack(const std::wstring &outputFolder) const
 
 	uint32_t subElemIdx = 0;
 
+	if (m_data.empty())
+		add2Config(fs::path(m_name.ToWString()));
+
 	for (const MemData &data : m_data)
 	{
 		std::vector<uint8_t> dat = getData(data);
@@ -72,9 +75,6 @@ void DataBase::Unpack(const std::wstring &outputFolder) const
 
 void DataBase::Pack(FileWriter &fileWriter) const
 {
-	if (m_data.empty())
-		return;
-
 	fileWriter.Write<uint32_t>(m_name.size);
 	fileWriter.WriteBytesVec(m_name.data);
 

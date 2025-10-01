@@ -178,7 +178,9 @@ void FileHeader::writeOffsets(FileWriter &fileWriter, const std::vector<uint32_t
 {
 	for (const uint32_t &size : sizes)
 	{
-		fileWriter.Write<uint32_t>(offset);
+		// Note: If size is 0, it looks like the offset is written as 0
+		// analyze this further in case errors arise
+		fileWriter.Write<uint32_t>((size > 0 ? offset : 0));
 		offset += size;
 	}
 }
