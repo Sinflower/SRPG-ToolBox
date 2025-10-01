@@ -1,5 +1,5 @@
 /*
- *  File: REFCUTINDATA.h
+ *  File: REFCUTINDATA.cpp
  *  Copyright (c) 2024 Sinflower
  *
  *  MIT License
@@ -24,16 +24,22 @@
  *
  */
 
-#pragma once
+// Compatible up to v1.292
 
+#include "REFCUTINDATA.h"
+#include "../CMenuOperation.h"
 #include "EDITDATA.h"
 
-struct REFCUTINDATA : public EDITDATA
+void REFCUTINDATA::init(FileReader& fw)
 {
-	class CMenuOperation* m_pImgIdData1 = nullptr;
-	class CMenuOperation* m_pImgIdData2 = nullptr;
-	class CMenuOperation* m_pImgIdData3 = nullptr;
+	allocAndSetCMenuOp(&m_pImgIdData1, SRPGClasses::IMAGEIDDATA, fw);
+	allocAndSetCMenuOp(&m_pImgIdData2, SRPGClasses::IMAGEIDDATA, fw);
+	allocAndSetCMenuOp(&m_pImgIdData3, SRPGClasses::IMAGEIDDATA, fw);
+}
 
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
-};
+void REFCUTINDATA::dump(FileWriter& fw) const
+{
+	m_pImgIdData1->dump(fw);
+	m_pImgIdData2->dump(fw);
+	m_pImgIdData3->dump(fw);
+}

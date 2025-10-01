@@ -1,5 +1,5 @@
 /*
- *  File: REFCUTINDATA.h
+ *  File: SOUNDMODEDATA.cpp
  *  Copyright (c) 2024 Sinflower
  *
  *  MIT License
@@ -24,16 +24,32 @@
  *
  */
 
-#pragma once
+// Compatible up to v1.292
 
+#include "SOUNDMODEDATA.h"
+#include "../CMenuOperation.h"
 #include "EDITDATA.h"
 
-struct REFCUTINDATA : public EDITDATA
+void SOUNDMODEDATA::init(FileReader& fw)
 {
-	class CMenuOperation* m_pImgIdData1 = nullptr;
-	class CMenuOperation* m_pImgIdData2 = nullptr;
-	class CMenuOperation* m_pImgIdData3 = nullptr;
+	this_8  = fw.ReadDWord();
+	this_10 = fw.ReadDWord();
+	this_11 = fw.ReadDWord();
+	InitMemData(this_12, fw);
+	this_4 = fw.ReadDWord();
+	this_5 = fw.ReadDWord();
+	InitMemData(this_6, fw);
+	InitMemData(this_7, fw);
+}
 
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
-};
+void SOUNDMODEDATA::dump(FileWriter& fw) const
+{
+	fw.Write(this_8);
+	fw.Write(this_10);
+	fw.Write(this_11);
+	this_12.Write(fw);
+	fw.Write(this_4);
+	fw.Write(this_5);
+	this_6.Write(fw);
+	this_7.Write(fw);
+}

@@ -52,6 +52,8 @@ void SUPPORTDATA::init(FileReader& fw)
 		this_13 = fw.ReadDWord();
 		if (this_13 != 0)
 		{
+			// Yes it looks like this is really correct ... -- I hate this engine sooo much
+			fw.Seek(fw.GetOffset() - 4);
 			fw.ReadBytesArr(this_14);
 		}
 	}

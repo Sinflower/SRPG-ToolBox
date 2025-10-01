@@ -201,6 +201,7 @@
     <ClCompile Include="SRPG\Classes\INTEROPUIDATA.cpp" />
     <ClCompile Include="SRPG\Classes\ITEMBASE.cpp" />
     <ClCompile Include="SRPG\Classes\ITEMCONDITIONDATA.cpp" />
+    <ClCompile Include="SRPG\Classes\ITEMCONVERTDATA.cpp" />
     <ClCompile Include="SRPG\Classes\ITEMDATA.cpp" />
     <ClCompile Include="SRPG\Classes\ITEMGROUPDATA.cpp" />
     <ClCompile Include="SRPG\Classes\LEGENDDATA.cpp" />
@@ -224,6 +225,7 @@
     <ClCompile Include="SRPG\Classes\PATTERNDATA.cpp" />
     <ClCompile Include="SRPG\Classes\QUESTDATA.cpp" />
     <ClCompile Include="SRPG\Classes\RACEDATA.cpp" />
+    <ClCompile Include="SRPG\Classes\REFCUTINDATA.cpp" />
     <ClCompile Include="SRPG\Classes\REINFORCECONTAINER.cpp" />
     <ClCompile Include="SRPG\Classes\REINFORCEDATA.cpp" />
     <ClCompile Include="SRPG\Classes\RESDATA.cpp" />
@@ -235,6 +237,7 @@
     <ClCompile Include="SRPG\Classes\SHOPDATA.cpp" />
     <ClCompile Include="SRPG\Classes\SHOPLAYOUT.cpp" />
     <ClCompile Include="SRPG\Classes\SKILLDATA.cpp" />
+    <ClCompile Include="SRPG\Classes\SOUNDMODEDATA.cpp" />
     <ClCompile Include="SRPG\Classes\SPRITEDATA.cpp" />
     <ClCompile Include="SRPG\Classes\STATEDATA.cpp" />
     <ClCompile Include="SRPG\Classes\STRINGDATA.cpp" />

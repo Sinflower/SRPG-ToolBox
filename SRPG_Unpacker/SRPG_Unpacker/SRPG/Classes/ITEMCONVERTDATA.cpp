@@ -1,5 +1,5 @@
 /*
- *  File: REFCUTINDATA.h
+ *  File: ITEMCONVERTDATA.cpp
  *  Copyright (c) 2024 Sinflower
  *
  *  MIT License
@@ -24,16 +24,20 @@
  *
  */
 
-#pragma once
+// Compatible up to v1.292
 
+#include "ITEMCONVERTDATA.h"
+#include "../CMenuOperation.h"
 #include "EDITDATA.h"
 
-struct REFCUTINDATA : public EDITDATA
+void ITEMCONVERTDATA::init(FileReader& fw)
 {
-	class CMenuOperation* m_pImgIdData1 = nullptr;
-	class CMenuOperation* m_pImgIdData2 = nullptr;
-	class CMenuOperation* m_pImgIdData3 = nullptr;
+	this_3 = fw.ReadDWord();
+	this_4 = fw.ReadDWord();
+}
 
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
-};
+void ITEMCONVERTDATA::dump(FileWriter& fw) const
+{
+	fw.Write(this_3);
+	fw.Write(this_4);
+}
