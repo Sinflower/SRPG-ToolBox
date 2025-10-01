@@ -148,7 +148,7 @@ void ScriptData::buildData(const std::wstring &inputFolder)
 {
 	nlohmann::ordered_json j = Config.GetNext(SECTION_NAMES[m_idx]);
 	if (j.empty())
-		j = Config.GetNext("Plugins");
+		j = Config.GetNext("Plugin");
 
 	if (j.empty()) return;
 
