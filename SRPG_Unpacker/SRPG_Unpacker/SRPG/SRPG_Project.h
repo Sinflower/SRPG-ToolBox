@@ -194,16 +194,16 @@ private:
 	DWORD this_4 = 0;
 
 	// --- sub_F58C80 ---
-	CMenuOperation* m_pbEventData = nullptr; // this_230
+	CMenuOperation* m_pRecollectionEvents = nullptr; // this_230
 	// ----- sub_F8F6E0 -----
 
-	CMenuOperation* m_pMapData      = nullptr; // this_15
-	CMenuOperation* m_pMapTreeData1 = nullptr; // this_16
-	CMenuOperation* m_pMapTreeData2 = nullptr; // this_17
-	CMenuOperation* m_pDayNightData = nullptr; // this_18 (new)
-	CMenuOperation* m_pEventData1   = nullptr; // this_18
-	CMenuOperation* m_pEventData2   = nullptr; // this_19
-	CMenuOperation* m_pUnitData1    = nullptr; // this_20
+	CMenuOperation* m_pMapData         = nullptr; // this_15
+	CMenuOperation* m_pMapTreeData1    = nullptr; // this_16
+	CMenuOperation* m_pMapTreeData2    = nullptr; // this_17
+	CMenuOperation* m_pDayNightData    = nullptr; // this_18 (new)
+	CMenuOperation* m_pMapCommonEvents = nullptr; // this_18
+	CMenuOperation* m_pBookmarkEvents  = nullptr; // this_19
+	CMenuOperation* m_pUnitData1       = nullptr; // this_20
 
 	// sub_F8F6E0 - this_15
 	DWORD this_21 = 0;
@@ -277,7 +277,7 @@ private:
 
 	// ----- sub_F8DD30 -----
 
-	CMenuOperation* m_pUnitData2                     = nullptr;     // this_86
+	CMenuOperation* m_pPlayerUnits                   = nullptr;     // this_86
 	CMenuOperation* m_pClassData                     = nullptr;     // this_87
 	CMenuOperation* m_pWeaponData                    = nullptr;     // this_88
 	CMenuOperation* m_pItemData                      = nullptr;     // this_89
@@ -285,13 +285,13 @@ private:
 	CMenuOperation* m_pStateData                     = nullptr;     // this_91
 	CMenuOperation* m_pPassData1                     = nullptr;     // this_92
 	CMenuOperation* m_pPassData2                     = nullptr;     // this_93
-	CMenuOperation* m_pScreenScroll                  = nullptr;     // this_94
-	CMenuOperation* m_pScreenShake                   = nullptr;     // this_95
+	CMenuOperation* m_pClassTypeData                 = nullptr;     // this_94
+	CMenuOperation* m_pMoveTypeData                  = nullptr;     // this_95
 	std::array<CMenuOperation*, 4> m_pWeaponTypeData = { nullptr }; // this_96-this_99
 	CMenuOperation* m_pDifficultyData                = nullptr;     // this_100
 	CMenuOperation* m_pFontData                      = nullptr;     // this_101
 	CMenuOperation* m_pSwitchData1                   = nullptr;     // this_102
-	CMenuOperation* m_pScreenffect                   = nullptr;     // this_103
+	CMenuOperation* m_pClassGroupData                = nullptr;     // this_103
 	std::array<CMenuOperation*, 10> m_pNPCData       = { nullptr }; // this_104-this_113
 	CMenuOperation* m_pStringData1                   = nullptr;     // this_114
 	CMenuOperation* m_pFacialData                    = nullptr;     // this_115
@@ -307,48 +307,48 @@ private:
 	CMenuOperation* m_pPassGroupData                 = nullptr;     // this_130
 	std::array<CMenuOperation*, 10> m_pOriginalData  = { nullptr }; // this_131-this_140
 	CMenuOperation* m_pStringData6                   = nullptr;     // this_141
-	MemData this_142;
-	MemData this_143;
-	MemData this_144;
-	MemData this_145;
-	MemData this_146;
-	MemData this_147;
-	DWORD this_148 = 0;
-	DWORD this_149 = 0;
-	DWORD this_150 = 0;
-	DWORD this_151 = 0;
-	DWORD this_152 = 0;
-	DWORD this_153 = 0;
-	DWORD this_154 = 0;
-	DWORD this_155 = 0;
-	DWORD this_156 = 0;
-	DWORD this_157 = 0;
-	DWORD this_158 = 0;
-	DWORD this_159 = 0;
-	DWORD this_160 = 0;
-	DWORD this_161 = 0;
-	DWORD this_162 = 0;
-	DWORD this_163 = 0;
-	DWORD this_164 = 0;
-	DWORD this_165 = 0;
-	DWORD this_166 = 0;
-	DWORD this_167 = 0;
-	DWORD this_168 = 0;
-	DWORD this_169 = 0;
-	DWORD this_170 = 0;
-	DWORD this_171 = 0;
-	DWORD this_172 = 0;
-	DWORD this_173 = 0;
-	DWORD this_174 = 0;
-	DWORD this_175 = 0;
-	DWORD this_176 = 0;
-	DWORD this_177 = 0;
-	DWORD this_178 = 0;
-	DWORD this_179 = 0;
-	DWORD this_180 = 0;
-	DWORD this_181 = 0;
-	DWORD this_182 = 0;
-	DWORD this_183 = 0;
+	MemData m_windowTitle;                                          // this_142
+	MemData m_gameTitle;                                            // this_143
+	MemData this_144;                                               // this_144
+	MemData this_145;                                               // this_145
+	MemData this_146;                                               // this_146
+	MemData this_147;                                               // this_147
+	DWORD this_148        = 0;
+	DWORD this_149        = 0;
+	DWORD this_150        = 0;
+	DWORD this_151        = 0;
+	DWORD this_152        = 0;
+	DWORD this_153        = 0;
+	DWORD this_154        = 0;
+	DWORD this_155        = 0;
+	DWORD m_gold          = 0; // this_156
+	DWORD m_bonus         = 0; // this_157
+	DWORD m_maxSkillCount = 0; // this_158
+	DWORD m_maxItemCount  = 0; // this_159
+	DWORD m_convoyItem    = 0; // this_160
+	DWORD m_maxEnemyCount = 0; // this_161
+	DWORD m_maxLv         = 0; // this_162
+	DWORD m_maxHP         = 0; // this_163
+	DWORD m_maxStr        = 0; // this_164
+	DWORD m_maxMag        = 0; // this_165
+	DWORD m_maxSkl        = 0; // this_166
+	DWORD m_maxSpd        = 0; // this_167
+	DWORD m_maxLck        = 0; // this_168
+	DWORD m_maxDef        = 0; // this_169
+	DWORD m_maxRes        = 0; // this_170
+	DWORD m_maxMov        = 0; // this_171
+	DWORD m_maxWlv        = 0; // this_172
+	DWORD m_maxBld        = 0; // this_173
+	DWORD m_pursuitValue  = 0; // this_174
+	DWORD m_minExp        = 0; // this_175
+	DWORD m_leaderExp     = 0; // this_176
+	DWORD m_subLeaderExp  = 0; // this_177
+	DWORD this_178        = 0; // this_178
+	DWORD this_179        = 0; // this_179
+	DWORD this_180        = 0; // this_180
+	DWORD this_181        = 0; // this_181
+	DWORD this_182        = 0; // this_182
+	DWORD this_183        = 0; // this_183
 
 	CMenuOperation* m_pItemGroupData = nullptr; // this_184
 	CMenuOperation* m_pUnitIDData    = nullptr; // this_185

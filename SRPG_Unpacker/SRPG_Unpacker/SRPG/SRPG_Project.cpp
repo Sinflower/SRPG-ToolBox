@@ -26,7 +26,7 @@
 
 // Compatible up to v1.292
 
-//#define DEBUG_PRINT
+#define DEBUG_PRINT
 
 #include <direct.h>
 
@@ -99,7 +99,7 @@ void SRPG_Project::loadProject()
 	loadDatabase();   // start = this_86
 	loadGameLayout(); // start = this_375
 
-	allocAndSetCMenuOp(&m_pbEventData, SRPGClasses::EVENTDATA, m_fw);
+	allocAndSetCMenuOp(&m_pRecollectionEvents, SRPGClasses::EVENTDATA, m_fw);
 
 	sub_F8EC70();
 	loadStorySettings();
@@ -140,7 +140,7 @@ void SRPG_Project::loadMap()
 		allocAndSetCMenuOp(&m_pDayNightData, SRPGClasses::DAYNIGHTDATA, m_fw);
 
 	if (g_ArcVersion >= 0x3F9)
-		allocAndSetCMenuOp(&m_pEventData1, SRPGClasses::EVENTDATA, m_fw);
+		allocAndSetCMenuOp(&m_pMapCommonEvents, SRPGClasses::EVENTDATA, m_fw);
 
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-EVENTDATA=" << m_fw.GetOffset() << std::endl;
@@ -148,7 +148,7 @@ void SRPG_Project::loadMap()
 
 	if (g_ArcVersion >= 0x432)
 	{
-		allocAndSetCMenuOp(&m_pEventData2, SRPGClasses::EVENTDATA, m_fw);
+		allocAndSetCMenuOp(&m_pBookmarkEvents, SRPGClasses::EVENTDATA, m_fw);
 #ifdef DEBUG_PRINT
 		std::cout << "OFFSET-EVENTDATA=" << m_fw.GetOffset() << std::endl;
 #endif
@@ -351,12 +351,12 @@ void SRPG_Project::loadDatabase()
 	std::cout << "OFFSET=" << m_fw.GetOffset() << std::endl;
 #endif
 
-	allocAndSetCMenuOp(&m_pUnitData2, SRPGClasses::UNITDATA, m_fw);
+	allocAndSetCMenuOp(&m_pPlayerUnits, SRPGClasses::UNITDATA, m_fw);
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-UNITDATA=" << m_fw.GetOffset() << std::endl;
 #endif
 
-	// std::cout << *m_pUnitData2 << std::endl;
+	// std::cout << *m_pPlayerUnits << std::endl;
 
 	allocAndSetCMenuOp(&m_pClassData, SRPGClasses::CLASSDATA, m_fw);
 #ifdef DEBUG_PRINT
@@ -407,6 +407,10 @@ void SRPG_Project::loadDatabase()
 	std::cout << "OFFSET-FONTDATA=" << m_fw.GetOffset() << std::endl;
 #endif
 
+	///////////////
+	// Config Tab
+	///////////////
+
 	if (g_ArcVersion >= 0x455)
 	{
 		for (CMenuOperation*& CMO : m_pNPCData)
@@ -421,7 +425,7 @@ void SRPG_Project::loadDatabase()
 #endif
 	}
 
-	allocAndSetCMenuOp(&m_pScreenffect, SRPGClasses::CLASSGROUPDATA, m_fw);
+	allocAndSetCMenuOp(&m_pClassGroupData, SRPGClasses::CLASSGROUPDATA, m_fw);
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-CLASSGROUPDATA=" << m_fw.GetOffset() << std::endl;
 #endif
@@ -431,12 +435,12 @@ void SRPG_Project::loadDatabase()
 	std::cout << "OFFSET-SWITCHDATA=" << m_fw.GetOffset() << std::endl;
 #endif
 
-	allocAndSetCMenuOp(&m_pScreenScroll, SRPGClasses::CLASSTYPEDATA, m_fw);
+	allocAndSetCMenuOp(&m_pClassTypeData, SRPGClasses::CLASSTYPEDATA, m_fw);
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-CLASSTYPEDATA=" << m_fw.GetOffset() << std::endl;
 #endif
 
-	allocAndSetCMenuOp(&m_pScreenShake, SRPGClasses::MOVETYPEDATA, m_fw);
+	allocAndSetCMenuOp(&m_pMoveTypeData, SRPGClasses::MOVETYPEDATA, m_fw);
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-MOVETYPEDATA=" << m_fw.GetOffset() << std::endl;
 #endif
@@ -559,8 +563,8 @@ void SRPG_Project::sub_F8E4E0()
 // this = this_142
 void SRPG_Project::sub_F7DA50()
 {
-	initMemData(this_142, m_fw);
-	initMemData(this_143, m_fw);
+	initMemData(m_windowTitle, m_fw);
+	initMemData(m_gameTitle, m_fw);
 	initMemData(this_144, m_fw);
 	initMemData(this_145, m_fw);
 	initMemData(this_146, m_fw);
@@ -575,51 +579,36 @@ void SRPG_Project::sub_F7DA50()
 	this_154 = m_fw.ReadDWord();
 	this_155 = m_fw.ReadDWord();
 
-	this_156 = m_fw.ReadDWord();
-	this_157 = m_fw.ReadDWord();
-	this_158 = m_fw.ReadDWord();
-	this_159 = m_fw.ReadDWord();
-	this_160 = m_fw.ReadDWord();
-	this_161 = m_fw.ReadDWord();
-	this_162 = m_fw.ReadDWord();
+	m_gold          = m_fw.ReadDWord();
+	m_bonus         = m_fw.ReadDWord();
+	m_maxSkillCount = m_fw.ReadDWord();
+	m_maxItemCount  = m_fw.ReadDWord();
+	m_convoyItem    = m_fw.ReadDWord();
+	m_maxEnemyCount = m_fw.ReadDWord();
+	m_maxLv         = m_fw.ReadDWord();
 
-	if (g_ArcVersion < 0x418)
+	m_maxHP  = m_fw.ReadDWord();
+	m_maxStr = m_fw.ReadDWord();
+	m_maxMag = m_fw.ReadDWord();
+	m_maxSkl = m_fw.ReadDWord();
+	m_maxSpd = m_fw.ReadDWord();
+	m_maxLck = m_fw.ReadDWord();
+	m_maxDef = m_fw.ReadDWord();
+	m_maxRes = m_fw.ReadDWord();
+	m_maxMov = m_fw.ReadDWord();
+
+	if (g_ArcVersion >= 0x418)
 	{
-		this_163 = m_fw.ReadDWord();
-		this_164 = m_fw.ReadDWord();
-		this_165 = m_fw.ReadDWord();
-		this_166 = m_fw.ReadDWord();
-		this_167 = m_fw.ReadDWord();
-		this_168 = m_fw.ReadDWord();
-		this_169 = m_fw.ReadDWord();
-		this_170 = m_fw.ReadDWord();
-		this_171 = m_fw.ReadDWord();
-
-		this_172 = 30;
-		this_173 = 30;
-	}
-	else
-	{
-		this_163 = m_fw.ReadDWord();
-		this_164 = m_fw.ReadDWord();
-		this_165 = m_fw.ReadDWord();
-		this_166 = m_fw.ReadDWord();
-		this_167 = m_fw.ReadDWord();
-		this_168 = m_fw.ReadDWord();
-		this_169 = m_fw.ReadDWord();
-		this_170 = m_fw.ReadDWord();
-		this_171 = m_fw.ReadDWord();
-
-		this_172 = m_fw.ReadDWord();
-		this_173 = m_fw.ReadDWord();
+		m_maxWlv = m_fw.ReadDWord();
+		m_maxBld = m_fw.ReadDWord();
 	}
 
 	this_178 = m_fw.ReadDWord();
 
-	this_174 = m_fw.ReadDWord();
-	this_175 = m_fw.ReadDWord();
-	this_176 = m_fw.ReadDWord();
-	this_177 = m_fw.ReadDWord();
+	m_pursuitValue = m_fw.ReadDWord();
+	m_minExp       = m_fw.ReadDWord();
+	m_leaderExp    = m_fw.ReadDWord();
+	m_subLeaderExp = m_fw.ReadDWord();
 
 	this_179 = m_fw.ReadDWord();
 	this_180 = m_fw.ReadDWord();
@@ -1158,7 +1147,7 @@ void SRPG_Project::dump(FileWriter& fw) const
 	dumpDatabase(fw);
 	dumpGameLayout(fw);
 
-	m_pbEventData->dump(fw);
+	m_pRecollectionEvents->dump(fw);
 
 	dump_sub_F8EC70(fw);
 	dumpStorySettings(fw);
@@ -1229,7 +1218,7 @@ void SRPG_Project::dumpAsProj(FileWriter& fw) const
 	dumpDatabase(fw);
 	dumpGameLayout(fw);
 
-	m_pbEventData->dump(fw);
+	m_pRecollectionEvents->dump(fw);
 
 	dump_sub_F8EC70(fw);
 	dumpStorySettings(fw);
@@ -1253,11 +1242,11 @@ void SRPG_Project::dumpMap(FileWriter& fw) const
 		m_pDayNightData->dump(fw);
 
 	if (g_ArcVersion >= 0x3F9)
-		m_pEventData1->dump(fw);
+		m_pMapCommonEvents->dump(fw);
 
 	if (g_ArcVersion >= 0x432)
 	{
-		m_pEventData2->dump(fw);
+		m_pBookmarkEvents->dump(fw);
 		m_pUnitData1->dump(fw);
 	}
 
@@ -1382,7 +1371,7 @@ void SRPG_Project::dumpAnimations(FileWriter& fw) const
 
 void SRPG_Project::dumpDatabase(FileWriter& fw) const
 {
-	m_pUnitData2->dump(fw);
+	m_pPlayerUnits->dump(fw);
 	m_pClassData->dump(fw);
 	m_pWeaponData->dump(fw);
 	m_pItemData->dump(fw);
@@ -1403,10 +1392,10 @@ void SRPG_Project::dumpDatabase(FileWriter& fw) const
 		m_pStringData1->dump(fw);
 	}
 
-	m_pScreenffect->dump(fw);
+	m_pClassGroupData->dump(fw);
 	m_pSwitchData1->dump(fw);
-	m_pScreenScroll->dump(fw);
-	m_pScreenShake->dump(fw);
+	m_pClassTypeData->dump(fw);
+	m_pMoveTypeData->dump(fw);
 	m_pDifficultyData->dump(fw);
 	m_pItemGroupData1->dump(fw);
 	m_pFacialData->dump(fw);
@@ -1485,8 +1474,8 @@ void SRPG_Project::dump_sub_F8E4E0(FileWriter& fw) const
 
 void SRPG_Project::dump_sub_F7DA50(FileWriter& fw) const
 {
-	this_142.Write(fw);
-	this_143.Write(fw);
+	m_windowTitle.Write(fw);
+	m_gameTitle.Write(fw);
 	this_144.Write(fw);
 	this_145.Write(fw);
 	this_146.Write(fw);
@@ -1501,48 +1490,36 @@ void SRPG_Project::dump_sub_F7DA50(FileWriter& fw) const
 	fw.Write(this_154);
 	fw.Write(this_155);
 
-	fw.Write(this_156);
-	fw.Write(this_157);
-	fw.Write(this_158);
-	fw.Write(this_159);
-	fw.Write(this_160);
-	fw.Write(this_161);
-	fw.Write(this_162);
+	fw.Write(m_gold);
+	fw.Write(m_bonus);
+	fw.Write(m_maxSkillCount);
+	fw.Write(m_maxItemCount);
+	fw.Write(m_convoyItem);
+	fw.Write(m_maxEnemyCount);
+	fw.Write(m_maxLv);
 
-	if (g_ArcVersion < 0x418)
-	{
-		fw.Write(this_163);
-		fw.Write(this_164);
-		fw.Write(this_165);
-		fw.Write(this_166);
-		fw.Write(this_167);
-		fw.Write(this_168);
-		fw.Write(this_169);
-		fw.Write(this_170);
-		fw.Write(this_171);
-	}
-	else
-	{
-		fw.Write(this_163);
-		fw.Write(this_164);
-		fw.Write(this_165);
-		fw.Write(this_166);
-		fw.Write(this_167);
-		fw.Write(this_168);
-		fw.Write(this_169);
-		fw.Write(this_170);
-		fw.Write(this_171);
+	fw.Write(m_maxHP);
+	fw.Write(m_maxStr);
+	fw.Write(m_maxMag);
+	fw.Write(m_maxSkl);
+	fw.Write(m_maxSpd);
+	fw.Write(m_maxLck);
+	fw.Write(m_maxDef);
+	fw.Write(m_maxRes);
+	fw.Write(m_maxMov);
 
-		fw.Write(this_172);
-		fw.Write(this_173);
+	if (g_ArcVersion >= 0x418)
+	{
+		fw.Write(m_maxWlv);
+		fw.Write(m_maxBld);
 	}
 
 	fw.Write(this_178);
 
-	fw.Write(this_174);
-	fw.Write(this_175);
-	fw.Write(this_176);
-	fw.Write(this_177);
+	fw.Write(m_pursuitValue);
+	fw.Write(m_minExp);
+	fw.Write(m_leaderExp);
+	fw.Write(m_subLeaderExp);
 
 	fw.Write(this_179);
 	fw.Write(this_180);
