@@ -36,7 +36,7 @@ namespace memData
 {
 static bool g_isUTF8 = true;
 
-static inline std::string sjis2utf8(const std::string& sjis)
+inline std::string sjis2utf8(const std::string& sjis)
 {
 	std::string utf8String = "";
 
@@ -65,7 +65,7 @@ static inline std::string sjis2utf8(const std::string& sjis)
 	return utf8String;
 }
 
-static inline std::string utf82sjis(const std::string& utf8)
+inline std::string utf82sjis(const std::string& utf8)
 {
 	std::string sjisString = "";
 
@@ -111,16 +111,23 @@ struct MemData
 	{
 	}
 
+	// std::string ToString() const
+	//{
+	//	std::string str = "";
+
+	//	if (!data.empty() && data.size() > 1)
+	//		str = std::string(reinterpret_cast<const char*>(data.data()), data.size() - ((data.back() == 0x0) ? 1 : 0));
+
+	//	if (!memData::g_isUTF8)
+	//		str = memData::sjis2utf8(str);
+
+	//	return str;
+	//}
+
 	std::string ToString() const
 	{
-		std::string str = "";
-
-		if (!data.empty() && data.size() > 1)
-			str = std::string(reinterpret_cast<const char*>(data.data()), data.size() - ((data.back() == 0x0) ? 1 : 0));
-
-		if (!memData::g_isUTF8)
-			str = memData::sjis2utf8(str);
-
+		std::wstring wstr = ToWString();
+		std::string str   = fileAccessUtils::ws2s(wstr);
 		return str;
 	}
 
@@ -183,7 +190,7 @@ struct MemData
 	}
 };
 
-static inline void InitMemData(MemData& memData, FileReader& fw, const uint32_t& size = ~0, const bool& loadData = true)
+inline void InitMemData(MemData& memData, FileReader& fw, const uint32_t& size = ~0, const bool& loadData = true)
 {
 	memData.offset = fw.GetOffset();
 
@@ -205,7 +212,7 @@ static inline void InitMemData(MemData& memData, FileReader& fw, const uint32_t&
 		fw.Skip(memData.size);
 }
 
-static inline MemData InitMemData(FileReader& fw, const uint32_t& size = ~0, const bool& loadData = true)
+inline MemData InitMemData(FileReader& fw, const uint32_t& size = ~0, const bool& loadData = true)
 {
 	MemData memData;
 	InitMemData(memData, fw, size, loadData);
@@ -213,7 +220,7 @@ static inline MemData InitMemData(FileReader& fw, const uint32_t& size = ~0, con
 	return memData;
 }
 
-static inline MemData InitFromData(const std::string& str, const bool& readSize = true)
+inline MemData InitFromData(const std::string& str, const bool& readSize = true)
 {
 	MemData memData;
 	memData.FromString(str);

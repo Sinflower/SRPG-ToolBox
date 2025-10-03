@@ -31,17 +31,17 @@
 #include <string>
 #include <vector>
 
-static inline std::wstring s2ws(const std::string &str)
+inline std::wstring s2ws(const std::string &str)
 {
 	return std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(str);
 }
 
-static inline std::string ws2s(const std::wstring &wstr)
+inline std::string ws2s(const std::wstring &wstr)
 {
 	return std::wstring_convert<std::codecvt_utf8<wchar_t>>().to_bytes(wstr);
 }
 
-static inline uint32_t SumVector(const std::vector<uint32_t> &vec)
+inline uint32_t SumVector(const std::vector<uint32_t> &vec)
 {
 	uint32_t sum = 0;
 	for (auto &v : vec)
@@ -71,7 +71,7 @@ struct FileExt
 	std::wstring ext;
 };
 
-static inline const std::vector<FileExt> FILE_HEADERS = {
+inline const std::vector<FileExt> FILE_HEADERS = {
 	{ { 0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a }, L".png" },
 	{ { 0x4F, 0x67, 0x67, 0x53 }, L".ogg" },
 	{ { 0xFF, 0xD8, 0xFF, 0xE0 }, L".jpg" },
@@ -87,7 +87,7 @@ static inline const std::vector<FileExt> FILE_HEADERS = {
 	{ { 0x57, 0x41, 0x56, 0x45 }, 8, L".wav" }
 };
 
-static inline std::wstring GetFileExtension(const std::vector<uint8_t> &data)
+inline std::wstring GetFileExtension(const std::vector<uint8_t> &data)
 {
 	for (const FileExt &header : FILE_HEADERS)
 	{
@@ -98,7 +98,7 @@ static inline std::wstring GetFileExtension(const std::vector<uint8_t> &data)
 	return L".txt";
 }
 
-static inline std::vector<std::wstring> SplitString(const std::wstring &str, const wchar_t &delim)
+inline std::vector<std::wstring> SplitString(const std::wstring &str, const wchar_t &delim)
 {
 	std::vector<std::wstring> tokens;
 	std::wistringstream ss(str);
@@ -110,11 +110,32 @@ static inline std::vector<std::wstring> SplitString(const std::wstring &str, con
 	return tokens;
 }
 
-static inline std::wstring JoinString(const std::vector<std::wstring> &strs, const wchar_t &delim)
+inline std::wstring JoinString(const std::vector<std::wstring> &strs, const wchar_t &delim)
 {
 	std::wstring result;
 	for (const std::wstring& str : strs)
 		result += str + delim;
 
 	return result;
+}
+
+inline std::wstring SanitizeFileName(const std::wstring &filename)
+{
+	std::wstring sanitized = filename;
+	const std::wstring illegalChars = L"<>:\"/\\|?*";
+	for (const wchar_t &c : illegalChars)
+	{
+		size_t pos = sanitized.find(c);
+		while (pos != std::wstring::npos)
+		{
+			sanitized.replace(pos, 1, L"_");
+			pos = sanitized.find(c, pos + 1);
+		}
+	}
+	return sanitized;
+}
+
+inline std::string SanitizeFileName(const std::string &filename)
+{
+	return ws2s(SanitizeFileName(s2ws(filename)));
 }

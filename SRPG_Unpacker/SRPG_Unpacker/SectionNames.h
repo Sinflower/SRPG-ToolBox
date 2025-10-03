@@ -69,7 +69,7 @@ static inline const std::vector<std::string> SECTION_NAMES = {
 	"Material"
 };
 
-static inline std::string GetSecNameFromPath(const std::string& path)
+inline std::string GetSecNameFromPath(const std::string& path)
 {
 	std::string p = path;
 
