@@ -40,8 +40,8 @@ struct UNITINFOCHANGE : public EDITDATA
 	DWORD this_11 = 0;
 	DWORD this_12 = 0;
 	DWORD this_13 = 0;
-	MemData this_14;
-	MemData this_15;
+	MemData name;
+	MemData description;
 	class CMenuOperation* pImageIDData1 = nullptr;
 	class CMenuOperation* pTypeIDData   = nullptr;
 	class CMenuOperation* pImageIDData2 = nullptr;
@@ -49,4 +49,7 @@ struct UNITINFOCHANGE : public EDITDATA
 	class CMenuOperation* pImageIDData4 = nullptr;
 	virtual void init(FileReader& fw);
 	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+
+protected:
+	virtual nlohmann::ordered_json toJson() const;
 };

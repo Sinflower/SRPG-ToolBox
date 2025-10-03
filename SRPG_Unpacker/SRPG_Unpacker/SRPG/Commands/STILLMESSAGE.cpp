@@ -36,7 +36,7 @@ void STILLMESSAGE::init(FileReader& fw)
 	if (g_ArcVersion >= 1039)
 		this_6 = fw.ReadDWord();
 
-	initMemData(this_3, fw);
+	MESSAGEBASE::init(fw);
 }
 
 void STILLMESSAGE::dump(FileWriter& fw) const
@@ -47,5 +47,5 @@ void STILLMESSAGE::dump(FileWriter& fw) const
 	if (g_ArcVersion >= 1039)
 		fw.Write(this_6);
 
-	this_3.Write(fw);
+	MESSAGEBASE::dump(fw);
 }

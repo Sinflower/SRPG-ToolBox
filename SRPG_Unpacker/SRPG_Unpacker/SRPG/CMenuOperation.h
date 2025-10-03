@@ -44,10 +44,42 @@ public:
 	void init(FileReader& fw);
 	void dump(FileWriter& fw) const;
 	nlohmann::ordered_json ToJson() const;
+	void ToJson(nlohmann::ordered_json& json, const std::string& name) const;
 
 	std::size_t GetElemCount() const;
 	friend std::ostream& operator<<(std::ostream& os, CMenuOperation const& dt);
 	friend std::wostream& operator<<(std::wostream& os, CMenuOperation const& dt);
+
+	// Methods required for  range-based for loops
+	auto begin()
+	{
+		return m_data.begin();
+	}
+
+	auto end()
+	{
+		return m_data.end();
+	}
+
+	auto cbegin() const
+	{
+		return m_data.cbegin();
+	}
+
+	auto cend() const
+	{
+		return m_data.cend();
+	}
+
+	const auto begin() const
+	{
+		return m_data.begin();
+	}
+
+	const auto end() const
+	{
+		return m_data.end();
+	}
 
 private:
 	std::vector<class EDITDATA*> m_data;

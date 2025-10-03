@@ -1,5 +1,5 @@
 /*
- *  File: MAPINFOCHANGE.cpp
+ *  File: MESSAGEBASE.cpp
  *  Copyright (c) 2024 Sinflower
  *
  *  MIT License
@@ -26,33 +26,27 @@
 
 // Compatible up to v1.292
 
-#include "MAPINFOCHANGE.h"
-#include "../CMenuOperation.h"
+#include "MESSAGEBASE.h"
 
-void MAPINFOCHANGE::init(FileReader& fw)
+void MESSAGEBASE::init(FileReader& fw)
 {
-	fw.ReadBytes(this_3.data(), static_cast<DWORD>(this_3.size() * sizeof(DWORD)));
-
-	initMemData(description, fw);
-	allocAndSetCMenuOp(&this_23, SRPGClasses::FORCESORTIEDATA, fw);
-	allocAndSetCMenuOp(&pVictoryCond, SRPGClasses::STRINGDATA, fw);
-	allocAndSetCMenuOp(&pDefeatCond, SRPGClasses::STRINGDATA, fw);
+	initMemData(message, fw);
 }
 
-void MAPINFOCHANGE::dump(FileWriter& fw) const
+void MESSAGEBASE::dump(FileWriter& fw) const
 {
-	fw.WriteBytes(this_3.data(), static_cast<DWORD>(this_3.size() * sizeof(DWORD)));
-	description.Write(fw);
-	this_23->dump(fw);
-	pVictoryCond->dump(fw);
-	pDefeatCond->dump(fw);
+	message.Write(fw);
 }
 
-nlohmann::ordered_json MAPINFOCHANGE::toJson() const
+void MESSAGEBASE::print(std::ostream& os) const
 {
-	nlohmann::ordered_json j = EDITDATA::toJson();
-	j["description"]  = description.ToString();
-	j["pVictoryCond"] = pVictoryCond->ToJson();
-	j["pDefeatCond"]  = pDefeatCond->ToJson();
+	os << "Message: " << message << std::endl;
+}
+
+nlohmann::ordered_json MESSAGEBASE::toJson() const
+{
+	nlohmann::ordered_json j;
+	j["message"]  = message.ToString();
+
 	return j;
 }

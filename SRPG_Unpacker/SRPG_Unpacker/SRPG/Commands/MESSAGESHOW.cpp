@@ -35,7 +35,7 @@ void MESSAGESHOW::init(FileReader& fw)
 	unit     = fw.ReadDWord();
 	this_7   = fw.ReadDWord();
 
-	initMemData(message, fw);
+	MESSAGEBASE::init(fw);
 }
 
 void MESSAGESHOW::dump(FileWriter& fw) const
@@ -45,7 +45,7 @@ void MESSAGESHOW::dump(FileWriter& fw) const
 	fw.Write(unit);
 	fw.Write(this_7);
 
-	message.Write(fw);
+	MESSAGEBASE::dump(fw);
 }
 
 void MESSAGESHOW::print(std::ostream& os) const

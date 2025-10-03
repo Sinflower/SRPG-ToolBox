@@ -26,7 +26,6 @@
 
 #include "EDITDATA.h"
 #include "../CMenuOperation.h"
-#include "EDITDATA.h"
 
 EDITDATA::EDITDATA()
 {
@@ -77,6 +76,7 @@ nlohmann::ordered_json EDITDATA::ToJson() const
 		return j;
 
 	j["id"]   = id;
+	j["type"] = name();
 	j["data"] = data;
 	return j;
 }

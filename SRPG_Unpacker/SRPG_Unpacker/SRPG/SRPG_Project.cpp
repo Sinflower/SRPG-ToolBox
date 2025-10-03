@@ -26,6 +26,8 @@
 
 // Compatible up to v1.292
 
+//#define DEBUG_PRINT
+
 #include <direct.h>
 
 #include <codecvt>
@@ -39,7 +41,10 @@
 #include "SRPG_Project.h"
 #include "Version.h"
 
+#include "Classes/MAPDATA.h"
 #include "Classes/RESOURCELAYOUTDATA.h"
+
+namespace fs = std::filesystem;
 
 DWORD g_ArcVersion = 0;
 
@@ -66,6 +71,11 @@ void SRPG_Project::Dump(const std::wstring& outFolder) const
 nlohmann::ordered_json SRPG_Project::GetResMapping() const
 {
 	return getResMapping();
+}
+
+void SRPG_Project::WritePatch(const fs::path& outPath) const
+{
+	writePatch(outPath);
 }
 
 void SRPG_Project::loadProject()
@@ -1983,6 +1993,30 @@ nlohmann::ordered_json SRPG_Project::getResMapping() const
 	}
 
 	return j2;
+}
+
+void SRPG_Project::writePatch(const fs::path& outPath) const
+{
+	const fs::path mapFolder = outPath / MAPS_PATCH_FOLDER;
+
+	// Create the maps folder if it doesn't exist
+	if (!fs::exists(mapFolder))
+		fs::create_directories(mapFolder);
+
+	// Write each map to its own file
+	for (const EDITDATA* pObj : *m_pMapData)
+	{
+		const MAPDATA* pMap  = static_cast<const MAPDATA*>(pObj);
+		std::wstring fN      = std::format(L"map_{}_{}.json", pObj->id, SanitizeFileName(pMap->mapName.ToWString()));
+		const fs::path fPath = mapFolder / fN;
+
+		nlohmann::ordered_json json = pObj->ToJson();
+
+		// Write the json to file
+		std::ofstream ofs(fPath);
+		ofs << json.dump(4);
+		ofs.close();
+	}
 }
 
 // ---------------------------------

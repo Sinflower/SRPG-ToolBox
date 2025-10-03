@@ -30,10 +30,13 @@
 
 struct CHAPTERSHOW : public EDITDATA
 {
-	DWORD this_3 = 0;
-	MemData this_4;
-	MemData this_5;
+	DWORD useMapData = 0;
+	MemData chapterName;
+	MemData mapName;
 
 	virtual void init(FileReader& fw);
 	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+
+protected:
+	virtual nlohmann::ordered_json toJson() const;
 };

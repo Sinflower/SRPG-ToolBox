@@ -31,7 +31,7 @@
 
 struct CHOICEDATA : public EDITDATA
 {
-	MemData this_3;
+	MemData choice;
 	DWORD this_4 = 0;
 	DWORD this_6 = 0;
 	DWORD this_7 = 0;
@@ -40,4 +40,7 @@ struct CHOICEDATA : public EDITDATA
 	QWORD res = 0;
 	virtual void init(FileReader& fw);
 	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+
+protected:
+	virtual nlohmann::ordered_json toJson() const;
 };

@@ -116,7 +116,7 @@ void UNITDATA::init(FileReader& fw)
 
 	sub_F6F1D0(fw);
 
-	allocAndSetCMenuOp(&this_79, SRPGClasses::EVENTDATA, fw);
+	allocAndSetCMenuOp(&unitEvents, SRPGClasses::EVENTDATA, fw);
 	allocAndSetCMenuOp(&this_78, SRPGClasses::PATTERNDATA, fw);
 	allocAndSetCMenuOp(&this_80, SRPGClasses::TYPEIDDATA, fw);
 }
@@ -285,7 +285,7 @@ void UNITDATA::dump(FileWriter& fw) const
 
 	/////
 
-	this_79->dump(fw);
+	unitEvents->dump(fw);
 	this_78->dump(fw);
 	this_80->dump(fw);
 }
@@ -548,4 +548,15 @@ void UNITDATA::print(std::ostream& os) const
 	os << "CustomParameters: " << customParameters << std::endl;
 	os << "this_103: " << this_103 << std::endl;
 	os << "this_80: " << *this_80 << std::endl;
+}
+
+nlohmann::ordered_json UNITDATA::toJson() const
+{
+	nlohmann::ordered_json j;
+
+	j["name"]        = name;
+	j["description"] = description;
+	unitEvents->ToJson(j, "unitEvents");
+
+	return j;
 }

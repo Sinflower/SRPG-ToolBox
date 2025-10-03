@@ -40,7 +40,7 @@ void MESSAGETEROP::init(FileReader& fw)
 		this_6 = fw.ReadDWord();
 	}
 
-	initMemData(this_3, fw);
+	MESSAGEBASE::init(fw);
 }
 
 void MESSAGETEROP::dump(FileWriter& fw) const
@@ -55,5 +55,5 @@ void MESSAGETEROP::dump(FileWriter& fw) const
 		fw.Write(this_6);
 	}
 
-	this_3.Write(fw);
+	MESSAGEBASE::dump(fw);
 }

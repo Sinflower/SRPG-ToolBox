@@ -44,3 +44,10 @@ void STRINGDATA::print(std::ostream& os) const
 {
 	os << data;
 }
+
+nlohmann::ordered_json STRINGDATA::toJson() const
+{
+	nlohmann::ordered_json j = EDITDATA::toJson();
+	j["data"] = data.ToString();
+	return j;
+}

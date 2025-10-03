@@ -31,7 +31,7 @@
 void INFOWINDOW::init(FileReader& fw)
 {
 	this_3 = fw.ReadDWord();
-	initMemData(this_4, fw);
+	initMemData(infoText, fw);
 	this_5  = fw.ReadDWord();
 	this_6  = fw.ReadDWord();
 	this_7  = fw.ReadDWord();
@@ -44,7 +44,7 @@ void INFOWINDOW::init(FileReader& fw)
 void INFOWINDOW::dump(FileWriter& fw) const
 {
 	fw.Write(this_3);
-	this_4.Write(fw);
+	infoText.Write(fw);
 	fw.Write(this_5);
 	fw.Write(this_6);
 	fw.Write(this_7);
@@ -52,4 +52,11 @@ void INFOWINDOW::dump(FileWriter& fw) const
 	fw.Write(this_9);
 	fw.Write(this_10);
 	fw.Write(this_11);
+}
+
+nlohmann::ordered_json INFOWINDOW::toJson() const
+{
+	nlohmann::ordered_json j;
+	j["infoText"] = infoText.ToString();
+	return j;
 }

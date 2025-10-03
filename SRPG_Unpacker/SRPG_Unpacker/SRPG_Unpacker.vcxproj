@@ -289,6 +289,7 @@
     <ClCompile Include="SRPG\Commands\MAPPOSOPERATION.cpp" />
     <ClCompile Include="SRPG\Commands\MAPSCROLL.cpp" />
     <ClCompile Include="SRPG\Commands\MAPSTATECHANGE.cpp" />
+    <ClCompile Include="SRPG\Commands\MESSAGEBASE.cpp" />
     <ClCompile Include="SRPG\Commands\MESSAGEERASE.cpp" />
     <ClCompile Include="SRPG\Commands\MESSAGESCROLL.cpp" />
     <ClCompile Include="SRPG\Commands\MESSAGESHOW.cpp" />
@@ -523,6 +524,7 @@
     <ClInclude Include="SRPG\Commands\MAPPOSOPERATION.h" />
     <ClInclude Include="SRPG\Commands\MAPSCROLL.h" />
     <ClInclude Include="SRPG\Commands\MAPSTATECHANGE.h" />
+    <ClInclude Include="SRPG\Commands\MESSAGEBASE.h" />
     <ClInclude Include="SRPG\Commands\MESSAGEERASE.h" />
     <ClInclude Include="SRPG\Commands\MESSAGESCROLL.h" />
     <ClInclude Include="SRPG\Commands\MESSAGESHOW.h" />

@@ -32,6 +32,8 @@
 
 struct EVENTDATA : public EDITDATA, public LEGENDDATA
 {
+	~EVENTDATA();
+
 	struct ELEM_15
 	{
 		DWORD this_1 = 0;
@@ -48,6 +50,7 @@ struct EVENTDATA : public EDITDATA, public LEGENDDATA
 			return os;
 		}
 	};
+
 	struct PlaceEvent
 	{
 		DWORD x                 = 0;
@@ -87,25 +90,31 @@ struct EVENTDATA : public EDITDATA, public LEGENDDATA
 			return os;
 		}
 	};
+
 	virtual void print(std::ostream& os) const;
 	virtual void init(FileReader& fw);
 	virtual void dump([[maybe_unused]] FileWriter& fw) const;
 	void sub_FD4620(FileReader& fw);
 	DWORD res    = 0;
 	DWORD this_8 = 0;
-	PlaceEvent this_9;
+	PlaceEvent this_9; // Does not look like it contains anything that is relevant for translation
 	LPVOID this_10 = nullptr;
 	LPVOID this_11 = nullptr;
 	LPVOID this_12 = nullptr;
 	LPVOID this_13 = nullptr;
 	DWORD this_14  = 0;
 	ELEM_15 this_15;
-	LPVOID this_16                = nullptr;
-	LPVOID this_17                = nullptr;
-	LPVOID this_18                = nullptr;
-	class CMenuOperation* this_19 = nullptr;
-	DWORD this_20                 = 0;
-	DWORD this_21                 = 0;
+	LPVOID this_16 = nullptr;
+	LPVOID this_17 = nullptr;
+	LPVOID this_18 = nullptr;
+
+	class CMenuOperation* pPages = nullptr;
+
+	DWORD this_20 = 0;
+	DWORD this_21 = 0;
 	MemData this_22;
 	DWORD this_23 = 0;
+
+protected:
+	virtual nlohmann::ordered_json toJson() const;
 };

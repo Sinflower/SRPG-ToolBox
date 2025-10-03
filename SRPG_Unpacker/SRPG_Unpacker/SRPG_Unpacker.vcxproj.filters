@@ -588,6 +588,9 @@
     <ClCompile Include="SRPG\Classes\SOUNDMODEDATA.cpp">
       <Filter>SRPG\Classes</Filter>
     </ClCompile>
+    <ClCompile Include="SRPG\Commands\MESSAGEBASE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileAccess.h">
@@ -1300,6 +1303,9 @@
     </ClInclude>
     <ClInclude Include="DTSTool.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\Commands\MESSAGEBASE.h">
+      <Filter>SRPG\Commands</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

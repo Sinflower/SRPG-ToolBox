@@ -26,11 +26,10 @@
 
 #pragma once
 
-#include "../Classes/EDITDATA.h"
+#include "MESSAGEBASE.h"
 
-struct MESSAGETITLE : public EDITDATA
+struct MESSAGETITLE : public MESSAGEBASE
 {
-	MemData this_3;
 	DWORD this_4  = 0;
 	DWORD this_5  = 0;
 	DWORD this_6  = 0;

@@ -89,6 +89,13 @@ nlohmann::ordered_json CMenuOperation::ToJson() const
 	return j;
 }
 
+void CMenuOperation::ToJson(nlohmann::ordered_json& json, const std::string& name) const
+{
+	nlohmann::ordered_json j = ToJson();
+	if (!j.is_null() && !j.empty())
+		json[name] = j;
+}
+
 std::ostream& operator<<(std::ostream& os, CMenuOperation const& dt)
 {
 	os << "CMenuOperation: " << dt.m_type << std::endl;

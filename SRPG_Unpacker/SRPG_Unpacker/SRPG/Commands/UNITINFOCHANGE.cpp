@@ -118,8 +118,8 @@ void UNITINFOCHANGE::init(FileReader& fw)
 		allocAndSetCMenuOp(&pImageIDData4, SRPGClasses::IMAGEIDDATA, fw);
 	}
 
-	initMemData(this_14, fw);
-	initMemData(this_15, fw);
+	initMemData(name, fw);
+	initMemData(description, fw);
 }
 
 void UNITINFOCHANGE::dump(FileWriter& fw) const
@@ -150,6 +150,14 @@ void UNITINFOCHANGE::dump(FileWriter& fw) const
 		pImageIDData4->dump(fw);
 	}
 
-	this_14.Write(fw);
-	this_15.Write(fw);
+	name.Write(fw);
+	description.Write(fw);
+}
+
+nlohmann::ordered_json UNITINFOCHANGE::toJson() const
+{
+	nlohmann::ordered_json j;
+	j["name"]        = name.ToString();
+	j["description"] = description.ToString();
+	return j;
 }

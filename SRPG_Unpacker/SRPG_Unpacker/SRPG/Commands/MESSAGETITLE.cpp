@@ -30,7 +30,7 @@
 
 void MESSAGETITLE::init(FileReader& fw)
 {
-	initMemData(this_3, fw);
+	MESSAGEBASE::init(fw);
 
 	this_6  = fw.ReadDWord();
 	this_4  = fw.ReadDWord();
@@ -43,7 +43,7 @@ void MESSAGETITLE::init(FileReader& fw)
 
 void MESSAGETITLE::dump(FileWriter& fw) const
 {
-	this_3.Write(fw);
+	MESSAGEBASE::dump(fw);
 
 	fw.Write(this_6);
 	fw.Write(this_4);

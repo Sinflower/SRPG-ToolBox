@@ -106,29 +106,29 @@ struct UNITDATA : public EDITDATA
 	DWORD this_75    = 0;
 	DWORD this_76    = 0;
 	MemData customParameters;
-	class CMenuOperation* this_78 = nullptr;
-	class CMenuOperation* this_79 = nullptr;
-	class CMenuOperation* this_80 = nullptr;
-	class CMenuOperation* this_81 = nullptr;
-	class CMenuOperation* this_82 = nullptr;
-	class CMenuOperation* this_83 = nullptr;
-	class CMenuOperation* this_84 = nullptr;
-	class CMenuOperation* this_85 = nullptr;
-	class CMenuOperation* this_86 = nullptr;
-	class CMenuOperation* this_87 = nullptr;
-	class CMenuOperation* this_88 = nullptr;
-	class CMenuOperation* this_89 = nullptr;
-	DWORD this_90                 = 0;
-	DWORD this_91                 = 0;
-	DWORD this_92                 = 0;
-	DWORD this_93                 = 0;
-	DWORD this_94                 = 0;
-	DWORD this_95                 = 0;
-	DWORD this_96                 = 0;
-	DWORD this_97                 = 0;
-	DWORD this_99                 = 0;
-	DWORD this_100                = 0;
-	DWORD this_102                = 0;
+	class CMenuOperation* this_78    = nullptr; // PATTERNDATA
+	class CMenuOperation* unitEvents = nullptr; // EVENTDATA
+	class CMenuOperation* this_80    = nullptr; // TYPEIDDATA
+	class CMenuOperation* this_81    = nullptr; // TYPEIDDATA
+	class CMenuOperation* this_82    = nullptr; // SUPPORTDATA
+	class CMenuOperation* this_83    = nullptr; // NEWSKILLDATA
+	class CMenuOperation* this_84    = nullptr; // IMAGEIDDATA
+	class CMenuOperation* this_85    = nullptr; // TYPEIDDATA
+	class CMenuOperation* this_86    = nullptr; // REFCUTINDATA
+	class CMenuOperation* this_87    = nullptr; // IMAGEIDDATA
+	class CMenuOperation* this_88    = nullptr; // IMAGEIDDATA
+	class CMenuOperation* this_89    = nullptr; // IMAGEIDDATA
+	DWORD this_90                    = 0;
+	DWORD this_91                    = 0;
+	DWORD this_92                    = 0;
+	DWORD this_93                    = 0;
+	DWORD this_94                    = 0;
+	DWORD this_95                    = 0;
+	DWORD this_96                    = 0;
+	DWORD this_97                    = 0;
+	DWORD this_99                    = 0;
+	DWORD this_100                   = 0;
+	DWORD this_102                   = 0;
 	MemData this_103;
 	DWORD this_105 = 0;
 
@@ -140,4 +140,7 @@ struct UNITDATA : public EDITDATA
 	void sub_F6F1D0(FileReader& fw);
 
 	void print(std::ostream& os) const;
+
+protected:
+	virtual nlohmann::ordered_json toJson() const;
 };

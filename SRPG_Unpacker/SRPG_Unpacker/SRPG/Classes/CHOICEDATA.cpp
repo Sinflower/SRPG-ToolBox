@@ -33,7 +33,7 @@
 
 void CHOICEDATA::init(FileReader& fw)
 {
-	initMemData(this_3, fw);
+	initMemData(choice, fw);
 	this_4 = fw.ReadDWord();
 	this_6 = fw.ReadDWord();
 	this_7 = fw.ReadDWord();
@@ -56,7 +56,7 @@ void CHOICEDATA::init(FileReader& fw)
 
 void CHOICEDATA::dump(FileWriter& fw) const
 {
-	this_3.Write(fw);
+	choice.Write(fw);
 	fw.Write(this_4);
 	fw.Write(this_6);
 	fw.Write(this_7);
@@ -74,4 +74,11 @@ void CHOICEDATA::dump(FileWriter& fw) const
 		if (this_8)
 			this_9.dump(fw);
 	}
+}
+
+nlohmann::ordered_json CHOICEDATA::toJson() const
+{
+	nlohmann::ordered_json j;
+	j["choice"] = choice.ToString();
+	return j;
 }

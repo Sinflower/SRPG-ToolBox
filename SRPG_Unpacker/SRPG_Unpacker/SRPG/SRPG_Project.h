@@ -31,6 +31,7 @@
 #include <windows.h>
 
 #include <array>
+#include <filesystem>
 #include <vector>
 
 #include "../FileAccess.h"
@@ -48,6 +49,7 @@ struct SRPG_ProjectData
 class SRPG_Project
 {
 	static inline const std::wstring PROJECT_FILE_NAME = L"project.srpgs";
+	static inline const std::wstring MAPS_PATCH_FOLDER = L"maps";
 
 	struct ResourceFlags
 	{
@@ -76,6 +78,8 @@ public:
 	void Dump(const std::wstring& outFolder) const;
 
 	nlohmann::ordered_json GetResMapping() const;
+
+	void WritePatch(const std::filesystem::path& outPath) const;
 
 private:
 	void loadProject();
@@ -172,6 +176,8 @@ private:
 
 	nlohmann::ordered_json getResMapping() const;
 
+	void writePatch(const std::filesystem::path& outPath) const;
+
 	// ---------------------------------
 
 private:
@@ -200,10 +206,11 @@ private:
 	CMenuOperation* m_pUnitData1    = nullptr; // this_20
 
 	// sub_F8F6E0 - this_15
-	DWORD this_21                                   = 0;
-	BYTE this_22                                    = 0;
-	DWORD this_23                                   = 0;
-	BYTE this_24                                    = 0;
+	DWORD this_21 = 0;
+	BYTE this_22  = 0;
+	DWORD this_23 = 0;
+	BYTE this_24  = 0;
+
 	std::array<CMenuOperation*, 12> m_pJumpIDData   = { nullptr }; // this_25-this_36
 	std::array<CMenuOperation*, 10> m_pJumpIDData2  = { nullptr }; // this_25-this_36
 	std::array<CMenuOperation*, 6> m_pParamHeadData = { nullptr };
@@ -213,40 +220,43 @@ private:
 
 	// ----- sub_F8F9F0 -----
 
-	CMenuOperation* m_pAnimeData1     = nullptr; // this_38
-	CMenuOperation* m_pAnimeData2     = nullptr; // this_39
-	CMenuOperation* m_pAnimeData3     = nullptr; // this_40
-	CMenuOperation* m_pAnimeData4     = nullptr; // this_41
-	DWORD this_42                     = 0;
-	DWORD this_43                     = 0;
-	DWORD this_44                     = 0;
-	DWORD this_45                     = 0;
-	DWORD this_46                     = 0;
-	DWORD this_47                     = 0;
-	DWORD this_48                     = 0;
-	DWORD this_49                     = 0;
-	DWORD this_50                     = 0;
-	DWORD this_51                     = 0;
-	DWORD this_52                     = 0;
-	DWORD this_53                     = 0;
-	DWORD this_54                     = 0;
-	DWORD this_55                     = 0;
-	DWORD this_56                     = 0;
-	DWORD this_57                     = 0;
-	DWORD this_58                     = 0;
-	DWORD this_59                     = 0;
+	CMenuOperation* m_pAnimeData1 = nullptr; // this_38
+	CMenuOperation* m_pAnimeData2 = nullptr; // this_39
+	CMenuOperation* m_pAnimeData3 = nullptr; // this_40
+	CMenuOperation* m_pAnimeData4 = nullptr; // this_41
+
+	DWORD this_42 = 0;
+	DWORD this_43 = 0;
+	DWORD this_44 = 0;
+	DWORD this_45 = 0;
+	DWORD this_46 = 0;
+	DWORD this_47 = 0;
+	DWORD this_48 = 0;
+	DWORD this_49 = 0;
+	DWORD this_50 = 0;
+	DWORD this_51 = 0;
+	DWORD this_52 = 0;
+	DWORD this_53 = 0;
+	DWORD this_54 = 0;
+	DWORD this_55 = 0;
+	DWORD this_56 = 0;
+	DWORD this_57 = 0;
+	DWORD this_58 = 0;
+	DWORD this_59 = 0;
+
 	CMenuOperation* m_pFrameOriginal1 = nullptr; // this_60
 	CMenuOperation* m_pFrameOriginal2 = nullptr; // this_61
 	CMenuOperation* m_pFrameOriginal3 = nullptr; // this_62
-	DWORD this_63                     = 0;
-	DWORD this_64                     = 0;
-	DWORD this_65                     = 0;
-	DWORD this_66                     = 0;
-	DWORD this_67                     = 0;
-	DWORD this_68                     = 0;
-	DWORD this_69                     = 0;
-	DWORD this_70                     = 0;
-	DWORD this_71                     = 0;
+
+	DWORD this_63 = 0;
+	DWORD this_64 = 0;
+	DWORD this_65 = 0;
+	DWORD this_66 = 0;
+	DWORD this_67 = 0;
+	DWORD this_68 = 0;
+	DWORD this_69 = 0;
+	DWORD this_70 = 0;
+	DWORD this_71 = 0;
 	MemData this_72;
 	DWORD this_74 = 0;
 	DWORD this_75 = 0;
@@ -303,90 +313,94 @@ private:
 	MemData this_145;
 	MemData this_146;
 	MemData this_147;
-	DWORD this_148                   = 0;
-	DWORD this_149                   = 0;
-	DWORD this_150                   = 0;
-	DWORD this_151                   = 0;
-	DWORD this_152                   = 0;
-	DWORD this_153                   = 0;
-	DWORD this_154                   = 0;
-	DWORD this_155                   = 0;
-	DWORD this_156                   = 0;
-	DWORD this_157                   = 0;
-	DWORD this_158                   = 0;
-	DWORD this_159                   = 0;
-	DWORD this_160                   = 0;
-	DWORD this_161                   = 0;
-	DWORD this_162                   = 0;
-	DWORD this_163                   = 0;
-	DWORD this_164                   = 0;
-	DWORD this_165                   = 0;
-	DWORD this_166                   = 0;
-	DWORD this_167                   = 0;
-	DWORD this_168                   = 0;
-	DWORD this_169                   = 0;
-	DWORD this_170                   = 0;
-	DWORD this_171                   = 0;
-	DWORD this_172                   = 0;
-	DWORD this_173                   = 0;
-	DWORD this_174                   = 0;
-	DWORD this_175                   = 0;
-	DWORD this_176                   = 0;
-	DWORD this_177                   = 0;
-	DWORD this_178                   = 0;
-	DWORD this_179                   = 0;
-	DWORD this_180                   = 0;
-	DWORD this_181                   = 0;
-	DWORD this_182                   = 0;
-	DWORD this_183                   = 0;
+	DWORD this_148 = 0;
+	DWORD this_149 = 0;
+	DWORD this_150 = 0;
+	DWORD this_151 = 0;
+	DWORD this_152 = 0;
+	DWORD this_153 = 0;
+	DWORD this_154 = 0;
+	DWORD this_155 = 0;
+	DWORD this_156 = 0;
+	DWORD this_157 = 0;
+	DWORD this_158 = 0;
+	DWORD this_159 = 0;
+	DWORD this_160 = 0;
+	DWORD this_161 = 0;
+	DWORD this_162 = 0;
+	DWORD this_163 = 0;
+	DWORD this_164 = 0;
+	DWORD this_165 = 0;
+	DWORD this_166 = 0;
+	DWORD this_167 = 0;
+	DWORD this_168 = 0;
+	DWORD this_169 = 0;
+	DWORD this_170 = 0;
+	DWORD this_171 = 0;
+	DWORD this_172 = 0;
+	DWORD this_173 = 0;
+	DWORD this_174 = 0;
+	DWORD this_175 = 0;
+	DWORD this_176 = 0;
+	DWORD this_177 = 0;
+	DWORD this_178 = 0;
+	DWORD this_179 = 0;
+	DWORD this_180 = 0;
+	DWORD this_181 = 0;
+	DWORD this_182 = 0;
+	DWORD this_183 = 0;
+
 	CMenuOperation* m_pItemGroupData = nullptr; // this_184
 	CMenuOperation* m_pUnitIDData    = nullptr; // this_185
 	MemData this_186;
-	DWORD this_187                    = 0;
-	DWORD this_188                    = 0;
-	DWORD this_189                    = 0;
-	DWORD this_190                    = 0;
-	DWORD this_191                    = 0;
-	DWORD this_192                    = 0;
-	DWORD this_193                    = 0;
-	DWORD this_194                    = 0;
-	DWORD this_195                    = 0;
-	DWORD this_196                    = 0;
-	DWORD this_197                    = 0;
-	DWORD this_198                    = 0;
-	DWORD this_199                    = 0;
-	DWORD this_200                    = 0;
-	DWORD this_201                    = 0;
-	DWORD this_202                    = 0;
-	DWORD this_203                    = 0;
-	DWORD this_204                    = 0;
-	DWORD this_205                    = 0;
-	DWORD this_206                    = 0;
-	DWORD this_207                    = 0;
-	DWORD this_208                    = 0;
-	DWORD this_209                    = 0;
-	DWORD this_210                    = 0;
-	DWORD this_211                    = 0;
-	DWORD this_212                    = 0;
-	DWORD this_213                    = 0;
-	DWORD this_214                    = 0;
-	DWORD this_215                    = 0;
-	DWORD this_216                    = 0;
-	DWORD this_217                    = 0;
-	DWORD this_218                    = 0;
-	DWORD this_219                    = 0;
-	DWORD this_220                    = 0;
-	DWORD this_221                    = 0;
-	DWORD this_222                    = 0;
-	DWORD this_223                    = 0;
-	DWORD this_224                    = 0;
-	DWORD this_225                    = 0;
+
+	DWORD this_187 = 0;
+	DWORD this_188 = 0;
+	DWORD this_189 = 0;
+	DWORD this_190 = 0;
+	DWORD this_191 = 0;
+	DWORD this_192 = 0;
+	DWORD this_193 = 0;
+	DWORD this_194 = 0;
+	DWORD this_195 = 0;
+	DWORD this_196 = 0;
+	DWORD this_197 = 0;
+	DWORD this_198 = 0;
+	DWORD this_199 = 0;
+	DWORD this_200 = 0;
+	DWORD this_201 = 0;
+	DWORD this_202 = 0;
+	DWORD this_203 = 0;
+	DWORD this_204 = 0;
+	DWORD this_205 = 0;
+	DWORD this_206 = 0;
+	DWORD this_207 = 0;
+	DWORD this_208 = 0;
+	DWORD this_209 = 0;
+	DWORD this_210 = 0;
+	DWORD this_211 = 0;
+	DWORD this_212 = 0;
+	DWORD this_213 = 0;
+	DWORD this_214 = 0;
+	DWORD this_215 = 0;
+	DWORD this_216 = 0;
+	DWORD this_217 = 0;
+	DWORD this_218 = 0;
+	DWORD this_219 = 0;
+	DWORD this_220 = 0;
+	DWORD this_221 = 0;
+	DWORD this_222 = 0;
+	DWORD this_223 = 0;
+	DWORD this_224 = 0;
+	DWORD this_225 = 0;
+
 	CMenuOperation* m_pItemGroupData1 = nullptr; // this_226
 	CMenuOperation* m_pShopLayout1    = nullptr; // this_227
-	DWORD this_228                    = 0;
-	DWORD this_229                    = 0;
-	DWORD this_230                    = 0;
-	DWORD this_231                    = 0;
+
+	DWORD this_228 = 0;
+	DWORD this_229 = 0;
+	DWORD this_230 = 0;
+	DWORD this_231 = 0;
 
 	// ----- sub_F8DD30 -----
 
@@ -405,11 +419,12 @@ private:
 
 	CMenuOperation* m_pTypeIDData2 = nullptr;
 
-	CMenuOperation* m_pCommandLayoutData1            = nullptr; // this_384
-	CMenuOperation* m_pCommandLayoutData2            = nullptr; // this_385
-	CMenuOperation* m_pCommandLayoutData3            = nullptr; // this_386
-	CMenuOperation* m_pCommandLayoutData4            = nullptr; // this_387
-	CMenuOperation* m_pCommandLayoutData5            = nullptr; // this_388
+	CMenuOperation* m_pCommandLayoutData1 = nullptr; // this_384
+	CMenuOperation* m_pCommandLayoutData2 = nullptr; // this_385
+	CMenuOperation* m_pCommandLayoutData3 = nullptr; // this_386
+	CMenuOperation* m_pCommandLayoutData4 = nullptr; // this_387
+	CMenuOperation* m_pCommandLayoutData5 = nullptr; // this_388
+
 	struct RESOURCELAYOUTDATA* m_pResourceLayoutData = nullptr; // this_389
 
 	// ----- sub_F8F250 -----
@@ -455,19 +470,23 @@ private:
 	CMenuOperation* m_pSwitchData2               = nullptr;     // this_415
 	MemData this_416;
 
-	DWORD this_417                    = 0;
-	CMenuOperation* m_pTestMember     = nullptr; // this_418
-	DWORD this_419                    = 0;
-	DWORD this_420                    = 0;
-	DWORD this_421                    = 0;
-	DWORD this_422                    = 0;
-	DWORD this_423                    = 0;
+	DWORD this_417 = 0;
+
+	CMenuOperation* m_pTestMember = nullptr; // this_418
+
+	DWORD this_419 = 0;
+	DWORD this_420 = 0;
+	DWORD this_421 = 0;
+	DWORD this_422 = 0;
+	DWORD this_423 = 0;
+
 	CMenuOperation* m_pItemGroupData2 = nullptr; // this_424
-	DWORD this_425                    = 0;
-	DWORD this_426                    = 0;
-	DWORD this_427                    = 0;
-	DWORD this_428                    = 0;
-	DWORD this_429                    = 0;
+
+	DWORD this_425 = 0;
+	DWORD this_426 = 0;
+	DWORD this_427 = 0;
+	DWORD this_428 = 0;
+	DWORD this_429 = 0;
 
 	// ----- sub_F8EE60 -----
 

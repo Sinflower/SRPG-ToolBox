@@ -37,7 +37,7 @@ void EVENTPAGE::init(FileReader& fw)
 	if (this_4)
 		this_5.init(fw);
 
-	allocAndSetCMenuOp(&this_3, SRPGClasses::EVENTCOMMAND, fw);
+	allocAndSetCMenuOp(&eventCommands, SRPGClasses::EVENTCOMMAND, fw);
 }
 
 void EVENTPAGE::dump(FileWriter& fw) const
@@ -47,7 +47,7 @@ void EVENTPAGE::dump(FileWriter& fw) const
 	if (this_4)
 		this_5.dump(fw);
 
-	this_3->dump(fw);
+	eventCommands->dump(fw);
 }
 
 void EVENTPAGE::print(std::ostream& os) const
@@ -55,5 +55,13 @@ void EVENTPAGE::print(std::ostream& os) const
 	os << "EVENTPAGE" << std::endl;
 	os << "this_4: " << this_4 << std::endl;
 	os << "EventPage Data: " << this_5 << std::endl;
-	os << "EventCommand: " << *this_3 << std::endl;
+	os << "EventCommand: " << *eventCommands << std::endl;
+}
+
+nlohmann::ordered_json EVENTPAGE::toJson() const
+{
+	nlohmann::ordered_json j;
+
+	eventCommands->ToJson(j, "EventCommand");
+	return j;
 }

@@ -31,7 +31,7 @@
 struct INFOWINDOW : public EDITDATA
 {
 	DWORD this_3;
-	MemData this_4;
+	MemData infoText;
 	DWORD this_5;
 	DWORD this_6;
 	DWORD this_7;
@@ -41,4 +41,7 @@ struct INFOWINDOW : public EDITDATA
 	DWORD this_11;
 	virtual void init(FileReader& fw);
 	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+
+protected:
+	virtual nlohmann::ordered_json toJson() const;
 };

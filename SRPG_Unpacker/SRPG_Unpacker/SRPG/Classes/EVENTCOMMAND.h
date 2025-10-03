@@ -40,6 +40,9 @@ struct EVENTCOMMAND : public EDITDATA
 	WORD this_4;
 	DWORD this_5;
 	EVENTPAGE_DATA this_6;
-	EDITDATA* this_7;
+	EDITDATA* pCommand;
 	MemData comment;
+
+protected:
+	virtual nlohmann::ordered_json toJson() const;
 };

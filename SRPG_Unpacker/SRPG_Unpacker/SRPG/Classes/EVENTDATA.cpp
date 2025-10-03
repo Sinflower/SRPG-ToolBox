@@ -30,6 +30,18 @@
 #include "../CMenuOperation.h"
 #include "EDITDATA.h"
 
+EVENTDATA::~EVENTDATA()
+{
+	delete this_10;
+	delete this_11;
+	delete this_12;
+	delete this_13;
+	delete this_16;
+	delete this_17;
+	delete this_18;
+	delete pPages;
+}
+
 void EVENTDATA::print(std::ostream& os) const
 {
 	os << "EVENTDATA" << std::endl;
@@ -48,7 +60,7 @@ void EVENTDATA::print(std::ostream& os) const
 	os << "this_16: " << this_16 << std::endl;
 	os << "this_17: " << this_17 << std::endl;
 	os << "this_18: " << this_18 << std::endl;
-	os << "this_19: " << *this_19 << std::endl;
+	os << "pages: " << *pPages << std::endl;
 	os << "this_20: " << this_20 << std::endl;
 	os << "this_21: " << this_21 << std::endl;
 	os << "this_22: " << this_22 << std::endl;
@@ -244,7 +256,7 @@ void EVENTDATA::init(FileReader& fw)
 	this_20 = fw.ReadDWord();
 	this_21 = fw.ReadDWord();
 
-	allocAndSetCMenuOp(&this_19, SRPGClasses::EVENTPAGE, fw);
+	allocAndSetCMenuOp(&pPages, SRPGClasses::EVENTPAGE, fw);
 
 	initMemData(this_22, fw);
 
@@ -369,7 +381,7 @@ void EVENTDATA::dump(FileWriter& fw) const
 	fw.Write(this_20);
 	fw.Write(this_21);
 
-	this_19->dump(fw);
+	pPages->dump(fw);
 
 	this_22.Write(fw);
 
@@ -398,4 +410,20 @@ void EVENTDATA::sub_FD4620(FileReader& fw)
 		pD[1]     = fw.ReadQWord();
 		pD[2]     = fw.ReadQWord();
 	}
+}
+
+nlohmann::ordered_json EVENTDATA::toJson() const
+{
+	nlohmann::ordered_json j;
+
+	j["id"]          = id;
+	j["name"]        = LEGENDDATA::name.ToString();
+	j["description"] = LEGENDDATA::description.ToString();
+	pPages->ToJson(j, "pages");
+
+	// If there is no actual page data skip the entire event
+	if (!j.contains("pages") || j["pages"].empty())
+		j.clear();
+
+	return j;
 }

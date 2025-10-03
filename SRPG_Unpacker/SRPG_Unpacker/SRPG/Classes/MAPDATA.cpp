@@ -183,25 +183,32 @@ void MAPDATA::init(FileReader& fw)
 nlohmann::ordered_json MAPDATA::toJson() const
 {
 	nlohmann::ordered_json j;
-	j["id"]                  = id;
-	j["name"]                = mapName.ToString();
-	j["this_136"]            = this_136.ToString();
-	j["this_137"]            = this_137.ToString();
-	j["this_138"]            = this_138->ToJson();
-	j["this_139"]            = this_139->ToJson();
-	j["this_140"]            = this_140->ToJson();
-	j["this_141"]            = this_141->ToJson();
-	j["placeEvents"]         = placeEvents->ToJson();
-	j["autoEvents"]          = autoEvents->ToJson();
-	j["talkEvents"]          = talkEvents->ToJson();
-	j["openingEvents"]       = openingEvents->ToJson();
-	j["endingEvents"]        = endingEvents->ToJson();
-	j["communicationEvents"] = communicationEvents->ToJson();
-	j["this_148"]            = this_148->ToJson();
-	j["this_149"]            = this_149->ToJson();
-	j["this_162"]            = this_162->ToJson();
-	j["this_165"]            = this_165->ToJson();
-	j["this_166"]            = this_166->ToJson();
+	j["id"]          = id;
+	j["name"]        = LEGENDDATA::name;
+	j["description"] = LEGENDDATA::description;
+	j["mapName"]     = mapName.ToString();
+	j["victoryConds"] = victoryCond->ToJson();
+	j["defeatConds"]  = defeatCond->ToJson();
+
+	// No idea what this is but it's not relevant for now ... probably
+	// j["this_136"]            = this_136.ToString();
+	// j["this_137"]            = this_137.ToString();
+
+	this_138->ToJson(j, "this_138");
+	this_139->ToJson(j, "this_139");
+	this_140->ToJson(j, "this_140");
+	this_141->ToJson(j, "this_141");
+	placeEvents->ToJson(j, "placeEvents");
+	autoEvents->ToJson(j, "autoEvents");
+	talkEvents->ToJson(j, "talkEvents");
+	openingEvents->ToJson(j, "openingEvents");
+	endingEvents->ToJson(j, "endingEvents");
+	communicationEvents->ToJson(j, "communicationEvents");
+	this_148->ToJson(j, "this_148");
+	this_149->ToJson(j, "this_149");
+	this_162->ToJson(j, "this_162");
+	this_165->ToJson(j, "this_165");
+	this_166->ToJson(j, "this_166");
 
 	return j;
 }
@@ -331,9 +338,9 @@ void MAPDATA::sub_F7A340(FileReader& fw)
 {
 	if (g_ArcVersion < 0x3EE)
 	{
-		if (this_165)
-			delete (this_165);
-		this_165 = new CMenuOperation(SRPGClasses::UNITDATA);
+		if (this_166)
+			delete (this_166);
+		this_166 = new CMenuOperation(SRPGClasses::UNITDATA);
 	}
 	else
 		allocAndSetCMenuOp(&this_166, SRPGClasses::UNITDATA, fw);

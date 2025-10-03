@@ -44,9 +44,9 @@ void EVENTCOMMAND::init(FileReader& fw)
 	if (this_5)
 		this_6.init(fw);
 
-	this_7     = createCommand(this_3);
-	this_7->id = fw.ReadDWord();
-	this_7->init(fw);
+	pCommand     = createCommand(this_3);
+	pCommand->id = fw.ReadDWord();
+	pCommand->init(fw);
 }
 
 void EVENTCOMMAND::dump(FileWriter& fw) const
@@ -62,8 +62,8 @@ void EVENTCOMMAND::dump(FileWriter& fw) const
 	if (this_5)
 		this_6.dump(fw);
 
-	fw.Write(this_7->id);
-	this_7->dump(fw);
+	fw.Write(pCommand->id);
+	pCommand->dump(fw);
 }
 
 void EVENTCOMMAND::print(std::ostream& os) const
@@ -73,6 +73,20 @@ void EVENTCOMMAND::print(std::ostream& os) const
 	os << "this_4: " << this_4 << std::endl;
 	os << "this_5: " << this_5 << std::endl; // Maybe trigger present
 	os << "this_6: " << this_6 << std::endl;
-	// os << "this_7: " << *this_7 << std::endl;
+	// os << "pCommand: " << *pCommand << std::endl;
 	os << "Comment: " << comment << std::endl;
+}
+
+nlohmann::ordered_json EVENTCOMMAND::toJson() const
+{
+	nlohmann::ordered_json j;
+	nlohmann::ordered_json command = pCommand->ToJson();
+
+	// If the command is empty return empty json
+	if (command.is_null() || command.empty())
+		return j;
+
+	j["comment"] = comment.ToString();
+	j["command"] = command;
+	return j;
 }
