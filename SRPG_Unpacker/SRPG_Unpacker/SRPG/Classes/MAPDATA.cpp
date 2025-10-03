@@ -116,20 +116,20 @@ void MAPDATA::init(FileReader& fw)
 	allocAndSetCMenuOp(&victoryCond, SRPGClasses::STRINGDATA, fw);
 	allocAndSetCMenuOp(&defeatCond, SRPGClasses::STRINGDATA, fw);
 	allocAndSetCMenuOp(&localSwitches, SRPGClasses::SWITCHDATA, fw);
-	allocAndSetCMenuOp(&this_138, SRPGClasses::UNITDATA, fw);
-	allocAndSetCMenuOp(&this_140, SRPGClasses::UNITDATA, fw);
+	allocAndSetCMenuOp(&pEnemyUnits, SRPGClasses::UNITDATA, fw);
+	allocAndSetCMenuOp(&pAllyUnits, SRPGClasses::UNITDATA, fw);
 
 	if (g_ArcVersion < 0x3EE)
 	{
-		if (this_165)
-			delete (this_165);
-		this_165 = new CMenuOperation(SRPGClasses::UNITDATA);
+		if (pGuestUnits)
+			delete (pGuestUnits);
+		pGuestUnits = new CMenuOperation(SRPGClasses::UNITDATA);
 	}
 	else
-		allocAndSetCMenuOp(&this_165, SRPGClasses::UNITDATA, fw);
+		allocAndSetCMenuOp(&pGuestUnits, SRPGClasses::UNITDATA, fw);
 
-	allocAndSetCMenuOp(&this_139, SRPGClasses::UNITDATA, fw);
-	allocAndSetCMenuOp(&this_141, SRPGClasses::UNITDATA, fw);
+	allocAndSetCMenuOp(&pEvEnemyUnits, SRPGClasses::UNITDATA, fw);
+	allocAndSetCMenuOp(&pEvAllyUnits, SRPGClasses::UNITDATA, fw);
 
 	sub_F7A340(fw);
 
@@ -140,7 +140,7 @@ void MAPDATA::init(FileReader& fw)
 	allocAndSetCMenuOp(&endingEvents, SRPGClasses::EVENTDATA, fw);
 	allocAndSetCMenuOp(&communicationEvents, SRPGClasses::EVENTDATA, fw);
 	allocAndSetCMenuOp(&this_148, SRPGClasses::REINFORCECONTAINER, fw);
-	allocAndSetCMenuOp(&this_149, SRPGClasses::UNITDATA, fw);
+	allocAndSetCMenuOp(&pReinforcementUnits, SRPGClasses::UNITDATA, fw);
 
 	// std::cout << "======================================" << std::endl
 	//	<< "Place Events:" << std::endl << *placeEvents << std::endl
@@ -190,25 +190,20 @@ nlohmann::ordered_json MAPDATA::toJson() const
 	j["victoryConds"] = victoryCond->ToJson();
 	j["defeatConds"]  = defeatCond->ToJson();
 
-	// No idea what this is but it's not relevant for now ... probably
-	// j["this_136"]            = this_136.ToString();
-	// j["this_137"]            = this_137.ToString();
+	pEnemyUnits->ToJson(j, "EnemyUnits");
+	pEvEnemyUnits->ToJson(j, "EvEnemyUnits");
+	pAllyUnits->ToJson(j, "AllyUnits");
+	pEvAllyUnits->ToJson(j, "EvAllyUnits");
+	pReinforcementUnits->ToJson(j, "pReinforcementUnits");
+	pGuestUnits->ToJson(j, "GuestUnits");
+	pEvGuestUnits->ToJson(j, "EvGuestUnits");
 
-	this_138->ToJson(j, "this_138");
-	this_139->ToJson(j, "this_139");
-	this_140->ToJson(j, "this_140");
-	this_141->ToJson(j, "this_141");
 	placeEvents->ToJson(j, "placeEvents");
 	autoEvents->ToJson(j, "autoEvents");
 	talkEvents->ToJson(j, "talkEvents");
 	openingEvents->ToJson(j, "openingEvents");
 	endingEvents->ToJson(j, "endingEvents");
 	communicationEvents->ToJson(j, "communicationEvents");
-	this_148->ToJson(j, "this_148");
-	this_149->ToJson(j, "this_149");
-	this_162->ToJson(j, "this_162");
-	this_165->ToJson(j, "this_165");
-	this_166->ToJson(j, "this_166");
 
 	return j;
 }
@@ -261,17 +256,17 @@ void MAPDATA::dump(FileWriter& fw) const
 	victoryCond->dump(fw);
 	defeatCond->dump(fw);
 	localSwitches->dump(fw);
-	this_138->dump(fw);
-	this_140->dump(fw);
+	pEnemyUnits->dump(fw);
+	pAllyUnits->dump(fw);
 
 	if (g_ArcVersion >= 0x3EE)
-		this_165->dump(fw);
+		pGuestUnits->dump(fw);
 
-	this_139->dump(fw);
-	this_141->dump(fw);
+	pEvEnemyUnits->dump(fw);
+	pEvAllyUnits->dump(fw);
 
 	if (g_ArcVersion >= 0x3EE)
-		this_166->dump(fw);
+		pEvGuestUnits->dump(fw);
 
 	placeEvents->dump(fw);
 	autoEvents->dump(fw);
@@ -280,7 +275,7 @@ void MAPDATA::dump(FileWriter& fw) const
 	endingEvents->dump(fw);
 	communicationEvents->dump(fw);
 	this_148->dump(fw);
-	this_149->dump(fw);
+	pReinforcementUnits->dump(fw);
 
 	fw.Write(this_150);
 
@@ -338,12 +333,12 @@ void MAPDATA::sub_F7A340(FileReader& fw)
 {
 	if (g_ArcVersion < 0x3EE)
 	{
-		if (this_166)
-			delete (this_166);
-		this_166 = new CMenuOperation(SRPGClasses::UNITDATA);
+		if (pEvGuestUnits)
+			delete (pEvGuestUnits);
+		pEvGuestUnits = new CMenuOperation(SRPGClasses::UNITDATA);
 	}
 	else
-		allocAndSetCMenuOp(&this_166, SRPGClasses::UNITDATA, fw);
+		allocAndSetCMenuOp(&pEvGuestUnits, SRPGClasses::UNITDATA, fw);
 }
 
 void MAPDATA::sub_F77950(FileReader& fw)

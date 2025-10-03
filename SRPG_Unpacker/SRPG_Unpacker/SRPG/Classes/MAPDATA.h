@@ -52,10 +52,10 @@ struct MAPDATA : public EDITDATA, public LEGENDDATA
 	QWORD bgmBattlePrep   = 0;
 	MemData this_136;
 	MemData this_137;
-	class CMenuOperation* this_138            = nullptr;
-	class CMenuOperation* this_139            = nullptr;
-	class CMenuOperation* this_140            = nullptr;
-	class CMenuOperation* this_141            = nullptr;
+	class CMenuOperation* pEnemyUnits         = nullptr;
+	class CMenuOperation* pEvEnemyUnits       = nullptr;
+	class CMenuOperation* pAllyUnits          = nullptr;
+	class CMenuOperation* pEvAllyUnits        = nullptr;
 	class CMenuOperation* placeEvents         = nullptr;
 	class CMenuOperation* autoEvents          = nullptr;
 	class CMenuOperation* talkEvents          = nullptr;
@@ -63,7 +63,7 @@ struct MAPDATA : public EDITDATA, public LEGENDDATA
 	class CMenuOperation* endingEvents        = nullptr;
 	class CMenuOperation* communicationEvents = nullptr;
 	class CMenuOperation* this_148            = nullptr;
-	class CMenuOperation* this_149            = nullptr;
+	class CMenuOperation* pReinforcementUnits = nullptr;
 	DWORD this_150                            = 0;
 	class CMenuOperation* this_151            = nullptr;
 	class CMenuOperation* localSwitches       = nullptr;
@@ -79,10 +79,10 @@ struct MAPDATA : public EDITDATA, public LEGENDDATA
 	class CMenuOperation* this_162            = nullptr;
 	MemData mapName;
 	MemData customParameters;
-	class CMenuOperation* this_165 = nullptr;
-	class CMenuOperation* this_166 = nullptr;
-	DWORD this_167                 = 0;
-	class CMenuOperation* this_168 = nullptr;
+	class CMenuOperation* pGuestUnits   = nullptr;
+	class CMenuOperation* pEvGuestUnits = nullptr;
+	DWORD this_167                      = 0;
+	class CMenuOperation* this_168      = nullptr;
 
 	std::array<DWORD, 12> this_200;
 	std::array<DWORD, 12> this_201;
