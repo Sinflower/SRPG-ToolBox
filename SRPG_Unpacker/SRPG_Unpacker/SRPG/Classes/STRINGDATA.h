@@ -36,6 +36,6 @@ struct STRINGDATA : public EDITDATA
 	virtual void dump([[maybe_unused]] FileWriter& fw) const;
 	virtual void print(std::ostream& os) const;
 
-	protected:
+protected:
 	virtual nlohmann::ordered_json toJson() const;
 };

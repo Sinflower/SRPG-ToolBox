@@ -47,7 +47,6 @@ struct CHARREPLACEDATA : public EDITDATA
 	DWORD this_14 = 0;
 	DWORD this_15 = 0;
 
-
 	virtual void init(FileReader& fw);
 	virtual void dump([[maybe_unused]] FileWriter& fw) const;
 };

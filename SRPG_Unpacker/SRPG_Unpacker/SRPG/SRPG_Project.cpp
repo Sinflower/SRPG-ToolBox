@@ -41,7 +41,6 @@
 #include "SRPG_Project.h"
 #include "Version.h"
 
-
 namespace fs = std::filesystem;
 
 DWORD g_ArcVersion = 0;
@@ -60,7 +59,7 @@ SRPG_Project::~SRPG_Project()
 void SRPG_Project::Dump(const std::wstring& outFolder) const
 {
 	FileWriter fw(std::format(L"{}/{}", outFolder, PROJECT_FILE_NAME));
-	//dump(fw);
+	// dump(fw);
 	dumpAsProj(fw);
 	// writeResMapping();
 }
@@ -195,7 +194,7 @@ void SRPG_Project::dumpAsProj(FileWriter& fw) const
 
 	if (g_ArcVersion > 1226)
 		fw.WriteArr(m_resources.GetUnknown());
-	
+
 	m_maps.Dump(fw);
 	m_animations.Dump(fw);
 	m_database.Dump(fw);
@@ -206,7 +205,6 @@ void SRPG_Project::dumpAsProj(FileWriter& fw) const
 	m_interOpData.Dump(fw);
 	m_storySettings.Dump(fw);
 
-	
 	m_resources.DumpProj(fw);
 	m_baseSettings.Dump(fw);
 }

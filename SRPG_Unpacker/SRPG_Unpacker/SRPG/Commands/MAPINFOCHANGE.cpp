@@ -50,7 +50,7 @@ void MAPINFOCHANGE::dump(FileWriter& fw) const
 
 nlohmann::ordered_json MAPINFOCHANGE::toJson() const
 {
-	nlohmann::ordered_json j = EDITDATA::toJson();
+	nlohmann::ordered_json j;
 	j["description"]  = description.ToString();
 	j["pVictoryCond"] = pVictoryCond->ToJson();
 	j["pDefeatCond"]  = pDefeatCond->ToJson();

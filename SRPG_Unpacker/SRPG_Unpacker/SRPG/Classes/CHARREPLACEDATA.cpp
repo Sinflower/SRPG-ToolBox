@@ -65,7 +65,6 @@ void CHARREPLACEDATA::init(FileReader& fw)
 	}
 }
 
-
 void CHARREPLACEDATA::dump(FileWriter& fw) const
 {
 	fw.Write(this_3);
@@ -99,5 +98,4 @@ void CHARREPLACEDATA::dump(FileWriter& fw) const
 				fw.Write(this_15);
 		}
 	}
-
 }

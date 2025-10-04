@@ -46,7 +46,7 @@ void MESSAGEBASE::print(std::ostream& os) const
 nlohmann::ordered_json MESSAGEBASE::toJson() const
 {
 	nlohmann::ordered_json j;
-	j["message"]  = message.ToString();
+	j["message"] = message.ToString();
 
 	return j;
 }

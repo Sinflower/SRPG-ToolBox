@@ -38,6 +38,6 @@ struct EVENTPAGE : public EDITDATA
 	DWORD this_4;
 	EVENTPAGE_DATA this_5;
 
-	protected:
+protected:
 	virtual nlohmann::ordered_json toJson() const;
 };

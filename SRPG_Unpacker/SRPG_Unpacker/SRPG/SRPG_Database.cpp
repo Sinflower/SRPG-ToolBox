@@ -453,7 +453,6 @@ void SRPG_Database::sub_F7DD10(FileReader& fw)
 		this_230 = fw.ReadDWord();
 }
 
-
 void SRPG_Database::dump_sub_F8E4E0(FileWriter& fw) const
 {
 	if (g_ArcVersion >= 0x3F4)

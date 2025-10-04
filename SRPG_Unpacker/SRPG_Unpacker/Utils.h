@@ -113,7 +113,7 @@ inline std::vector<std::wstring> SplitString(const std::wstring &str, const wcha
 inline std::wstring JoinString(const std::vector<std::wstring> &strs, const wchar_t &delim)
 {
 	std::wstring result;
-	for (const std::wstring& str : strs)
+	for (const std::wstring &str : strs)
 		result += str + delim;
 
 	return result;
@@ -121,8 +121,10 @@ inline std::wstring JoinString(const std::vector<std::wstring> &strs, const wcha
 
 inline std::wstring SanitizeFileName(const std::wstring &filename)
 {
-	std::wstring sanitized = filename;
 	const std::wstring illegalChars = L"<>:\"/\\|?*";
+
+	std::wstring sanitized = filename;
+
 	for (const wchar_t &c : illegalChars)
 	{
 		size_t pos = sanitized.find(c);

@@ -48,7 +48,6 @@ private:
 	void dump_sub_F7DA50(FileWriter& fw) const;
 	void dump_sub_F7DD10(FileWriter& fw) const;
 
-
 private:
 	CMenuOperation* m_pPlayerUnits                   = nullptr;     // this_86
 	CMenuOperation* m_pClassData                     = nullptr;     // this_87

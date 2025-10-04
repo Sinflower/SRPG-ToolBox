@@ -50,7 +50,7 @@ public:
 	friend std::ostream& operator<<(std::ostream& os, CMenuOperation const& dt);
 	friend std::wostream& operator<<(std::wostream& os, CMenuOperation const& dt);
 
-	// Methods required for  range-based for loops
+	// Methods required for range-based for loops
 	auto begin()
 	{
 		return m_data.begin();
