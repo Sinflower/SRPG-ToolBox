@@ -30,12 +30,11 @@
 
 #include <windows.h>
 
-#include <array>
 #include <filesystem>
+#include <nlohmann/json.hpp>
 #include <vector>
 
 #include "../FileAccess.h"
-#include "../MemData.h"
 
 #include "SRPG_Animations.hpp"
 #include "SRPG_BaseSettings.hpp"
@@ -46,8 +45,6 @@
 #include "SRPG_RecollectionEvents.hpp"
 #include "SRPG_Resources.hpp"
 #include "SRPG_StorySettings.hpp"
-
-class CMenuOperation;
 
 struct SRPG_ProjectData
 {
@@ -74,13 +71,8 @@ public:
 private:
 	void loadProject();
 
-	// ---------------------------------
-
 	void dump(FileWriter& fw) const;
-
 	void dumpAsProj(FileWriter& fw) const;
-
-	// ---------------------------------
 
 private:
 	FileReader m_fw;
@@ -98,7 +90,6 @@ private:
 	DWORD res1 = 0;
 	DWORD res2 = 0;
 
-	// this_1-4 = dword_FF4B10 -- File Header / Beginning
 	DWORD this_1 = 0;
 	DWORD this_2 = 0;
 	DWORD this_3 = 0;

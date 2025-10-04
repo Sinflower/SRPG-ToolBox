@@ -26,18 +26,8 @@
 
 // Compatible up to v1.292
 
-#define DEBUG_PRINT
-
-#include <direct.h>
-
-#include <codecvt>
-#include <fstream>
-#include <iomanip>
 #include <iostream>
-#include <regex>
 
-#include "CMenuOperation.h"
-#include "Functions.h"
 #include "SRPG_Project.h"
 #include "Version.h"
 
