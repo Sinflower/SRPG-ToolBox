@@ -49,13 +49,3 @@ void SOUNDMODEDATA::dump(FileWriter& fw) const
 
 	LEGENDDATA::dump(fw);
 }
-
-nlohmann::ordered_json SOUNDMODEDATA::toJson() const
-{
-	nlohmann::ordered_json j;
-
-	j["name"]        = LEGENDDATA::name.ToString();
-	j["description"] = LEGENDDATA::description.ToString();
-
-	return j;
-}

@@ -26,19 +26,20 @@
 
 #pragma once
 
-#include "EDITDATA.h"
 #include "LEGENDDATA.h"
 
-struct WEAPONTYPEDATA : public EDITDATA, public LEGENDDATA
+struct WEAPONTYPEDATA : public LEGENDDATA
 {
-	DWORD this_8                            = 0;
-	DWORD this_9                            = 0;
-	class CMenuOperation* m_pCompatibledata = nullptr;
+	DWORD this_8 = 0;
+	DWORD this_9 = 0;
 	MemData this_11;
 	DWORD this_12 = 0;
 	DWORD this_13 = 0;
 	DWORD this_14 = 0;
 	DWORD this_15 = 0;
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+
+	class CMenuOperation* m_pCompatibledata = nullptr;
+
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
 };

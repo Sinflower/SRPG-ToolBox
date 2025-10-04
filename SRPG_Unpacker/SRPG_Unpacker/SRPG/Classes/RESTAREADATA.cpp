@@ -32,7 +32,7 @@
 
 void RESTAREADATA::init(FileReader& fw)
 {
-	initMemData(this_3, fw);
+	initMemData(areaName, fw);
 
 	this_4 = fw.ReadDWord();
 
@@ -50,7 +50,7 @@ void RESTAREADATA::init(FileReader& fw)
 
 void RESTAREADATA::dump(FileWriter& fw) const
 {
-	this_3.Write(fw);
+	areaName.Write(fw);
 
 	fw.Write(this_4);
 	fw.Write(this_6);
@@ -63,4 +63,11 @@ void RESTAREADATA::dump(FileWriter& fw) const
 		this_11.dump(fw);
 
 	this_12.Write(fw);
+}
+
+nlohmann::ordered_json RESTAREADATA::toJson() const
+{
+	nlohmann::ordered_json j;
+	j["areaName"] = areaName.ToString();
+	return j;
 }

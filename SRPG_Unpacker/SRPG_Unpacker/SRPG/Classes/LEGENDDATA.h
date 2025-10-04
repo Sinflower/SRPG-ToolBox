@@ -28,12 +28,15 @@
 
 #include "EDITDATA.h"
 
-struct LEGENDDATA
+struct LEGENDDATA : public EDITDATA
 {
 	QWORD icon = 0;
 	MemData name;
 	MemData description;
-	virtual void init(FileReader& fw);
-	virtual void dump(FileWriter& fw) const;
-	virtual void print(std::ostream& os) const;
+	void init(FileReader& fw) override;
+	void dump(FileWriter& fw) const override;
+	void print(std::ostream& os) const override;
+
+protected:
+	nlohmann::ordered_json toJson() const override;
 };

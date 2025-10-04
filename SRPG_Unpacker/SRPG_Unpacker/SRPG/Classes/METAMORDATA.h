@@ -26,12 +26,11 @@
 
 #pragma once
 
-#include "EDITDATA.h"
 #include "LEGENDDATA.h"
 
 #include <array>
 
-struct METAMORDATA : public EDITDATA, public LEGENDDATA
+struct METAMORDATA : public LEGENDDATA
 {
 	DWORD this_8  = 0;
 	DWORD this_10 = 0;
@@ -40,7 +39,7 @@ struct METAMORDATA : public EDITDATA, public LEGENDDATA
 	DWORD this_13 = 0;
 	DWORD this_14 = 0;
 	DWORD this_15 = 0;
-	MemData this_16;
+	MemData command;
 	std::array<DWORD, 12> this_17            = { 0 };
 	std::array<DWORD, 12> this_29            = { 0 };
 	DWORD this_41                            = 0;
@@ -59,6 +58,9 @@ struct METAMORDATA : public EDITDATA, public LEGENDDATA
 	std::array<DWORD, 12> this_131;
 	DWORD this_132 = 0;
 
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
+
+protected:
+	nlohmann::ordered_json toJson() const override;
 };

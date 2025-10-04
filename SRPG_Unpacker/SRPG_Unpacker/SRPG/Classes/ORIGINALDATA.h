@@ -29,6 +29,6 @@
 #include "EDITDATA.h"
 #include "LEGENDDATA.h"
 
-struct ORIGINALDATA : public EDITDATA, public LEGENDDATA
+struct ORIGINALDATA : public EDITDATA //, public LEGENDDATA -- Include this when implementing the class
 {
 };

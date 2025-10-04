@@ -69,14 +69,15 @@ void EDITDATA::print(std::wostream& os) const
 
 nlohmann::ordered_json EDITDATA::ToJson() const
 {
-	nlohmann::ordered_json j;
-	const nlohmann::ordered_json data = toJson();
+	// nlohmann::ordered_json j;
+	// const nlohmann::ordered_json data = toJson();
 
-	if (data.empty())
-		return j;
+	// if (data.empty())
+	//	return j;
 
-	j["id"]   = id;
-	j["type"] = name();
-	j["data"] = data;
-	return j;
+	// j["id"]   = id;
+	// j["type"] = name();
+	// j["data"] = data;
+	// return j;
+	return toJson();
 }

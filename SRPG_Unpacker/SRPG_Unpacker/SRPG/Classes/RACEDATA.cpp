@@ -27,8 +27,6 @@
 // Compatible up to v1.292
 
 #include "RACEDATA.h"
-#include "../CMenuOperation.h"
-#include "EDITDATA.h"
 
 void RACEDATA::init(FileReader& fw)
 {

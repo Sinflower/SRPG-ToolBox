@@ -32,12 +32,21 @@
 
 void CLASSGROUPDATA::init(FileReader& fw)
 {
-	initMemData(this_4, fw);
-	allocAndSetCMenuOp(&m_pClassGroupntryData, SRPGClasses::CLASSGROUPENTRYDATA, fw);
+	initMemData(name, fw);
+	allocAndSetCMenuOp(&m_pClassGroupEntryData, SRPGClasses::CLASSGROUPENTRYDATA, fw);
 }
 
 void CLASSGROUPDATA::dump(FileWriter& fw) const
 {
-	this_4.Write(fw);
-	m_pClassGroupntryData->dump(fw);
+	name.Write(fw);
+	m_pClassGroupEntryData->dump(fw);
+}
+
+nlohmann::ordered_json CLASSGROUPDATA::toJson() const
+{
+	nlohmann::ordered_json j = EDITDATA::toJson();
+
+	j["name"] = name.ToString();
+
+	return j;
 }

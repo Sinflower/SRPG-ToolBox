@@ -26,10 +26,9 @@
 
 #pragma once
 
-#include "EDITDATA.h"
 #include "LEGENDDATA.h"
 
-struct WORDDATA : public EDITDATA, public LEGENDDATA
+struct WORDDATA : public LEGENDDATA
 {
 	MemData this_8;
 	class CMenuOperation* pDictionaryCondition = nullptr;
@@ -38,8 +37,8 @@ struct WORDDATA : public EDITDATA, public LEGENDDATA
 	DWORD this_11 = 0;
 	DWORD this_12 = 0;
 	DWORD this_13 = 0;
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
 
 protected:
 	virtual nlohmann::ordered_json toJson() const override;

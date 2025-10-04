@@ -66,10 +66,7 @@ void WORDDATA::dump(FileWriter& fw) const
 
 nlohmann::ordered_json WORDDATA::toJson() const
 {
-	nlohmann::ordered_json j;
-
-	j["name"]       = LEGENDDATA::name.ToString();
-	j["formalName"] = LEGENDDATA::description.ToString();
+	nlohmann::ordered_json j = LEGENDDATA::toJson();
 	pDictionaryCondition->ToJson(j, "pages");
 
 	return j;

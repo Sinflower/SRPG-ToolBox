@@ -43,28 +43,28 @@ void SRPG_Database::Init(FileReader& fw)
 	std::cout << "OFFSET-UNITDATA=" << fw.GetOffset() << std::endl;
 #endif
 
-	allocAndSetCMenuOp(&m_pClassData, SRPGClasses::CLASSDATA, fw);
+	allocAndSetCMenuOp(&m_pClasses, SRPGClasses::CLASSDATA, fw);
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-CLASSDATA=" << fw.GetOffset() << std::endl;
 #endif
 
-	allocAndSetCMenuOp(&m_pWeaponData, SRPGClasses::WEAPONDATA, fw);
+	allocAndSetCMenuOp(&m_pWeapons, SRPGClasses::WEAPONDATA, fw);
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-WEAPONDATA=" << fw.GetOffset() << std::endl;
 #endif
 
-	allocAndSetCMenuOp(&m_pItemData, SRPGClasses::ITEMDATA, fw);
+	allocAndSetCMenuOp(&m_pItems, SRPGClasses::ITEMDATA, fw);
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-ITEMDATA=" << fw.GetOffset() << std::endl;
 #endif
 
-	allocAndSetCMenuOp(&m_pSkillData, SRPGClasses::SKILLDATA, fw);
+	allocAndSetCMenuOp(&m_pSkills, SRPGClasses::SKILLDATA, fw);
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-SKILLDATA=" << fw.GetOffset() << std::endl;
 #endif
 
 	if (g_ArcVersion >= 0x400)
-		allocAndSetCMenuOp(&m_pStateData, SRPGClasses::STATEDATA, fw);
+		allocAndSetCMenuOp(&m_pStates, SRPGClasses::STATEDATA, fw);
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-STATEDATA=" << fw.GetOffset() << std::endl;
 #endif
@@ -102,7 +102,7 @@ void SRPG_Database::Init(FileReader& fw)
 #endif
 	}
 
-	allocAndSetCMenuOp(&m_pClassGroupData, SRPGClasses::CLASSGROUPDATA, fw);
+	allocAndSetCMenuOp(&m_pClassGroups, SRPGClasses::CLASSGROUPDATA, fw);
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-CLASSGROUPDATA=" << fw.GetOffset() << std::endl;
 #endif
@@ -112,7 +112,7 @@ void SRPG_Database::Init(FileReader& fw)
 	std::cout << "OFFSET-SWITCHDATA=" << fw.GetOffset() << std::endl;
 #endif
 
-	allocAndSetCMenuOp(&m_pClassTypeData, SRPGClasses::CLASSTYPEDATA, fw);
+	allocAndSetCMenuOp(&m_pClassTypes, SRPGClasses::CLASSTYPEDATA, fw);
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-CLASSTYPEDATA=" << fw.GetOffset() << std::endl;
 #endif
@@ -122,7 +122,7 @@ void SRPG_Database::Init(FileReader& fw)
 	std::cout << "OFFSET-MOVETYPEDATA=" << fw.GetOffset() << std::endl;
 #endif
 
-	allocAndSetCMenuOp(&m_pDifficultyData, SRPGClasses::DIFFICULTYDATA, fw);
+	allocAndSetCMenuOp(&m_pDifficulties, SRPGClasses::DIFFICULTYDATA, fw);
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-DIFFICULTYDATA=" << fw.GetOffset() << std::endl;
 #endif
@@ -175,13 +175,13 @@ void SRPG_Database::Init(FileReader& fw)
 void SRPG_Database::Dump(FileWriter& fw) const
 {
 	m_pPlayerUnits->dump(fw);
-	m_pClassData->dump(fw);
-	m_pWeaponData->dump(fw);
-	m_pItemData->dump(fw);
-	m_pSkillData->dump(fw);
+	m_pClasses->dump(fw);
+	m_pWeapons->dump(fw);
+	m_pItems->dump(fw);
+	m_pSkills->dump(fw);
 
 	if (g_ArcVersion >= 0x400)
-		m_pStateData->dump(fw);
+		m_pStates->dump(fw);
 
 	m_pPassData1->dump(fw);
 	m_pPassData2->dump(fw);
@@ -195,11 +195,11 @@ void SRPG_Database::Dump(FileWriter& fw) const
 		m_pStringData1->dump(fw);
 	}
 
-	m_pClassGroupData->dump(fw);
+	m_pClassGroups->dump(fw);
 	m_pSwitchData1->dump(fw);
-	m_pClassTypeData->dump(fw);
+	m_pClassTypes->dump(fw);
 	m_pMoveTypeData->dump(fw);
-	m_pDifficultyData->dump(fw);
+	m_pDifficulties->dump(fw);
 	m_pItemGroupData1->dump(fw);
 	m_pFacialData->dump(fw);
 
@@ -218,6 +218,19 @@ void SRPG_Database::Dump(FileWriter& fw) const
 
 void SRPG_Database::WritePatches(const std::filesystem::path& outPath) const
 {
+	const std::filesystem::path commonsFolder = CommonsPath(outPath);
+
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pClasses, commonsFolder, L"classes.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pClassGroups, commonsFolder, L"classesgroups.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pClassTypes, commonsFolder, L"classtypes.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pDifficulties, commonsFolder, L"difficulties.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pFusionSettings, commonsFolder, L"fusionsettings.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pItems, commonsFolder, L"items.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pRaces, commonsFolder, L"races.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pSkills, commonsFolder, L"skills.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pStates, commonsFolder, L"states.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pTransformations, commonsFolder, L"transformations.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pWeapons, commonsFolder, L"weapons.json");
 }
 
 void SRPG_Database::sub_F8E4E0(FileReader& fw)
@@ -252,13 +265,13 @@ void SRPG_Database::sub_F8E4E0(FileReader& fw)
 		if (g_ArcVersion < 0x41D)
 			allocAndSetCMenuOp(&m_pShopLayout1, SRPGClasses::SHOPLAYOUT, fw);
 		else
-			allocAndSetCMenuOp(&m_pRaceData, SRPGClasses::RACEDATA, fw);
+			allocAndSetCMenuOp(&m_pRaces, SRPGClasses::RACEDATA, fw);
 	}
 
 	if (g_ArcVersion >= 0x418)
 	{
-		allocAndSetCMenuOp(&m_pFusionData, SRPGClasses::FUSIONDATA, fw);
-		allocAndSetCMenuOp(&m_pMetamorRData, SRPGClasses::METAMORDATA, fw);
+		allocAndSetCMenuOp(&m_pFusionSettings, SRPGClasses::FUSIONDATA, fw);
+		allocAndSetCMenuOp(&m_pTransformations, SRPGClasses::METAMORDATA, fw);
 	}
 
 	if (g_ArcVersion >= 0x441)
@@ -485,13 +498,13 @@ void SRPG_Database::dump_sub_F8E4E0(FileWriter& fw) const
 		if (g_ArcVersion < 0x41D)
 			m_pShopLayout1->dump(fw);
 		else
-			m_pRaceData->dump(fw);
+			m_pRaces->dump(fw);
 	}
 
 	if (g_ArcVersion >= 0x418)
 	{
-		m_pFusionData->dump(fw);
-		m_pMetamorRData->dump(fw);
+		m_pFusionSettings->dump(fw);
+		m_pTransformations->dump(fw);
 	}
 
 	if (g_ArcVersion >= 0x441)

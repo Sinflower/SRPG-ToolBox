@@ -39,7 +39,7 @@ void REWARDDATA::init(FileReader& fw)
 	this_7 = fw.ReadDWord();
 	this_8 = fw.ReadDWord();
 
-	initMemData(this_9, fw);
+	initMemData(text, fw);
 }
 
 void REWARDDATA::dump(FileWriter& fw) const
@@ -51,5 +51,12 @@ void REWARDDATA::dump(FileWriter& fw) const
 	fw.Write(this_7);
 	fw.Write(this_8);
 
-	this_9.Write(fw);
+	text.Write(fw);
+}
+
+nlohmann::ordered_json REWARDDATA::toJson() const
+{
+	nlohmann::ordered_json j;
+	j["text"] = text.ToString();
+	return j;
 }

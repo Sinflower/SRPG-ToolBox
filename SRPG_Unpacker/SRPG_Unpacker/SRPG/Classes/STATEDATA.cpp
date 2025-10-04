@@ -43,9 +43,7 @@ void STATEDATA::init(FileReader& fw)
 	this_31 = fw.ReadDWord();
 	this_16 = fw.ReadDWord();
 
-	if (g_ArcVersion < 0x446)
-		this_17 = 0;
-	else
+	if (g_ArcVersion >= 0x446)
 		this_17 = fw.ReadDWord();
 
 	if (g_ArcVersion >= 0x48E)
@@ -152,27 +150,11 @@ void STATEDATA::sub_10E310(FileReader& fw)
 		this_25 = fw.ReadDWord();
 		this_26 = fw.ReadDWord();
 		this_27 = fw.ReadDWord();
-		this_28 = 0;
-		this_29 = 0;
 	}
 	else
 	{
 		res = fw.ReadDWord();
-		if (res)
-		{
-			this_19 = 0;
-			this_20 = 0;
-			this_21 = 0;
-			this_22 = 0;
-			this_23 = 0;
-			this_24 = 0;
-			this_25 = 0;
-			this_26 = 0;
-			this_27 = 0;
-			this_28 = 0;
-			this_29 = 0;
-		}
-		else
+		if (!res)
 		{
 			this_19 = fw.ReadDWord();
 			this_20 = fw.ReadDWord();

@@ -42,18 +42,18 @@ public:
 	void WritePatches(const std::filesystem::path& outPath) const override;
 
 private:
-	CMenuOperation* m_pRestShopData1 = nullptr; // this_405
-	CMenuOperation* m_pRestShopData2 = nullptr; // this_406
-	CMenuOperation* m_pQuestData     = nullptr; // this_407
-	CMenuOperation* m_pRestAreaData  = nullptr; // this_408
+	CMenuOperation* m_pShops     = nullptr;
+	CMenuOperation* m_pBonuses   = nullptr;
+	CMenuOperation* m_pQuests    = nullptr;
+	CMenuOperation* m_pRestAreas = nullptr;
 
-	std::array<CMenuOperation*, 6> m_pEventDatas = { nullptr }; // this_409-this_414
-	CMenuOperation* m_pSwitchData2               = nullptr;     // this_415
-	MemData this_416;
+	std::array<CMenuOperation*, 6> m_pEventDatas = { nullptr };
+	CMenuOperation* m_pSwitchData                = nullptr;
+	MemData saveFileTitle;
 
 	DWORD this_417 = 0;
 
-	CMenuOperation* m_pTestMember = nullptr; // this_418
+	CMenuOperation* m_pTestMember = nullptr;
 
 	DWORD this_419 = 0;
 	DWORD this_420 = 0;
@@ -61,7 +61,7 @@ private:
 	DWORD this_422 = 0;
 	DWORD this_423 = 0;
 
-	CMenuOperation* m_pItemGroupData2 = nullptr; // this_424
+	CMenuOperation* m_pItemGroupData = nullptr;
 
 	DWORD this_425 = 0;
 	DWORD this_426 = 0;

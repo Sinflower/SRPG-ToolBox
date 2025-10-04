@@ -35,9 +35,9 @@ void FUSIONDATA::init(FileReader& fw)
 	this_8 = fw.ReadDWord();
 	this_9 = fw.ReadDWord();
 
-	initMemData(this_10, fw);
-	initMemData(this_11, fw);
-	initMemData(this_12, fw);
+	initMemData(m_catchText, fw);
+	initMemData(m_releaseText, fw);
+	initMemData(m_tradeText, fw);
 
 	this_13 = fw.ReadDWord();
 	this_14 = fw.ReadDWord();
@@ -106,9 +106,9 @@ void FUSIONDATA::dump(FileWriter& fw) const
 	fw.Write(this_8);
 	fw.Write(this_9);
 
-	this_10.Write(fw);
-	this_11.Write(fw);
-	this_12.Write(fw);
+	m_catchText.Write(fw);
+	m_releaseText.Write(fw);
+	m_tradeText.Write(fw);
 
 	fw.Write(this_13);
 	fw.Write(this_14);
@@ -167,4 +167,19 @@ void FUSIONDATA::dump(FileWriter& fw) const
 	LEGENDDATA::dump(fw);
 
 	this_127.Write(fw);
+}
+
+nlohmann::ordered_json FUSIONDATA::toJson() const
+{
+	nlohmann::ordered_json j = LEGENDDATA::toJson();
+
+	nlohmann::json cmds = nlohmann::json::array();
+
+	cmds.push_back(m_catchText.ToString());
+	cmds.push_back(m_releaseText.ToString());
+	cmds.push_back(m_tradeText.ToString());
+
+	j["command"] = cmds;
+
+	return j;
 }

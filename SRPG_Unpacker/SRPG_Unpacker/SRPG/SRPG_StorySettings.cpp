@@ -101,7 +101,7 @@ void SRPG_StorySettings::Dump(FileWriter& fw) const
 
 void SRPG_StorySettings::WritePatches(const std::filesystem::path& outPath) const
 {
-	const std::filesystem::path commonsFolder = commonsPath(outPath);
+	const std::filesystem::path commonsFolder = CommonsPath(outPath);
 
 	if (m_pCharacterData)
 		m_pCharacterData->WriteToJsonFile(commonsFolder, L"character_data.json");

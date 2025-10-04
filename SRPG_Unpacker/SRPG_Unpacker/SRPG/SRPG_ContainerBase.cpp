@@ -26,15 +26,37 @@
 
 #include "SRPG_ContainerBase.hpp"
 
-namespace fs = std::filesystem;
-
-std::filesystem::path SRPG_ContainerBase::commonsPath(const std::filesystem::path& basePath)
+std::filesystem::path SRPG_ContainerBase::CommonsPath(const std::filesystem::path& basePath)
 {
-	const fs::path commonsFolder = basePath / COMMONS_PATCH_FOLDER;
+	return buildFolder(basePath, COMMONS_PATCH_FOLDER);
+}
 
-	// Create the commons folder if it doesn't exist
-	if (!fs::exists(commonsFolder))
-		fs::create_directories(commonsFolder);
+std::filesystem::path SRPG_ContainerBase::BaseSettingsPath(const std::filesystem::path& basePath)
+{
+	return buildFolder(basePath, BASE_SETTINGS_FOLDER);
+}
 
-	return commonsFolder;
+std::filesystem::path SRPG_ContainerBase::LayoutsPath(const std::filesystem::path& basePath)
+{
+	return buildFolder(basePath, LAYOUTS_FOLDER);
+}
+
+std::filesystem::path SRPG_ContainerBase::ExtraPath(const std::filesystem::path& basePath)
+{
+	return buildFolder(basePath, EXTRA_FOLDER);
+}
+
+std::filesystem::path SRPG_ContainerBase::WeaponTypesPath(const std::filesystem::path& basePath)
+{
+	return buildFolder(basePath, WEAPON_TYPES_FOLDER);
+}
+
+std::filesystem::path SRPG_ContainerBase::buildFolder(const std::filesystem::path& basePath, const std::wstring& folder)
+{
+	const std::filesystem::path p = basePath / folder;
+
+	if (!std::filesystem::exists(p))
+		std::filesystem::create_directories(p);
+
+	return p;
 }

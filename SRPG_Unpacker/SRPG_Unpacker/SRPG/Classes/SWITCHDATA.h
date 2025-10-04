@@ -26,13 +26,12 @@
 
 #pragma once
 
-#include "EDITDATA.h"
 #include "LEGENDDATA.h"
 
-struct SWITCHDATA : public EDITDATA, public LEGENDDATA
+struct SWITCHDATA : public LEGENDDATA
 {
 	DWORD this_8 = 0;
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
-	virtual void print(std::ostream& os) const;
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
+	void print(std::ostream& os) const override;
 };

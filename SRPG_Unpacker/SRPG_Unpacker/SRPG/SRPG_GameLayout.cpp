@@ -163,7 +163,7 @@ void SRPG_GameLayout::Dump(FileWriter& fw) const
 
 void SRPG_GameLayout::WritePatches(const std::filesystem::path& outPath) const
 {
-	const std::filesystem::path commonsFolder = commonsPath(outPath);
+	const std::filesystem::path commonsFolder = CommonsPath(outPath);
 
 	if (m_pShopLayout)
 		m_pShopLayout->WriteToJsonFile(commonsFolder, L"shop_layout");

@@ -32,10 +32,20 @@
 
 class CMenuOperation;
 
+#define CHECK_OBJ_AND_WRITE_JSON_FILE(_OBJ_, _OUT_PATH_, _FILE_NAME_) \
+	if (_OBJ_ != nullptr)                                             \
+		_OBJ_->WriteToJsonFile(_OUT_PATH_, _FILE_NAME_);
+
 class SRPG_ContainerBase
 {
 protected:
+	// TODO: Remove this
 	static inline const std::wstring COMMONS_PATCH_FOLDER = L"commons";
+
+	static inline const std::wstring BASE_SETTINGS_FOLDER = L"Base";
+	static inline const std::wstring LAYOUTS_FOLDER       = L"CommandLayout";
+	static inline const std::wstring EXTRA_FOLDER         = L"Extra";
+	static inline const std::wstring WEAPON_TYPES_FOLDER  = L"WeaponTypes";
 
 public:
 	SRPG_ContainerBase() {}
@@ -51,6 +61,12 @@ public:
 
 	virtual void WritePatches(const std::filesystem::path& outPath) const = 0;
 
-protected:
-	static std::filesystem::path commonsPath(const std::filesystem::path& basePath);
+	static std::filesystem::path CommonsPath(const std::filesystem::path& basePath);
+	static std::filesystem::path BaseSettingsPath(const std::filesystem::path& basePath);
+	static std::filesystem::path LayoutsPath(const std::filesystem::path& basePath);
+	static std::filesystem::path ExtraPath(const std::filesystem::path& basePath);
+	static std::filesystem::path WeaponTypesPath(const std::filesystem::path& basePath);
+
+private:
+	static std::filesystem::path buildFolder(const std::filesystem::path& basePath, const std::wstring& folder);
 };

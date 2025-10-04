@@ -26,11 +26,10 @@
 
 #pragma once
 
-#include "EDITDATA.h"
 #include "LEGENDDATA.h"
 #include "SHOPDATA.h"
 
-struct EVENTDATA : public EDITDATA, public LEGENDDATA
+struct EVENTDATA : public LEGENDDATA
 {
 	~EVENTDATA();
 
@@ -91,9 +90,9 @@ struct EVENTDATA : public EDITDATA, public LEGENDDATA
 		}
 	};
 
-	virtual void print(std::ostream& os) const;
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+	void print(std::ostream& os) const override;
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
 	void sub_FD4620(FileReader& fw);
 	DWORD res    = 0;
 	DWORD this_8 = 0;
@@ -116,5 +115,5 @@ struct EVENTDATA : public EDITDATA, public LEGENDDATA
 	DWORD this_23 = 0;
 
 protected:
-	virtual nlohmann::ordered_json toJson() const override;
+	nlohmann::ordered_json toJson() const override;
 };

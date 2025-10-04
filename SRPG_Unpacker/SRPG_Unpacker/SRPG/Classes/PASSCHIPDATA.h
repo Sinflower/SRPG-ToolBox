@@ -26,10 +26,9 @@
 
 #pragma once
 
-#include "EDITDATA.h"
 #include "LEGENDDATA.h"
 
-struct PASSCHIPDATA : public EDITDATA, public LEGENDDATA
+struct PASSCHIPDATA : public LEGENDDATA
 {
 	DWORD this_8  = 0;
 	DWORD this_9  = 0;

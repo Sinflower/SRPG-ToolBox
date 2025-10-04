@@ -30,8 +30,8 @@
 
 struct INTEROPBASE
 {
-	MemData this_3;
-	MemData this_4;
+	MemData internalName;
+	MemData gameName;
 	void init(FileReader& fw);
 	virtual void dump([[maybe_unused]] FileWriter& fw) const;
 };

@@ -51,13 +51,3 @@ void GALLERYDATA::dump(FileWriter& fw) const
 
 	LEGENDDATA::dump(fw);
 }
-
-nlohmann::ordered_json GALLERYDATA::toJson() const
-{
-	nlohmann::ordered_json j;
-
-	j["name"]       = LEGENDDATA::name.ToString();
-	j["description"] = LEGENDDATA::description.ToString();
-
-	return j;
-}

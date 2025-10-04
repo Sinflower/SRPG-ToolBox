@@ -66,7 +66,9 @@ public:
 protected:
 	virtual nlohmann::ordered_json toJson() const
 	{
-		return nlohmann::ordered_json();
+		nlohmann::ordered_json j;
+		j["id"] = id;
+		return j;
 	}
 
 public:

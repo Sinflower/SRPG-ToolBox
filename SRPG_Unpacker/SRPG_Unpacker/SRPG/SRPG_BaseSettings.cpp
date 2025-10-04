@@ -38,22 +38,22 @@ void SRPG_BaseSettings::Init(FileReader& fw)
 	std::cout << "OFFSET=" << fw.GetOffset() << std::endl;
 #endif
 
-	allocAndSetCMenuOp(&m_pRestShopData1, SRPGClasses::RESTSHOPDATA, fw);
+	allocAndSetCMenuOp(&m_pShops, SRPGClasses::RESTSHOPDATA, fw);
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-RESTSHOPDATA=" << fw.GetOffset() << std::endl;
 #endif
 
-	allocAndSetCMenuOp(&m_pRestShopData2, SRPGClasses::RESTSHOPDATA, fw);
+	allocAndSetCMenuOp(&m_pBonuses, SRPGClasses::RESTSHOPDATA, fw);
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-RESTSHOPDATA=" << fw.GetOffset() << std::endl;
 #endif
 
-	allocAndSetCMenuOp(&m_pQuestData, SRPGClasses::QUESTDATA, fw);
+	allocAndSetCMenuOp(&m_pQuests, SRPGClasses::QUESTDATA, fw);
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-QUESTDATA=" << fw.GetOffset() << std::endl;
 #endif
 
-	allocAndSetCMenuOp(&m_pRestAreaData, SRPGClasses::RESTAREADATA, fw);
+	allocAndSetCMenuOp(&m_pRestAreas, SRPGClasses::RESTAREADATA, fw);
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-RESTAREADATA=" << fw.GetOffset() << std::endl;
 #endif
@@ -65,12 +65,12 @@ void SRPG_BaseSettings::Init(FileReader& fw)
 	std::cout << "OFFSET-EVENTDATA=" << fw.GetOffset() << std::endl;
 #endif
 
-	allocAndSetCMenuOp(&m_pSwitchData2, SRPGClasses::SWITCHDATA, fw);
+	allocAndSetCMenuOp(&m_pSwitchData, SRPGClasses::SWITCHDATA, fw);
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-SWITCHDATA=" << fw.GetOffset() << std::endl;
 #endif
 
-	initMemData(this_416, fw);
+	initMemData(saveFileTitle, fw);
 
 	this_417 = fw.ReadDWord();
 
@@ -93,7 +93,7 @@ void SRPG_BaseSettings::Init(FileReader& fw)
 	else
 		this_423 = fw.ReadDWord();
 
-	allocAndSetCMenuOp(&m_pItemGroupData2, SRPGClasses::ITEMGROUPDATA, fw);
+	allocAndSetCMenuOp(&m_pItemGroupData, SRPGClasses::ITEMGROUPDATA, fw);
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-ITEMGROUPDATA=" << fw.GetOffset() << std::endl;
 #endif
@@ -113,17 +113,17 @@ void SRPG_BaseSettings::Init(FileReader& fw)
 
 void SRPG_BaseSettings::Dump(FileWriter& fw) const
 {
-	m_pRestShopData1->dump(fw);
-	m_pRestShopData2->dump(fw);
-	m_pQuestData->dump(fw);
-	m_pRestAreaData->dump(fw);
+	m_pShops->dump(fw);
+	m_pBonuses->dump(fw);
+	m_pQuests->dump(fw);
+	m_pRestAreas->dump(fw);
 
 	for (const CMenuOperation* pCMO : m_pEventDatas)
 		pCMO->dump(fw);
 
-	m_pSwitchData2->dump(fw);
+	m_pSwitchData->dump(fw);
 
-	this_416.Write(fw);
+	saveFileTitle.Write(fw);
 
 	fw.Write(this_417);
 
@@ -137,7 +137,7 @@ void SRPG_BaseSettings::Dump(FileWriter& fw) const
 	if (g_ArcVersion >= 0x43D)
 		fw.Write(this_423);
 
-	m_pItemGroupData2->dump(fw);
+	m_pItemGroupData->dump(fw);
 
 	fw.Write(this_425);
 	fw.Write(this_426);

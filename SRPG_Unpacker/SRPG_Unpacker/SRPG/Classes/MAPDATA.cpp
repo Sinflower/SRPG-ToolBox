@@ -182,10 +182,8 @@ void MAPDATA::init(FileReader& fw)
 
 nlohmann::ordered_json MAPDATA::toJson() const
 {
-	nlohmann::ordered_json j;
-	j["id"]           = id;
-	j["name"]         = LEGENDDATA::name;
-	j["description"]  = LEGENDDATA::description;
+	nlohmann::ordered_json j = LEGENDDATA::toJson();
+
 	j["mapName"]      = mapName.ToString();
 	j["victoryConds"] = victoryCond->ToJson();
 	j["defeatConds"]  = defeatCond->ToJson();

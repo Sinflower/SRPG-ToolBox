@@ -26,11 +26,10 @@
 
 #pragma once
 
-#include "EDITDATA.h"
 #include "LEGENDDATA.h"
 
-struct FACIALDATA : public EDITDATA, public LEGENDDATA
+struct FACIALDATA : public LEGENDDATA
 {
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
 };

@@ -26,10 +26,9 @@
 
 #pragma once
 
-#include "EDITDATA.h"
 #include "LEGENDDATA.h"
 
-struct STATEDATA : public EDITDATA, public LEGENDDATA
+struct STATEDATA : public LEGENDDATA
 {
 	DWORD res     = 0;
 	DWORD this_8  = 0;
@@ -43,12 +42,14 @@ struct STATEDATA : public EDITDATA, public LEGENDDATA
 	DWORD this_16 = 0;
 	DWORD this_17 = 0;
 	MemData this_18;
+	DWORD this_31 = 0;
+	DWORD this_32 = 0;
+	DWORD this_33 = 0;
+
 	class CMenuOperation* m_pTypeIDData = nullptr;
-	DWORD this_31                       = 0;
-	DWORD this_32                       = 0;
-	DWORD this_33                       = 0;
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
 
 private:
 	DWORD this_19 = 0;

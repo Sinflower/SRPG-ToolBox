@@ -76,7 +76,7 @@ void METAMORDATA::init(FileReader& fw)
 
 	allocAndSetCMenuOp(&m_pItemConvertData, SRPGClasses::ITEMCONVERTDATA, fw);
 
-	initMemData(this_16, fw);
+	initMemData(command, fw);
 
 	LEGENDDATA::init(fw);
 
@@ -128,7 +128,7 @@ void METAMORDATA::dump(FileWriter& fw) const
 
 	m_pItemConvertData->dump(fw);
 
-	this_16.Write(fw);
+	command.Write(fw);
 
 	LEGENDDATA::dump(fw);
 
@@ -141,4 +141,11 @@ void METAMORDATA::dump(FileWriter& fw) const
 		fw.Write(this_49);
 		fw.Write(this_50);
 	}
+}
+
+nlohmann::ordered_json METAMORDATA::toJson() const
+{
+	nlohmann::ordered_json j = LEGENDDATA::toJson();
+	j["command"]             = command.ToString();
+	return j;
 }

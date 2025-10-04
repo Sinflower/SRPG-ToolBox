@@ -76,14 +76,10 @@ void UNITDATA::init(FileReader& fw)
 	this_55    = fw.ReadDWord();
 	this_57    = fw.ReadDWord();
 
-	if (g_ArcVersion < 0x429)
-		this_58 = -1;
-	else
+	if (g_ArcVersion >= 0x429)
 		this_58 = fw.ReadWord();
 
-	if (g_ArcVersion < 0x46B)
-		this_59 = 0;
-	else
+	if (g_ArcVersion >= 0x46B)
 		this_59 = fw.ReadDWord();
 
 	this_56 = fw.ReadDWord();
@@ -95,7 +91,7 @@ void UNITDATA::init(FileReader& fw)
 
 	this_64 = fw.ReadDWord();
 
-	sub_F7E930(fw);
+	LEGENDDATA::init(fw);
 
 	this_90  = fw.ReadDWord();
 	this_91  = fw.ReadDWord();
@@ -180,10 +176,7 @@ void UNITDATA::dump(FileWriter& fw) const
 	fw.Write(this_63);
 	fw.Write(this_64);
 
-	fw.Write(icon);
-
-	name.Write(fw);
-	description.Write(fw);
+	LEGENDDATA::dump(fw);
 
 	fw.Write(this_90);
 	fw.Write(this_91);
@@ -290,12 +283,92 @@ void UNITDATA::dump(FileWriter& fw) const
 	this_80->dump(fw);
 }
 
-void UNITDATA::sub_F7E930(FileReader& fw)
+void UNITDATA::print(std::ostream& os) const
 {
-	icon = fw.ReadQWord();
+	LEGENDDATA::print(os);
+	os << "UNITDATA" << std::endl;
+	os << "HP: " << hp << std::endl;
+	os << "STR: " << str << std::endl;
+	os << "MAG: " << mag << std::endl;
+	os << "SKL: " << skl << std::endl;
+	os << "SPD: " << spd << std::endl;
+	os << "LCK: " << lck << std::endl;
+	os << "DEF: " << def << std::endl;
+	os << "RES: " << res << std::endl;
+	os << "MOV: " << mov << std::endl;
+	os << "WLV: " << wlv << std::endl;
+	os << "BLD: " << bld << std::endl;
+	os << "this_18: " << this_18 << std::endl;
+	os << "this_19: " << this_19 << std::endl;
+	os << "LVL: " << lvl << std::endl;
+	os << "this_21: " << this_21 << std::endl;
+	os << "Item 01: " << item01 << std::endl;
+	os << "Item 02: " << item02 << std::endl;
+	os << "Item 03: " << item03 << std::endl;
+	os << "Item 04: " << item04 << std::endl;
+	os << "Item 05: " << item05 << std::endl;
+	os << "Item 06: " << item06 << std::endl;
+	os << "Item 07: " << item07 << std::endl;
+	os << "Item 08: " << item08 << std::endl;
+	os << "Item 09: " << item09 << std::endl;
+	os << "Item 10: " << item10 << std::endl;
+	os << "Item 11: " << item11 << std::endl;
+	os << "Item 12: " << item12 << std::endl;
+	os << "Item 13: " << item13 << std::endl;
+	os << "Item 14: " << item14 << std::endl;
+	os << "Item 15: " << item15 << std::endl;
+	os << "Item 16: " << item16 << std::endl;
+	os << "Item 17: " << item17 << std::endl;
+	os << "Item 18: " << item18 << std::endl;
+	os << "Item 19: " << item19 << std::endl;
+	os << "Item 20: " << item20 << std::endl;
+	os << "this_42: " << this_42 << std::endl;
+	os << "Importance: " << importance << std::endl;
+	os << "Growth Rates HP: " << grHP << std::endl;
+	os << "Growth Rates STR: " << grStr << std::endl;
+	os << "Growth Rates MAG: " << grMag << std::endl;
+	os << "Growth Rates SKL: " << grSkl << std::endl;
+	os << "Growth Rates SPD: " << grSpd << std::endl;
+	os << "Growth Rates LCK: " << grLck << std::endl;
+	os << "Growth Rates DEF: " << grDef << std::endl;
+	os << "Growth Rates RES: " << grRes << std::endl;
+	os << "Growth Rates MOV: " << grMov << std::endl;
+	os << "Growth Rates WLV: " << grWlv << std::endl;
+	os << "Growth Rates BLD: " << grBld << std::endl;
+	os << "this_55: " << this_55 << std::endl;
+	os << "this_56: " << this_56 << std::endl;
+	os << "this_57: " << this_57 << std::endl;
+	os << "this_58: " << this_58 << std::endl;
+	os << "this_59: " << this_59 << std::endl;
+	os << "this_60: " << this_60 << std::endl;
+	os << "this_61: " << this_61 << std::endl;
+	os << "this_62: " << this_62 << std::endl;
+	os << "this_63: " << this_63 << std::endl;
+	os << "this_64: " << this_64 << std::endl;
+	os << "this_65: " << this_65 << std::endl;
+	os << "this_66: " << this_66 << std::endl;
+	os << "this_67: " << this_67 << std::endl;
+	os << "this_68: " << this_68 << std::endl;
+	os << "this_69: " << this_69 << std::endl;
+	os << "this_70: " << this_70 << std::endl;
+	os << "this_71: " << this_71 << std::endl;
+	os << "this_72: " << this_72 << std::endl;
+	os << "this_73: " << this_73 << std::endl;
+	os << "this_74: " << this_74 << std::endl;
+	os << "this_75: " << this_75 << std::endl;
+	os << "this_76: " << this_76 << std::endl;
+	os << "CustomParameters: " << customParameters << std::endl;
+	os << "this_103: " << this_103 << std::endl;
+	os << "this_80: " << *this_80 << std::endl;
+}
 
-	initMemData(name, fw);
-	initMemData(description, fw);
+nlohmann::ordered_json UNITDATA::toJson() const
+{
+	nlohmann::ordered_json j = EDITDATA::toJson();
+	j.update(LEGENDDATA::toJson());
+	unitEvents->ToJson(j, "unitEvents");
+
+	return j;
 }
 
 void UNITDATA::sub_F7E130(FileReader& fw)
@@ -310,12 +383,7 @@ void UNITDATA::sub_F7E130(FileReader& fw)
 	res = fw.ReadDWord();
 	mov = fw.ReadDWord();
 
-	if (g_ArcVersion < 0x418)
-	{
-		wlv = 0;
-		bld = 0;
-	}
-	else
+	if (g_ArcVersion >= 0x418)
 	{
 		wlv = fw.ReadDWord();
 		bld = fw.ReadDWord();
@@ -335,27 +403,11 @@ void UNITDATA::sub_F7E310(FileReader& fw)
 		grDef = fw.ReadDWord();
 		grRes = fw.ReadDWord();
 		grMov = fw.ReadDWord();
-		grWlv = 0;
-		grBld = 0;
 	}
 	else
 	{
 		checkVal = fw.ReadDWord();
-		if (checkVal)
-		{
-			grHP  = 0;
-			grStr = 0;
-			grMag = 0;
-			grSkl = 0;
-			grSpd = 0;
-			grLck = 0;
-			grDef = 0;
-			grRes = 0;
-			grMov = 0;
-			grWlv = 0;
-			grBld = 0;
-		}
-		else
+		if (!checkVal)
 		{
 			grHP  = fw.ReadDWord();
 			grStr = fw.ReadDWord();
@@ -467,96 +519,4 @@ void UNITDATA::sub_F6F1D0(FileReader& fw)
 
 	if (g_ArcVersion >= 0x4A5)
 		this_105 = fw.ReadDWord();
-}
-
-void UNITDATA::print(std::ostream& os) const
-{
-	os << "UNITDATA" << std::endl;
-	os << "HP: " << hp << std::endl;
-	os << "STR: " << str << std::endl;
-	os << "MAG: " << mag << std::endl;
-	os << "SKL: " << skl << std::endl;
-	os << "SPD: " << spd << std::endl;
-	os << "LCK: " << lck << std::endl;
-	os << "DEF: " << def << std::endl;
-	os << "RES: " << res << std::endl;
-	os << "MOV: " << mov << std::endl;
-	os << "WLV: " << wlv << std::endl;
-	os << "BLD: " << bld << std::endl;
-	os << "Icon: " << icon << std::endl;
-	os << "Name: " << name << std::endl;
-	os << "Description: " << description << std::endl;
-	os << "this_18: " << this_18 << std::endl;
-	os << "this_19: " << this_19 << std::endl;
-	os << "LVL: " << lvl << std::endl;
-	os << "this_21: " << this_21 << std::endl;
-	os << "Item 01: " << item01 << std::endl;
-	os << "Item 02: " << item02 << std::endl;
-	os << "Item 03: " << item03 << std::endl;
-	os << "Item 04: " << item04 << std::endl;
-	os << "Item 05: " << item05 << std::endl;
-	os << "Item 06: " << item06 << std::endl;
-	os << "Item 07: " << item07 << std::endl;
-	os << "Item 08: " << item08 << std::endl;
-	os << "Item 09: " << item09 << std::endl;
-	os << "Item 10: " << item10 << std::endl;
-	os << "Item 11: " << item11 << std::endl;
-	os << "Item 12: " << item12 << std::endl;
-	os << "Item 13: " << item13 << std::endl;
-	os << "Item 14: " << item14 << std::endl;
-	os << "Item 15: " << item15 << std::endl;
-	os << "Item 16: " << item16 << std::endl;
-	os << "Item 17: " << item17 << std::endl;
-	os << "Item 18: " << item18 << std::endl;
-	os << "Item 19: " << item19 << std::endl;
-	os << "Item 20: " << item20 << std::endl;
-	os << "this_42: " << this_42 << std::endl;
-	os << "Importance: " << importance << std::endl;
-	os << "Growth Rates HP: " << grHP << std::endl;
-	os << "Growth Rates STR: " << grStr << std::endl;
-	os << "Growth Rates MAG: " << grMag << std::endl;
-	os << "Growth Rates SKL: " << grSkl << std::endl;
-	os << "Growth Rates SPD: " << grSpd << std::endl;
-	os << "Growth Rates LCK: " << grLck << std::endl;
-	os << "Growth Rates DEF: " << grDef << std::endl;
-	os << "Growth Rates RES: " << grRes << std::endl;
-	os << "Growth Rates MOV: " << grMov << std::endl;
-	os << "Growth Rates WLV: " << grWlv << std::endl;
-	os << "Growth Rates BLD: " << grBld << std::endl;
-	os << "this_55: " << this_55 << std::endl;
-	os << "this_56: " << this_56 << std::endl;
-	os << "this_57: " << this_57 << std::endl;
-	os << "this_58: " << this_58 << std::endl;
-	os << "this_59: " << this_59 << std::endl;
-	os << "this_60: " << this_60 << std::endl;
-	os << "this_61: " << this_61 << std::endl;
-	os << "this_62: " << this_62 << std::endl;
-	os << "this_63: " << this_63 << std::endl;
-	os << "this_64: " << this_64 << std::endl;
-	os << "this_65: " << this_65 << std::endl;
-	os << "this_66: " << this_66 << std::endl;
-	os << "this_67: " << this_67 << std::endl;
-	os << "this_68: " << this_68 << std::endl;
-	os << "this_69: " << this_69 << std::endl;
-	os << "this_70: " << this_70 << std::endl;
-	os << "this_71: " << this_71 << std::endl;
-	os << "this_72: " << this_72 << std::endl;
-	os << "this_73: " << this_73 << std::endl;
-	os << "this_74: " << this_74 << std::endl;
-	os << "this_75: " << this_75 << std::endl;
-	os << "this_76: " << this_76 << std::endl;
-	os << "CustomParameters: " << customParameters << std::endl;
-	os << "this_103: " << this_103 << std::endl;
-	os << "this_80: " << *this_80 << std::endl;
-}
-
-nlohmann::ordered_json UNITDATA::toJson() const
-{
-	nlohmann::ordered_json j;
-
-	j["name"]        = name;
-	j["description"] = description;
-	unitEvents->ToJson(j, "unitEvents");
-
-	return j;
 }

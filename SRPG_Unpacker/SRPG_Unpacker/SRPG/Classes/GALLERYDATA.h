@@ -26,19 +26,15 @@
 
 #pragma once
 
-#include "EDITDATA.h"
 #include "LEGENDDATA.h"
 
-struct GALLERYDATA : public EDITDATA, public LEGENDDATA
+struct GALLERYDATA : public LEGENDDATA
 {
 	DWORD this_8;
 	DWORD this_9;
 	MemData this_10;
 	class CMenuOperation* this_11 = nullptr;
 
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
-
-protected:
-	virtual nlohmann::ordered_json toJson() const override;
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
 };

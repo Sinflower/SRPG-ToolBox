@@ -30,7 +30,7 @@
 #include "EVENTPAGE_DATA.h"
 #include "LEGENDDATA.h"
 
-struct QUESTDATA : public EDITDATA, public LEGENDDATA
+struct QUESTDATA : public LEGENDDATA
 {
 	DWORD this_8  = 0;
 	DWORD this_9  = 0;
@@ -42,6 +42,6 @@ struct QUESTDATA : public EDITDATA, public LEGENDDATA
 	EVENTPAGE_DATA this_19;
 	class CMenuOperation* pRewardData = nullptr;
 	MemData this_21;
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
 };

@@ -36,7 +36,10 @@ struct REWARDDATA : public EDITDATA
 	DWORD this_6 = 0;
 	DWORD this_7 = 0;
 	DWORD this_8 = 0;
-	MemData this_9;
+	MemData text;
 	virtual void init(FileReader& fw);
 	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+
+protected:
+	virtual nlohmann::ordered_json toJson() const override;
 };

@@ -50,3 +50,11 @@ void LEGENDDATA::print(std::ostream& os) const
 	   << "Name: " << name << std::endl
 	   << "Description: " << description;
 }
+
+nlohmann::ordered_json LEGENDDATA::toJson() const
+{
+	nlohmann::ordered_json j = EDITDATA::toJson();
+	j["name"]                = name.ToString();
+	j["desc"]                = description.ToString();
+	return j;
+}

@@ -26,10 +26,9 @@
 
 #pragma once
 
-#include "EDITDATA.h"
 #include "LEGENDDATA.h"
 
-struct MAPDATA : public EDITDATA, public LEGENDDATA
+struct MAPDATA : public LEGENDDATA
 {
 	DWORD width    = 0;
 	DWORD height   = 0;
@@ -88,12 +87,12 @@ struct MAPDATA : public EDITDATA, public LEGENDDATA
 	std::array<DWORD, 12> this_201;
 	DWORD this_202 = 0;
 
-	virtual void print(std::ostream& os) const;
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+	void print(std::ostream& os) const override;
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
 
 protected:
-	virtual nlohmann::ordered_json toJson() const override;
+	nlohmann::ordered_json toJson() const override;
 
 private:
 	void sub_F7D9C0(FileReader& fw);

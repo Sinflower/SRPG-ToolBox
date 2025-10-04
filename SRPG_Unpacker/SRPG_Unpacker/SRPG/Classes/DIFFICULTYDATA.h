@@ -26,16 +26,16 @@
 
 #pragma once
 
-#include "EDITDATA.h"
 #include "LEGENDDATA.h"
 
-struct DIFFICULTYDATA : public EDITDATA, public LEGENDDATA
+struct DIFFICULTYDATA : public LEGENDDATA
 {
-	DWORD this_8                         = 0;
-	DWORD this_9                         = 0;
+	DWORD this_8 = 0;
+	DWORD this_9 = 0;
+
 	class CMenuOperation* m_pTypeIDData1 = nullptr;
 	class CMenuOperation* m_pTypeIDData2 = nullptr;
 	MemData this_12;
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
 };

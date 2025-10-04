@@ -414,11 +414,8 @@ void EVENTDATA::sub_FD4620(FileReader& fw)
 
 nlohmann::ordered_json EVENTDATA::toJson() const
 {
-	nlohmann::ordered_json j;
+	nlohmann::ordered_json j = LEGENDDATA::toJson();
 
-	j["id"]          = id;
-	j["name"]        = LEGENDDATA::name.ToString();
-	j["description"] = LEGENDDATA::description.ToString();
 	pPages->ToJson(j, "pages");
 
 	// If there is no actual page data skip the entire event

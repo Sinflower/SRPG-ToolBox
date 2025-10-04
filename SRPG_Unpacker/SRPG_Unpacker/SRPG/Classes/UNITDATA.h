@@ -26,26 +26,23 @@
 
 #pragma once
 
-#include "EDITDATA.h"
+#include "LEGENDDATA.h"
 
-struct UNITDATA : public EDITDATA
+struct UNITDATA : public LEGENDDATA
 {
 	DWORD checkVal = 0;
 
-	DWORD hp   = 0;
-	DWORD str  = 0;
-	DWORD mag  = 0;
-	DWORD skl  = 0;
-	DWORD spd  = 0;
-	DWORD lck  = 0;
-	DWORD def  = 0;
-	DWORD res  = 0;
-	DWORD mov  = 0;
-	DWORD wlv  = 0;
-	DWORD bld  = 0;
-	QWORD icon = 0;
-	MemData name;
-	MemData description;
+	DWORD hp         = 0;
+	DWORD str        = 0;
+	DWORD mag        = 0;
+	DWORD skl        = 0;
+	DWORD spd        = 0;
+	DWORD lck        = 0;
+	DWORD def        = 0;
+	DWORD res        = 0;
+	DWORD mov        = 0;
+	DWORD wlv        = 0;
+	DWORD bld        = 0;
 	DWORD this_18    = 0;
 	DWORD this_19    = 0;
 	DWORD lvl        = 0;
@@ -118,29 +115,30 @@ struct UNITDATA : public EDITDATA
 	class CMenuOperation* this_87    = nullptr; // IMAGEIDDATA
 	class CMenuOperation* this_88    = nullptr; // IMAGEIDDATA
 	class CMenuOperation* this_89    = nullptr; // IMAGEIDDATA
-	DWORD this_90                    = 0;
-	DWORD this_91                    = 0;
-	DWORD this_92                    = 0;
-	DWORD this_93                    = 0;
-	DWORD this_94                    = 0;
-	DWORD this_95                    = 0;
-	DWORD this_96                    = 0;
-	DWORD this_97                    = 0;
-	DWORD this_99                    = 0;
-	DWORD this_100                   = 0;
-	DWORD this_102                   = 0;
+
+	DWORD this_90  = 0;
+	DWORD this_91  = 0;
+	DWORD this_92  = 0;
+	DWORD this_93  = 0;
+	DWORD this_94  = 0;
+	DWORD this_95  = 0;
+	DWORD this_96  = 0;
+	DWORD this_97  = 0;
+	DWORD this_99  = 0;
+	DWORD this_100 = 0;
+	DWORD this_102 = 0;
 	MemData this_103;
 	DWORD this_105 = 0;
 
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
-	void sub_F7E930(FileReader& fw);
-	void sub_F7E130(FileReader& fw);
-	void sub_F7E310(FileReader& fw);
-	void sub_F6F1D0(FileReader& fw);
-
-	void print(std::ostream& os) const;
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
+	void print(std::ostream& os) const override;
 
 protected:
 	virtual nlohmann::ordered_json toJson() const override;
+
+private:
+	void sub_F7E130(FileReader& fw);
+	void sub_F7E310(FileReader& fw);
+	void sub_F6F1D0(FileReader& fw);
 };

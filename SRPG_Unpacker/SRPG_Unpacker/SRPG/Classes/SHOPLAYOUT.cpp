@@ -60,12 +60,13 @@ void SHOPLAYOUT::dump(FileWriter& fw) const
 
 nlohmann::ordered_json SHOPLAYOUT::toJson() const
 {
-	nlohmann::ordered_json j;
+	nlohmann::ordered_json j = EDITDATA::toJson();
 
-	j["shopMessages"] = nlohmann::ordered_json::array();
+	j["name"] = m_interOpScreenData.gameName.ToString();
+	j["msg"]  = nlohmann::ordered_json::array();
 
 	for (const MemData& msg : shopMessages)
-		j["shopMessages"].push_back(msg.ToString());
+		j["msg"].push_back(msg.ToString());
 
 	return j;
 }

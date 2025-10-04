@@ -163,8 +163,8 @@ void SRPG_Maps::Dump(FileWriter& fw) const
 
 void SRPG_Maps::WritePatches(const fs::path& outPath) const
 {
-	const fs::path mapFolder = outPath / MAPS_PATCH_FOLDER;
-	const fs::path commonsFolder = commonsPath(outPath);
+	const fs::path mapFolder     = outPath / MAPS_PATCH_FOLDER;
+	const fs::path commonsFolder = CommonsPath(outPath);
 
 	// Create the maps folder if it doesn't exist
 	if (!fs::exists(mapFolder))
@@ -197,5 +197,5 @@ void SRPG_Maps::WritePatches(const fs::path& outPath) const
 		m_pBookmarkEvents->WriteToJsonFile(commonsFolder, L"map_bookmark_events.json");
 
 	if (m_pBookmarkUnits)
-		m_pBookmarkUnits->WriteToJsonFile(commonsFolder, L"map_bookmark_units.json");
+		m_pBookmarkUnits->WriteToJsonFile(commonsFolder, L"bookmark.json");
 }

@@ -30,8 +30,11 @@
 
 struct CLASSGROUPDATA : public EDITDATA
 {
-	class CMenuOperation* m_pClassGroupntryData = nullptr;
-	MemData this_4;
+	class CMenuOperation* m_pClassGroupEntryData = nullptr;
+	MemData name;
 	virtual void init(FileReader& fw);
 	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+
+protected:
+	virtual nlohmann::ordered_json toJson() const override;
 };

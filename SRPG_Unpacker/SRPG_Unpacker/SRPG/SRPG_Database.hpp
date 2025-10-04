@@ -49,36 +49,45 @@ private:
 	void dump_sub_F7DD10(FileWriter& fw) const;
 
 private:
-	CMenuOperation* m_pPlayerUnits                   = nullptr;
-	CMenuOperation* m_pClassData                     = nullptr;
-	CMenuOperation* m_pWeaponData                    = nullptr;
-	CMenuOperation* m_pItemData                      = nullptr;
-	CMenuOperation* m_pSkillData                     = nullptr;
-	CMenuOperation* m_pStateData                     = nullptr;
-	CMenuOperation* m_pPassData1                     = nullptr;
-	CMenuOperation* m_pPassData2                     = nullptr;
-	CMenuOperation* m_pClassTypeData                 = nullptr;
-	CMenuOperation* m_pMoveTypeData                  = nullptr;
+	CMenuOperation* m_pPlayerUnits  = nullptr;
+	CMenuOperation* m_pClasses      = nullptr;
+	CMenuOperation* m_pWeapons      = nullptr;
+	CMenuOperation* m_pItems        = nullptr;
+	CMenuOperation* m_pSkills       = nullptr;
+	CMenuOperation* m_pStates       = nullptr;
+	CMenuOperation* m_pPassData1    = nullptr;
+	CMenuOperation* m_pPassData2    = nullptr;
+	CMenuOperation* m_pClassTypes   = nullptr;
+	CMenuOperation* m_pMoveTypeData = nullptr;
+
 	std::array<CMenuOperation*, 4> m_pWeaponTypeData = { nullptr };
-	CMenuOperation* m_pDifficultyData                = nullptr;
-	CMenuOperation* m_pFontData                      = nullptr;
-	CMenuOperation* m_pSwitchData1                   = nullptr;
-	CMenuOperation* m_pClassGroupData                = nullptr;
-	std::array<CMenuOperation*, 10> m_pNPCData       = { nullptr };
-	CMenuOperation* m_pStringData1                   = nullptr;
-	CMenuOperation* m_pFacialData                    = nullptr;
-	CMenuOperation* m_pStringData2                   = nullptr;
-	std::array<CMenuOperation*, 6> m_pVariableData   = { nullptr };
-	CMenuOperation* m_pStringData3                   = nullptr;
-	CMenuOperation* m_pStringData4                   = nullptr;
-	CMenuOperation* m_pStringData5                   = nullptr;
-	CMenuOperation* m_pTypeIDData                    = nullptr;
-	CMenuOperation* m_pRaceData                      = nullptr;
-	CMenuOperation* m_pFusionData                    = nullptr;
-	CMenuOperation* m_pMetamorRData                  = nullptr;
-	CMenuOperation* m_pPassGroupData                 = nullptr;
-	std::array<CMenuOperation*, 10> m_pOriginalData  = { nullptr };
-	CMenuOperation* m_pStringData6                   = nullptr;
+
+	CMenuOperation* m_pDifficulties = nullptr;
+	CMenuOperation* m_pFontData     = nullptr;
+	CMenuOperation* m_pSwitchData1  = nullptr;
+	CMenuOperation* m_pClassGroups  = nullptr;
+
+	std::array<CMenuOperation*, 10> m_pNPCData = { nullptr };
+
+	CMenuOperation* m_pStringData1 = nullptr;
+	CMenuOperation* m_pFacialData  = nullptr;
+	CMenuOperation* m_pStringData2 = nullptr;
+
+	std::array<CMenuOperation*, 6> m_pVariableData = { nullptr };
+
+	CMenuOperation* m_pStringData3     = nullptr;
+	CMenuOperation* m_pStringData4     = nullptr;
+	CMenuOperation* m_pStringData5     = nullptr;
+	CMenuOperation* m_pTypeIDData      = nullptr;
+	CMenuOperation* m_pRaces           = nullptr;
+	CMenuOperation* m_pFusionSettings  = nullptr;
+	CMenuOperation* m_pTransformations = nullptr;
+	CMenuOperation* m_pPassGroupData   = nullptr;
+
+	std::array<CMenuOperation*, 10> m_pOriginalData = { nullptr };
+
+	CMenuOperation* m_pStringData6 = nullptr;
+
 	MemData m_windowTitle;
 	MemData m_gameTitle;
 	MemData this_144;
