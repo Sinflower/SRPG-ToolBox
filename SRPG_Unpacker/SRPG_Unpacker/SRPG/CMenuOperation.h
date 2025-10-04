@@ -45,6 +45,7 @@ public:
 	void dump(FileWriter& fw) const;
 	nlohmann::ordered_json ToJson() const;
 	void ToJson(nlohmann::ordered_json& json, const std::string& name) const;
+	void WriteToJsonFile(const std::filesystem::path& outPath, const std::wstring& name) const;
 
 	std::size_t GetElemCount() const;
 	friend std::ostream& operator<<(std::ostream& os, CMenuOperation const& dt);

@@ -34,6 +34,9 @@ class CMenuOperation;
 
 class SRPG_ContainerBase
 {
+protected:
+	static inline const std::wstring COMMONS_PATCH_FOLDER = L"commons";
+
 public:
 	SRPG_ContainerBase() {}
 	virtual ~SRPG_ContainerBase() {}

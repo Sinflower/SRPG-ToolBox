@@ -75,7 +75,7 @@ void SRPG_Maps::Init(FileReader& fw)
 		std::cout << "OFFSET-EVENTDATA=" << fw.GetOffset() << std::endl;
 #endif
 
-		allocAndSetCMenuOp(&m_pUnitData1, SRPGClasses::UNITDATA, fw);
+		allocAndSetCMenuOp(&m_pBookmarkUnits, SRPGClasses::UNITDATA, fw);
 #ifdef DEBUG_PRINT
 		std::cout << "OFFSET-UNITDATA=" << fw.GetOffset() << std::endl;
 #endif
@@ -131,7 +131,7 @@ void SRPG_Maps::Dump(FileWriter& fw) const
 	if (g_ArcVersion >= 0x432)
 	{
 		m_pBookmarkEvents->dump(fw);
-		m_pUnitData1->dump(fw);
+		m_pBookmarkUnits->dump(fw);
 	}
 
 	fw.Write(this_21);
@@ -164,6 +164,7 @@ void SRPG_Maps::Dump(FileWriter& fw) const
 void SRPG_Maps::WritePatches(const fs::path& outPath) const
 {
 	const fs::path mapFolder = outPath / MAPS_PATCH_FOLDER;
+	const fs::path commonsFolder = outPath / COMMONS_PATCH_FOLDER;
 
 	// Create the maps folder if it doesn't exist
 	if (!fs::exists(mapFolder))
@@ -183,4 +184,18 @@ void SRPG_Maps::WritePatches(const fs::path& outPath) const
 		ofs << json.dump(4);
 		ofs.close();
 	}
+
+	// Create the commons folder if it doesn't exist
+	if (!fs::exists(commonsFolder))
+		fs::create_directories(commonsFolder);
+
+	// Write common data to commons folder
+	if (m_pMapCommonEvents)
+		m_pMapCommonEvents->WriteToJsonFile(commonsFolder, L"map_common_events.json");
+
+	if (m_pBookmarkEvents)
+		m_pBookmarkEvents->WriteToJsonFile(commonsFolder, L"map_bookmark_events.json");
+
+	if (m_pBookmarkUnits)
+		m_pBookmarkUnits->WriteToJsonFile(commonsFolder, L"map_bookmark_units.json");
 }

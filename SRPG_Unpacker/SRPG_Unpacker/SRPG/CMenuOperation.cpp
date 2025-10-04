@@ -96,6 +96,18 @@ void CMenuOperation::ToJson(nlohmann::ordered_json& json, const std::string& nam
 		json[name] = j;
 }
 
+void CMenuOperation::WriteToJsonFile(const std::filesystem::path& outPath, const std::wstring& name) const
+{
+	nlohmann::ordered_json j = ToJson();
+	if (j.is_null() || j.empty())
+		return;
+
+	const std::filesystem::path fPath = outPath / name;
+	std::ofstream ofs(fPath);
+	ofs << j.dump(4);
+	ofs.close();
+}
+
 std::ostream& operator<<(std::ostream& os, CMenuOperation const& dt)
 {
 	os << "CMenuOperation: " << dt.m_type << std::endl;

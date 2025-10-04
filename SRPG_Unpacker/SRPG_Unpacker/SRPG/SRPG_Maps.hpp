@@ -42,13 +42,13 @@ public:
 	void WritePatches(const std::filesystem::path& outPath) const override;
 
 private:
-	CMenuOperation* m_pMapData         = nullptr; // this_15
-	CMenuOperation* m_pMapTreeData1    = nullptr; // this_16
-	CMenuOperation* m_pMapTreeData2    = nullptr; // this_17
-	CMenuOperation* m_pDayNightData    = nullptr; // this_18 (new)
-	CMenuOperation* m_pMapCommonEvents = nullptr; // this_18
-	CMenuOperation* m_pBookmarkEvents  = nullptr; // this_19
-	CMenuOperation* m_pUnitData1       = nullptr; // this_20
+	CMenuOperation* m_pMapData         = nullptr;
+	CMenuOperation* m_pMapTreeData1    = nullptr;
+	CMenuOperation* m_pMapTreeData2    = nullptr;
+	CMenuOperation* m_pDayNightData    = nullptr;
+	CMenuOperation* m_pMapCommonEvents = nullptr;
+	CMenuOperation* m_pBookmarkEvents  = nullptr;
+	CMenuOperation* m_pBookmarkUnits   = nullptr;
 
 	// sub_F8F6E0 - this_15
 	DWORD this_21 = 0;
@@ -56,8 +56,8 @@ private:
 	DWORD this_23 = 0;
 	BYTE this_24  = 0;
 
-	std::array<CMenuOperation*, 12> m_pJumpIDData   = { nullptr }; // this_25-this_36
-	std::array<CMenuOperation*, 10> m_pJumpIDData2  = { nullptr }; // this_25-this_36
+	std::array<CMenuOperation*, 12> m_pJumpIDData   = { nullptr };
+	std::array<CMenuOperation*, 10> m_pJumpIDData2  = { nullptr };
 	std::array<CMenuOperation*, 6> m_pParamHeadData = { nullptr };
 	MemData this_37;
 };
