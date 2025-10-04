@@ -43,4 +43,8 @@ void SRPG_RecollectionEvents::Dump(FileWriter& fw) const
 
 void SRPG_RecollectionEvents::WritePatches(const std::filesystem::path& outPath) const
 {
+	const std::filesystem::path commonsFolder = commonsPath(outPath);
+
+	if (m_pRecollectionEvents)
+		m_pRecollectionEvents->WriteToJsonFile(commonsFolder, L"recollection_events.json");
 }

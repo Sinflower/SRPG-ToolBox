@@ -50,4 +50,7 @@ public:
 	}
 
 	virtual void WritePatches(const std::filesystem::path& outPath) const = 0;
+
+protected:
+	static std::filesystem::path commonsPath(const std::filesystem::path& basePath);
 };

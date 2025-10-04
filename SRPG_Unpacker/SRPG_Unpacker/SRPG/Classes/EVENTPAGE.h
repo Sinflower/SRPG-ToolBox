@@ -39,5 +39,5 @@ struct EVENTPAGE : public EDITDATA
 	EVENTPAGE_DATA this_5;
 
 protected:
-	virtual nlohmann::ordered_json toJson() const;
+	virtual nlohmann::ordered_json toJson() const override;
 };

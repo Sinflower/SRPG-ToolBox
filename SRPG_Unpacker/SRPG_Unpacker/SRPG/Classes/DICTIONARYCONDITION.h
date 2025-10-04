@@ -30,8 +30,11 @@
 
 struct DICTIONARYCONDITION : public EDITDATA
 {
-	MemData this_3;
+	MemData text;
 	class CMenuOperation* pSwitchActionData = nullptr;
 	virtual void init(FileReader& fw);
 	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+
+protected:
+	virtual nlohmann::ordered_json toJson() const override;
 };

@@ -42,5 +42,5 @@ struct CHOICEDATA : public EDITDATA
 	virtual void dump([[maybe_unused]] FileWriter& fw) const;
 
 protected:
-	virtual nlohmann::ordered_json toJson() const;
+	virtual nlohmann::ordered_json toJson() const override;
 };

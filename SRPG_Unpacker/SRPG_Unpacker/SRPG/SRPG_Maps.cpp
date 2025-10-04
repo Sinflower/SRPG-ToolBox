@@ -164,7 +164,7 @@ void SRPG_Maps::Dump(FileWriter& fw) const
 void SRPG_Maps::WritePatches(const fs::path& outPath) const
 {
 	const fs::path mapFolder = outPath / MAPS_PATCH_FOLDER;
-	const fs::path commonsFolder = outPath / COMMONS_PATCH_FOLDER;
+	const fs::path commonsFolder = commonsPath(outPath);
 
 	// Create the maps folder if it doesn't exist
 	if (!fs::exists(mapFolder))

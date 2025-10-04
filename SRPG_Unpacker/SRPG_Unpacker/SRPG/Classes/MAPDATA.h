@@ -93,7 +93,7 @@ struct MAPDATA : public EDITDATA, public LEGENDDATA
 	virtual void dump([[maybe_unused]] FileWriter& fw) const;
 
 protected:
-	nlohmann::ordered_json toJson() const override;
+	virtual nlohmann::ordered_json toJson() const override;
 
 private:
 	void sub_F7D9C0(FileReader& fw);

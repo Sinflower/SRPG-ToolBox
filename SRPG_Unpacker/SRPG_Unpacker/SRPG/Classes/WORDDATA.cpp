@@ -63,3 +63,14 @@ void WORDDATA::dump(FileWriter& fw) const
 		fw.Write(this_11);
 	}
 }
+
+nlohmann::ordered_json WORDDATA::toJson() const
+{
+	nlohmann::ordered_json j;
+
+	j["name"]       = LEGENDDATA::name.ToString();
+	j["formalName"] = LEGENDDATA::description.ToString();
+	pDictionaryCondition->ToJson(j, "pages");
+
+	return j;
+}

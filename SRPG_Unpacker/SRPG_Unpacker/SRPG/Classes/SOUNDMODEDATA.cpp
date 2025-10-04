@@ -36,10 +36,8 @@ void SOUNDMODEDATA::init(FileReader& fw)
 	this_10 = fw.ReadDWord();
 	this_11 = fw.ReadDWord();
 	InitMemData(this_12, fw);
-	this_4 = fw.ReadDWord();
-	this_5 = fw.ReadDWord();
-	InitMemData(this_6, fw);
-	InitMemData(this_7, fw);
+
+	LEGENDDATA::init(fw);
 }
 
 void SOUNDMODEDATA::dump(FileWriter& fw) const
@@ -48,8 +46,16 @@ void SOUNDMODEDATA::dump(FileWriter& fw) const
 	fw.Write(this_10);
 	fw.Write(this_11);
 	this_12.Write(fw);
-	fw.Write(this_4);
-	fw.Write(this_5);
-	this_6.Write(fw);
-	this_7.Write(fw);
+
+	LEGENDDATA::dump(fw);
+}
+
+nlohmann::ordered_json SOUNDMODEDATA::toJson() const
+{
+	nlohmann::ordered_json j;
+
+	j["name"]        = LEGENDDATA::name.ToString();
+	j["description"] = LEGENDDATA::description.ToString();
+
+	return j;
 }

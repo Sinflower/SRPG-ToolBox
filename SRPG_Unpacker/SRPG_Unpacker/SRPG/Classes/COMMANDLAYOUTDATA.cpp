@@ -32,21 +32,28 @@
 
 void COMMANDLAYOUTDATA::init(FileReader& fw)
 {
-	this_4 = fw.ReadDWord();
+	format = fw.ReadDWord();
 	this_5 = fw.ReadDWord();
 	this_6 = fw.ReadDWord();
 
 	allocAndSetCMenuOp(&m_pTypeIDData, SRPGClasses::TYPEIDDATA, fw);
 
-	initMemData(this_3, fw);
+	initMemData(commandName, fw);
 }
 
 void COMMANDLAYOUTDATA::dump(FileWriter& fw) const
 {
-	fw.Write(this_4);
+	fw.Write(format);
 	fw.Write(this_5);
 	fw.Write(this_6);
 
 	m_pTypeIDData->dump(fw);
-	this_3.Write(fw);
+	commandName.Write(fw);
+}
+
+nlohmann::ordered_json COMMANDLAYOUTDATA::toJson() const
+{
+	nlohmann::ordered_json j;
+	j["commandName"] = commandName.ToString();
+	return j;
 }

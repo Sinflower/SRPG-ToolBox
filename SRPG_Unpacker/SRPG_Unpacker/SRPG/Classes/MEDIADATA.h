@@ -37,5 +37,5 @@ struct MEDIADATA : public EDITDATA
 	virtual void dump([[maybe_unused]] FileWriter& fw) const;
 
 protected:
-	nlohmann::ordered_json toJson() const override;
+	virtual nlohmann::ordered_json toJson() const override;
 };

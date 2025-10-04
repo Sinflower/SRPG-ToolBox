@@ -37,7 +37,7 @@ void SHOPLAYOUT::init(FileReader& fw)
 
 	m_interOpScreenData.init(fw);
 
-	for (MemData& ph : this_6)
+	for (MemData& ph : shopMessages)
 		initMemData(ph, fw);
 
 	if (g_ArcVersion >= 0x43D)
@@ -51,9 +51,21 @@ void SHOPLAYOUT::dump(FileWriter& fw) const
 
 	m_interOpScreenData.dump(fw);
 
-	for (const MemData& ph : this_6)
+	for (const MemData& ph : shopMessages)
 		ph.Write(fw);
 
 	if (g_ArcVersion >= 0x43D)
 		fw.Write(this_19);
+}
+
+nlohmann::ordered_json SHOPLAYOUT::toJson() const
+{
+	nlohmann::ordered_json j;
+
+	j["shopMessages"] = nlohmann::ordered_json::array();
+
+	for (const MemData& msg : shopMessages)
+		j["shopMessages"].push_back(msg.ToString());
+
+	return j;
 }

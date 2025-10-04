@@ -142,5 +142,5 @@ struct UNITDATA : public EDITDATA
 	void print(std::ostream& os) const;
 
 protected:
-	virtual nlohmann::ordered_json toJson() const;
+	virtual nlohmann::ordered_json toJson() const override;
 };

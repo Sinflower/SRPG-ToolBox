@@ -62,6 +62,11 @@ nlohmann::ordered_json SRPG_Project::GetResMapping() const
 void SRPG_Project::WritePatch(const fs::path& outPath) const
 {
 	m_maps.WritePatches(outPath);
+	m_database.WritePatches(outPath);
+	m_gameLayout.WritePatches(outPath);
+	m_recollectionEvents.WritePatches(outPath);
+	m_storySettings.WritePatches(outPath);
+	m_baseSettings.WritePatches(outPath);
 }
 
 void SRPG_Project::loadProject()

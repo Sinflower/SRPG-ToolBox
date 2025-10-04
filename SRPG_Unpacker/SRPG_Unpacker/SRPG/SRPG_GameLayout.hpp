@@ -48,16 +48,16 @@ private:
 	DWORD this_380 = 0;
 	DWORD this_381 = 0;
 
-	CMenuOperation* m_pMessageLayoutData = nullptr; // this_382
-	CMenuOperation* m_pShopLayout2       = nullptr; // this_383
+	CMenuOperation* m_pMessageLayout = nullptr;
+	CMenuOperation* m_pShopLayout    = nullptr;
 
-	CMenuOperation* m_pTypeIDData2 = nullptr;
+	CMenuOperation* m_pTypeIDData = nullptr;
 
-	CMenuOperation* m_pCommandLayoutData1 = nullptr; // this_384
-	CMenuOperation* m_pCommandLayoutData2 = nullptr; // this_385
-	CMenuOperation* m_pCommandLayoutData3 = nullptr; // this_386
-	CMenuOperation* m_pCommandLayoutData4 = nullptr; // this_387
-	CMenuOperation* m_pCommandLayoutData5 = nullptr; // this_388
+	CMenuOperation* m_pTitleLayout       = nullptr;
+	CMenuOperation* m_pBattlePrepLayout  = nullptr;
+	CMenuOperation* m_pMapCommandsLayout = nullptr;
+	CMenuOperation* m_pBaseLayout        = nullptr;
+	CMenuOperation* m_pManageLayout      = nullptr;
 
-	struct RESOURCELAYOUTDATA* m_pResourceLayoutData = nullptr; // this_389
+	struct RESOURCELAYOUTDATA* m_pResourceLayout = nullptr;
 };

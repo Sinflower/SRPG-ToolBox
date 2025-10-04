@@ -1,4 +1,5 @@
 /*
+/*
  *  File: CHARACTERDATA.h
  *  Copyright (c) 2024 Sinflower
  *
@@ -41,4 +42,7 @@ struct CHARACTERDATA : public EDITDATA, public LEGENDDATA
 	DWORD this_15 = 0;
 	virtual void init(FileReader& fw);
 	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+
+protected:
+	virtual nlohmann::ordered_json toJson() const override;
 };

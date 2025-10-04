@@ -32,28 +32,28 @@
 
 void RESOURCELAYOUTDATA::init(FileReader& fw)
 {
-	this_3 = fw.ReadDWord();
-	this_4 = fw.ReadDWord();
-	this_5 = fw.ReadDWord();
-	this_6 = fw.ReadDWord();
+	charChipWidth  = fw.ReadDWord();
+	charChipHeight = fw.ReadDWord();
+	iconWidth      = fw.ReadDWord();
+	iconHeight     = fw.ReadDWord();
 
 	if (g_ArcVersion >= 0x4A1)
 	{
-		this_7 = fw.ReadDWord();
-		this_8 = fw.ReadDWord();
+		mapChipWidth  = fw.ReadDWord();
+		mapChipHeight = fw.ReadDWord();
 	}
 }
 
 void RESOURCELAYOUTDATA::dump(FileWriter& fw) const
 {
-	fw.Write(this_3);
-	fw.Write(this_4);
-	fw.Write(this_5);
-	fw.Write(this_6);
+	fw.Write(charChipWidth);
+	fw.Write(charChipHeight);
+	fw.Write(iconWidth);
+	fw.Write(iconHeight);
 
 	if (g_ArcVersion >= 0x4A1)
 	{
-		fw.Write(this_7);
-		fw.Write(this_8);
+		fw.Write(mapChipWidth);
+		fw.Write(mapChipHeight);
 	}
 }

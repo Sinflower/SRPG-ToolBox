@@ -49,42 +49,42 @@ private:
 	void dump_sub_F7DD10(FileWriter& fw) const;
 
 private:
-	CMenuOperation* m_pPlayerUnits                   = nullptr;     // this_86
-	CMenuOperation* m_pClassData                     = nullptr;     // this_87
-	CMenuOperation* m_pWeaponData                    = nullptr;     // this_88
-	CMenuOperation* m_pItemData                      = nullptr;     // this_89
-	CMenuOperation* m_pSkillData                     = nullptr;     // this_90
-	CMenuOperation* m_pStateData                     = nullptr;     // this_91
-	CMenuOperation* m_pPassData1                     = nullptr;     // this_92
-	CMenuOperation* m_pPassData2                     = nullptr;     // this_93
-	CMenuOperation* m_pClassTypeData                 = nullptr;     // this_94
-	CMenuOperation* m_pMoveTypeData                  = nullptr;     // this_95
-	std::array<CMenuOperation*, 4> m_pWeaponTypeData = { nullptr }; // this_96-this_99
-	CMenuOperation* m_pDifficultyData                = nullptr;     // this_100
-	CMenuOperation* m_pFontData                      = nullptr;     // this_101
-	CMenuOperation* m_pSwitchData1                   = nullptr;     // this_102
-	CMenuOperation* m_pClassGroupData                = nullptr;     // this_103
-	std::array<CMenuOperation*, 10> m_pNPCData       = { nullptr }; // this_104-this_113
-	CMenuOperation* m_pStringData1                   = nullptr;     // this_114
-	CMenuOperation* m_pFacialData                    = nullptr;     // this_115
-	CMenuOperation* m_pStringData2                   = nullptr;     // this_116
-	std::array<CMenuOperation*, 6> m_pVariableData   = { nullptr }; // this_117-this_122
-	CMenuOperation* m_pStringData3                   = nullptr;     // this_123
-	CMenuOperation* m_pStringData4                   = nullptr;     // this_124
-	CMenuOperation* m_pStringData5                   = nullptr;     // this_125
-	CMenuOperation* m_pTypeIDData                    = nullptr;     // this_126
-	CMenuOperation* m_pRaceData                      = nullptr;     // this_127
-	CMenuOperation* m_pFusionData                    = nullptr;     // this_128
-	CMenuOperation* m_pMetamorRData                  = nullptr;     // this_129
-	CMenuOperation* m_pPassGroupData                 = nullptr;     // this_130
-	std::array<CMenuOperation*, 10> m_pOriginalData  = { nullptr }; // this_131-this_140
-	CMenuOperation* m_pStringData6                   = nullptr;     // this_141
-	MemData m_windowTitle;                                          // this_142
-	MemData m_gameTitle;                                            // this_143
-	MemData this_144;                                               // this_144
-	MemData this_145;                                               // this_145
-	MemData this_146;                                               // this_146
-	MemData this_147;                                               // this_147
+	CMenuOperation* m_pPlayerUnits                   = nullptr;
+	CMenuOperation* m_pClassData                     = nullptr;
+	CMenuOperation* m_pWeaponData                    = nullptr;
+	CMenuOperation* m_pItemData                      = nullptr;
+	CMenuOperation* m_pSkillData                     = nullptr;
+	CMenuOperation* m_pStateData                     = nullptr;
+	CMenuOperation* m_pPassData1                     = nullptr;
+	CMenuOperation* m_pPassData2                     = nullptr;
+	CMenuOperation* m_pClassTypeData                 = nullptr;
+	CMenuOperation* m_pMoveTypeData                  = nullptr;
+	std::array<CMenuOperation*, 4> m_pWeaponTypeData = { nullptr };
+	CMenuOperation* m_pDifficultyData                = nullptr;
+	CMenuOperation* m_pFontData                      = nullptr;
+	CMenuOperation* m_pSwitchData1                   = nullptr;
+	CMenuOperation* m_pClassGroupData                = nullptr;
+	std::array<CMenuOperation*, 10> m_pNPCData       = { nullptr };
+	CMenuOperation* m_pStringData1                   = nullptr;
+	CMenuOperation* m_pFacialData                    = nullptr;
+	CMenuOperation* m_pStringData2                   = nullptr;
+	std::array<CMenuOperation*, 6> m_pVariableData   = { nullptr };
+	CMenuOperation* m_pStringData3                   = nullptr;
+	CMenuOperation* m_pStringData4                   = nullptr;
+	CMenuOperation* m_pStringData5                   = nullptr;
+	CMenuOperation* m_pTypeIDData                    = nullptr;
+	CMenuOperation* m_pRaceData                      = nullptr;
+	CMenuOperation* m_pFusionData                    = nullptr;
+	CMenuOperation* m_pMetamorRData                  = nullptr;
+	CMenuOperation* m_pPassGroupData                 = nullptr;
+	std::array<CMenuOperation*, 10> m_pOriginalData  = { nullptr };
+	CMenuOperation* m_pStringData6                   = nullptr;
+	MemData m_windowTitle;
+	MemData m_gameTitle;
+	MemData this_144;
+	MemData this_145;
+	MemData this_146;
+	MemData this_147;
 	DWORD this_148        = 0;
 	DWORD this_149        = 0;
 	DWORD this_150        = 0;
@@ -93,37 +93,37 @@ private:
 	DWORD this_153        = 0;
 	DWORD this_154        = 0;
 	DWORD this_155        = 0;
-	DWORD m_gold          = 0; // this_156
-	DWORD m_bonus         = 0; // this_157
-	DWORD m_maxSkillCount = 0; // this_158
-	DWORD m_maxItemCount  = 0; // this_159
-	DWORD m_convoyItem    = 0; // this_160
-	DWORD m_maxEnemyCount = 0; // this_161
-	DWORD m_maxLv         = 0; // this_162
-	DWORD m_maxHP         = 0; // this_163
-	DWORD m_maxStr        = 0; // this_164
-	DWORD m_maxMag        = 0; // this_165
-	DWORD m_maxSkl        = 0; // this_166
-	DWORD m_maxSpd        = 0; // this_167
-	DWORD m_maxLck        = 0; // this_168
-	DWORD m_maxDef        = 0; // this_169
-	DWORD m_maxRes        = 0; // this_170
-	DWORD m_maxMov        = 0; // this_171
-	DWORD m_maxWlv        = 0; // this_172
-	DWORD m_maxBld        = 0; // this_173
-	DWORD m_pursuitValue  = 0; // this_174
-	DWORD m_minExp        = 0; // this_175
-	DWORD m_leaderExp     = 0; // this_176
-	DWORD m_subLeaderExp  = 0; // this_177
-	DWORD this_178        = 0; // this_178
-	DWORD this_179        = 0; // this_179
-	DWORD this_180        = 0; // this_180
-	DWORD this_181        = 0; // this_181
-	DWORD this_182        = 0; // this_182
-	DWORD this_183        = 0; // this_183
+	DWORD m_gold          = 0;
+	DWORD m_bonus         = 0;
+	DWORD m_maxSkillCount = 0;
+	DWORD m_maxItemCount  = 0;
+	DWORD m_convoyItem    = 0;
+	DWORD m_maxEnemyCount = 0;
+	DWORD m_maxLv         = 0;
+	DWORD m_maxHP         = 0;
+	DWORD m_maxStr        = 0;
+	DWORD m_maxMag        = 0;
+	DWORD m_maxSkl        = 0;
+	DWORD m_maxSpd        = 0;
+	DWORD m_maxLck        = 0;
+	DWORD m_maxDef        = 0;
+	DWORD m_maxRes        = 0;
+	DWORD m_maxMov        = 0;
+	DWORD m_maxWlv        = 0;
+	DWORD m_maxBld        = 0;
+	DWORD m_pursuitValue  = 0;
+	DWORD m_minExp        = 0;
+	DWORD m_leaderExp     = 0;
+	DWORD m_subLeaderExp  = 0;
+	DWORD this_178        = 0;
+	DWORD this_179        = 0;
+	DWORD this_180        = 0;
+	DWORD this_181        = 0;
+	DWORD this_182        = 0;
+	DWORD this_183        = 0;
 
-	CMenuOperation* m_pItemGroupData = nullptr; // this_184
-	CMenuOperation* m_pUnitIDData    = nullptr; // this_185
+	CMenuOperation* m_pItemGroupData = nullptr;
+	CMenuOperation* m_pUnitIDData    = nullptr;
 	MemData this_186;
 
 	DWORD this_187 = 0;
@@ -166,8 +166,8 @@ private:
 	DWORD this_224 = 0;
 	DWORD this_225 = 0;
 
-	CMenuOperation* m_pItemGroupData1 = nullptr; // this_226
-	CMenuOperation* m_pShopLayout1    = nullptr; // this_227
+	CMenuOperation* m_pItemGroupData1 = nullptr;
+	CMenuOperation* m_pShopLayout1    = nullptr;
 
 	DWORD this_228 = 0;
 	DWORD this_229 = 0;

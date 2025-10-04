@@ -32,12 +32,21 @@
 
 void DICTIONARYCONDITION::init(FileReader& fw)
 {
-	initMemData(this_3, fw);
+	initMemData(text, fw);
 	allocAndSetCMenuOp(&pSwitchActionData, SRPGClasses::SWITCHACTIONDATA, fw);
 }
 
 void DICTIONARYCONDITION::dump(FileWriter& fw) const
 {
-	this_3.Write(fw);
+	text.Write(fw);
 	pSwitchActionData->dump(fw);
+}
+
+nlohmann::ordered_json DICTIONARYCONDITION::toJson() const
+{
+	nlohmann::ordered_json j;
+
+	j["text"] = text.ToString();
+
+	return j;
 }

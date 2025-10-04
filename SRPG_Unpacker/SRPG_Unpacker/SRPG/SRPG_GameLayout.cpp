@@ -34,7 +34,7 @@
 #include "Classes/RESOURCELAYOUTDATA.h"
 
 SRPG_GameLayout::SRPG_GameLayout() :
-	m_pResourceLayoutData(new RESOURCELAYOUTDATA)
+	m_pResourceLayout(new RESOURCELAYOUTDATA)
 {}
 
 void SRPG_GameLayout::Init(FileReader& fw)
@@ -59,14 +59,14 @@ void SRPG_GameLayout::Init(FileReader& fw)
 		}
 
 		if (g_ArcVersion >= 0x4FF)
-			allocAndSetCMenuOp(&m_pTypeIDData2, SRPGClasses::TYPEIDDATA, fw);
+			allocAndSetCMenuOp(&m_pTypeIDData, SRPGClasses::TYPEIDDATA, fw);
 
-		allocAndSetCMenuOp(&m_pMessageLayoutData, SRPGClasses::MESSAGELAYOUTDATA, fw);
+		allocAndSetCMenuOp(&m_pMessageLayout, SRPGClasses::MESSAGELAYOUTDATA, fw);
 #ifdef DEBUG_PRINT
 		std::cout << "OFFSET-MESSAGELAYOUTDATA=" << fw.GetOffset() << std::endl;
 #endif
 
-		allocAndSetCMenuOp(&m_pShopLayout2, SRPGClasses::SHOPLAYOUT, fw);
+		allocAndSetCMenuOp(&m_pShopLayout, SRPGClasses::SHOPLAYOUT, fw);
 #ifdef DEBUG_PRINT
 		std::cout << "OFFSET-SHOPLAYOUT=" << fw.GetOffset() << std::endl;
 #endif
@@ -74,24 +74,24 @@ void SRPG_GameLayout::Init(FileReader& fw)
 
 	if (g_ArcVersion >= 0x428)
 	{
-		allocAndSetCMenuOp(&m_pCommandLayoutData1, SRPGClasses::COMMANDLAYOUTDATA, fw);
+		allocAndSetCMenuOp(&m_pTitleLayout, SRPGClasses::COMMANDLAYOUTDATA, fw);
 #ifdef DEBUG_PRINT
 		std::cout << "OFFSET-COMMANDLAYOUTDATA=" << fw.GetOffset() << std::endl;
 #endif
 
-		allocAndSetCMenuOp(&m_pCommandLayoutData2, SRPGClasses::COMMANDLAYOUTDATA, fw);
+		allocAndSetCMenuOp(&m_pBattlePrepLayout, SRPGClasses::COMMANDLAYOUTDATA, fw);
 #ifdef DEBUG_PRINT
 		std::cout << "OFFSET-COMMANDLAYOUTDATA=" << fw.GetOffset() << std::endl;
 #endif
 
-		allocAndSetCMenuOp(&m_pCommandLayoutData3, SRPGClasses::COMMANDLAYOUTDATA, fw);
+		allocAndSetCMenuOp(&m_pMapCommandsLayout, SRPGClasses::COMMANDLAYOUTDATA, fw);
 #ifdef DEBUG_PRINT
 		std::cout << "OFFSET-COMMANDLAYOUTDATA=" << fw.GetOffset() << std::endl;
 #endif
 
 		if (g_ArcVersion >= 0x43D)
 		{
-			allocAndSetCMenuOp(&m_pCommandLayoutData4, SRPGClasses::COMMANDLAYOUTDATA, fw);
+			allocAndSetCMenuOp(&m_pBaseLayout, SRPGClasses::COMMANDLAYOUTDATA, fw);
 #ifdef DEBUG_PRINT
 			std::cout << "OFFSET-COMMANDLAYOUTDATA=" << fw.GetOffset() << std::endl;
 #endif
@@ -99,7 +99,7 @@ void SRPG_GameLayout::Init(FileReader& fw)
 
 		if (g_ArcVersion >= 0x441)
 		{
-			allocAndSetCMenuOp(&m_pCommandLayoutData5, SRPGClasses::COMMANDLAYOUTDATA, fw);
+			allocAndSetCMenuOp(&m_pManageLayout, SRPGClasses::COMMANDLAYOUTDATA, fw);
 #ifdef DEBUG_PRINT
 			std::cout << "OFFSET-COMMANDLAYOUTDATA=" << fw.GetOffset() << std::endl;
 #endif
@@ -108,7 +108,7 @@ void SRPG_GameLayout::Init(FileReader& fw)
 
 	if (g_ArcVersion >= 0x49F)
 	{
-		m_pResourceLayoutData->init(fw);
+		m_pResourceLayout->init(fw);
 #ifdef DEBUG_PRINT
 		std::cout << "OFFSET-RESOURCELAYOUTDATA=" << fw.GetOffset() << std::endl;
 #endif
@@ -138,29 +138,48 @@ void SRPG_GameLayout::Dump(FileWriter& fw) const
 		}
 
 		if (g_ArcVersion >= 0x4FF)
-			m_pTypeIDData2->dump(fw);
+			m_pTypeIDData->dump(fw);
 
-		m_pMessageLayoutData->dump(fw);
-		m_pShopLayout2->dump(fw);
+		m_pMessageLayout->dump(fw);
+		m_pShopLayout->dump(fw);
 	}
 
 	if (g_ArcVersion >= 0x428)
 	{
-		m_pCommandLayoutData1->dump(fw);
-		m_pCommandLayoutData2->dump(fw);
-		m_pCommandLayoutData3->dump(fw);
+		m_pTitleLayout->dump(fw);
+		m_pBattlePrepLayout->dump(fw);
+		m_pMapCommandsLayout->dump(fw);
 
 		if (g_ArcVersion >= 0x43D)
-			m_pCommandLayoutData4->dump(fw);
+			m_pBaseLayout->dump(fw);
 
 		if (g_ArcVersion >= 0x441)
-			m_pCommandLayoutData5->dump(fw);
+			m_pManageLayout->dump(fw);
 	}
 
 	if (g_ArcVersion >= 0x49F)
-		m_pResourceLayoutData->dump(fw);
+		m_pResourceLayout->dump(fw);
 }
 
 void SRPG_GameLayout::WritePatches(const std::filesystem::path& outPath) const
 {
+	const std::filesystem::path commonsFolder = commonsPath(outPath);
+
+	if (m_pShopLayout)
+		m_pShopLayout->WriteToJsonFile(commonsFolder, L"shop_layout");
+
+	if (m_pTitleLayout)
+		m_pTitleLayout->WriteToJsonFile(commonsFolder, L"title_layout");
+
+	if (m_pBattlePrepLayout)
+		m_pBattlePrepLayout->WriteToJsonFile(commonsFolder, L"battle_prep_layout");
+
+	if (m_pMapCommandsLayout)
+		m_pMapCommandsLayout->WriteToJsonFile(commonsFolder, L"map_commands_layout");
+
+	if (m_pBaseLayout)
+		m_pBaseLayout->WriteToJsonFile(commonsFolder, L"base_layout");
+
+	if (m_pManageLayout)
+		m_pManageLayout->WriteToJsonFile(commonsFolder, L"manage_layout");
 }

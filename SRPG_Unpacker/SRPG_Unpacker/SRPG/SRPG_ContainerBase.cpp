@@ -23,3 +23,18 @@
  *  SOFTWARE.
  *
  */
+
+#include "SRPG_ContainerBase.hpp"
+
+namespace fs = std::filesystem;
+
+std::filesystem::path SRPG_ContainerBase::commonsPath(const std::filesystem::path& basePath)
+{
+	const fs::path commonsFolder = basePath / COMMONS_PATCH_FOLDER;
+
+	// Create the commons folder if it doesn't exist
+	if (!fs::exists(commonsFolder))
+		fs::create_directories(commonsFolder);
+
+	return commonsFolder;
+}

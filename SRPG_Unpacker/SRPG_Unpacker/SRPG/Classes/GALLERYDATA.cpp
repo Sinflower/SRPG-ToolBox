@@ -38,11 +38,7 @@ void GALLERYDATA::init(FileReader& fw)
 
 	initMemData(this_10, fw);
 
-	this_4 = fw.ReadDWord();
-	this_5 = fw.ReadDWord();
-
-	initMemData(this_6, fw);
-	initMemData(this_7, fw);
+	LEGENDDATA::init(fw);
 }
 
 void GALLERYDATA::dump(FileWriter& fw) const
@@ -53,9 +49,15 @@ void GALLERYDATA::dump(FileWriter& fw) const
 
 	this_10.Write(fw);
 
-	fw.Write(this_4);
-	fw.Write(this_5);
+	LEGENDDATA::dump(fw);
+}
 
-	this_6.Write(fw);
-	this_7.Write(fw);
+nlohmann::ordered_json GALLERYDATA::toJson() const
+{
+	nlohmann::ordered_json j;
+
+	j["name"]       = LEGENDDATA::name.ToString();
+	j["description"] = LEGENDDATA::description.ToString();
+
+	return j;
 }

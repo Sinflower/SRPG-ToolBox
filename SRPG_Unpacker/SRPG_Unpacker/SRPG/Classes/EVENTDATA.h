@@ -116,5 +116,5 @@ struct EVENTDATA : public EDITDATA, public LEGENDDATA
 	DWORD this_23 = 0;
 
 protected:
-	virtual nlohmann::ordered_json toJson() const;
+	virtual nlohmann::ordered_json toJson() const override;
 };
