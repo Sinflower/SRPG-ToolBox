@@ -396,3 +396,12 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Misc Files
+_spc_patch/
+_test_patch/
+_spc.dat
+_test.dat
+project.srpgs
+SRPG_X.cpp
+SRPG_X.hpp
