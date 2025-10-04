@@ -1,5 +1,5 @@
 /*
- *  File: ITEMCONVERTDATA.cpp
+ *  File: SRPG_GameLayout.hpp
  *  Copyright (c) 2025 Sinflower
  *
  *  MIT License
@@ -24,20 +24,40 @@
  *
  */
 
-// Compatible up to v1.292
+#pragma once
 
-#include "ITEMCONVERTDATA.h"
-#include "../CMenuOperation.h"
-#include "EDITDATA.h"
+#include "SRPG_ContainerBase.hpp"
 
-void ITEMCONVERTDATA::init(FileReader& fw)
+class CMenuOperation;
+
+class SRPG_GameLayout : public SRPG_ContainerBase
 {
-	this_3 = fw.ReadDWord();
-	this_4 = fw.ReadDWord();
-}
+public:
+	SRPG_GameLayout();
+	virtual ~SRPG_GameLayout() {}
+	void Init(FileReader& fw) override;
+	void Dump(FileWriter& fw) const override;
+	void WritePatches(const std::filesystem::path& outPath) const override;
 
-void ITEMCONVERTDATA::dump(FileWriter& fw) const
-{
-	fw.Write(this_3);
-	fw.Write(this_4);
-}
+private:
+	DWORD this_375 = 0;
+	DWORD this_376 = 0;
+	DWORD this_377 = 0;
+	DWORD this_378 = 0;
+	DWORD this_379 = 0;
+	DWORD this_380 = 0;
+	DWORD this_381 = 0;
+
+	CMenuOperation* m_pMessageLayoutData = nullptr; // this_382
+	CMenuOperation* m_pShopLayout2       = nullptr; // this_383
+
+	CMenuOperation* m_pTypeIDData2 = nullptr;
+
+	CMenuOperation* m_pCommandLayoutData1 = nullptr; // this_384
+	CMenuOperation* m_pCommandLayoutData2 = nullptr; // this_385
+	CMenuOperation* m_pCommandLayoutData3 = nullptr; // this_386
+	CMenuOperation* m_pCommandLayoutData4 = nullptr; // this_387
+	CMenuOperation* m_pCommandLayoutData5 = nullptr; // this_388
+
+	struct RESOURCELAYOUTDATA* m_pResourceLayoutData = nullptr; // this_389
+};

@@ -1,5 +1,5 @@
 /*
- *  File: MESSAGEBASE.h
+ *  File: SRPG_Maps.hpp
  *  Copyright (c) 2025 Sinflower
  *
  *  MIT License
@@ -26,16 +26,38 @@
 
 #pragma once
 
-#include "../Classes/EDITDATA.h"
+#include <array>
 
-struct MESSAGEBASE : public EDITDATA
+#include "SRPG_ContainerBase.hpp"
+
+class SRPG_Maps : public SRPG_ContainerBase
 {
-	MemData message;
+	static inline const std::wstring MAPS_PATCH_FOLDER = L"maps";
 
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
-	virtual void print(std::ostream& os) const;
+public:
+	SRPG_Maps() {}
+	~SRPG_Maps() {}
+	void Init(FileReader& fw) override;
+	void Dump(FileWriter& fw) const override;
+	void WritePatches(const std::filesystem::path& outPath) const override;
 
-protected:
-	virtual nlohmann::ordered_json toJson() const;
+private:
+	CMenuOperation* m_pMapData         = nullptr; // this_15
+	CMenuOperation* m_pMapTreeData1    = nullptr; // this_16
+	CMenuOperation* m_pMapTreeData2    = nullptr; // this_17
+	CMenuOperation* m_pDayNightData    = nullptr; // this_18 (new)
+	CMenuOperation* m_pMapCommonEvents = nullptr; // this_18
+	CMenuOperation* m_pBookmarkEvents  = nullptr; // this_19
+	CMenuOperation* m_pUnitData1       = nullptr; // this_20
+
+	// sub_F8F6E0 - this_15
+	DWORD this_21 = 0;
+	BYTE this_22  = 0;
+	DWORD this_23 = 0;
+	BYTE this_24  = 0;
+
+	std::array<CMenuOperation*, 12> m_pJumpIDData   = { nullptr }; // this_25-this_36
+	std::array<CMenuOperation*, 10> m_pJumpIDData2  = { nullptr }; // this_25-this_36
+	std::array<CMenuOperation*, 6> m_pParamHeadData = { nullptr };
+	MemData this_37;
 };

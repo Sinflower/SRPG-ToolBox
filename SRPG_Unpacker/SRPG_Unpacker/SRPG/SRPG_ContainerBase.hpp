@@ -1,5 +1,5 @@
 /*
- *  File: ITEMCONVERTDATA.cpp
+ *  File: SRPG_ContainerBase.hpp
  *  Copyright (c) 2025 Sinflower
  *
  *  MIT License
@@ -24,20 +24,27 @@
  *
  */
 
-// Compatible up to v1.292
+#pragma once
 
-#include "ITEMCONVERTDATA.h"
-#include "../CMenuOperation.h"
-#include "EDITDATA.h"
+#include "../FileAccess.h"
+#include "../MemData.h"
+#include <filesystem>
 
-void ITEMCONVERTDATA::init(FileReader& fw)
+class CMenuOperation;
+
+class SRPG_ContainerBase
 {
-	this_3 = fw.ReadDWord();
-	this_4 = fw.ReadDWord();
-}
+public:
+	SRPG_ContainerBase() {}
+	virtual ~SRPG_ContainerBase() {}
+	virtual void Init(FileReader& fw)       = 0;
+	virtual void Dump(FileWriter& fw) const = 0;
 
-void ITEMCONVERTDATA::dump(FileWriter& fw) const
-{
-	fw.Write(this_3);
-	fw.Write(this_4);
-}
+	// By default, DumpProj calls Dump
+	virtual void DumpProj(FileWriter& fw) const
+	{
+		Dump(fw);
+	}
+
+	virtual void WritePatches(const std::filesystem::path& outPath) const = 0;
+};

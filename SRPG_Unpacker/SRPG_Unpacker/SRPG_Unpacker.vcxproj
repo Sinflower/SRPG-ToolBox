@@ -332,7 +332,17 @@
     <ClCompile Include="SRPG\Commands\VIDEOPLAY.cpp" />
     <ClCompile Include="SRPG\Commands\WAITACTION.cpp" />
     <ClCompile Include="SRPG\Functions.cpp" />
+    <ClCompile Include="SRPG\SRPG_Animations.cpp" />
+    <ClCompile Include="SRPG\SRPG_BaseSettings.cpp" />
+    <ClCompile Include="SRPG\SRPG_ContainerBase.cpp" />
+    <ClCompile Include="SRPG\SRPG_Database.cpp" />
+    <ClCompile Include="SRPG\SRPG_GameLayout.cpp" />
+    <ClCompile Include="SRPG\SRPG_InterOpData.cpp" />
+    <ClCompile Include="SRPG\SRPG_Maps.cpp" />
     <ClCompile Include="SRPG\SRPG_Project.cpp" />
+    <ClCompile Include="SRPG\SRPG_RecollectionEvents.cpp" />
+    <ClCompile Include="SRPG\SRPG_Resources.cpp" />
+    <ClCompile Include="SRPG\SRPG_StorySettings.cpp" />
     <ClCompile Include="SRPG_Unpacker.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -569,7 +579,17 @@
     <ClInclude Include="SRPG\Commands\VIDEOPLAY.h" />
     <ClInclude Include="SRPG\Commands\WAITACTION.h" />
     <ClInclude Include="SRPG\Functions.h" />
+    <ClInclude Include="SRPG\SRPG_Animations.hpp" />
+    <ClInclude Include="SRPG\SRPG_BaseSettings.hpp" />
+    <ClInclude Include="SRPG\SRPG_ContainerBase.hpp" />
+    <ClInclude Include="SRPG\SRPG_Database.hpp" />
+    <ClInclude Include="SRPG\SRPG_GameLayout.hpp" />
+    <ClInclude Include="SRPG\SRPG_InterOpData.hpp" />
+    <ClInclude Include="SRPG\SRPG_Maps.hpp" />
     <ClInclude Include="SRPG\SRPG_Project.h" />
+    <ClInclude Include="SRPG\SRPG_RecollectionEvents.hpp" />
+    <ClInclude Include="SRPG\SRPG_Resources.hpp" />
+    <ClInclude Include="SRPG\SRPG_StorySettings.hpp" />
     <ClInclude Include="SRPG\Types.h" />
     <ClInclude Include="SRPG\Version.h" />
     <ClInclude Include="Types.h" />

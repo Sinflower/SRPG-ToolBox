@@ -512,6 +512,17 @@ public:
 			throw(FileWriterException("WriteBytesArr: size is larger than buffer size"));
 	}
 
+	template<typename T, std::size_t S>
+	void WriteArr(const std::array<T, S>& buffer, const DWORD& size = -1)
+	{
+		if (size == -1)
+			WriteBytes(buffer.data(), buffer.size() * sizeof(T));
+		else if (size <= buffer.size())
+			WriteBytes(buffer.data(), size * sizeof(T));
+		else
+			throw(FileWriterException("WriteArr: size is larger than buffer size"));
+	}
+
 	void WriteBytesVec(const std::vector<BYTE>& buffer, const DWORD& size = -1)
 	{
 		if (size == -1)

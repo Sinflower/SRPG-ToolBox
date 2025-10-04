@@ -1,4 +1,4 @@
-﻿extensions: .cpp .h
+﻿extensions: .cpp .h .hpp
 /*
  *  File: %FileName%
  *  Copyright (c) %CreationYear% Sinflower

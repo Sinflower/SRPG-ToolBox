@@ -1,5 +1,5 @@
 /*
- *  File: ITEMCONVERTDATA.cpp
+ *  File: SRPG_RecollectionEvents.cpp
  *  Copyright (c) 2025 Sinflower
  *
  *  MIT License
@@ -24,20 +24,23 @@
  *
  */
 
-// Compatible up to v1.292
+#include "SRPG_RecollectionEvents.hpp"
 
-#include "ITEMCONVERTDATA.h"
-#include "../CMenuOperation.h"
-#include "EDITDATA.h"
+#include "CMenuOperation.h"
+#include "Functions.h"
+#include "SRPG_Project.h"
+#include "Version.h"
 
-void ITEMCONVERTDATA::init(FileReader& fw)
+void SRPG_RecollectionEvents::Init(FileReader& fw)
 {
-	this_3 = fw.ReadDWord();
-	this_4 = fw.ReadDWord();
+	allocAndSetCMenuOp(&m_pRecollectionEvents, SRPGClasses::EVENTDATA, fw);
 }
 
-void ITEMCONVERTDATA::dump(FileWriter& fw) const
+void SRPG_RecollectionEvents::Dump(FileWriter& fw) const
 {
-	fw.Write(this_3);
-	fw.Write(this_4);
+	m_pRecollectionEvents->dump(fw);
+}
+
+void SRPG_RecollectionEvents::WritePatches(const std::filesystem::path& outPath) const
+{
 }

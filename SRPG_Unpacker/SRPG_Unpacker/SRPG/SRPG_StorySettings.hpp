@@ -1,5 +1,5 @@
 /*
- *  File: ITEMCONVERTDATA.cpp
+ *  File: SRPG_StorySettings.hpp
  *  Copyright (c) 2025 Sinflower
  *
  *  MIT License
@@ -24,20 +24,32 @@
  *
  */
 
-// Compatible up to v1.292
+#pragma once
 
-#include "ITEMCONVERTDATA.h"
-#include "../CMenuOperation.h"
-#include "EDITDATA.h"
+#include "SRPG_ContainerBase.hpp"
 
-void ITEMCONVERTDATA::init(FileReader& fw)
+class CMenuOperation;
+
+class SRPG_StorySettings : public SRPG_ContainerBase
 {
-	this_3 = fw.ReadDWord();
-	this_4 = fw.ReadDWord();
-}
+public:
+	SRPG_StorySettings() {}
+	virtual ~SRPG_StorySettings() {}
+	void Init(FileReader& fw) override;
+	void Dump(FileWriter& fw) const override;
+	void WritePatches(const std::filesystem::path& outPath) const override;
 
-void ITEMCONVERTDATA::dump(FileWriter& fw) const
-{
-	fw.Write(this_3);
-	fw.Write(this_4);
-}
+private:
+	CMenuOperation* m_pCharacterData = nullptr; // this_239
+	CMenuOperation* m_pWordData      = nullptr; // this_240
+	CMenuOperation* m_pGalleryData   = nullptr; // this_241
+	CMenuOperation* m_pSoundModeData = nullptr; // this_242
+
+	DWORD this_243 = 0;
+	DWORD this_244 = 0;
+	DWORD this_245 = 0;
+	DWORD this_246 = 0;
+	DWORD this_247 = 0;
+	DWORD this_248 = 0;
+	DWORD this_249 = 0;
+};

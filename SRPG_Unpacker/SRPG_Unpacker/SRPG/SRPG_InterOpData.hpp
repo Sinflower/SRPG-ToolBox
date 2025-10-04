@@ -1,5 +1,5 @@
 /*
- *  File: ITEMCONVERTDATA.cpp
+ *  File: SRPG_InterOpData.hpp
  *  Copyright (c) 2025 Sinflower
  *
  *  MIT License
@@ -24,20 +24,28 @@
  *
  */
 
-// Compatible up to v1.292
+#pragma once
 
-#include "ITEMCONVERTDATA.h"
-#include "../CMenuOperation.h"
-#include "EDITDATA.h"
+#include "SRPG_ContainerBase.hpp"
 
-void ITEMCONVERTDATA::init(FileReader& fw)
+class CMenuOperation;
+
+class SRPG_InterOpData : public SRPG_ContainerBase
 {
-	this_3 = fw.ReadDWord();
-	this_4 = fw.ReadDWord();
-}
+public:
+	SRPG_InterOpData() {}
+	virtual ~SRPG_InterOpData() {}
+	void Init(FileReader& fw) override;
+	void Dump(FileWriter& fw) const override;
+	void WritePatches(const std::filesystem::path& outPath) const override;
 
-void ITEMCONVERTDATA::dump(FileWriter& fw) const
-{
-	fw.Write(this_3);
-	fw.Write(this_4);
-}
+private:
+	CMenuOperation* m_pInteropAnimeData    = nullptr; // this_231
+	CMenuOperation* m_pInteropMediaData    = nullptr; // this_232
+	CMenuOperation* m_pInteropGraphicsData = nullptr; // this_233
+	CMenuOperation* m_pInteropUIData       = nullptr; // this_234
+	CMenuOperation* m_pInteropTextUIData   = nullptr; // this_235
+	CMenuOperation* m_pInteropScreenData   = nullptr; // this_236
+	CMenuOperation* m_pInteropStringData1  = nullptr; // this_237
+	CMenuOperation* m_pInteropStringData2  = nullptr; // this_238
+};

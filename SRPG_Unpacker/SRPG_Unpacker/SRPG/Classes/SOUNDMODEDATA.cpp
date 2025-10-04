@@ -1,6 +1,6 @@
 /*
  *  File: SOUNDMODEDATA.cpp
- *  Copyright (c) 2024 Sinflower
+ *  Copyright (c) 2025 Sinflower
  *
  *  MIT License
  *

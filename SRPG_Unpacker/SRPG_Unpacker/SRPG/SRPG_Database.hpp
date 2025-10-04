@@ -1,0 +1,177 @@
+/*
+ *  File: SRPG_Database.hpp
+ *  Copyright (c) 2025 Sinflower
+ *
+ *  MIT License
+ *
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ *
+ *  The above copyright notice and this permission notice shall be included in all
+ *  copies or substantial portions of the Software.
+ *
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *  SOFTWARE.
+ *
+ */
+
+#pragma once
+
+#include "SRPG_ContainerBase.hpp"
+
+#include <array>
+
+class SRPG_Database : public SRPG_ContainerBase
+{
+public:
+	SRPG_Database() {}
+	virtual ~SRPG_Database() {}
+	void Init(FileReader& fw) override;
+	void Dump(FileWriter& fw) const override;
+	void WritePatches(const std::filesystem::path& outPath) const override;
+
+private:
+	void sub_F8E4E0(FileReader& fw);
+	void sub_F7DA50(FileReader& fw);
+	void sub_F7DD10(FileReader& fw);
+
+	void dump_sub_F8E4E0(FileWriter& fw) const;
+	void dump_sub_F7DA50(FileWriter& fw) const;
+	void dump_sub_F7DD10(FileWriter& fw) const;
+
+
+private:
+	CMenuOperation* m_pPlayerUnits                   = nullptr;     // this_86
+	CMenuOperation* m_pClassData                     = nullptr;     // this_87
+	CMenuOperation* m_pWeaponData                    = nullptr;     // this_88
+	CMenuOperation* m_pItemData                      = nullptr;     // this_89
+	CMenuOperation* m_pSkillData                     = nullptr;     // this_90
+	CMenuOperation* m_pStateData                     = nullptr;     // this_91
+	CMenuOperation* m_pPassData1                     = nullptr;     // this_92
+	CMenuOperation* m_pPassData2                     = nullptr;     // this_93
+	CMenuOperation* m_pClassTypeData                 = nullptr;     // this_94
+	CMenuOperation* m_pMoveTypeData                  = nullptr;     // this_95
+	std::array<CMenuOperation*, 4> m_pWeaponTypeData = { nullptr }; // this_96-this_99
+	CMenuOperation* m_pDifficultyData                = nullptr;     // this_100
+	CMenuOperation* m_pFontData                      = nullptr;     // this_101
+	CMenuOperation* m_pSwitchData1                   = nullptr;     // this_102
+	CMenuOperation* m_pClassGroupData                = nullptr;     // this_103
+	std::array<CMenuOperation*, 10> m_pNPCData       = { nullptr }; // this_104-this_113
+	CMenuOperation* m_pStringData1                   = nullptr;     // this_114
+	CMenuOperation* m_pFacialData                    = nullptr;     // this_115
+	CMenuOperation* m_pStringData2                   = nullptr;     // this_116
+	std::array<CMenuOperation*, 6> m_pVariableData   = { nullptr }; // this_117-this_122
+	CMenuOperation* m_pStringData3                   = nullptr;     // this_123
+	CMenuOperation* m_pStringData4                   = nullptr;     // this_124
+	CMenuOperation* m_pStringData5                   = nullptr;     // this_125
+	CMenuOperation* m_pTypeIDData                    = nullptr;     // this_126
+	CMenuOperation* m_pRaceData                      = nullptr;     // this_127
+	CMenuOperation* m_pFusionData                    = nullptr;     // this_128
+	CMenuOperation* m_pMetamorRData                  = nullptr;     // this_129
+	CMenuOperation* m_pPassGroupData                 = nullptr;     // this_130
+	std::array<CMenuOperation*, 10> m_pOriginalData  = { nullptr }; // this_131-this_140
+	CMenuOperation* m_pStringData6                   = nullptr;     // this_141
+	MemData m_windowTitle;                                          // this_142
+	MemData m_gameTitle;                                            // this_143
+	MemData this_144;                                               // this_144
+	MemData this_145;                                               // this_145
+	MemData this_146;                                               // this_146
+	MemData this_147;                                               // this_147
+	DWORD this_148        = 0;
+	DWORD this_149        = 0;
+	DWORD this_150        = 0;
+	DWORD this_151        = 0;
+	DWORD this_152        = 0;
+	DWORD this_153        = 0;
+	DWORD this_154        = 0;
+	DWORD this_155        = 0;
+	DWORD m_gold          = 0; // this_156
+	DWORD m_bonus         = 0; // this_157
+	DWORD m_maxSkillCount = 0; // this_158
+	DWORD m_maxItemCount  = 0; // this_159
+	DWORD m_convoyItem    = 0; // this_160
+	DWORD m_maxEnemyCount = 0; // this_161
+	DWORD m_maxLv         = 0; // this_162
+	DWORD m_maxHP         = 0; // this_163
+	DWORD m_maxStr        = 0; // this_164
+	DWORD m_maxMag        = 0; // this_165
+	DWORD m_maxSkl        = 0; // this_166
+	DWORD m_maxSpd        = 0; // this_167
+	DWORD m_maxLck        = 0; // this_168
+	DWORD m_maxDef        = 0; // this_169
+	DWORD m_maxRes        = 0; // this_170
+	DWORD m_maxMov        = 0; // this_171
+	DWORD m_maxWlv        = 0; // this_172
+	DWORD m_maxBld        = 0; // this_173
+	DWORD m_pursuitValue  = 0; // this_174
+	DWORD m_minExp        = 0; // this_175
+	DWORD m_leaderExp     = 0; // this_176
+	DWORD m_subLeaderExp  = 0; // this_177
+	DWORD this_178        = 0; // this_178
+	DWORD this_179        = 0; // this_179
+	DWORD this_180        = 0; // this_180
+	DWORD this_181        = 0; // this_181
+	DWORD this_182        = 0; // this_182
+	DWORD this_183        = 0; // this_183
+
+	CMenuOperation* m_pItemGroupData = nullptr; // this_184
+	CMenuOperation* m_pUnitIDData    = nullptr; // this_185
+	MemData this_186;
+
+	DWORD this_187 = 0;
+	DWORD this_188 = 0;
+	DWORD this_189 = 0;
+	DWORD this_190 = 0;
+	DWORD this_191 = 0;
+	DWORD this_192 = 0;
+	DWORD this_193 = 0;
+	DWORD this_194 = 0;
+	DWORD this_195 = 0;
+	DWORD this_196 = 0;
+	DWORD this_197 = 0;
+	DWORD this_198 = 0;
+	DWORD this_199 = 0;
+	DWORD this_200 = 0;
+	DWORD this_201 = 0;
+	DWORD this_202 = 0;
+	DWORD this_203 = 0;
+	DWORD this_204 = 0;
+	DWORD this_205 = 0;
+	DWORD this_206 = 0;
+	DWORD this_207 = 0;
+	DWORD this_208 = 0;
+	DWORD this_209 = 0;
+	DWORD this_210 = 0;
+	DWORD this_211 = 0;
+	DWORD this_212 = 0;
+	DWORD this_213 = 0;
+	DWORD this_214 = 0;
+	DWORD this_215 = 0;
+	DWORD this_216 = 0;
+	DWORD this_217 = 0;
+	DWORD this_218 = 0;
+	DWORD this_219 = 0;
+	DWORD this_220 = 0;
+	DWORD this_221 = 0;
+	DWORD this_222 = 0;
+	DWORD this_223 = 0;
+	DWORD this_224 = 0;
+	DWORD this_225 = 0;
+
+	CMenuOperation* m_pItemGroupData1 = nullptr; // this_226
+	CMenuOperation* m_pShopLayout1    = nullptr; // this_227
+
+	DWORD this_228 = 0;
+	DWORD this_229 = 0;
+	DWORD this_230 = 0;
+	DWORD this_231 = 0;
+};

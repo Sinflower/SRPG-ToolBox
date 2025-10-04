@@ -591,6 +591,36 @@
     <ClCompile Include="SRPG\Commands\MESSAGEBASE.cpp">
       <Filter>SRPG\Commands</Filter>
     </ClCompile>
+    <ClCompile Include="SRPG\SRPG_Maps.cpp">
+      <Filter>SRPG</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\SRPG_ContainerBase.cpp">
+      <Filter>SRPG</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\SRPG_Database.cpp">
+      <Filter>SRPG</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\SRPG_Animations.cpp">
+      <Filter>SRPG</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\SRPG_GameLayout.cpp">
+      <Filter>SRPG</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\SRPG_InterOpData.cpp">
+      <Filter>SRPG</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\SRPG_StorySettings.cpp">
+      <Filter>SRPG</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\SRPG_BaseSettings.cpp">
+      <Filter>SRPG</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\SRPG_Resources.cpp">
+      <Filter>SRPG</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\SRPG_RecollectionEvents.cpp">
+      <Filter>SRPG</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileAccess.h">
@@ -1306,6 +1336,36 @@
     </ClInclude>
     <ClInclude Include="SRPG\Commands\MESSAGEBASE.h">
       <Filter>SRPG\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\SRPG_Maps.hpp">
+      <Filter>SRPG</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\SRPG_ContainerBase.hpp">
+      <Filter>SRPG</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\SRPG_Database.hpp">
+      <Filter>SRPG</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\SRPG_Animations.hpp">
+      <Filter>SRPG</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\SRPG_GameLayout.hpp">
+      <Filter>SRPG</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\SRPG_InterOpData.hpp">
+      <Filter>SRPG</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\SRPG_StorySettings.hpp">
+      <Filter>SRPG</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\SRPG_BaseSettings.hpp">
+      <Filter>SRPG</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\SRPG_Resources.hpp">
+      <Filter>SRPG</Filter>
+    </ClInclude>
+    <ClInclude Include="SRPG\SRPG_RecollectionEvents.hpp">
+      <Filter>SRPG</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

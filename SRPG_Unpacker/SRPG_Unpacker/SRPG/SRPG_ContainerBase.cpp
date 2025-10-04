@@ -1,5 +1,5 @@
 /*
- *  File: ITEMCONVERTDATA.cpp
+ *  File: SRPG_ContainerBase.cpp
  *  Copyright (c) 2025 Sinflower
  *
  *  MIT License
@@ -24,20 +24,3 @@
  *
  */
 
-// Compatible up to v1.292
-
-#include "ITEMCONVERTDATA.h"
-#include "../CMenuOperation.h"
-#include "EDITDATA.h"
-
-void ITEMCONVERTDATA::init(FileReader& fw)
-{
-	this_3 = fw.ReadDWord();
-	this_4 = fw.ReadDWord();
-}
-
-void ITEMCONVERTDATA::dump(FileWriter& fw) const
-{
-	fw.Write(this_3);
-	fw.Write(this_4);
-}

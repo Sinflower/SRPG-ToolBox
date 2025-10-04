@@ -1,5 +1,5 @@
 /*
- *  File: ITEMCONVERTDATA.cpp
+ *  File: SRPG_BaseSettings.hpp
  *  Copyright (c) 2025 Sinflower
  *
  *  MIT License
@@ -24,20 +24,48 @@
  *
  */
 
-// Compatible up to v1.292
+#pragma once
 
-#include "ITEMCONVERTDATA.h"
-#include "../CMenuOperation.h"
-#include "EDITDATA.h"
+#include "SRPG_ContainerBase.hpp"
 
-void ITEMCONVERTDATA::init(FileReader& fw)
+#include <array>
+
+class CMenuOperation;
+
+class SRPG_BaseSettings : public SRPG_ContainerBase
 {
-	this_3 = fw.ReadDWord();
-	this_4 = fw.ReadDWord();
-}
+public:
+	SRPG_BaseSettings() {}
+	virtual ~SRPG_BaseSettings() {}
+	void Init(FileReader& fw) override;
+	void Dump(FileWriter& fw) const override;
+	void WritePatches(const std::filesystem::path& outPath) const override;
 
-void ITEMCONVERTDATA::dump(FileWriter& fw) const
-{
-	fw.Write(this_3);
-	fw.Write(this_4);
-}
+private:
+	CMenuOperation* m_pRestShopData1 = nullptr; // this_405
+	CMenuOperation* m_pRestShopData2 = nullptr; // this_406
+	CMenuOperation* m_pQuestData     = nullptr; // this_407
+	CMenuOperation* m_pRestAreaData  = nullptr; // this_408
+
+	std::array<CMenuOperation*, 6> m_pEventDatas = { nullptr }; // this_409-this_414
+	CMenuOperation* m_pSwitchData2               = nullptr;     // this_415
+	MemData this_416;
+
+	DWORD this_417 = 0;
+
+	CMenuOperation* m_pTestMember = nullptr; // this_418
+
+	DWORD this_419 = 0;
+	DWORD this_420 = 0;
+	DWORD this_421 = 0;
+	DWORD this_422 = 0;
+	DWORD this_423 = 0;
+
+	CMenuOperation* m_pItemGroupData2 = nullptr; // this_424
+
+	DWORD this_425 = 0;
+	DWORD this_426 = 0;
+	DWORD this_427 = 0;
+	DWORD this_428 = 0;
+	DWORD this_429 = 0;
+};
