@@ -100,7 +100,7 @@ void CMenuOperation::WriteToJsonFile(const std::filesystem::path& outPath, const
 {
 	nlohmann::ordered_json j = ToJson();
 	if (j.is_null() || j.empty())
-		return;
+		j = nlohmann::ordered_json::array();
 
 	WriteJsonToFile(j, outPath, name);
 }

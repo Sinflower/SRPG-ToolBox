@@ -52,7 +52,7 @@ void SRPG_Project::Dump(const std::wstring& outFolder) const
 	FileWriter fw(std::format(L"{}/{}", outFolder, PROJECT_FILE_NAME));
 	dump(fw);
 	// dumpAsProj(fw);
-	//  writeResMapping();
+	// writeResMapping();
 }
 
 nlohmann::ordered_json SRPG_Project::GetResMapping() const
