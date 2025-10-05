@@ -29,6 +29,7 @@
 #include "CMenuOperation.h"
 #include "Functions.h"
 #include "SRPG_Project.h"
+#include "Speaker.h"
 #include "Version.h"
 
 #include "Classes/MAPDATA.h"
@@ -166,11 +167,33 @@ void SRPG_Maps::WritePatches(const fs::path& outPath) const
 	const fs::path mapFolder     = MapsPath(outPath);
 	const fs::path commonsFolder = CommonsPath(outPath);
 
+	// Create a backup to remove the map specific entires after processing each map
+	const UnitNamesCollection unitNamesBak = g_UnitNames;
+
 	// Write each map to its own file
 	for (const EDITDATA* pObj : *m_pMapData)
 	{
 		if (pObj)
-			WriteJsonToFile(pObj->ToJson(), mapFolder, formatMapFileName(pObj->id));
+		{
+			const MAPDATA* pMap = dynamic_cast<const MAPDATA*>(pObj);
+
+			if (pMap)
+			{
+				// Add map specific unit names
+				AddUnitNames(buildUnitNameMap(pMap->pEnemyUnits, 1));
+				AddUnitNames(buildUnitNameMap(pMap->pEvEnemyUnits, 2));
+				AddUnitNames(buildUnitNameMap(pMap->pAllyUnits, 3));
+				AddUnitNames(buildUnitNameMap(pMap->pEvAllyUnits, 4));
+				AddUnitNames(buildUnitNameMap(pMap->pReinforcementUnits, 5));
+				AddUnitNames(buildUnitNameMap(pMap->pGuestUnits, 6));
+				AddUnitNames(buildUnitNameMap(pMap->pEvGuestUnits, 7));
+
+				WriteJsonToFile(pObj->ToJson(), mapFolder, formatMapFileName(pObj->id));
+			}
+		}
+
+		// Restore the global unit names only
+		g_UnitNames = unitNamesBak;
 	}
 
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pMapCommonEvents, commonsFolder, L"mapcommonevents.json");

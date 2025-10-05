@@ -31,6 +31,8 @@
 #include "SRPG_Project.h"
 #include "Version.h"
 
+#include "Classes/UNITDATA.h"
+
 void SRPG_Database::Init(FileReader& fw)
 {
 #ifdef DEBUG_PRINT
@@ -286,7 +288,7 @@ void SRPG_Database::ApplyPatches(const std::filesystem::path& patchPath)
 	CHECK_OBJ_AND_APPLY_PATCH(m_pCmdStrPlaceEv, cmdStrsFolder, L"placeevents.json");
 	CHECK_OBJ_AND_APPLY_PATCH(m_pCmdStrTalkEv, cmdStrsFolder, L"talkevents.json");
 
-	for (uint32_t i = 0; i < m_pNPCSettings.size(); i++)
+	for (std::size_t i = 0; i < m_pNPCSettings.size(); i++)
 	{
 		const std::wstring filename = std::format(L"npc{}.json", i + 1);
 		CHECK_OBJ_AND_APPLY_PATCH(m_pNPCSettings[i], npcSettingsFolder, filename);
@@ -294,6 +296,20 @@ void SRPG_Database::ApplyPatches(const std::filesystem::path& patchPath)
 
 	CHECK_OBJ_AND_APPLY_PATCH(m_pOriginalTerrains, terrainFolder, L"originalterrains.json");
 	CHECK_OBJ_AND_APPLY_PATCH(m_pRuntimeTerrains, terrainFolder, L"runtimeterrains.json");
+}
+
+UnitNamesCollection SRPG_Database::GetGlobalUnitNames() const
+{
+	UnitNamesCollection names;
+	names[0] = buildUnitNameMap(m_pPlayerUnits, 0x0);
+
+	for (std::size_t i = 0; i < m_pNPCSettings.size(); i++)
+	{
+		UnitNameMap map = buildUnitNameMap(m_pNPCSettings[i], static_cast<DWORD>(i));
+		names[1].insert(map.begin(), map.end());
+	}
+
+	return names;
 }
 
 void SRPG_Database::sub_F8E4E0(FileReader& fw)

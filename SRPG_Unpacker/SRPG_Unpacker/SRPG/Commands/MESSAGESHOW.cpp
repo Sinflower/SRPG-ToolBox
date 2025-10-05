@@ -56,3 +56,11 @@ void MESSAGESHOW::print(std::ostream& os) const
 	os << "Unit: " << unit << std::endl;
 	os << "this_7: " << this_7;
 }
+
+nlohmann::ordered_json MESSAGESHOW::toJson() const
+{
+	nlohmann::ordered_json j = MESSAGEBASE::toJson();
+
+	j["speaker"] = getSpeakerName(type, unit);
+	return j;
+}

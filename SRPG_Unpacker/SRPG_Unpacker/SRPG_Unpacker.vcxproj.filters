@@ -1367,5 +1367,8 @@
     <ClInclude Include="SRPG\SRPG_RecollectionEvents.hpp">
       <Filter>SRPG</Filter>
     </ClInclude>
+    <ClInclude Include="SRPG\Speaker.h">
+      <Filter>SRPG</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -60,6 +60,8 @@ public:
 		m_gameTitle = title;
 	}
 
+	UnitNamesCollection GetGlobalUnitNames() const;
+
 private:
 	void sub_F8E4E0(FileReader& fw);
 	void sub_F7DA50(FileReader& fw);

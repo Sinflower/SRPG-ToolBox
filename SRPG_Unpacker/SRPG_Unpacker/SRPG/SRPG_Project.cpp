@@ -35,6 +35,7 @@
 namespace fs = std::filesystem;
 
 DWORD g_ArcVersion = 0;
+UnitNamesCollection g_UnitNames;
 
 SRPG_Project::SRPG_Project(const SRPG_ProjectData& projData) :
 	m_resources(projData.resFlag)
@@ -66,7 +67,10 @@ nlohmann::ordered_json SRPG_Project::GetResMapping() const
 
 void SRPG_Project::WritePatch(const fs::path& outPath) const
 {
+	g_UnitNames = m_database.GetGlobalUnitNames();
+
 	m_maps.WritePatches(outPath);
+
 	m_database.WritePatches(outPath);
 	m_gameLayout.WritePatches(outPath);
 	m_recollectionEvents.WritePatches(outPath);

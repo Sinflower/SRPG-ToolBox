@@ -30,8 +30,8 @@
 
 void STILLMESSAGE::init(FileReader& fw)
 {
-	this_4 = fw.ReadDWord();
-	this_5 = fw.ReadDWord();
+	unit = fw.ReadDWord();
+	type = fw.ReadDWord();
 
 	if (g_ArcVersion >= 1039)
 		this_6 = fw.ReadDWord();
@@ -41,11 +41,19 @@ void STILLMESSAGE::init(FileReader& fw)
 
 void STILLMESSAGE::dump(FileWriter& fw) const
 {
-	fw.Write(this_4);
-	fw.Write(this_5);
+	fw.Write(unit);
+	fw.Write(type);
 
 	if (g_ArcVersion >= 1039)
 		fw.Write(this_6);
 
 	MESSAGEBASE::dump(fw);
+}
+
+nlohmann::ordered_json STILLMESSAGE::toJson() const
+{
+	nlohmann::ordered_json j = MESSAGEBASE::toJson();
+
+	j["speaker"] = getSpeakerName(type, unit);
+	return j;
 }

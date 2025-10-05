@@ -25,6 +25,9 @@
  */
 
 #include "SRPG_ContainerBase.hpp"
+#include "CMenuOperation.h"
+#include "Classes/NPCDATA.h"
+#include "Classes/UNITDATA.h"
 
 std::filesystem::path SRPG_ContainerBase::CommonsPath(const std::filesystem::path& basePath)
 {
@@ -74,6 +77,28 @@ std::filesystem::path SRPG_ContainerBase::TerrainPath(const std::filesystem::pat
 std::filesystem::path SRPG_ContainerBase::WeaponTypesPath(const std::filesystem::path& basePath)
 {
 	return buildFolder(basePath, WEAPON_TYPES_FOLDER);
+}
+
+UnitNameMap SRPG_ContainerBase::buildUnitNameMap(const CMenuOperation* pObjs, const DWORD& npcIdOffset)
+{
+	UnitNameMap names;
+	if (pObjs)
+	{
+		for (const auto* pObj : *pObjs)
+		{
+			const UNITDATA* pUnit = dynamic_cast<const UNITDATA*>(pObj);
+			const NPCDATA* pNPC   = dynamic_cast<const NPCDATA*>(pObj);
+
+			if (pUnit)
+				names[pObj->id] = pUnit->name;
+			else if (pNPC)
+			{
+				const DWORD id = (0x10000 * npcIdOffset) + pObj->id;
+				names[id]      = pNPC->name;
+			}
+		}
+	}
+	return names;
 }
 
 std::filesystem::path SRPG_ContainerBase::buildFolder(const std::filesystem::path& basePath, const std::wstring& folder)

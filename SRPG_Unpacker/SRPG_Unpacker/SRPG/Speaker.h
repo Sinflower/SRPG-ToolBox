@@ -1,5 +1,5 @@
 /*
- *  File: MESSAGEBASE.cpp
+ *  File: Speaker.h
  *  Copyright (c) 2025 Sinflower
  *
  *  MIT License
@@ -24,55 +24,19 @@
  *
  */
 
-// Compatible up to v1.292
+#pragma once
 
-#include "MESSAGEBASE.h"
-#include "../Speaker.h"
+#include <Windows.h>
+#include <array>
+#include <map>
+#include <string>
 
-void MESSAGEBASE::init(FileReader& fw)
+using UnitNameMap         = std::map<DWORD, std::string>;
+using UnitNamesCollection = std::array<UnitNameMap, 2>;
+
+extern UnitNamesCollection g_UnitNames;
+
+inline void AddUnitNames(const UnitNameMap& addMap, const uint32_t& idx = 0)
 {
-	initMemData(message, fw);
-}
-
-void MESSAGEBASE::dump(FileWriter& fw) const
-{
-	message.Write(fw);
-}
-
-void MESSAGEBASE::print(std::ostream& os) const
-{
-	os << "Message: " << message << std::endl;
-}
-
-nlohmann::ordered_json MESSAGEBASE::toJson() const
-{
-	nlohmann::ordered_json j;
-	j["type"] = "message";
-	j["data"] = nlohmann::json::array({ message.ToString() });
-
-	return j;
-}
-
-void MESSAGEBASE::applyPatch(const nlohmann::ordered_json& json)
-{
-	if (json.contains("data") && json["data"].is_array() && !json["data"].empty() && json["data"][0].is_string())
-		message = json["data"][0].get<std::string>();
-}
-
-std::string MESSAGEBASE::getSpeakerName(const DWORD& type, const DWORD& unit)
-{
-	if (type < 2)
-	{
-		const auto& namesMap = g_UnitNames[type];
-
-		auto it = namesMap.find(unit);
-		if (it != namesMap.end())
-			return it->second;
-		else
-			return std::string("Unknown_") + std::to_string(unit);
-	}
-	else if (type == 2)
-		return "No Speaker";
-
-	return "Invalid Type: " + std::to_string(type);
+	g_UnitNames[idx].insert(addMap.begin(), addMap.end());
 }

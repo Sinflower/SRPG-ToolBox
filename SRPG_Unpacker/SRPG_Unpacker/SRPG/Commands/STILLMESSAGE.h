@@ -30,9 +30,12 @@
 
 struct STILLMESSAGE : public MESSAGEBASE
 {
-	DWORD this_4 = 0;
-	DWORD this_5 = 0;
+	DWORD unit   = 0;
+	DWORD type   = 0;
 	DWORD this_6 = 0;
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
+
+protected:
+	nlohmann::ordered_json toJson() const override;
 };

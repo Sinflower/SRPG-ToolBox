@@ -28,7 +28,11 @@
 
 #include "../FileAccess.h"
 #include "../MemData.h"
+#include "Speaker.h"
+
+#include <array>
 #include <filesystem>
+#include <map>
 
 class CMenuOperation;
 
@@ -87,6 +91,9 @@ public:
 	static std::filesystem::path ResourceLocationPath(const std::filesystem::path& basePath);
 	static std::filesystem::path TerrainPath(const std::filesystem::path& basePath);
 	static std::filesystem::path WeaponTypesPath(const std::filesystem::path& basePath);
+
+protected:
+	static UnitNameMap buildUnitNameMap(const CMenuOperation* pObjs, const DWORD& npcIdOffset = 0x0);
 
 private:
 	static std::filesystem::path buildFolder(const std::filesystem::path& basePath, const std::wstring& folder);

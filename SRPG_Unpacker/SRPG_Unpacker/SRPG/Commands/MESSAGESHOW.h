@@ -35,7 +35,10 @@ struct MESSAGESHOW : public MESSAGEBASE
 	DWORD unit     = 0;
 	DWORD this_7   = 0;
 
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
-	virtual void print(std::ostream& os) const;
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
+	void print(std::ostream& os) const override;
+
+protected:
+	nlohmann::ordered_json toJson() const override;
 };
