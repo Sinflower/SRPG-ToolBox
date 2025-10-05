@@ -148,4 +148,9 @@ void SRPG_BaseSettings::Dump(FileWriter& fw) const
 
 void SRPG_BaseSettings::WritePatches(const std::filesystem::path& outPath) const
 {
+	const std::filesystem::path basePath = BaseSettingsPath(outPath);
+
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pShops, basePath, L"shops.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pBonuses, basePath, L"bonuses.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pQuests, basePath, L"quests.json");
 }

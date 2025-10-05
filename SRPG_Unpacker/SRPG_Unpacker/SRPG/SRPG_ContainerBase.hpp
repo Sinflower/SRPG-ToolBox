@@ -40,11 +40,13 @@ class SRPG_ContainerBase
 {
 protected:
 	// TODO: Remove this
-	static inline const std::wstring COMMONS_PATCH_FOLDER = L"commons";
+	static inline const std::wstring COMMONS_PATCH_FOLDER = L"";
 
 	static inline const std::wstring BASE_SETTINGS_FOLDER = L"Base";
-	static inline const std::wstring LAYOUTS_FOLDER       = L"CommandLayout";
+	static inline const std::wstring COMMAND_STRS_FOLDER  = L"CommandStrings";
 	static inline const std::wstring EXTRA_FOLDER         = L"Extra";
+	static inline const std::wstring LAYOUTS_FOLDER       = L"CommandLayout";
+	static inline const std::wstring NPC_SETTINGS_FOLDER  = L"NPCSettings";
 	static inline const std::wstring WEAPON_TYPES_FOLDER  = L"WeaponTypes";
 
 public:
@@ -62,9 +64,12 @@ public:
 	virtual void WritePatches(const std::filesystem::path& outPath) const = 0;
 
 	static std::filesystem::path CommonsPath(const std::filesystem::path& basePath);
+
 	static std::filesystem::path BaseSettingsPath(const std::filesystem::path& basePath);
-	static std::filesystem::path LayoutsPath(const std::filesystem::path& basePath);
+	static std::filesystem::path CommandStringsPath(const std::filesystem::path& basePath);
 	static std::filesystem::path ExtraPath(const std::filesystem::path& basePath);
+	static std::filesystem::path LayoutsPath(const std::filesystem::path& basePath);
+	static std::filesystem::path NPCSettingsPath(const std::filesystem::path& basePath);
 	static std::filesystem::path WeaponTypesPath(const std::filesystem::path& basePath);
 
 private:

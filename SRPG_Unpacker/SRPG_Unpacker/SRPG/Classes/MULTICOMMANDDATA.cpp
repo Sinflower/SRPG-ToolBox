@@ -32,14 +32,22 @@
 
 void MULTICOMMANDDATA::init(FileReader& fw)
 {
-	initMemData(this_3, fw);
+	initMemData(command, fw);
 	if (g_ArcVersion >= 0x505)
 		this_4 = fw.ReadDWord();
 }
 
 void MULTICOMMANDDATA::dump(FileWriter& fw) const
 {
-	this_3.Write(fw);
+	command.Write(fw);
 	if (g_ArcVersion >= 0x505)
 		fw.Write(this_4);
+}
+
+nlohmann::ordered_json MULTICOMMANDDATA::toJson() const
+{
+	nlohmann::ordered_json j = EDITDATA::toJson();
+
+	j["command"] = command.ToString();
+	return j;
 }

@@ -28,6 +28,8 @@
 
 #include "CHOICESHOW.h"
 #include "../CMenuOperation.h"
+#include "../Classes/CHOICEDATA.h"
+
 
 void CHOICESHOW::init(FileReader& fw)
 {
@@ -110,7 +112,7 @@ void CHOICESHOW::init(FileReader& fw)
 	}
 	else
 	{
-		allocAndSetCMenuOp(&pChoiceData, SRPGClasses::CHOICEDATA, fw);
+		allocAndSetCMenuOp(&pChoices, SRPGClasses::CHOICEDATA, fw);
 		this_4 = fw.ReadDWord();
 	}
 }
@@ -123,7 +125,23 @@ void CHOICESHOW::dump(FileWriter& fw) const
 	}
 	else
 	{
-		pChoiceData->dump(fw);
+		pChoices->dump(fw);
 		fw.Write(this_4);
 	}
+}
+
+nlohmann::ordered_json CHOICESHOW::toJson() const
+{
+	nlohmann::ordered_json j = EDITDATA::toJson();
+
+	nlohmann::json choices = nlohmann::json::array();
+
+	for (const auto* pObj : *pChoices)
+	{
+		const CHOICEDATA* pChoice = dynamic_cast<const CHOICEDATA*>(pObj);
+		choices.push_back(pChoice->choice.ToString());
+	}
+
+	j["choices"] = choices;
+	return j;
 }

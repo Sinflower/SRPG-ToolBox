@@ -79,7 +79,7 @@ void EVENTCOMMAND::print(std::ostream& os) const
 
 nlohmann::ordered_json EVENTCOMMAND::toJson() const
 {
-	nlohmann::ordered_json j;
+	nlohmann::ordered_json j       = EDITDATA::toJson();
 	nlohmann::ordered_json command = pCommand->ToJson();
 
 	// If the command is empty return empty json

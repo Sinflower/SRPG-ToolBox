@@ -60,8 +60,8 @@ void EVENTPAGE::print(std::ostream& os) const
 
 nlohmann::ordered_json EVENTPAGE::toJson() const
 {
-	nlohmann::ordered_json j;
+	nlohmann::ordered_json j = EDITDATA::toJson();
 
-	eventCommands->ToJson(j, "EventCommand");
+	eventCommands->ToJson<nlohmann::json>(j, "commands", nlohmann::json::array());
 	return j;
 }

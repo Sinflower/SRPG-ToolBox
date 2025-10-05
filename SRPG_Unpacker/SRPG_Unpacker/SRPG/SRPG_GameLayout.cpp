@@ -164,22 +164,14 @@ void SRPG_GameLayout::Dump(FileWriter& fw) const
 void SRPG_GameLayout::WritePatches(const std::filesystem::path& outPath) const
 {
 	const std::filesystem::path commonsFolder = CommonsPath(outPath);
+	const std::filesystem::path layoutsFolder = LayoutsPath(outPath);
 
-	if (m_pShopLayout)
-		m_pShopLayout->WriteToJsonFile(commonsFolder, L"shop_layout");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pShopLayout, commonsFolder, L"shoplayout.json");
+	
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pBaseLayout, layoutsFolder, L"base.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pBattlePrepLayout, layoutsFolder, L"battleprep.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pManageLayout, layoutsFolder, L"manage.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pMapCommandsLayout, layoutsFolder, L"mapcommands.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pTitleLayout, layoutsFolder, L"title.json");
 
-	if (m_pTitleLayout)
-		m_pTitleLayout->WriteToJsonFile(commonsFolder, L"title_layout");
-
-	if (m_pBattlePrepLayout)
-		m_pBattlePrepLayout->WriteToJsonFile(commonsFolder, L"battle_prep_layout");
-
-	if (m_pMapCommandsLayout)
-		m_pMapCommandsLayout->WriteToJsonFile(commonsFolder, L"map_commands_layout");
-
-	if (m_pBaseLayout)
-		m_pBaseLayout->WriteToJsonFile(commonsFolder, L"base_layout");
-
-	if (m_pManageLayout)
-		m_pManageLayout->WriteToJsonFile(commonsFolder, L"manage_layout");
 }

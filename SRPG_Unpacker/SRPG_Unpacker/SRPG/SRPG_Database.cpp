@@ -79,7 +79,7 @@ void SRPG_Database::Init(FileReader& fw)
 	std::cout << "OFFSET-PASSDATA2=" << fw.GetOffset() << std::endl;
 #endif
 
-	allocAndSetCMenuOp(&m_pFontData, SRPGClasses::FONTDATA, fw);
+	allocAndSetCMenuOp(&m_pFonts, SRPGClasses::FONTDATA, fw);
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-FONTDATA=" << fw.GetOffset() << std::endl;
 #endif
@@ -90,7 +90,7 @@ void SRPG_Database::Init(FileReader& fw)
 
 	if (g_ArcVersion >= 0x455)
 	{
-		for (CMenuOperation*& CMO : m_pNPCData)
+		for (CMenuOperation*& CMO : m_pNPCSettings)
 			allocAndSetCMenuOp(&CMO, SRPGClasses::NPCDATA, fw);
 #ifdef DEBUG_PRINT
 		std::cout << "OFFSET-NPCDATA=" << fw.GetOffset() << std::endl;
@@ -107,7 +107,7 @@ void SRPG_Database::Init(FileReader& fw)
 	std::cout << "OFFSET-CLASSGROUPDATA=" << fw.GetOffset() << std::endl;
 #endif
 
-	allocAndSetCMenuOp(&m_pSwitchData1, SRPGClasses::SWITCHDATA, fw);
+	allocAndSetCMenuOp(&m_pSwitchData, SRPGClasses::SWITCHDATA, fw);
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-SWITCHDATA=" << fw.GetOffset() << std::endl;
 #endif
@@ -148,7 +148,7 @@ void SRPG_Database::Init(FileReader& fw)
 	uint32_t elems = (g_ArcVersion < 0x437) ? 3 : 4;
 
 	for (uint32_t i = 0; i < elems; i++)
-		allocAndSetCMenuOp(&m_pWeaponTypeData[i], SRPGClasses::WEAPONTYPEDATA, fw);
+		allocAndSetCMenuOp(&m_pWeaponTypes[i], SRPGClasses::WEAPONTYPEDATA, fw);
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-WEAPONTYPEDATA=" << fw.GetOffset() << std::endl;
 #endif
@@ -185,18 +185,18 @@ void SRPG_Database::Dump(FileWriter& fw) const
 
 	m_pPassData1->dump(fw);
 	m_pPassData2->dump(fw);
-	m_pFontData->dump(fw);
+	m_pFonts->dump(fw);
 
 	if (g_ArcVersion >= 0x455)
 	{
-		for (const CMenuOperation* CMO : m_pNPCData)
+		for (const CMenuOperation* CMO : m_pNPCSettings)
 			CMO->dump(fw);
 
 		m_pStringData1->dump(fw);
 	}
 
 	m_pClassGroups->dump(fw);
-	m_pSwitchData1->dump(fw);
+	m_pSwitchData->dump(fw);
 	m_pClassTypes->dump(fw);
 	m_pMoveTypeData->dump(fw);
 	m_pDifficulties->dump(fw);
@@ -209,7 +209,7 @@ void SRPG_Database::Dump(FileWriter& fw) const
 	uint32_t elems = (g_ArcVersion < 0x437) ? 3 : 4;
 
 	for (uint32_t i = 0; i < elems; i++)
-		m_pWeaponTypeData[i]->dump(fw);
+		m_pWeaponTypes[i]->dump(fw);
 
 	dump_sub_F8E4E0(fw);
 	dump_sub_F7DA50(fw);
@@ -219,6 +219,9 @@ void SRPG_Database::Dump(FileWriter& fw) const
 void SRPG_Database::WritePatches(const std::filesystem::path& outPath) const
 {
 	const std::filesystem::path commonsFolder = CommonsPath(outPath);
+	const std::filesystem::path cmdStrsFolder = CommandStringsPath(outPath);
+	const std::filesystem::path weaponTypesFolder = WeaponTypesPath(outPath);
+	const std::filesystem::path npcSettingsFolder = NPCSettingsPath(outPath);
 
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pClasses, commonsFolder, L"classes.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pClassGroups, commonsFolder, L"classesgroups.json");
@@ -226,11 +229,26 @@ void SRPG_Database::WritePatches(const std::filesystem::path& outPath) const
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pDifficulties, commonsFolder, L"difficulties.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pFusionSettings, commonsFolder, L"fusionsettings.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pItems, commonsFolder, L"items.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pPlayerUnits, commonsFolder, L"players.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pRaces, commonsFolder, L"races.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pSkills, commonsFolder, L"skills.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pStates, commonsFolder, L"states.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pTransformations, commonsFolder, L"transformations.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pWeapons, commonsFolder, L"weapons.json");
+
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pWeaponTypes[0], weaponTypesFolder, L"fighters.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pWeaponTypes[1], weaponTypesFolder, L"archers.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pWeaponTypes[2], weaponTypesFolder, L"mages.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pWeaponTypes[3], weaponTypesFolder, L"items.json");
+
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pCmdStrPlaceEv, cmdStrsFolder, L"placeevents.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pCmdStrTalkEv, cmdStrsFolder, L"talkevents.json");
+
+	for (uint32_t i = 0; i < m_pNPCSettings.size(); i++)
+	{
+		const std::wstring filename = std::format(L"npc{}.json", i + 1);
+		CHECK_OBJ_AND_WRITE_JSON_FILE(m_pNPCSettings[i], npcSettingsFolder, filename);
+	}
 }
 
 void SRPG_Database::sub_F8E4E0(FileReader& fw)
@@ -253,8 +271,8 @@ void SRPG_Database::sub_F8E4E0(FileReader& fw)
 
 	if (g_ArcVersion >= 0x3F7)
 	{
-		allocAndSetCMenuOp(&m_pStringData4, SRPGClasses::MULTICOMMANDDATA, fw);
-		allocAndSetCMenuOp(&m_pStringData5, SRPGClasses::MULTICOMMANDDATA, fw);
+		allocAndSetCMenuOp(&m_pCmdStrPlaceEv, SRPGClasses::MULTICOMMANDDATA, fw);
+		allocAndSetCMenuOp(&m_pCmdStrTalkEv, SRPGClasses::MULTICOMMANDDATA, fw);
 	}
 
 	if (g_ArcVersion >= 0x3F9)
@@ -486,8 +504,8 @@ void SRPG_Database::dump_sub_F8E4E0(FileWriter& fw) const
 
 	if (g_ArcVersion >= 0x3F7)
 	{
-		m_pStringData4->dump(fw);
-		m_pStringData5->dump(fw);
+		m_pCmdStrPlaceEv->dump(fw);
+		m_pCmdStrTalkEv->dump(fw);
 	}
 
 	if (g_ArcVersion >= 0x3F9)

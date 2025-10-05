@@ -75,10 +75,3 @@ void CHOICEDATA::dump(FileWriter& fw) const
 			this_9.dump(fw);
 	}
 }
-
-nlohmann::ordered_json CHOICEDATA::toJson() const
-{
-	nlohmann::ordered_json j;
-	j["choice"] = choice.ToString();
-	return j;
-}

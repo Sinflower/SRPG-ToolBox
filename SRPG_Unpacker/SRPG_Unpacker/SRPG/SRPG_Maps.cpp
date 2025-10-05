@@ -190,12 +190,11 @@ void SRPG_Maps::WritePatches(const fs::path& outPath) const
 		fs::create_directories(commonsFolder);
 
 	// Write common data to commons folder
-	if (m_pMapCommonEvents)
-		m_pMapCommonEvents->WriteToJsonFile(commonsFolder, L"map_common_events.json");
+	//if (m_pMapCommonEvents)
+	//	m_pMapCommonEvents->WriteToJsonFile(commonsFolder, L"map_common_events.json");
 
-	if (m_pBookmarkEvents)
-		m_pBookmarkEvents->WriteToJsonFile(commonsFolder, L"map_bookmark_events.json");
+	//if (m_pBookmarkEvents)
+	//	m_pBookmarkEvents->WriteToJsonFile(commonsFolder, L"map_bookmark_events.json");
 
-	if (m_pBookmarkUnits)
-		m_pBookmarkUnits->WriteToJsonFile(commonsFolder, L"bookmark.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pBookmarkUnits, commonsFolder, L"bookmark.json");
 }

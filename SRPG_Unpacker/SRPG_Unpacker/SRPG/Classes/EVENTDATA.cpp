@@ -152,10 +152,10 @@ void EVENTDATA::init(FileReader& fw)
 						this_15.this_2 = fw.ReadDWord();
 
 						if (g_ArcVersion >= 0x3F6)
-							initMemData(this_15.this_3, fw);
+							initMemData(this_15.command, fw);
 
 						if (g_ArcVersion >= 0x469)
-							initMemData(this_15.this_4, fw);
+							initMemData(this_15.commandMsg, fw);
 						break;
 					}
 					case 7:
@@ -298,10 +298,10 @@ void EVENTDATA::dump(FileWriter& fw) const
 						fw.Write(this_15.this_2);
 
 						if (g_ArcVersion >= 0x3F6)
-							this_15.this_3.Write(fw);
+							this_15.command.Write(fw);
 
 						if (g_ArcVersion >= 0x469)
-							this_15.this_4.Write(fw);
+							this_15.commandMsg.Write(fw);
 						break;
 					}
 					case 7:
@@ -414,12 +414,15 @@ void EVENTDATA::sub_FD4620(FileReader& fw)
 
 nlohmann::ordered_json EVENTDATA::toJson() const
 {
-	nlohmann::ordered_json j = LEGENDDATA::toJson();
+	nlohmann::ordered_json j = EDITDATA::toJson();
+
+	j["command"]    = this_15.command.ToString();
+	j["commandMsg"] = this_15.commandMsg.ToString();
 
 	pPages->ToJson(j, "pages");
 
-	// If there is no actual page data skip the entire event
-	if (!j.contains("pages") || j["pages"].empty())
+	// If there is no command[Msg] or actual page data skip the entire event
+	if ((j["command"].empty() && j["commandMSg"].empty()) && (!j.contains("pages") || j["pages"].empty()))
 		j.clear();
 
 	return j;

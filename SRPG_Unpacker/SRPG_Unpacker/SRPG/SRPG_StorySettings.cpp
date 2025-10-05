@@ -101,17 +101,10 @@ void SRPG_StorySettings::Dump(FileWriter& fw) const
 
 void SRPG_StorySettings::WritePatches(const std::filesystem::path& outPath) const
 {
-	const std::filesystem::path commonsFolder = CommonsPath(outPath);
+	const std::filesystem::path extraFolder = ExtraPath(outPath);
 
-	if (m_pCharacterData)
-		m_pCharacterData->WriteToJsonFile(commonsFolder, L"character_data.json");
-
-	if (m_pWordData)
-		m_pWordData->WriteToJsonFile(commonsFolder, L"word_data.json");
-
-	if (m_pGalleryData)
-		m_pGalleryData->WriteToJsonFile(commonsFolder, L"gallery_data.json");
-
-	if (m_pSoundModeData)
-		m_pSoundModeData->WriteToJsonFile(commonsFolder, L"sound_mode_data.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pCharacterData, extraFolder, L"characters.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pGalleryData, extraFolder, L"gallery.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pWordData, extraFolder, L"glossary.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pSoundModeData, extraFolder, L"soundroom.json");
 }

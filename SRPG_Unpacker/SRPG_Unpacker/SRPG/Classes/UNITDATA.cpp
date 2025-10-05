@@ -364,9 +364,8 @@ void UNITDATA::print(std::ostream& os) const
 
 nlohmann::ordered_json UNITDATA::toJson() const
 {
-	nlohmann::ordered_json j = EDITDATA::toJson();
-	j.update(LEGENDDATA::toJson());
-	unitEvents->ToJson(j, "unitEvents");
+	nlohmann::ordered_json j = LEGENDDATA::toJson();
+	unitEvents->ToJson(j, "events");
 
 	return j;
 }

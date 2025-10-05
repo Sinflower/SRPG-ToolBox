@@ -30,8 +30,13 @@
 
 struct CHOICESHOW : public EDITDATA
 {
-	class CMenuOperation* pChoiceData = nullptr;
-	DWORD this_4                      = 0;
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+	class CMenuOperation* pChoices = nullptr;
+
+	DWORD this_4 = 0;
+
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
+
+protected:
+	nlohmann::ordered_json toJson() const override;
 };

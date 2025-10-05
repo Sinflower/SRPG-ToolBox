@@ -37,15 +37,15 @@ struct EVENTDATA : public LEGENDDATA
 	{
 		DWORD this_1 = 0;
 		DWORD this_2 = 0;
-		MemData this_3;
-		MemData this_4;
+		MemData command;
+		MemData commandMsg;
 		friend std::ostream& operator<<(std::ostream& os, ELEM_15 const& elem)
 		{
 			os << "ELEM_15: " << std::endl;
 			os << "this_1: " << elem.this_1 << std::endl;
 			os << "this_2: " << elem.this_2 << std::endl;
-			os << "this_3: " << elem.this_3 << std::endl;
-			os << "this_4: " << elem.this_4 << std::endl;
+			os << "this_3: " << elem.command << std::endl;
+			os << "this_4: " << elem.commandMsg << std::endl;
 			return os;
 		}
 	};

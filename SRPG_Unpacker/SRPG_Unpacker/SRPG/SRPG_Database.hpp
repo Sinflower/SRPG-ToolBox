@@ -60,14 +60,14 @@ private:
 	CMenuOperation* m_pClassTypes   = nullptr;
 	CMenuOperation* m_pMoveTypeData = nullptr;
 
-	std::array<CMenuOperation*, 4> m_pWeaponTypeData = { nullptr };
+	std::array<CMenuOperation*, 4> m_pWeaponTypes = { nullptr };
 
 	CMenuOperation* m_pDifficulties = nullptr;
-	CMenuOperation* m_pFontData     = nullptr;
-	CMenuOperation* m_pSwitchData1  = nullptr;
+	CMenuOperation* m_pFonts        = nullptr;
+	CMenuOperation* m_pSwitchData   = nullptr;
 	CMenuOperation* m_pClassGroups  = nullptr;
 
-	std::array<CMenuOperation*, 10> m_pNPCData = { nullptr };
+	std::array<CMenuOperation*, 10> m_pNPCSettings = { nullptr };
 
 	CMenuOperation* m_pStringData1 = nullptr;
 	CMenuOperation* m_pFacialData  = nullptr;
@@ -76,8 +76,8 @@ private:
 	std::array<CMenuOperation*, 6> m_pVariableData = { nullptr };
 
 	CMenuOperation* m_pStringData3     = nullptr;
-	CMenuOperation* m_pStringData4     = nullptr;
-	CMenuOperation* m_pStringData5     = nullptr;
+	CMenuOperation* m_pCmdStrPlaceEv   = nullptr; // Command Strings - Place Events
+	CMenuOperation* m_pCmdStrTalkEv    = nullptr; // Command Strings - Talk Events
 	CMenuOperation* m_pTypeIDData      = nullptr;
 	CMenuOperation* m_pRaces           = nullptr;
 	CMenuOperation* m_pFusionSettings  = nullptr;
