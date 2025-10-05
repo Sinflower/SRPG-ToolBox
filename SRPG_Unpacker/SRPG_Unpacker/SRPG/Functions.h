@@ -31,7 +31,12 @@
 #include "../FileAccess.h"
 #include "../MemData.h"
 
+#include <nlohmann/json.hpp>
+
 void initMemData(MemData& memData, FileReader& fw, const DWORD& size = -1);
+void WriteJsonToFile(const nlohmann::ordered_json& json, const std::filesystem::path& path, const std::wstring& name);
+nlohmann::ordered_json ReadJsonFromFile(const std::filesystem::path& path, const std::wstring& name);
+void ReadJsonFromFile(nlohmann::ordered_json& json, const std::filesystem::path& path, const std::wstring& name);
 
 class EDITDATA* createSRPGClass(const DWORD& type);
 class EDITDATA* createCommand(const DWORD& type);

@@ -30,13 +30,16 @@
 
 struct FONTDATA : public EDITDATA
 {
-	MemData this_3;
-	MemData this_4;
-	DWORD this_6  = 0;
-	DWORD this_7  = 0;
-	DWORD this_8  = 0;
-	DWORD this_9  = 0;
-	DWORD this_10 = 0;
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+	MemData name;
+	MemData fontName;
+	DWORD this_6   = 0;
+	DWORD this_7   = 0;
+	DWORD fontSize = 0;
+	DWORD this_9   = 0;
+	DWORD this_10  = 0;
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
+
+protected:
+	nlohmann::ordered_json toJson() const override;
 };

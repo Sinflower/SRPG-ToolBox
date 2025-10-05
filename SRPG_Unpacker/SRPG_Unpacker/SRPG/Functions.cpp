@@ -248,6 +248,36 @@ void initMemData(MemData& memData, FileReader& fw, const DWORD& size)
 	}
 }
 
+void WriteJsonToFile(const nlohmann::ordered_json& json, const std::filesystem::path& path, const std::wstring& name)
+{
+	const std::filesystem::path fPath = path / name;
+	std::ofstream ofs(fPath);
+
+	if (!ofs.is_open())
+		throw std::runtime_error("Failed to open file: " + fPath.string());
+
+	ofs << json.dump(4);
+	ofs.close();
+}
+
+nlohmann::ordered_json ReadJsonFromFile(const std::filesystem::path& path, const std::wstring& name)
+{
+	const std::filesystem::path fPath = path / name;
+	std::ifstream ifs(fPath);
+
+	if (!ifs.is_open())
+		throw std::runtime_error("Failed to open file: " + fPath.string());
+
+	nlohmann::ordered_json json = nlohmann::ordered_json::parse(ifs);
+	ifs.close();
+	return json;
+}
+
+void ReadJsonFromFile(nlohmann::ordered_json& json, const std::filesystem::path& path, const std::wstring& name)
+{
+	json = ReadJsonFromFile(path, name);
+}
+
 EDITDATA* createSRPGClass(const DWORD& type)
 {
 	switch (type)

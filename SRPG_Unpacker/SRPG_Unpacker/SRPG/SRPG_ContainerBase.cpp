@@ -51,6 +51,11 @@ std::filesystem::path SRPG_ContainerBase::LayoutsPath(const std::filesystem::pat
 	return buildFolder(basePath, LAYOUTS_FOLDER);
 }
 
+std::filesystem::path SRPG_ContainerBase::MapsPath(const std::filesystem::path& basePath)
+{
+	return buildFolder(basePath, MAPS_FOLDER);
+}
+
 std::filesystem::path SRPG_ContainerBase::NPCSettingsPath(const std::filesystem::path& basePath)
 {
 	return buildFolder(basePath, NPC_SETTINGS_FOLDER);

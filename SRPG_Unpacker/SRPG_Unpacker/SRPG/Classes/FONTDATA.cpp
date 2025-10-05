@@ -32,23 +32,23 @@
 
 void FONTDATA::init(FileReader& fw)
 {
-	this_8 = fw.ReadDWord();
-	this_6 = fw.ReadDWord();
-	this_7 = fw.ReadDWord();
-	this_9 = fw.ReadDWord();
+	fontSize = fw.ReadDWord();
+	this_6   = fw.ReadDWord();
+	this_7   = fw.ReadDWord();
+	this_9   = fw.ReadDWord();
 
 	if (g_ArcVersion < 0x487)
 		this_10 = 0;
 	else
 		this_10 = fw.ReadDWord();
 
-	initMemData(this_3, fw);
-	initMemData(this_4, fw);
+	initMemData(name, fw);
+	initMemData(fontName, fw);
 }
 
 void FONTDATA::dump(FileWriter& fw) const
 {
-	fw.Write(this_8);
+	fw.Write(fontSize);
 	fw.Write(this_6);
 	fw.Write(this_7);
 	fw.Write(this_9);
@@ -56,6 +56,16 @@ void FONTDATA::dump(FileWriter& fw) const
 	if (g_ArcVersion >= 0x487)
 		fw.Write(this_10);
 
-	this_3.Write(fw);
-	this_4.Write(fw);
+	name.Write(fw);
+	fontName.Write(fw);
+}
+
+nlohmann::ordered_json FONTDATA::toJson() const
+{
+	nlohmann::ordered_json j = EDITDATA::toJson();
+
+	j["name"]     = name.ToString();
+	j["fontName"] = fontName.ToString();
+	j["fontSize"] = fontSize;
+	return j;
 }

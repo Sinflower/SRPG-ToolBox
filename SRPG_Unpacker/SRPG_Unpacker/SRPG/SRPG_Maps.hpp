@@ -32,8 +32,6 @@
 
 class SRPG_Maps : public SRPG_ContainerBase
 {
-	static inline const std::wstring MAPS_PATCH_FOLDER = L"maps";
-
 public:
 	SRPG_Maps() {}
 	~SRPG_Maps() {}

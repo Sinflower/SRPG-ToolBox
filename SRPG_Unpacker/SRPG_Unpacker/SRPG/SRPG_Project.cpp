@@ -30,6 +30,7 @@
 
 #include "SRPG_Project.h"
 #include "Version.h"
+#include "Functions.h"
 
 namespace fs = std::filesystem;
 
@@ -67,6 +68,13 @@ void SRPG_Project::WritePatch(const fs::path& outPath) const
 	m_recollectionEvents.WritePatches(outPath);
 	m_storySettings.WritePatches(outPath);
 	m_baseSettings.WritePatches(outPath);
+
+	std::filesystem::path commonsPath = SRPG_ContainerBase::CommonsPath(outPath);
+	nlohmann::ordered_json j;
+	j["windowTitle"] = m_database.GetWindowTitle();
+	j["gameTitle"] = m_database.GetGameTitle();
+	j["saveFileTitle"] = m_baseSettings.GetSaveFileTitle();
+	WriteJsonToFile(j, commonsPath, L"titles.json");
 }
 
 void SRPG_Project::loadProject()

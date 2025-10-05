@@ -227,6 +227,7 @@ void SRPG_Database::WritePatches(const std::filesystem::path& outPath) const
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pClassGroups, commonsFolder, L"classesgroups.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pClassTypes, commonsFolder, L"classtypes.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pDifficulties, commonsFolder, L"difficulties.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pFonts, commonsFolder, L"fonts.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pFusionSettings, commonsFolder, L"fusionsettings.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pItems, commonsFolder, L"items.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pPlayerUnits, commonsFolder, L"players.json");

@@ -163,38 +163,17 @@ void SRPG_Maps::Dump(FileWriter& fw) const
 
 void SRPG_Maps::WritePatches(const fs::path& outPath) const
 {
-	const fs::path mapFolder     = outPath / MAPS_PATCH_FOLDER;
+	const fs::path mapFolder     = MapsPath(outPath);
 	const fs::path commonsFolder = CommonsPath(outPath);
-
-	// Create the maps folder if it doesn't exist
-	if (!fs::exists(mapFolder))
-		fs::create_directories(mapFolder);
 
 	// Write each map to its own file
 	for (const EDITDATA* pObj : *m_pMapData)
 	{
-		const MAPDATA* pMap  = static_cast<const MAPDATA*>(pObj);
-		std::wstring fN      = std::format(L"map_{}_{}.json", pObj->id, SanitizeFileName(pMap->mapName.ToWString()));
-		const fs::path fPath = mapFolder / fN;
-
-		nlohmann::ordered_json json = pObj->ToJson();
-
-		// Write the json to file
-		std::ofstream ofs(fPath);
-		ofs << json.dump(4);
-		ofs.close();
+		if (pObj)
+			WriteJsonToFile(pObj->ToJson(), mapFolder, std::format(L"map_{:0>3}.json", pObj->id));
 	}
 
-	// Create the commons folder if it doesn't exist
-	if (!fs::exists(commonsFolder))
-		fs::create_directories(commonsFolder);
-
-	// Write common data to commons folder
-	//if (m_pMapCommonEvents)
-	//	m_pMapCommonEvents->WriteToJsonFile(commonsFolder, L"map_common_events.json");
-
-	//if (m_pBookmarkEvents)
-	//	m_pBookmarkEvents->WriteToJsonFile(commonsFolder, L"map_bookmark_events.json");
-
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pMapCommonEvents, commonsFolder, L"mapcommonevents.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pBookmarkEvents, commonsFolder, L"bookmarkevents.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pBookmarkUnits, commonsFolder, L"bookmark.json");
 }

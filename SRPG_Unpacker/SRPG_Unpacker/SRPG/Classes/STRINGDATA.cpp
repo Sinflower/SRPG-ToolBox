@@ -47,7 +47,5 @@ void STRINGDATA::print(std::ostream& os) const
 
 nlohmann::ordered_json STRINGDATA::toJson() const
 {
-	nlohmann::ordered_json j;
-	j["data"] = data.ToString();
-	return j;
+	return data.ToString();
 }

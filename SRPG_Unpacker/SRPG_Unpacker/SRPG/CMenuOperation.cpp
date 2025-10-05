@@ -102,10 +102,7 @@ void CMenuOperation::WriteToJsonFile(const std::filesystem::path& outPath, const
 	if (j.is_null() || j.empty())
 		return;
 
-	const std::filesystem::path fPath = outPath / name;
-	std::ofstream ofs(fPath);
-	ofs << j.dump(4);
-	ofs.close();
+	WriteJsonToFile(j, outPath, name);
 }
 
 std::ostream& operator<<(std::ostream& os, CMenuOperation const& dt)

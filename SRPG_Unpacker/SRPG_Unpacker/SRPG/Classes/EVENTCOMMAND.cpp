@@ -87,6 +87,6 @@ nlohmann::ordered_json EVENTCOMMAND::toJson() const
 		return j;
 
 	j["comment"] = comment.ToString();
-	j["command"] = command;
+	j.update(command);
 	return j;
 }

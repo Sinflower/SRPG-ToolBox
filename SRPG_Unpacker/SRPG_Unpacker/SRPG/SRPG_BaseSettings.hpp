@@ -41,6 +41,16 @@ public:
 	void Dump(FileWriter& fw) const override;
 	void WritePatches(const std::filesystem::path& outPath) const override;
 
+	std::string GetSaveFileTitle() const
+	{
+		return saveFileTitle.ToString();
+	}
+
+	void SetSaveFileTitle(const std::string& title)
+	{
+		saveFileTitle = title;
+	}
+
 private:
 	CMenuOperation* m_pShops     = nullptr;
 	CMenuOperation* m_pBonuses   = nullptr;

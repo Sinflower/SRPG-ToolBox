@@ -46,6 +46,7 @@ protected:
 	static inline const std::wstring COMMAND_STRS_FOLDER  = L"CommandStrings";
 	static inline const std::wstring EXTRA_FOLDER         = L"Extra";
 	static inline const std::wstring LAYOUTS_FOLDER       = L"CommandLayout";
+	static inline const std::wstring MAPS_FOLDER          = L"Maps";
 	static inline const std::wstring NPC_SETTINGS_FOLDER  = L"NPCSettings";
 	static inline const std::wstring WEAPON_TYPES_FOLDER  = L"WeaponTypes";
 
@@ -69,6 +70,7 @@ public:
 	static std::filesystem::path CommandStringsPath(const std::filesystem::path& basePath);
 	static std::filesystem::path ExtraPath(const std::filesystem::path& basePath);
 	static std::filesystem::path LayoutsPath(const std::filesystem::path& basePath);
+	static std::filesystem::path MapsPath(const std::filesystem::path& basePath);
 	static std::filesystem::path NPCSettingsPath(const std::filesystem::path& basePath);
 	static std::filesystem::path WeaponTypesPath(const std::filesystem::path& basePath);
 

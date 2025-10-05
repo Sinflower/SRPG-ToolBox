@@ -39,6 +39,26 @@ public:
 	void Dump(FileWriter& fw) const override;
 	void WritePatches(const std::filesystem::path& outPath) const override;
 
+	std::string GetWindowTitle() const
+	{
+		return m_windowTitle.ToString();
+	}
+
+	std::string GetGameTitle() const
+	{
+		return m_gameTitle.ToString();
+	}
+
+	void SetWindowTitle(const std::string& title)
+	{
+		m_windowTitle = title;
+	}
+
+	void SetGameTitle(const std::string& title)
+	{
+		m_gameTitle = title;
+	}
+
 private:
 	void sub_F8E4E0(FileReader& fw);
 	void sub_F7DA50(FileReader& fw);

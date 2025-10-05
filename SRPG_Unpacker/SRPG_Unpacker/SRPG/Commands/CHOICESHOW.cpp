@@ -132,8 +132,7 @@ void CHOICESHOW::dump(FileWriter& fw) const
 
 nlohmann::ordered_json CHOICESHOW::toJson() const
 {
-	nlohmann::ordered_json j = EDITDATA::toJson();
-
+	nlohmann::ordered_json j;
 	nlohmann::json choices = nlohmann::json::array();
 
 	for (const auto* pObj : *pChoices)
@@ -142,6 +141,8 @@ nlohmann::ordered_json CHOICESHOW::toJson() const
 		choices.push_back(pChoice->choice.ToString());
 	}
 
-	j["choices"] = choices;
+	j["type"] = "choice";
+	j["data"] = choices;
+
 	return j;
 }
