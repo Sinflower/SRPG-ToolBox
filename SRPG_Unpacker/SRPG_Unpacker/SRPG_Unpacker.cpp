@@ -24,6 +24,7 @@
  *
  */
 
+#include <CLI11/CLI11.hpp>
 #include <exception>
 #include <filesystem>
 #include <format>
@@ -38,6 +39,8 @@
 #include "SectionNames.h"
 
 namespace fs = std::filesystem;
+
+static const std::string APP_NAME = "SRPG_Unpacker v0.1.0";
 
 // TODO:
 // - Redesign section name handling, current solution is not great
@@ -143,60 +146,179 @@ void CopyAndDecryptOpenData(const std::wstring& dtsFolder, const std::wstring& o
 	}
 }
 
-int main(int argc, char* argv[])
+// From: https://stackoverflow.com/a/45588456
+class MBuf : public std::stringbuf
 {
-	if (argc < 2)
+public:
+	int sync()
 	{
-		std::string exeName = fs::path(argv[0]).filename().string();
-
-		std::cout << "Usage: " << std::endl
-				  << "Extract: " << exeName << " <IN_DTS> <OUT_FOLDER>" << std::endl
-				  << "Pack: " << exeName << " <FOLDER> <OUT_DTS>" << std::endl;
+		fputs(str().c_str(), stdout);
+		str("");
 		return 0;
 	}
+};
+
+static MBuf g_buf;
+
+void EnableUTF8Print()
+{
+	SetConsoleOutputCP(CP_UTF8);
+	setvbuf(stdout, nullptr, _IONBF, 0);
+	std::cout.rdbuf(&g_buf);
+}
+
+void readDatFile(const fs::path& dataFolder, std::vector<BYTE>& outData)
+{
+	const fs::path datFile = dataFolder / SRPG_Project::PROJECT_DAT_NAME;
+
+	if (!fs::exists(datFile))
+		throw std::runtime_error(std::format("Data file not found: {}", datFile.string()));
+
+	std::ifstream file(datFile, std::ios::binary);
+
+	if (!file)
+		throw std::runtime_error(std::format("Failed to open: {}", datFile.string()));
+
+	file.seekg(0, std::ios::end);
+	size_t size = file.tellg();
+	file.seekg(0, std::ios::beg);
+	outData.resize(size);
+	file.read(reinterpret_cast<char*>(outData.data()), size);
+	file.close();
+}
+
+void readConfigFile(const fs::path& dataFolder, nlohmann::ordered_json& outJson)
+{
+	const fs::path configFile = dataFolder / FileHeader::CONFIG_NAME;
+
+	if (!fs::exists(configFile))
+		throw std::runtime_error(std::format("Config file not found: {}", configFile.string()));
+	std::ifstream file(configFile);
+	if (!file)
+		throw std::runtime_error(std::format("Failed to open: {}", configFile.string()));
+	outJson = nlohmann::ordered_json::parse(file);
+	file.close();
+}
+
+void unpack(const fs::path& dtsFile, const fs::path& outFolder = L"output")
+{
+	DTSTool dtsT;
+
+	if (dtsFile.extension() != L".dts")
+		throw std::runtime_error("Invalid input file, must be a .dts file");
+
+	dtsT.Unpack(dtsFile, outFolder);
+
+	SRPG_Project sp({ dtsT.GetVersion(), dtsT.GetResourceFlags(), dtsT.GetProjectData() });
+	sp.DumpProj(outFolder);
+
+	CopyAndDecryptOpenData(dtsFile.parent_path().wstring(), outFolder, sp.GetResMapping());
+}
+
+void pack(const fs::path& inFolder, const fs::path& outFile = L"output.dts")
+{
+	DTSTool dtsT;
+	dtsT.Pack(inFolder, outFile);
+}
+
+enum class PatchMode
+{
+	Create,
+	Apply
+};
+
+void patch(const fs::path& dataFolder, const fs::path& patchFolder, const PatchMode& mode)
+{
+	std::vector<BYTE> data;
+	nlohmann::ordered_json config;
+
+	readDatFile(dataFolder, data);
+	readConfigFile(dataFolder, config);
+
+	DWORD version = 0;
+	DWORD resFlag = 0;
+
+	if (config.contains("fileVersion"))
+		version = config["fileVersion"].get<DWORD>();
+	else
+		throw std::runtime_error("Config file does not contain 'fileVersion'");
+
+	if (config.contains("segments"))
+		resFlag = config["segments"].get<DWORD>();
+	else
+		throw std::runtime_error("Config file does not contain 'segments'");
+
+	SRPG_Project sp({ version, resFlag, data });
+
+	if (mode == PatchMode::Create)
+		sp.WritePatch(patchFolder);
+	else if (mode == PatchMode::Apply)
+	{
+		sp.ApplyPatch(patchFolder);
+		sp.Dump(dataFolder);
+	}
+	else
+		throw std::runtime_error("Invalid patch mode");
+}
+
+int main(int argc, char* argv[])
+{
+	CLI::App app{ APP_NAME };
+	argv = app.ensure_utf8(argv);
+
+	std::wstring defaultUnpack = L"output";
+	std::wstring defaultPack   = L"output.dts";
+	std::wstring defaultPatch  = L".";
+
+	std::wstring input;
+	app.add_option("INPUT", input, "<data.dts>\n<data_folder>\n<project.dat>")->required();
+
+	std::wstring output = L"";
+	app.add_option("-o,--output", output, "Specify the output, Defaults:\nunpack: \"output\"\npack: output.dts\n");
+
+	bool createPatch = false;
+	app.add_flag("-c,--create-patch", createPatch, "Create a patch from the provided project.dat");
+
+	bool applyPatch = false;
+	app.add_flag("-a,--apply-patch", applyPatch, "Apply a patch to the provided project.dat");
+
+	CLI11_PARSE(app, argc, argv);
+
+	EnableUTF8Print();
+
+	// Initialize the CryptEngine
+	Crypt::GetInstance();
 
 	try
 	{
-		LPWSTR* szArgList;
-		int32_t nArgs;
+		fs::path inputPath = fs::path(input);
 
-		DTSTool dtsT;
-
-		szArgList = CommandLineToArgvW(GetCommandLineW(), &nArgs);
-
-		// Initialize the CryptEngine
-		Crypt::GetInstance();
-
-		fs::path arg1 = fs::path(szArgList[1]);
-
-		if (arg1.extension() == L".dts")
+		if (inputPath.extension() == L".dts" && fs::exists(inputPath))
 		{
-			std::wstring outFolder = L"output";
-			if (nArgs == 3)
-				outFolder = fs::path(szArgList[2]).wstring();
-
-			dtsT.Unpack(arg1.wstring(), outFolder);
-
-			SRPG_Project sp({ dtsT.GetVersion(), dtsT.GetResourceFlags(), dtsT.GetProjectData() });
-			sp.Dump(outFolder);
-
-			CopyAndDecryptOpenData(arg1.parent_path().wstring(), outFolder, sp.GetResMapping());
+			const fs::path outputPath = (output.empty() ? defaultUnpack : output);
+			unpack(inputPath, outputPath);
 		}
-		else if (fs::is_directory(arg1))
+		else if (fs::is_directory(inputPath))
 		{
-			std::wstring outFile = L"output.dts";
-			if (nArgs == 3)
-				outFile = fs::path(szArgList[2]).wstring();
+			const fs::path outputPath = (output.empty() ? defaultPack : output);
+			pack(inputPath, outputPath);
+		}
+		else if (inputPath.extension() == L".dat" && fs::exists(inputPath))
+		{
+			if (createPatch && applyPatch)
+				throw std::runtime_error("Cannot create and apply a patch at the same time");
+			if (!createPatch && !applyPatch)
+				throw std::runtime_error("Must specify either --create-patch or --apply-patch");
 
-			dtsT.Pack(arg1.wstring(), outFile);
+			const fs::path patchPath = (output.empty() ? defaultPatch : output);
+			patch(inputPath.parent_path(), patchPath, (createPatch ? PatchMode::Create : PatchMode::Apply));
 		}
 		else
 		{
-			std::wcerr << "Invalid argument provided: " << szArgList[1] << std::endl;
-			return 1;
+			throw std::runtime_error("Invalid input provided, must be a .dts file or a folder");
 		}
 	}
-	catch (const std::exception& e)
+	catch (std::exception& e)
 	{
 		std::cerr << "ERROR: " << e.what() << std::endl;
 	}

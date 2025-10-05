@@ -26,6 +26,7 @@
 
 #pragma once
 
+#include <filesystem>
 #include <string>
 
 #include "FileHeader.h"
@@ -36,7 +37,7 @@ public:
 	DTSTool()  = default;
 	~DTSTool() = default;
 
-	bool Unpack(const std::wstring& dtsFile, const std::wstring& outputFolder)
+	bool Unpack(const std::filesystem::path& dtsFile, const std::filesystem::path& outputFolder)
 	{
 		m_fileHeader.Reset();
 		m_fileHeader.Init(dtsFile);
@@ -45,7 +46,7 @@ public:
 		return true;
 	}
 
-	bool Pack(const std::wstring& inputFolder, const std::wstring& dtsFile)
+	bool Pack(const std::filesystem::path& inputFolder, const std::filesystem::path& dtsFile)
 	{
 		m_fileHeader.Reset();
 		m_fileHeader.Init(inputFolder);

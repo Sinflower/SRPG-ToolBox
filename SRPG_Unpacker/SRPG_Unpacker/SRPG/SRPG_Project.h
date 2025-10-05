@@ -55,6 +55,8 @@ struct SRPG_ProjectData
 
 class SRPG_Project
 {
+public:
+	static inline const std::wstring PROJECT_DAT_NAME  = L"project.dat";
 	static inline const std::wstring PROJECT_FILE_NAME = L"project.srpgs";
 
 public:
@@ -62,7 +64,8 @@ public:
 
 	~SRPG_Project();
 
-	void Dump(const std::wstring& outFolder) const;
+	void Dump(const std::filesystem::path& outPath) const;
+	void DumpProj(const std::filesystem::path& outPath) const;
 
 	nlohmann::ordered_json GetResMapping() const;
 

@@ -47,12 +47,16 @@ SRPG_Project::SRPG_Project(const SRPG_ProjectData& projData) :
 SRPG_Project::~SRPG_Project()
 {}
 
-void SRPG_Project::Dump(const std::wstring& outFolder) const
+void SRPG_Project::Dump(const std::filesystem::path& outPath) const
 {
-	FileWriter fw(std::format(L"{}/{}", outFolder, PROJECT_FILE_NAME));
+	FileWriter fw(outPath / PROJECT_DAT_NAME);
 	dump(fw);
-	// dumpAsProj(fw);
-	// writeResMapping();
+}
+
+void SRPG_Project::DumpProj(const std::filesystem::path& outPath) const
+{
+	FileWriter fw(outPath / PROJECT_FILE_NAME);
+	dumpAsProj(fw);
 }
 
 nlohmann::ordered_json SRPG_Project::GetResMapping() const

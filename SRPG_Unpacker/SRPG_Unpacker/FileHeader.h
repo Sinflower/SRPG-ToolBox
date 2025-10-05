@@ -46,8 +46,6 @@ class FileHeader
 	static constexpr uint32_t DATA_START_OFFSET_OLD = 0xA4;
 	static constexpr uint32_t SECTION_COUNT_OLD     = 35;
 
-	static inline const std::wstring CONFIG_NAME = L"config.json";
-
 	enum Sections
 	{
 		Graphics = 1,
@@ -57,6 +55,9 @@ class FileHeader
 		Script   = 0x10, // Might also be encrypted flag
 		Video    = 0x20
 	};
+
+public:
+	static inline const std::wstring CONFIG_NAME = L"config.json";
 
 public:
 	FileHeader() = default;
