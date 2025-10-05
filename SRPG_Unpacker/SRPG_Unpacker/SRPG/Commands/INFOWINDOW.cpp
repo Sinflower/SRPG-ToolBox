@@ -27,6 +27,7 @@
 // Compatible up to v1.292
 
 #include "INFOWINDOW.h"
+#include "../CMenuOperation.h"
 
 void INFOWINDOW::init(FileReader& fw)
 {
@@ -59,4 +60,10 @@ nlohmann::ordered_json INFOWINDOW::toJson() const
 	nlohmann::ordered_json j;
 	j["infoText"] = infoText.ToString();
 	return j;
+}
+
+void INFOWINDOW::applyPatch(const nlohmann::ordered_json& json)
+{
+	EDITDATA::applyPatch(json);
+	SET_STRING_IF_IN_JSON(json, "infoText", infoText);
 }

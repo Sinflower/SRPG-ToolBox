@@ -71,3 +71,8 @@ nlohmann::ordered_json RESTAREADATA::toJson() const
 	j["areaName"] = areaName.ToString();
 	return j;
 }
+
+void RESTAREADATA::applyPatch(const nlohmann::ordered_json& json)
+{
+	SET_STRING_IF_IN_JSON(json, "areaName", areaName);
+}

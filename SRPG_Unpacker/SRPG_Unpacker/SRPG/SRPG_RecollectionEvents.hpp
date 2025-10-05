@@ -35,9 +35,10 @@ class SRPG_RecollectionEvents : public SRPG_ContainerBase
 public:
 	SRPG_RecollectionEvents() {}
 	virtual ~SRPG_RecollectionEvents() {}
-	virtual void Init(FileReader& fw);
-	virtual void Dump(FileWriter& fw) const;
-	virtual void WritePatches(const std::filesystem::path& outPath) const;
+	void Init(FileReader& fw) override;
+	void Dump(FileWriter& fw) const override;
+	void WritePatches(const std::filesystem::path& outPath) const override;
+	void ApplyPatches(const std::filesystem::path& patchPath) override;
 
 private:
 	CMenuOperation* m_pRecollectionEvents = nullptr;

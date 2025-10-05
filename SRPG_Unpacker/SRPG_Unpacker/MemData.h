@@ -31,6 +31,7 @@
 #include <vector>
 
 #include "FileAccess.h"
+#include "Utils.h"
 
 namespace memData
 {
@@ -143,14 +144,22 @@ struct MemData
 
 	void FromString(const std::string& str)
 	{
-		std::string s = str;
-		if (!memData::g_isUTF8)
-			s = memData::utf82sjis(str);
+		const std::wstring wstr = s2ws(str);
+		FromWString(wstr);
+	}
 
-		size = static_cast<uint32_t>(s.size()) + 1;
+	void FromWString(const std::wstring& str)
+	{
+		if (str.empty())
+		{
+			size = 0;
+			data.clear();
+			return;
+		}
+
+		size = static_cast<uint32_t>(str.size() * 2) + 2;
 		data.resize(size);
-		std::copy(s.begin(), s.end(), data.begin());
-
+		std::copy(str.begin(), str.end(), reinterpret_cast<wchar_t*>(data.data()));
 		data.back() = 0x0;
 	}
 
@@ -175,11 +184,7 @@ struct MemData
 
 	void operator=(const std::wstring& str)
 	{
-		size = static_cast<uint32_t>(str.size() * 2) + 2;
-		data.resize(size);
-		std::copy(str.begin(), str.end(), reinterpret_cast<wchar_t*>(data.data()));
-
-		data.back() = 0x0;
+		FromWString(str);
 	}
 
 	friend std::ostream& operator<<(std::ostream& os, MemData const& md)

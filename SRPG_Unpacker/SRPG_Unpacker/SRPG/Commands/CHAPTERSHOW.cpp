@@ -27,6 +27,7 @@
 // Compatible up to v1.292
 
 #include "CHAPTERSHOW.h"
+#include "../CMenuOperation.h"
 
 void CHAPTERSHOW::init(FileReader& fw)
 {
@@ -48,4 +49,10 @@ nlohmann::ordered_json CHAPTERSHOW::toJson() const
 	j["chapterName"] = chapterName.ToString();
 	j["mapName"]     = mapName.ToString();
 	return j;
+}
+
+void CHAPTERSHOW::applyPatch(const nlohmann::ordered_json& json)
+{
+	SET_STRING_IF_IN_JSON(json, "chapterName", chapterName);
+	SET_STRING_IF_IN_JSON(json, "mapName", mapName);
 }

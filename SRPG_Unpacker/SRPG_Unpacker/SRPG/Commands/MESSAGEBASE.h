@@ -32,10 +32,11 @@ struct MESSAGEBASE : public EDITDATA
 {
 	MemData message;
 
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
-	virtual void print(std::ostream& os) const;
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
+	void print(std::ostream& os) const override;
 
 protected:
-	virtual nlohmann::ordered_json toJson() const override;
+	nlohmann::ordered_json toJson() const override;
+	void applyPatch(const nlohmann::ordered_json& json) override;
 };

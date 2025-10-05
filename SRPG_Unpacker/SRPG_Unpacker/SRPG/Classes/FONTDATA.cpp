@@ -69,3 +69,11 @@ nlohmann::ordered_json FONTDATA::toJson() const
 	j["fontSize"] = fontSize;
 	return j;
 }
+
+void FONTDATA::applyPatch(const nlohmann::ordered_json& json)
+{
+	EDITDATA::applyPatch(json);
+	SET_STRING_IF_IN_JSON(json, "name", name);
+	SET_STRING_IF_IN_JSON(json, "fontName", fontName);
+	SET_DWORD_IF_IN_JSON(json, "fontSize", fontSize);
+}

@@ -50,3 +50,8 @@ nlohmann::ordered_json DICTIONARYCONDITION::toJson() const
 
 	return j;
 }
+
+void DICTIONARYCONDITION::applyPatch(const nlohmann::ordered_json& json)
+{
+	SET_STRING_IF_IN_JSON(json, "text", text);
+}

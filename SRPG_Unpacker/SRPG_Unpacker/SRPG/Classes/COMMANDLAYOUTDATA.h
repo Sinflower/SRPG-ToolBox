@@ -36,7 +36,10 @@ struct COMMANDLAYOUTDATA : public EDITDATA
 	DWORD this_6 = 0;
 
 	class CMenuOperation* m_pTypeIDData = nullptr;
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
-	virtual nlohmann::ordered_json toJson() const override;
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
+
+protected:
+	nlohmann::ordered_json toJson() const override;
+	void applyPatch(const nlohmann::ordered_json& json) override;
 };

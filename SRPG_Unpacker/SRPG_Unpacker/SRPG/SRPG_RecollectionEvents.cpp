@@ -47,3 +47,9 @@ void SRPG_RecollectionEvents::WritePatches(const std::filesystem::path& outPath)
 
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pRecollectionEvents, extraFolder, L"recollection.json");
 }
+
+void SRPG_RecollectionEvents::ApplyPatches(const std::filesystem::path& patchPath)
+{
+	const std::filesystem::path extraFolder = ExtraPath(patchPath);
+	CHECK_OBJ_AND_APPLY_PATCH(m_pRecollectionEvents, extraFolder, L"recollection.json");
+}

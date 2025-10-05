@@ -58,3 +58,10 @@ nlohmann::ordered_json LEGENDDATA::toJson() const
 	j["desc"]                = description.ToString();
 	return j;
 }
+
+void LEGENDDATA::applyPatch(const nlohmann::ordered_json& json)
+{
+	EDITDATA::applyPatch(json);
+	SET_STRING_IF_IN_JSON(json, "name", name);
+	SET_STRING_IF_IN_JSON(json, "desc", description);
+}

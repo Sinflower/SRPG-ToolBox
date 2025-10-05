@@ -28,6 +28,7 @@
 
 #include <Windows.h>
 #include <codecvt>
+#include <sstream>
 #include <string>
 #include <vector>
 

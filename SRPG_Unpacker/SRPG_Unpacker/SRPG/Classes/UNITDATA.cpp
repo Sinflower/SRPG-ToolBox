@@ -370,6 +370,12 @@ nlohmann::ordered_json UNITDATA::toJson() const
 	return j;
 }
 
+void UNITDATA::applyPatch(const nlohmann::ordered_json& json)
+{
+	LEGENDDATA::applyPatch(json);
+	APPLY_PATCH_IF_IN_JSON(json, "events", unitEvents);
+}
+
 void UNITDATA::sub_F7E130(FileReader& fw)
 {
 	hp  = fw.ReadDWord();

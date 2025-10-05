@@ -206,6 +206,28 @@ nlohmann::ordered_json MAPDATA::toJson() const
 	return j;
 }
 
+void MAPDATA::applyPatch(const nlohmann::ordered_json& json)
+{
+	LEGENDDATA::applyPatch(json);
+	SET_STRING_IF_IN_JSON(json, "mapName", mapName);
+	APPLY_PATCH_IF_IN_JSON(json, "victoryConds", victoryCond);
+	APPLY_PATCH_IF_IN_JSON(json, "defeatConds", defeatCond);
+	APPLY_PATCH_IF_IN_JSON(json, "EnemyUnits", pEnemyUnits);
+	APPLY_PATCH_IF_IN_JSON(json, "EvEnemyUnits", pEvEnemyUnits);
+	APPLY_PATCH_IF_IN_JSON(json, "AllyUnits", pAllyUnits);
+	APPLY_PATCH_IF_IN_JSON(json, "EvAllyUnits", pEvAllyUnits);
+	APPLY_PATCH_IF_IN_JSON(json, "pReinforcementUnits", pReinforcementUnits);
+	APPLY_PATCH_IF_IN_JSON(json, "GuestUnits", pGuestUnits);
+	APPLY_PATCH_IF_IN_JSON(json, "EvGuestUnits", pEvGuestUnits);
+
+	APPLY_PATCH_IF_IN_JSON(json, "placeEvents", placeEvents);
+	APPLY_PATCH_IF_IN_JSON(json, "autoEvents", autoEvents);
+	APPLY_PATCH_IF_IN_JSON(json, "talkEvents", talkEvents);
+	APPLY_PATCH_IF_IN_JSON(json, "openingEvents", openingEvents);
+	APPLY_PATCH_IF_IN_JSON(json, "endingEvents", endingEvents);
+	APPLY_PATCH_IF_IN_JSON(json, "communicationEvents", communicationEvents);
+}
+
 void MAPDATA::dump(FileWriter& fw) const
 {
 	fw.Write(width);

@@ -427,3 +427,11 @@ nlohmann::ordered_json EVENTDATA::toJson() const
 
 	return j;
 }
+
+void EVENTDATA::applyPatch(const nlohmann::ordered_json& json)
+{
+	EDITDATA::applyPatch(json);
+	SET_STRING_IF_IN_JSON(json, "command", this_15.command);
+	SET_STRING_IF_IN_JSON(json, "commandMsg", this_15.commandMsg);
+	APPLY_PATCH_IF_IN_JSON(json, "pages", pPages);
+}

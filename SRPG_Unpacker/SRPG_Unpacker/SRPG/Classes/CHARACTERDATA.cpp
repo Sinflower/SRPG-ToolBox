@@ -73,3 +73,9 @@ nlohmann::ordered_json CHARACTERDATA::toJson() const
 
 	return j;
 }
+
+void CHARACTERDATA::applyPatch(const nlohmann::ordered_json& json)
+{
+	LEGENDDATA::applyPatch(json);
+	APPLY_PATCH_IF_IN_JSON(json, "pages", pDictionaryCondition);
+}

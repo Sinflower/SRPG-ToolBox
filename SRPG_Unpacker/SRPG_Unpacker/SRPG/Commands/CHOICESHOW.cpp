@@ -30,7 +30,6 @@
 #include "../CMenuOperation.h"
 #include "../Classes/CHOICEDATA.h"
 
-
 void CHOICESHOW::init(FileReader& fw)
 {
 	if (g_ArcVersion < 0x401)
@@ -145,4 +144,22 @@ nlohmann::ordered_json CHOICESHOW::toJson() const
 	j["data"] = choices;
 
 	return j;
+}
+
+void CHOICESHOW::applyPatch(const nlohmann::ordered_json& json)
+{
+	if (json.contains("data") && json["data"].is_array())
+	{
+		auto& arr = json["data"];
+		auto it   = arr.begin();
+		for (auto* pObj : *pChoices)
+		{
+			if (it == arr.end())
+				break;
+
+			CHOICEDATA* pChoice = dynamic_cast<CHOICEDATA*>(pObj);
+			pChoice->choice     = it->get<std::string>();
+			++it;
+		}
+	}
 }

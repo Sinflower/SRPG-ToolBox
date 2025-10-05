@@ -41,5 +41,6 @@ struct WORDDATA : public LEGENDDATA
 	void dump([[maybe_unused]] FileWriter& fw) const override;
 
 protected:
-	virtual nlohmann::ordered_json toJson() const override;
+	nlohmann::ordered_json toJson() const override;
+	void applyPatch(const nlohmann::ordered_json& json) override;
 };

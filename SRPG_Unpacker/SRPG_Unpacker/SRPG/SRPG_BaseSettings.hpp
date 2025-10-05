@@ -40,6 +40,7 @@ public:
 	void Init(FileReader& fw) override;
 	void Dump(FileWriter& fw) const override;
 	void WritePatches(const std::filesystem::path& outPath) const override;
+	void ApplyPatches(const std::filesystem::path& patchPath) override;
 
 	std::string GetSaveFileTitle() const
 	{

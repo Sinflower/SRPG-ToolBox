@@ -135,7 +135,8 @@ struct UNITDATA : public LEGENDDATA
 	void print(std::ostream& os) const override;
 
 protected:
-	virtual nlohmann::ordered_json toJson() const override;
+	nlohmann::ordered_json toJson() const override;
+	void applyPatch(const nlohmann::ordered_json& json) override;
 
 private:
 	void sub_F7E130(FileReader& fw);

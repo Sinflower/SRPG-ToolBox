@@ -105,6 +105,47 @@ void CMenuOperation::WriteToJsonFile(const std::filesystem::path& outPath, const
 	WriteJsonToFile(j, outPath, name);
 }
 
+void CMenuOperation::ApplyPatch(const std::filesystem::path& path, const std::wstring& name)
+{
+	nlohmann::ordered_json j = ReadJsonFromFile(path, name);
+	if (j.is_null() || j.empty())
+		return;
+
+	applyPatch(j);
+}
+
+void CMenuOperation::ApplyPatch(const nlohmann::ordered_json& json)
+{
+	applyPatch(json);
+}
+
+void CMenuOperation::applyPatch(const nlohmann::ordered_json& json)
+{
+	if (json.is_array() && !json.empty() && !json[0].contains("id"))
+	{
+		// Make sure the array and data have the same size
+		if (json.size() != m_data.size())
+			throw std::runtime_error("CMenuOperation::applyPatch: JSON array size does not match data size");
+
+		for (std::size_t i = 0; i < json.size(); i++)
+			m_data[i]->ApplyPatch(json[i]);
+
+		return;
+	}
+
+	for (const nlohmann::ordered_json& j : json)
+	{
+		if (!j.contains("id"))
+			continue;
+		const DWORD id = j["id"].get<DWORD>();
+
+		auto it = std::find_if(m_data.begin(), m_data.end(), [id](const EDITDATA* p) { return p->id == id; });
+
+		if (it != m_data.end())
+			(*it)->ApplyPatch(j);
+	}
+}
+
 std::ostream& operator<<(std::ostream& os, CMenuOperation const& dt)
 {
 	os << "CMenuOperation: " << dt.m_type << std::endl;

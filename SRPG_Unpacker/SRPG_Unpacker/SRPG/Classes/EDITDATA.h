@@ -50,6 +50,7 @@ public:
 	virtual void print(std::ostream& os) const;
 	virtual void print(std::wostream& os) const;
 	nlohmann::ordered_json ToJson() const;
+	void ApplyPatch(const nlohmann::ordered_json& json);
 
 	friend std::ostream& operator<<(std::ostream& os, EDITDATA const& dt)
 	{
@@ -69,6 +70,12 @@ protected:
 		nlohmann::ordered_json j;
 		j["id"] = id;
 		return j;
+	}
+
+	virtual void applyPatch(const nlohmann::ordered_json& json)
+	{
+		if (id != json["id"])
+			throw std::runtime_error("EDITDATA::applyPatch: ID mismatch");
 	}
 
 public:

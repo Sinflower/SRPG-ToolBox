@@ -90,3 +90,10 @@ nlohmann::ordered_json EVENTCOMMAND::toJson() const
 	j.update(command);
 	return j;
 }
+
+void EVENTCOMMAND::applyPatch(const nlohmann::ordered_json& json)
+{
+	EDITDATA::applyPatch(json);
+	SET_STRING_IF_IN_JSON(json, "comment", comment);
+	pCommand->ApplyPatch(json);
+}

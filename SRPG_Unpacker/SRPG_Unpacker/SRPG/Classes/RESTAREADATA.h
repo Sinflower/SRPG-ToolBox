@@ -40,9 +40,10 @@ struct RESTAREADATA : public EDITDATA
 	DWORD this_10 = 0;
 	EVENTPAGE_DATA this_11;
 	MemData this_12;
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
 
 protected:
-	virtual nlohmann::ordered_json toJson() const override;
+	nlohmann::ordered_json toJson() const override;
+	void applyPatch(const nlohmann::ordered_json& json) override;
 };

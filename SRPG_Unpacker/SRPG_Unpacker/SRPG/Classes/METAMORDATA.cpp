@@ -149,3 +149,9 @@ nlohmann::ordered_json METAMORDATA::toJson() const
 	j["command"]             = command.ToString();
 	return j;
 }
+
+void METAMORDATA::applyPatch(const nlohmann::ordered_json& json)
+{
+	LEGENDDATA::applyPatch(json);
+	SET_STRING_IF_IN_JSON(json, "command", command);
+}

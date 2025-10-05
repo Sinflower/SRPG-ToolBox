@@ -28,9 +28,9 @@
 
 #include <iostream>
 
+#include "Functions.h"
 #include "SRPG_Project.h"
 #include "Version.h"
-#include "Functions.h"
 
 namespace fs = std::filesystem;
 
@@ -50,9 +50,9 @@ SRPG_Project::~SRPG_Project()
 void SRPG_Project::Dump(const std::wstring& outFolder) const
 {
 	FileWriter fw(std::format(L"{}/{}", outFolder, PROJECT_FILE_NAME));
-	// dump(fw);
-	dumpAsProj(fw);
-	// writeResMapping();
+	dump(fw);
+	// dumpAsProj(fw);
+	//  writeResMapping();
 }
 
 nlohmann::ordered_json SRPG_Project::GetResMapping() const
@@ -71,10 +71,28 @@ void SRPG_Project::WritePatch(const fs::path& outPath) const
 
 	std::filesystem::path commonsPath = SRPG_ContainerBase::CommonsPath(outPath);
 	nlohmann::ordered_json j;
-	j["windowTitle"] = m_database.GetWindowTitle();
-	j["gameTitle"] = m_database.GetGameTitle();
+	j["windowTitle"]   = m_database.GetWindowTitle();
+	j["gameTitle"]     = m_database.GetGameTitle();
 	j["saveFileTitle"] = m_baseSettings.GetSaveFileTitle();
 	WriteJsonToFile(j, commonsPath, L"titles.json");
+}
+
+void SRPG_Project::ApplyPatch(const std::filesystem::path& patchPath)
+{
+	m_maps.ApplyPatches(patchPath);
+	m_database.ApplyPatches(patchPath);
+	m_gameLayout.ApplyPatches(patchPath);
+	m_recollectionEvents.ApplyPatches(patchPath);
+	m_storySettings.ApplyPatches(patchPath);
+	m_baseSettings.ApplyPatches(patchPath);
+
+	std::filesystem::path commonsPath = SRPG_ContainerBase::CommonsPath(patchPath);
+
+	nlohmann::ordered_json j = ReadJsonFromFile(commonsPath, L"titles.json");
+
+	CALL_STR_SET_FUNC_IF_IN_JSON(j, "windowTitle", m_database.SetWindowTitle);
+	CALL_STR_SET_FUNC_IF_IN_JSON(j, "gameTitle", m_database.SetGameTitle);
+	CALL_STR_SET_FUNC_IF_IN_JSON(j, "saveFileTitle", m_baseSettings.SetSaveFileTitle);
 }
 
 void SRPG_Project::loadProject()

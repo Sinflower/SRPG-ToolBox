@@ -183,3 +183,19 @@ nlohmann::ordered_json FUSIONDATA::toJson() const
 
 	return j;
 }
+
+void FUSIONDATA::applyPatch(const nlohmann::ordered_json& json)
+{
+	LEGENDDATA::applyPatch(json);
+
+	if (json.contains("command") && json["command"].is_array())
+	{
+		const nlohmann::json& cmds = json["command"];
+		if (cmds.size() > 0 && cmds[0].is_string())
+			m_catchText = cmds[0].get<std::string>();
+		if (cmds.size() > 1 && cmds[1].is_string())
+			m_releaseText = cmds[1].get<std::string>();
+		if (cmds.size() > 2 && cmds[2].is_string())
+			m_tradeText = cmds[2].get<std::string>();
+	}
+}

@@ -48,3 +48,7 @@ nlohmann::ordered_json IMAGEDATA::toJson() const
 	// Return the image name as a JSON object
 	return { { "name", ws2s(this_3.ToWString()) } };
 }
+
+void IMAGEDATA::applyPatch(const [[maybe_unused]] nlohmann::ordered_json& json)
+{
+}

@@ -56,3 +56,7 @@ nlohmann::ordered_json INSTALLEDFONTDATA::toJson() const
 {
 	return { { "name", ws2s(this_3.ToWString()) } };
 }
+
+void INSTALLEDFONTDATA::applyPatch(const [[maybe_unused]] nlohmann::ordered_json& json)
+{
+}

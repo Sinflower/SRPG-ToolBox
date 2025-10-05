@@ -51,3 +51,9 @@ nlohmann::ordered_json MESSAGEBASE::toJson() const
 
 	return j;
 }
+
+void MESSAGEBASE::applyPatch(const nlohmann::ordered_json& json)
+{
+	if (json.contains("data") && json["data"].is_array() && !json["data"].empty() && json["data"][0].is_string())
+		message = json["data"][0].get<std::string>();
+}

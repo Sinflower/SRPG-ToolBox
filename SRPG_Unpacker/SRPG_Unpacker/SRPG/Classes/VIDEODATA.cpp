@@ -50,3 +50,7 @@ nlohmann::ordered_json VIDEODATA::toJson() const
 {
 	return { { "name", ws2s(this_3.ToWString()) } };
 }
+
+void VIDEODATA::applyPatch(const [[maybe_unused]] nlohmann::ordered_json& json)
+{
+}

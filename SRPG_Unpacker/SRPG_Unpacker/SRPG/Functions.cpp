@@ -263,6 +263,10 @@ void WriteJsonToFile(const nlohmann::ordered_json& json, const std::filesystem::
 nlohmann::ordered_json ReadJsonFromFile(const std::filesystem::path& path, const std::wstring& name)
 {
 	const std::filesystem::path fPath = path / name;
+
+	if (!std::filesystem::exists(fPath))
+		throw std::runtime_error("File does not exist: " + fPath.string());
+
 	std::ifstream ifs(fPath);
 
 	if (!ifs.is_open())

@@ -49,3 +49,11 @@ nlohmann::ordered_json STRINGDATA::toJson() const
 {
 	return data.ToString();
 }
+
+void STRINGDATA::applyPatch(const nlohmann::ordered_json& json)
+{
+	if (json.is_string())
+		data = json.get<std::string>();
+	else
+		throw std::runtime_error("STRINGDATA::applyPatch: JSON is not a string");
+}

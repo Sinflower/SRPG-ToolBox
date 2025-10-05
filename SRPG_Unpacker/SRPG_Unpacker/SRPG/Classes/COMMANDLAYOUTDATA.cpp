@@ -57,3 +57,8 @@ nlohmann::ordered_json COMMANDLAYOUTDATA::toJson() const
 	j["commandName"] = commandName.ToString();
 	return j;
 }
+
+void COMMANDLAYOUTDATA::applyPatch(const nlohmann::ordered_json& json)
+{
+	SET_STRING_IF_IN_JSON(json, "commandName", commandName);
+}

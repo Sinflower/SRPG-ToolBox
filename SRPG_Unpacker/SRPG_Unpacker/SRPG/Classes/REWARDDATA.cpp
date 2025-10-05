@@ -60,3 +60,8 @@ nlohmann::ordered_json REWARDDATA::toJson() const
 	j["text"] = text.ToString();
 	return j;
 }
+
+void REWARDDATA::applyPatch(const nlohmann::ordered_json& json)
+{
+	SET_STRING_IF_IN_JSON(json, "text", text);
+}

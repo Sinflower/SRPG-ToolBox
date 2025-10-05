@@ -33,9 +33,10 @@ struct VIDEODATA : public EDITDATA
 	MemData this_3;
 	DWORD this_4 = 0;
 	DWORD this_5 = 0;
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
 
 protected:
 	nlohmann::ordered_json toJson() const override;
+	void applyPatch(const nlohmann::ordered_json& json) override;
 };

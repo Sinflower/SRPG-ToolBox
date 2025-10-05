@@ -71,3 +71,9 @@ nlohmann::ordered_json WORDDATA::toJson() const
 
 	return j;
 }
+
+void WORDDATA::applyPatch(const nlohmann::ordered_json& json)
+{
+	LEGENDDATA::applyPatch(json);
+	APPLY_PATCH_IF_IN_JSON(json, "pages", pDictionaryCondition);
+}

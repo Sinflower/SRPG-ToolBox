@@ -67,6 +67,7 @@ public:
 	nlohmann::ordered_json GetResMapping() const;
 
 	void WritePatch(const std::filesystem::path& outPath) const;
+	void ApplyPatch(const std::filesystem::path& patchPath);
 
 private:
 	void loadProject();

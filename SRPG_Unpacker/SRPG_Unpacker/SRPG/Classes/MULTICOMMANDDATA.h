@@ -37,4 +37,5 @@ struct MULTICOMMANDDATA : public EDITDATA
 
 protected:
 	nlohmann::ordered_json toJson() const override;
+	void applyPatch(const nlohmann::ordered_json& json) override;
 };

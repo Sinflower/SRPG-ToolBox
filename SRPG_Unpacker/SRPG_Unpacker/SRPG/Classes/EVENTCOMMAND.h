@@ -31,9 +31,9 @@
 
 struct EVENTCOMMAND : public EDITDATA
 {
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
-	virtual void print(std::ostream& os) const;
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
+	void print(std::ostream& os) const override;
 
 	DWORD res = 0;
 	DWORD this_3;
@@ -44,5 +44,6 @@ struct EVENTCOMMAND : public EDITDATA
 	MemData comment;
 
 protected:
-	virtual nlohmann::ordered_json toJson() const override;
+	nlohmann::ordered_json toJson() const override;
+	void applyPatch(const nlohmann::ordered_json& json) override;
 };

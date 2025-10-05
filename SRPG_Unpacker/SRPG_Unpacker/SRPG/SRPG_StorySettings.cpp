@@ -108,3 +108,13 @@ void SRPG_StorySettings::WritePatches(const std::filesystem::path& outPath) cons
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pWordData, extraFolder, L"glossary.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pSoundModeData, extraFolder, L"soundroom.json");
 }
+
+void SRPG_StorySettings::ApplyPatches(const std::filesystem::path& patchPath)
+{
+	const std::filesystem::path extraFolder = ExtraPath(patchPath);
+
+	CHECK_OBJ_AND_APPLY_PATCH(m_pCharacterData, extraFolder, L"characters.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pGalleryData, extraFolder, L"gallery.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pWordData, extraFolder, L"glossary.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pSoundModeData, extraFolder, L"soundroom.json");
+}

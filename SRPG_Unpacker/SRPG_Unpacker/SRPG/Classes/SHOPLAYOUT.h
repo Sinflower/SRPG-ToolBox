@@ -36,9 +36,10 @@ struct SHOPLAYOUT : public EDITDATA
 	std::array<MemData, 12> shopMessages;
 	INTEROPSCREENDATA m_interOpScreenData;
 	DWORD this_19 = 0;
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
 
 protected:
-	virtual nlohmann::ordered_json toJson() const override;
+	nlohmann::ordered_json toJson() const override;
+	void applyPatch(const nlohmann::ordered_json& json) override;
 };

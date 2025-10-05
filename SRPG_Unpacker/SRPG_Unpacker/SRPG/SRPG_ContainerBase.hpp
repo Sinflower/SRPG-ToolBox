@@ -36,6 +36,14 @@ class CMenuOperation;
 	if (_OBJ_ != nullptr)                                             \
 		_OBJ_->WriteToJsonFile(_OUT_PATH_, _FILE_NAME_);
 
+#define CHECK_OBJ_AND_APPLY_PATCH(_OBJ_, _PATCH_PATH_, _FILE_NAME_) \
+	if (_OBJ_ != nullptr)                                           \
+		_OBJ_->ApplyPatch(_PATCH_PATH_, _FILE_NAME_);
+
+#define CALL_STR_SET_FUNC_IF_IN_JSON(_JSON_, _NAME_, _FUNC_) \
+	if (_JSON_.contains(_NAME_))                             \
+		_FUNC_(_JSON_[_NAME_]);
+
 class SRPG_ContainerBase
 {
 protected:
@@ -63,6 +71,8 @@ public:
 	}
 
 	virtual void WritePatches(const std::filesystem::path& outPath) const = 0;
+
+	virtual void ApplyPatches(const [[maybe_unused]] std::filesystem::path& patchPath) {}
 
 	static std::filesystem::path CommonsPath(const std::filesystem::path& basePath);
 

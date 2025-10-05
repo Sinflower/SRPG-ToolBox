@@ -50,3 +50,9 @@ nlohmann::ordered_json CLASSGROUPDATA::toJson() const
 
 	return j;
 }
+
+void CLASSGROUPDATA::applyPatch(const nlohmann::ordered_json& json)
+{
+	EDITDATA::applyPatch(json);
+	SET_STRING_IF_IN_JSON(json, "name", name);
+}

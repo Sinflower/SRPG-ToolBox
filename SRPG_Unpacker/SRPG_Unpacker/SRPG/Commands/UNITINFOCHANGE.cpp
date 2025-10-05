@@ -161,3 +161,9 @@ nlohmann::ordered_json UNITINFOCHANGE::toJson() const
 	j["description"] = description.ToString();
 	return j;
 }
+
+void UNITINFOCHANGE::applyPatch(const nlohmann::ordered_json& json)
+{
+	SET_STRING_IF_IN_JSON(json, "name", name);
+	SET_STRING_IF_IN_JSON(json, "description", description);
+}

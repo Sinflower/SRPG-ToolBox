@@ -218,8 +218,8 @@ void SRPG_Database::Dump(FileWriter& fw) const
 
 void SRPG_Database::WritePatches(const std::filesystem::path& outPath) const
 {
-	const std::filesystem::path commonsFolder = CommonsPath(outPath);
-	const std::filesystem::path cmdStrsFolder = CommandStringsPath(outPath);
+	const std::filesystem::path commonsFolder     = CommonsPath(outPath);
+	const std::filesystem::path cmdStrsFolder     = CommandStringsPath(outPath);
 	const std::filesystem::path weaponTypesFolder = WeaponTypesPath(outPath);
 	const std::filesystem::path npcSettingsFolder = NPCSettingsPath(outPath);
 
@@ -249,6 +249,42 @@ void SRPG_Database::WritePatches(const std::filesystem::path& outPath) const
 	{
 		const std::wstring filename = std::format(L"npc{}.json", i + 1);
 		CHECK_OBJ_AND_WRITE_JSON_FILE(m_pNPCSettings[i], npcSettingsFolder, filename);
+	}
+}
+
+void SRPG_Database::ApplyPatches(const std::filesystem::path& patchPath)
+{
+	const std::filesystem::path commonsFolder     = CommonsPath(patchPath);
+	const std::filesystem::path cmdStrsFolder     = CommandStringsPath(patchPath);
+	const std::filesystem::path weaponTypesFolder = WeaponTypesPath(patchPath);
+	const std::filesystem::path npcSettingsFolder = NPCSettingsPath(patchPath);
+
+	CHECK_OBJ_AND_APPLY_PATCH(m_pClasses, commonsFolder, L"classes.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pClassGroups, commonsFolder, L"classesgroups.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pClassTypes, commonsFolder, L"classtypes.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pDifficulties, commonsFolder, L"difficulties.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pFonts, commonsFolder, L"fonts.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pFusionSettings, commonsFolder, L"fusionsettings.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pItems, commonsFolder, L"items.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pPlayerUnits, commonsFolder, L"players.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pRaces, commonsFolder, L"races.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pSkills, commonsFolder, L"skills.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pStates, commonsFolder, L"states.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pTransformations, commonsFolder, L"transformations.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pWeapons, commonsFolder, L"weapons.json");
+
+	CHECK_OBJ_AND_APPLY_PATCH(m_pWeaponTypes[0], weaponTypesFolder, L"fighters.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pWeaponTypes[1], weaponTypesFolder, L"archers.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pWeaponTypes[2], weaponTypesFolder, L"mages.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pWeaponTypes[3], weaponTypesFolder, L"items.json");
+
+	CHECK_OBJ_AND_APPLY_PATCH(m_pCmdStrPlaceEv, cmdStrsFolder, L"placeevents.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pCmdStrTalkEv, cmdStrsFolder, L"talkevents.json");
+
+	for (uint32_t i = 0; i < m_pNPCSettings.size(); i++)
+	{
+		const std::wstring filename = std::format(L"npc{}.json", i + 1);
+		CHECK_OBJ_AND_APPLY_PATCH(m_pNPCSettings[i], npcSettingsFolder, filename);
 	}
 }
 

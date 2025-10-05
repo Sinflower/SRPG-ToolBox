@@ -34,6 +34,18 @@
 #include "../FileAccess.h"
 #include "Types.h"
 
+#define SET_STRING_IF_IN_JSON(_JSON_, _NAME_, _STR_)           \
+	if (_JSON_.contains(_NAME_) && _JSON_[_NAME_].is_string()) \
+		_STR_ = _JSON_[_NAME_].get<std::string>();
+
+#define SET_DWORD_IF_IN_JSON(_JSON_, _NAME_, _DWORD_)                   \
+	if (_JSON_.contains(_NAME_) && _JSON_[_NAME_].is_number_unsigned()) \
+		_DWORD_ = _JSON_[_NAME_].get<DWORD>();
+
+#define APPLY_PATCH_IF_IN_JSON(_JSON_, _NAME_, _OBJ_) \
+	if (_JSON_.contains(_NAME_))                      \
+		_OBJ_->ApplyPatch(_JSON_[_NAME_]);
+
 class CMenuOperation
 {
 public:
@@ -55,6 +67,9 @@ public:
 	}
 
 	void WriteToJsonFile(const std::filesystem::path& outPath, const std::wstring& name) const;
+
+	void ApplyPatch(const std::filesystem::path& path, const std::wstring& name);
+	void ApplyPatch(const nlohmann::ordered_json& json);
 
 	std::size_t GetElemCount() const;
 	friend std::ostream& operator<<(std::ostream& os, CMenuOperation const& dt);
@@ -90,6 +105,9 @@ public:
 	{
 		return m_data.end();
 	}
+
+private:
+	void applyPatch(const nlohmann::ordered_json& json);
 
 private:
 	std::vector<class EDITDATA*> m_data;

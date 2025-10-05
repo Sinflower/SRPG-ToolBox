@@ -154,3 +154,12 @@ void SRPG_BaseSettings::WritePatches(const std::filesystem::path& outPath) const
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pBonuses, basePath, L"bonuses.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pQuests, basePath, L"quests.json");
 }
+
+void SRPG_BaseSettings::ApplyPatches(const std::filesystem::path& patchPath)
+{
+	const std::filesystem::path basePath = BaseSettingsPath(patchPath);
+
+	CHECK_OBJ_AND_APPLY_PATCH(m_pShops, basePath, L"shops.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pBonuses, basePath, L"bonuses.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pQuests, basePath, L"quests.json");
+}

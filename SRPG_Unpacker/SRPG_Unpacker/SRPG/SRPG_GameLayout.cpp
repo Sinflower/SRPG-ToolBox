@@ -167,11 +167,24 @@ void SRPG_GameLayout::WritePatches(const std::filesystem::path& outPath) const
 	const std::filesystem::path layoutsFolder = LayoutsPath(outPath);
 
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pShopLayout, commonsFolder, L"shoplayout.json");
-	
+
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pBaseLayout, layoutsFolder, L"base.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pBattlePrepLayout, layoutsFolder, L"battleprep.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pManageLayout, layoutsFolder, L"manage.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pMapCommandsLayout, layoutsFolder, L"mapcommands.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pTitleLayout, layoutsFolder, L"title.json");
+}
 
+void SRPG_GameLayout::ApplyPatches(const std::filesystem::path& patchPath)
+{
+	const std::filesystem::path commonsFolder = CommonsPath(patchPath);
+	const std::filesystem::path layoutsFolder = LayoutsPath(patchPath);
+
+	CHECK_OBJ_AND_APPLY_PATCH(m_pShopLayout, commonsFolder, L"shoplayout.json");
+
+	CHECK_OBJ_AND_APPLY_PATCH(m_pBaseLayout, layoutsFolder, L"base.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pBattlePrepLayout, layoutsFolder, L"battleprep.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pManageLayout, layoutsFolder, L"manage.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pMapCommandsLayout, layoutsFolder, L"mapcommands.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pTitleLayout, layoutsFolder, L"title.json");
 }

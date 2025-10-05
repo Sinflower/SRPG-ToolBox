@@ -51,3 +51,9 @@ nlohmann::ordered_json MULTICOMMANDDATA::toJson() const
 	j["command"] = command.ToString();
 	return j;
 }
+
+void MULTICOMMANDDATA::applyPatch(const nlohmann::ordered_json& json)
+{
+	EDITDATA::applyPatch(json);
+	SET_STRING_IF_IN_JSON(json, "command", command);
+}

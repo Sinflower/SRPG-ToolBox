@@ -93,6 +93,7 @@ struct MAPDATA : public LEGENDDATA
 
 protected:
 	nlohmann::ordered_json toJson() const override;
+	void applyPatch(const nlohmann::ordered_json& json) override;
 
 private:
 	void sub_F7D9C0(FileReader& fw);

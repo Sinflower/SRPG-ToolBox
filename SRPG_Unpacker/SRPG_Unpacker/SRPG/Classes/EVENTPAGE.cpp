@@ -65,3 +65,9 @@ nlohmann::ordered_json EVENTPAGE::toJson() const
 	eventCommands->ToJson<nlohmann::json>(j, "commands", nlohmann::json::array());
 	return j;
 }
+
+void EVENTPAGE::applyPatch(const nlohmann::ordered_json& json)
+{
+	EDITDATA::applyPatch(json);
+	APPLY_PATCH_IF_IN_JSON(json, "commands", eventCommands);
+}

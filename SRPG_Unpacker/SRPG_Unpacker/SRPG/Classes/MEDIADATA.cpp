@@ -48,3 +48,7 @@ nlohmann::ordered_json MEDIADATA::toJson() const
 {
 	return { { "name", ws2s(this_7.ToWString()) } };
 }
+
+void MEDIADATA::applyPatch(const [[maybe_unused]] nlohmann::ordered_json& json)
+{
+}

@@ -170,10 +170,35 @@ void SRPG_Maps::WritePatches(const fs::path& outPath) const
 	for (const EDITDATA* pObj : *m_pMapData)
 	{
 		if (pObj)
-			WriteJsonToFile(pObj->ToJson(), mapFolder, std::format(L"map_{:0>3}.json", pObj->id));
+			WriteJsonToFile(pObj->ToJson(), mapFolder, formatMapFileName(pObj->id));
 	}
 
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pMapCommonEvents, commonsFolder, L"mapcommonevents.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pBookmarkEvents, commonsFolder, L"bookmarkevents.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pBookmarkUnits, commonsFolder, L"bookmark.json");
+}
+
+void SRPG_Maps::ApplyPatches(const std::filesystem::path& patchPath)
+{
+	const std::filesystem::path mapFolder     = MapsPath(patchPath);
+	const std::filesystem::path commonsFolder = CommonsPath(patchPath);
+
+	// Apply patches to each map from its own file
+	for (EDITDATA* pObj : *m_pMapData)
+	{
+		if (pObj)
+		{
+			nlohmann::ordered_json j = ReadJsonFromFile(mapFolder, formatMapFileName(pObj->id));
+			pObj->ApplyPatch(j);
+		}
+	}
+
+	CHECK_OBJ_AND_APPLY_PATCH(m_pMapCommonEvents, commonsFolder, L"mapcommonevents.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pBookmarkEvents, commonsFolder, L"bookmarkevents.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pBookmarkUnits, commonsFolder, L"bookmark.json");
+}
+
+std::wstring SRPG_Maps::formatMapFileName(const DWORD& mapID) const
+{
+	return std::format(L"map_{:0>3}.json", mapID);
 }

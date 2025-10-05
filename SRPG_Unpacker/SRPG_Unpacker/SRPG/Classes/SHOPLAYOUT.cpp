@@ -70,3 +70,18 @@ nlohmann::ordered_json SHOPLAYOUT::toJson() const
 
 	return j;
 }
+
+void SHOPLAYOUT::applyPatch(const nlohmann::ordered_json& json)
+{
+	EDITDATA::applyPatch(json);
+	SET_STRING_IF_IN_JSON(json, "name", m_interOpScreenData.gameName);
+
+	if (json.contains("msg") && json["msg"].is_array())
+	{
+		for (std::size_t i = 0; i < shopMessages.size(); i++)
+		{
+			if (i < json["msg"].size() && json["msg"][i].is_string())
+				shopMessages[i] = json["msg"][i].get<std::string>();
+		}
+	}
+}

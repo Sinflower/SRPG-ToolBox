@@ -56,3 +56,10 @@ nlohmann::ordered_json MAPINFOCHANGE::toJson() const
 	j["pDefeatCond"]  = pDefeatCond->ToJson();
 	return j;
 }
+
+void MAPINFOCHANGE::applyPatch(const nlohmann::ordered_json& json)
+{
+	SET_STRING_IF_IN_JSON(json, "description", description);
+	APPLY_PATCH_IF_IN_JSON(json, "pVictoryCond", pVictoryCond);
+	APPLY_PATCH_IF_IN_JSON(json, "pDefeatCond", pDefeatCond);
+}
