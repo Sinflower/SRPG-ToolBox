@@ -37,6 +37,10 @@ struct PASSDATA : public EDITDATA
 	MemData this_7;
 	class CMenuOperation* m_pPassChipData = nullptr;
 	MemData this_9;
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
+
+protected:
+	nlohmann::ordered_json toJson() const override;
+	void applyPatch(const nlohmann::ordered_json& json) override;
 };

@@ -56,6 +56,8 @@ protected:
 	static inline const std::wstring LAYOUTS_FOLDER       = L"CommandLayout";
 	static inline const std::wstring MAPS_FOLDER          = L"Maps";
 	static inline const std::wstring NPC_SETTINGS_FOLDER  = L"NPCSettings";
+	static inline const std::wstring RESOURCE_LOC_FOLDER  = L"ResourceLocation";
+	static inline const std::wstring TERRAIN_FOLDER       = L"Terrain";
 	static inline const std::wstring WEAPON_TYPES_FOLDER  = L"WeaponTypes";
 
 public:
@@ -82,6 +84,8 @@ public:
 	static std::filesystem::path LayoutsPath(const std::filesystem::path& basePath);
 	static std::filesystem::path MapsPath(const std::filesystem::path& basePath);
 	static std::filesystem::path NPCSettingsPath(const std::filesystem::path& basePath);
+	static std::filesystem::path ResourceLocationPath(const std::filesystem::path& basePath);
+	static std::filesystem::path TerrainPath(const std::filesystem::path& basePath);
 	static std::filesystem::path WeaponTypesPath(const std::filesystem::path& basePath);
 
 private:

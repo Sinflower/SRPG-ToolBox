@@ -192,7 +192,7 @@ nlohmann::ordered_json MAPDATA::toJson() const
 	pEvEnemyUnits->ToJson(j, "EvEnemyUnits");
 	pAllyUnits->ToJson(j, "AllyUnits");
 	pEvAllyUnits->ToJson(j, "EvAllyUnits");
-	pReinforcementUnits->ToJson(j, "pReinforcementUnits");
+	pReinforcementUnits->ToJson(j, "ReinforcementUnits");
 	pGuestUnits->ToJson(j, "GuestUnits");
 	pEvGuestUnits->ToJson(j, "EvGuestUnits");
 
@@ -216,7 +216,7 @@ void MAPDATA::applyPatch(const nlohmann::ordered_json& json)
 	APPLY_PATCH_IF_IN_JSON(json, "EvEnemyUnits", pEvEnemyUnits);
 	APPLY_PATCH_IF_IN_JSON(json, "AllyUnits", pAllyUnits);
 	APPLY_PATCH_IF_IN_JSON(json, "EvAllyUnits", pEvAllyUnits);
-	APPLY_PATCH_IF_IN_JSON(json, "pReinforcementUnits", pReinforcementUnits);
+	APPLY_PATCH_IF_IN_JSON(json, "ReinforcementUnits", pReinforcementUnits);
 	APPLY_PATCH_IF_IN_JSON(json, "GuestUnits", pGuestUnits);
 	APPLY_PATCH_IF_IN_JSON(json, "EvGuestUnits", pEvGuestUnits);
 

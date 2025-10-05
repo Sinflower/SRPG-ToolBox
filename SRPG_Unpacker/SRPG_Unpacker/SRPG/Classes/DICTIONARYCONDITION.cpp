@@ -44,14 +44,13 @@ void DICTIONARYCONDITION::dump(FileWriter& fw) const
 
 nlohmann::ordered_json DICTIONARYCONDITION::toJson() const
 {
-	nlohmann::ordered_json j;
-
-	j["text"] = text.ToString();
-
-	return j;
+	return text.ToString();
 }
 
 void DICTIONARYCONDITION::applyPatch(const nlohmann::ordered_json& json)
 {
-	SET_STRING_IF_IN_JSON(json, "text", text);
+	if (json.is_string())
+		text = json.get<std::string>();
+	else
+		throw std::runtime_error("DICTIONARYCONDITION::applyPatch: JSON is not a string");
 }

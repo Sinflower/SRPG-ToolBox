@@ -70,6 +70,7 @@ void SRPG_Project::WritePatch(const fs::path& outPath) const
 	m_database.WritePatches(outPath);
 	m_gameLayout.WritePatches(outPath);
 	m_recollectionEvents.WritePatches(outPath);
+	m_interOpData.WritePatches(outPath);
 	m_storySettings.WritePatches(outPath);
 	m_baseSettings.WritePatches(outPath);
 
@@ -87,6 +88,7 @@ void SRPG_Project::ApplyPatch(const std::filesystem::path& patchPath)
 	m_database.ApplyPatches(patchPath);
 	m_gameLayout.ApplyPatches(patchPath);
 	m_recollectionEvents.ApplyPatches(patchPath);
+	m_interOpData.ApplyPatches(patchPath);
 	m_storySettings.ApplyPatches(patchPath);
 	m_baseSettings.ApplyPatches(patchPath);
 

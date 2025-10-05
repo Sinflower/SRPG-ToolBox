@@ -32,12 +32,26 @@
 
 void INTEROPBASE::init(FileReader& fw)
 {
-	initMemData(internalName, fw);
 	initMemData(gameName, fw);
+	initMemData(internalName, fw);
 }
 
 void INTEROPBASE::dump(FileWriter& fw) const
 {
-	internalName.Write(fw);
 	gameName.Write(fw);
+	internalName.Write(fw);
+}
+
+nlohmann::ordered_json INTEROPBASE::toJson() const
+{
+	nlohmann::ordered_json j = EDITDATA::toJson();
+
+	j["name"] = gameName.ToString();
+	return j;
+}
+
+void INTEROPBASE::applyPatch(const nlohmann::ordered_json& json)
+{
+	EDITDATA::applyPatch(json);
+	SET_STRING_IF_IN_JSON(json, "name", gameName);
 }

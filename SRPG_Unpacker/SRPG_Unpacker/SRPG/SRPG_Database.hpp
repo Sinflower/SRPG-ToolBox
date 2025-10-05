@@ -70,16 +70,16 @@ private:
 	void dump_sub_F7DD10(FileWriter& fw) const;
 
 private:
-	CMenuOperation* m_pPlayerUnits  = nullptr;
-	CMenuOperation* m_pClasses      = nullptr;
-	CMenuOperation* m_pWeapons      = nullptr;
-	CMenuOperation* m_pItems        = nullptr;
-	CMenuOperation* m_pSkills       = nullptr;
-	CMenuOperation* m_pStates       = nullptr;
-	CMenuOperation* m_pPassData1    = nullptr;
-	CMenuOperation* m_pPassData2    = nullptr;
-	CMenuOperation* m_pClassTypes   = nullptr;
-	CMenuOperation* m_pMoveTypeData = nullptr;
+	CMenuOperation* m_pPlayerUnits      = nullptr;
+	CMenuOperation* m_pClasses          = nullptr;
+	CMenuOperation* m_pWeapons          = nullptr;
+	CMenuOperation* m_pItems            = nullptr;
+	CMenuOperation* m_pSkills           = nullptr;
+	CMenuOperation* m_pStates           = nullptr;
+	CMenuOperation* m_pOriginalTerrains = nullptr;
+	CMenuOperation* m_pRuntimeTerrains  = nullptr;
+	CMenuOperation* m_pClassTypes       = nullptr;
+	CMenuOperation* m_pMoveTypeData     = nullptr;
 
 	std::array<CMenuOperation*, 4> m_pWeaponTypes = { nullptr };
 

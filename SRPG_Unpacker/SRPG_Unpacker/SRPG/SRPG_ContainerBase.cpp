@@ -61,6 +61,16 @@ std::filesystem::path SRPG_ContainerBase::NPCSettingsPath(const std::filesystem:
 	return buildFolder(basePath, NPC_SETTINGS_FOLDER);
 }
 
+std::filesystem::path SRPG_ContainerBase::ResourceLocationPath(const std::filesystem::path& basePath)
+{
+	return buildFolder(basePath, RESOURCE_LOC_FOLDER);
+}
+
+std::filesystem::path SRPG_ContainerBase::TerrainPath(const std::filesystem::path& basePath)
+{
+	return buildFolder(basePath, TERRAIN_FOLDER);
+}
+
 std::filesystem::path SRPG_ContainerBase::WeaponTypesPath(const std::filesystem::path& basePath)
 {
 	return buildFolder(basePath, WEAPON_TYPES_FOLDER);

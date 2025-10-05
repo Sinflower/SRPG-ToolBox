@@ -49,6 +49,6 @@ struct PASSCHIPDATA : public LEGENDDATA
 	std::array<DWORD, 12> this_131;
 	DWORD this_132 = 0;
 
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
 };

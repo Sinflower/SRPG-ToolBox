@@ -268,7 +268,7 @@ int main(int argc, char* argv[])
 
 	std::wstring defaultUnpack = L"output";
 	std::wstring defaultPack   = L"output.dts";
-	std::wstring defaultPatch  = L".";
+	std::wstring defaultPatch  = L"patch";
 
 	std::wstring input;
 	app.add_option("INPUT", input, "<data.dts>\n<data_folder>\n<project.dat>")->required();
@@ -315,7 +315,7 @@ int main(int argc, char* argv[])
 		}
 		else
 		{
-			throw std::runtime_error("Invalid input provided, must be a .dts file or a folder");
+			throw std::runtime_error("Invalid input provided, must be a .dts file or a folder, or project.dat");
 		}
 	}
 	catch (std::exception& e)

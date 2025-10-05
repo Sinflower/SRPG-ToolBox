@@ -96,4 +96,16 @@ void SRPG_InterOpData::Dump(FileWriter& fw) const
 
 void SRPG_InterOpData::WritePatches(const std::filesystem::path& outPath) const
 {
+	const std::filesystem::path resourceLocPath = SRPG_ContainerBase::ResourceLocationPath(outPath);
+
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pInteropStringData1, resourceLocPath, L"strings.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pInteropScreenData, resourceLocPath, L"screens.json");
+}
+
+void SRPG_InterOpData::ApplyPatches(const std::filesystem::path& patchPath)
+{
+	const std::filesystem::path resourceLocPath = SRPG_ContainerBase::ResourceLocationPath(patchPath);
+
+	CHECK_OBJ_AND_APPLY_PATCH(m_pInteropStringData1, resourceLocPath, L"strings.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pInteropScreenData, resourceLocPath, L"screens.json");
 }

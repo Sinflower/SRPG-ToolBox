@@ -82,9 +82,12 @@ nlohmann::ordered_json EVENTCOMMAND::toJson() const
 	nlohmann::ordered_json j       = EDITDATA::toJson();
 	nlohmann::ordered_json command = pCommand->ToJson();
 
+	// Because all commands derive from EDITDATA, if they don't implement toJson() the result will be { "id": <id> }
+	const nlohmann::ordered_json invalidCommand = { { "id", 0 } };
+
 	// If the command is empty return empty json
-	if (command.is_null() || command.empty())
-		return j;
+	if (command.is_null() || command.empty() || command == invalidCommand)
+		return nlohmann::ordered_json();
 
 	j["comment"] = comment.ToString();
 	j.update(command);

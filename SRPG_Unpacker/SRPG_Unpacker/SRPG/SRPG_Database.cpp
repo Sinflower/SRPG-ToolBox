@@ -69,12 +69,12 @@ void SRPG_Database::Init(FileReader& fw)
 	std::cout << "OFFSET-STATEDATA=" << fw.GetOffset() << std::endl;
 #endif
 
-	allocAndSetCMenuOp(&m_pPassData1, SRPGClasses::PASSDATA, fw);
+	allocAndSetCMenuOp(&m_pOriginalTerrains, SRPGClasses::PASSDATA, fw); // Original Terrains
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-PASSDATA1=" << fw.GetOffset() << std::endl;
 #endif
 
-	allocAndSetCMenuOp(&m_pPassData2, SRPGClasses::PASSDATA, fw);
+	allocAndSetCMenuOp(&m_pRuntimeTerrains, SRPGClasses::PASSDATA, fw); // Runtime Terrains
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-PASSDATA2=" << fw.GetOffset() << std::endl;
 #endif
@@ -183,8 +183,8 @@ void SRPG_Database::Dump(FileWriter& fw) const
 	if (g_ArcVersion >= 0x400)
 		m_pStates->dump(fw);
 
-	m_pPassData1->dump(fw);
-	m_pPassData2->dump(fw);
+	m_pOriginalTerrains->dump(fw);
+	m_pRuntimeTerrains->dump(fw);
 	m_pFonts->dump(fw);
 
 	if (g_ArcVersion >= 0x455)
@@ -220,8 +220,9 @@ void SRPG_Database::WritePatches(const std::filesystem::path& outPath) const
 {
 	const std::filesystem::path commonsFolder     = CommonsPath(outPath);
 	const std::filesystem::path cmdStrsFolder     = CommandStringsPath(outPath);
-	const std::filesystem::path weaponTypesFolder = WeaponTypesPath(outPath);
 	const std::filesystem::path npcSettingsFolder = NPCSettingsPath(outPath);
+	const std::filesystem::path terrainFolder     = TerrainPath(outPath);
+	const std::filesystem::path weaponTypesFolder = WeaponTypesPath(outPath);
 
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pClasses, commonsFolder, L"classes.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pClassGroups, commonsFolder, L"classesgroups.json");
@@ -250,14 +251,18 @@ void SRPG_Database::WritePatches(const std::filesystem::path& outPath) const
 		const std::wstring filename = std::format(L"npc{}.json", i + 1);
 		CHECK_OBJ_AND_WRITE_JSON_FILE(m_pNPCSettings[i], npcSettingsFolder, filename);
 	}
+
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pOriginalTerrains, terrainFolder, L"originalterrains.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pRuntimeTerrains, terrainFolder, L"runtimeterrains.json");
 }
 
 void SRPG_Database::ApplyPatches(const std::filesystem::path& patchPath)
 {
 	const std::filesystem::path commonsFolder     = CommonsPath(patchPath);
 	const std::filesystem::path cmdStrsFolder     = CommandStringsPath(patchPath);
-	const std::filesystem::path weaponTypesFolder = WeaponTypesPath(patchPath);
 	const std::filesystem::path npcSettingsFolder = NPCSettingsPath(patchPath);
+	const std::filesystem::path terrainFolder     = TerrainPath(patchPath);
+	const std::filesystem::path weaponTypesFolder = WeaponTypesPath(patchPath);
 
 	CHECK_OBJ_AND_APPLY_PATCH(m_pClasses, commonsFolder, L"classes.json");
 	CHECK_OBJ_AND_APPLY_PATCH(m_pClassGroups, commonsFolder, L"classesgroups.json");
@@ -286,6 +291,9 @@ void SRPG_Database::ApplyPatches(const std::filesystem::path& patchPath)
 		const std::wstring filename = std::format(L"npc{}.json", i + 1);
 		CHECK_OBJ_AND_APPLY_PATCH(m_pNPCSettings[i], npcSettingsFolder, filename);
 	}
+
+	CHECK_OBJ_AND_APPLY_PATCH(m_pOriginalTerrains, terrainFolder, L"originalterrains.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pRuntimeTerrains, terrainFolder, L"runtimeterrains.json");
 }
 
 void SRPG_Database::sub_F8E4E0(FileReader& fw)

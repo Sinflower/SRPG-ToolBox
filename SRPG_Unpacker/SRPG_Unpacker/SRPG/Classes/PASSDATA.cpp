@@ -57,3 +57,18 @@ void PASSDATA::dump(FileWriter& fw) const
 
 	m_pPassChipData->dump(fw);
 }
+
+nlohmann::ordered_json PASSDATA::toJson() const
+{
+	nlohmann::ordered_json j = EDITDATA::toJson();
+
+	j["terrains"] = m_pPassChipData->ToJson();
+
+	return j;
+}
+
+void PASSDATA::applyPatch(const nlohmann::ordered_json& json)
+{
+	EDITDATA::applyPatch(json);
+	APPLY_PATCH_IF_IN_JSON(json, "terrains", m_pPassChipData);
+}
