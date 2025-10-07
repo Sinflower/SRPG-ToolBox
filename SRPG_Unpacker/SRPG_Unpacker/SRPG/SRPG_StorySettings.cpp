@@ -31,7 +31,7 @@
 #include "SRPG_Project.h"
 #include "Version.h"
 
-void SRPG_StorySettings::Init(FileReader& fw)
+void SRPG_StorySettings::init(FileReader& fw)
 {
 #ifdef DEBUG_PRINT
 	std::cout << "==== Method " << __FUNCSIG__ << " START ====" << std::endl;
@@ -78,7 +78,7 @@ void SRPG_StorySettings::Init(FileReader& fw)
 #endif
 }
 
-void SRPG_StorySettings::Dump(FileWriter& fw) const
+void SRPG_StorySettings::dump(FileWriter& fw) const
 {
 	m_pCharacterData->dump(fw);
 	m_pWordData->dump(fw);
@@ -99,7 +99,7 @@ void SRPG_StorySettings::Dump(FileWriter& fw) const
 		fw.Write(this_249);
 }
 
-void SRPG_StorySettings::WritePatches(const std::filesystem::path& outPath) const
+void SRPG_StorySettings::writePatches(const std::filesystem::path& outPath) const
 {
 	const std::filesystem::path extraFolder = ExtraPath(outPath);
 
@@ -109,7 +109,7 @@ void SRPG_StorySettings::WritePatches(const std::filesystem::path& outPath) cons
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pSoundModeData, extraFolder, L"soundroom.json");
 }
 
-void SRPG_StorySettings::ApplyPatches(const std::filesystem::path& patchPath)
+void SRPG_StorySettings::applyPatches(const std::filesystem::path& patchPath)
 {
 	const std::filesystem::path extraFolder = ExtraPath(patchPath);
 

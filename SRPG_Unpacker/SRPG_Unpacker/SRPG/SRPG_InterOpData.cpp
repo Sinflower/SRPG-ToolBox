@@ -31,7 +31,7 @@
 #include "SRPG_Project.h"
 #include "Version.h"
 
-void SRPG_InterOpData::Init(FileReader& fw)
+void SRPG_InterOpData::init(FileReader& fw)
 {
 #ifdef DEBUG_PRINT
 	std::cout << "==== Method " << __FUNCSIG__ << " START ====" << std::endl;
@@ -82,7 +82,7 @@ void SRPG_InterOpData::Init(FileReader& fw)
 #endif
 }
 
-void SRPG_InterOpData::Dump(FileWriter& fw) const
+void SRPG_InterOpData::dump(FileWriter& fw) const
 {
 	m_pInteropAnimeData->dump(fw);
 	m_pInteropMediaData->dump(fw);
@@ -94,7 +94,7 @@ void SRPG_InterOpData::Dump(FileWriter& fw) const
 	m_pInteropStringData2->dump(fw);
 }
 
-void SRPG_InterOpData::WritePatches(const std::filesystem::path& outPath) const
+void SRPG_InterOpData::writePatches(const std::filesystem::path& outPath) const
 {
 	const std::filesystem::path resourceLocPath = SRPG_ContainerBase::ResourceLocationPath(outPath);
 
@@ -102,7 +102,7 @@ void SRPG_InterOpData::WritePatches(const std::filesystem::path& outPath) const
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pInteropScreenData, resourceLocPath, L"screens.json");
 }
 
-void SRPG_InterOpData::ApplyPatches(const std::filesystem::path& patchPath)
+void SRPG_InterOpData::applyPatches(const std::filesystem::path& patchPath)
 {
 	const std::filesystem::path resourceLocPath = SRPG_ContainerBase::ResourceLocationPath(patchPath);
 

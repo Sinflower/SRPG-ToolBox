@@ -65,18 +65,8 @@ public:
 	}
 
 protected:
-	virtual nlohmann::ordered_json toJson() const
-	{
-		nlohmann::ordered_json j;
-		j["id"] = id;
-		return j;
-	}
-
-	virtual void applyPatch(const nlohmann::ordered_json& json)
-	{
-		if (id != json["id"])
-			throw std::runtime_error("EDITDATA::applyPatch: ID mismatch");
-	}
+	virtual nlohmann::ordered_json toJson() const;
+	virtual void applyPatch(const nlohmann::ordered_json& json);
 
 public:
 	EDITDATA* pNext = nullptr;

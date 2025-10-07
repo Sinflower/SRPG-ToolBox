@@ -31,7 +31,7 @@
 #include "SRPG_Project.h"
 #include "Version.h"
 
-void SRPG_BaseSettings::Init(FileReader& fw)
+void SRPG_BaseSettings::init(FileReader& fw)
 {
 #ifdef DEBUG_PRINT
 	std::cout << "==== Method " << __FUNCSIG__ << " START ====" << std::endl;
@@ -111,7 +111,7 @@ void SRPG_BaseSettings::Init(FileReader& fw)
 #endif
 }
 
-void SRPG_BaseSettings::Dump(FileWriter& fw) const
+void SRPG_BaseSettings::dump(FileWriter& fw) const
 {
 	m_pShops->dump(fw);
 	m_pBonuses->dump(fw);
@@ -146,7 +146,7 @@ void SRPG_BaseSettings::Dump(FileWriter& fw) const
 	fw.Write(this_429);
 }
 
-void SRPG_BaseSettings::WritePatches(const std::filesystem::path& outPath) const
+void SRPG_BaseSettings::writePatches(const std::filesystem::path& outPath) const
 {
 	const std::filesystem::path basePath = BaseSettingsPath(outPath);
 
@@ -155,7 +155,7 @@ void SRPG_BaseSettings::WritePatches(const std::filesystem::path& outPath) const
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pQuests, basePath, L"quests.json");
 }
 
-void SRPG_BaseSettings::ApplyPatches(const std::filesystem::path& patchPath)
+void SRPG_BaseSettings::applyPatches(const std::filesystem::path& patchPath)
 {
 	const std::filesystem::path basePath = BaseSettingsPath(patchPath);
 

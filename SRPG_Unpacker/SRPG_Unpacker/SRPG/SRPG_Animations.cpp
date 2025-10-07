@@ -31,7 +31,7 @@
 #include "SRPG_Project.h"
 #include "Version.h"
 
-void SRPG_Animations::Init(FileReader& fw)
+void SRPG_Animations::init(FileReader& fw)
 {
 #ifdef DEBUG_PRINT
 	std::cout << "==== Method " << __FUNCSIG__ << " START ====" << std::endl;
@@ -160,7 +160,7 @@ void SRPG_Animations::Init(FileReader& fw)
 #endif
 }
 
-void SRPG_Animations::Dump(FileWriter& fw) const
+void SRPG_Animations::dump(FileWriter& fw) const
 {
 	m_pAnimeData1->dump(fw);
 	m_pAnimeData2->dump(fw);
@@ -248,6 +248,6 @@ void SRPG_Animations::Dump(FileWriter& fw) const
 	}
 }
 
-void SRPG_Animations::WritePatches(const std::filesystem::path& outPath) const
+void SRPG_Animations::writePatches(const std::filesystem::path& outPath) const
 {
 }

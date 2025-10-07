@@ -28,6 +28,7 @@
 
 #include "../FileAccess.h"
 #include "../MemData.h"
+#include "Globals.h"
 #include "Speaker.h"
 
 #include <array>
@@ -40,9 +41,12 @@ class CMenuOperation;
 	if (_OBJ_ != nullptr)                                             \
 		_OBJ_->WriteToJsonFile(_OUT_PATH_, _FILE_NAME_);
 
-#define CHECK_OBJ_AND_APPLY_PATCH(_OBJ_, _PATCH_PATH_, _FILE_NAME_) \
-	if (_OBJ_ != nullptr)                                           \
-		_OBJ_->ApplyPatch(_PATCH_PATH_, _FILE_NAME_);
+#define CHECK_OBJ_AND_APPLY_PATCH(_OBJ_, _PATCH_PATH_, _FILE_NAME_)                 \
+	if (_OBJ_ != nullptr)                                                           \
+	{                                                                               \
+		g_activeFile = ws2s(_FILE_NAME_);                                           \
+		_OBJ_->ApplyPatch(_PATCH_PATH_, _FILE_NAME_);                               \
+	}
 
 #define CALL_STR_SET_FUNC_IF_IN_JSON(_JSON_, _NAME_, _FUNC_) \
 	if (_JSON_.contains(_NAME_))                             \
@@ -65,20 +69,14 @@ protected:
 	static inline const std::wstring WEAPON_TYPES_FOLDER  = L"WeaponTypes";
 
 public:
-	SRPG_ContainerBase() {}
+	SRPG_ContainerBase(const std::string& name) :
+		m_name(name) {}
 	virtual ~SRPG_ContainerBase() {}
-	virtual void Init(FileReader& fw)       = 0;
-	virtual void Dump(FileWriter& fw) const = 0;
-
-	// By default, DumpProj calls Dump
-	virtual void DumpProj(FileWriter& fw) const
-	{
-		Dump(fw);
-	}
-
-	virtual void WritePatches(const std::filesystem::path& outPath) const = 0;
-
-	virtual void ApplyPatches(const [[maybe_unused]] std::filesystem::path& patchPath) {}
+	void Init(FileReader& fw);
+	void Dump(FileWriter& fw) const;
+	void DumpProj(FileWriter& fw) const;
+	void WritePatches(const std::filesystem::path& outPath) const;
+	void ApplyPatches(const [[maybe_unused]] std::filesystem::path& patchPath);
 
 	static std::filesystem::path CommonsPath(const std::filesystem::path& basePath);
 
@@ -93,8 +91,23 @@ public:
 	static std::filesystem::path WeaponTypesPath(const std::filesystem::path& basePath);
 
 protected:
+	virtual void init(FileReader& fw)       = 0;
+	virtual void dump(FileWriter& fw) const = 0;
+
+	// By default, DumpProj calls Dump
+	virtual void dumpProj(FileWriter& fw) const
+	{
+		Dump(fw);
+	}
+
+	virtual void writePatches(const std::filesystem::path& outPath) const = 0;
+	virtual void applyPatches(const [[maybe_unused]] std::filesystem::path& patchPath) {}
+
 	static UnitNameMap buildUnitNameMap(const CMenuOperation* pObjs, const DWORD& npcIdOffset = 0x0);
 
 private:
 	static std::filesystem::path buildFolder(const std::filesystem::path& basePath, const std::wstring& folder);
+
+protected:
+	std::string m_name;
 };

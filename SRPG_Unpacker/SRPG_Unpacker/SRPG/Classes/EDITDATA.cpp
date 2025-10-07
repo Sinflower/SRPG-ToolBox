@@ -26,6 +26,7 @@
 
 #include "EDITDATA.h"
 #include "../CMenuOperation.h"
+#include "../Globals.h"
 
 EDITDATA::EDITDATA()
 {
@@ -75,4 +76,21 @@ nlohmann::ordered_json EDITDATA::ToJson() const
 void EDITDATA::ApplyPatch(const nlohmann::ordered_json& json)
 {
 	applyPatch(json);
+}
+
+nlohmann::ordered_json EDITDATA::toJson() const
+{
+	nlohmann::ordered_json j;
+	j["id"] = id;
+	//j["type"] = name();
+	return j;
+}
+
+void EDITDATA::applyPatch(const nlohmann::ordered_json& json)
+{
+	if (id != json["id"])
+	{
+		std::string errorMsg = std::format("{}::applyPatch:\nID mismatch:\n - File: {}\n - Expected: {} - Got: {}", name(), g_activeFile, id, json["id"].get<DWORD>());
+		throw std::runtime_error(errorMsg);
+	}
 }

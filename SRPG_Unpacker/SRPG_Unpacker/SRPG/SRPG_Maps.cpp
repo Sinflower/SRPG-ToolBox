@@ -36,7 +36,7 @@
 
 namespace fs = std::filesystem;
 
-void SRPG_Maps::Init(FileReader& fw)
+void SRPG_Maps::init(FileReader& fw)
 {
 #ifdef DEBUG_PRINT
 	std::cout << std::hex << "==== Method " << __FUNCSIG__ << " START ====" << std::endl;
@@ -117,7 +117,7 @@ void SRPG_Maps::Init(FileReader& fw)
 #endif
 }
 
-void SRPG_Maps::Dump(FileWriter& fw) const
+void SRPG_Maps::dump(FileWriter& fw) const
 {
 	m_pMapData->dump(fw);
 	m_pMapTreeData1->dump(fw);
@@ -162,7 +162,7 @@ void SRPG_Maps::Dump(FileWriter& fw) const
 		this_37.Write(fw);
 }
 
-void SRPG_Maps::WritePatches(const fs::path& outPath) const
+void SRPG_Maps::writePatches(const fs::path& outPath) const
 {
 	const fs::path mapFolder     = MapsPath(outPath);
 	const fs::path commonsFolder = CommonsPath(outPath);
@@ -201,7 +201,7 @@ void SRPG_Maps::WritePatches(const fs::path& outPath) const
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pBookmarkUnits, commonsFolder, L"bookmark.json");
 }
 
-void SRPG_Maps::ApplyPatches(const std::filesystem::path& patchPath)
+void SRPG_Maps::applyPatches(const std::filesystem::path& patchPath)
 {
 	const std::filesystem::path mapFolder     = MapsPath(patchPath);
 	const std::filesystem::path commonsFolder = CommonsPath(patchPath);
@@ -212,6 +212,7 @@ void SRPG_Maps::ApplyPatches(const std::filesystem::path& patchPath)
 		if (pObj)
 		{
 			nlohmann::ordered_json j = ReadJsonFromFile(mapFolder, formatMapFileName(pObj->id));
+			g_activeFile             = ws2s(formatMapFileName(pObj->id));
 			pObj->ApplyPatch(j);
 		}
 	}

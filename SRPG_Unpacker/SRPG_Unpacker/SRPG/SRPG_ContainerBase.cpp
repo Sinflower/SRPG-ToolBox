@@ -29,6 +29,39 @@
 #include "Classes/NPCDATA.h"
 #include "Classes/UNITDATA.h"
 
+void SRPG_ContainerBase::Init(FileReader& fw)
+{
+	std::cout << "Initializing: " << m_name << " ... " << std::flush;
+	init(fw);
+	std::cout << "Done" << std::endl;
+}
+
+void SRPG_ContainerBase::Dump(FileWriter& fw) const
+{
+	std::cout << "Dumping: " << m_name << " ... " << std::flush;
+	dump(fw);
+	std::cout << "Done" << std::endl;
+}
+
+void SRPG_ContainerBase::DumpProj(FileWriter& fw) const
+{
+	dumpProj(fw);
+}
+
+void SRPG_ContainerBase::WritePatches(const std::filesystem::path& outPath) const
+{
+	std::cout << "Writing patches: " << m_name << " ... " << std::flush;
+	writePatches(outPath);
+	std::cout << "Done" << std::endl;
+}
+
+void SRPG_ContainerBase::ApplyPatches(const std::filesystem::path& patchPath)
+{
+	std::cout << "Applying patches: " << m_name << " ... " << std::flush;
+	applyPatches(patchPath);
+	std::cout << "Done" << std::endl;
+}
+
 std::filesystem::path SRPG_ContainerBase::CommonsPath(const std::filesystem::path& basePath)
 {
 	return buildFolder(basePath, COMMONS_PATCH_FOLDER);

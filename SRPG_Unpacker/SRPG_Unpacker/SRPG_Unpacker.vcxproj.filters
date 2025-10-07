@@ -1370,5 +1370,8 @@
     <ClInclude Include="SRPG\Speaker.h">
       <Filter>SRPG</Filter>
     </ClInclude>
+    <ClInclude Include="SRPG\Globals.h">
+      <Filter>SRPG</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

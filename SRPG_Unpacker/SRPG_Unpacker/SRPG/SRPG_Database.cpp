@@ -33,7 +33,21 @@
 
 #include "Classes/UNITDATA.h"
 
-void SRPG_Database::Init(FileReader& fw)
+UnitNamesCollection SRPG_Database::GetGlobalUnitNames() const
+{
+	UnitNamesCollection names;
+	names[0] = buildUnitNameMap(m_pPlayerUnits, 0x0);
+
+	for (std::size_t i = 0; i < m_pNPCSettings.size(); i++)
+	{
+		UnitNameMap map = buildUnitNameMap(m_pNPCSettings[i], static_cast<DWORD>(i));
+		names[1].insert(map.begin(), map.end());
+	}
+
+	return names;
+}
+
+void SRPG_Database::init(FileReader& fw)
 {
 #ifdef DEBUG_PRINT
 	std::cout << "==== Method " << __FUNCSIG__ << " START ====" << std::endl;
@@ -174,7 +188,7 @@ void SRPG_Database::Init(FileReader& fw)
 #endif
 }
 
-void SRPG_Database::Dump(FileWriter& fw) const
+void SRPG_Database::dump(FileWriter& fw) const
 {
 	m_pPlayerUnits->dump(fw);
 	m_pClasses->dump(fw);
@@ -218,7 +232,7 @@ void SRPG_Database::Dump(FileWriter& fw) const
 	dump_sub_F7DD10(fw);
 }
 
-void SRPG_Database::WritePatches(const std::filesystem::path& outPath) const
+void SRPG_Database::writePatches(const std::filesystem::path& outPath) const
 {
 	const std::filesystem::path commonsFolder     = CommonsPath(outPath);
 	const std::filesystem::path cmdStrsFolder     = CommandStringsPath(outPath);
@@ -258,7 +272,7 @@ void SRPG_Database::WritePatches(const std::filesystem::path& outPath) const
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pRuntimeTerrains, terrainFolder, L"runtimeterrains.json");
 }
 
-void SRPG_Database::ApplyPatches(const std::filesystem::path& patchPath)
+void SRPG_Database::applyPatches(const std::filesystem::path& patchPath)
 {
 	const std::filesystem::path commonsFolder     = CommonsPath(patchPath);
 	const std::filesystem::path cmdStrsFolder     = CommandStringsPath(patchPath);
@@ -296,20 +310,6 @@ void SRPG_Database::ApplyPatches(const std::filesystem::path& patchPath)
 
 	CHECK_OBJ_AND_APPLY_PATCH(m_pOriginalTerrains, terrainFolder, L"originalterrains.json");
 	CHECK_OBJ_AND_APPLY_PATCH(m_pRuntimeTerrains, terrainFolder, L"runtimeterrains.json");
-}
-
-UnitNamesCollection SRPG_Database::GetGlobalUnitNames() const
-{
-	UnitNamesCollection names;
-	names[0] = buildUnitNameMap(m_pPlayerUnits, 0x0);
-
-	for (std::size_t i = 0; i < m_pNPCSettings.size(); i++)
-	{
-		UnitNameMap map = buildUnitNameMap(m_pNPCSettings[i], static_cast<DWORD>(i));
-		names[1].insert(map.begin(), map.end());
-	}
-
-	return names;
 }
 
 void SRPG_Database::sub_F8E4E0(FileReader& fw)

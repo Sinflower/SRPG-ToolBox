@@ -33,11 +33,14 @@ class CMenuOperation;
 class SRPG_Animations : public SRPG_ContainerBase
 {
 public:
-	SRPG_Animations() {}
+	SRPG_Animations() :
+		SRPG_ContainerBase("Animations") {}
 	virtual ~SRPG_Animations() {}
-	void Init(FileReader& fw) override;
-	void Dump(FileWriter& fw) const override;
-	void WritePatches(const std::filesystem::path& outPath) const override;
+
+protected:
+	void init(FileReader& fw) override;
+	void dump(FileWriter& fw) const override;
+	void writePatches(const std::filesystem::path& outPath) const override;
 
 private:
 	CMenuOperation* m_pAnimeData1 = nullptr; // this_38

@@ -33,12 +33,9 @@
 class SRPG_Database : public SRPG_ContainerBase
 {
 public:
-	SRPG_Database() {}
+	SRPG_Database() :
+		SRPG_ContainerBase("Database") {}
 	virtual ~SRPG_Database() {}
-	void Init(FileReader& fw) override;
-	void Dump(FileWriter& fw) const override;
-	void WritePatches(const std::filesystem::path& outPath) const override;
-	void ApplyPatches(const std::filesystem::path& patchPath) override;
 
 	std::string GetWindowTitle() const
 	{
@@ -61,6 +58,12 @@ public:
 	}
 
 	UnitNamesCollection GetGlobalUnitNames() const;
+
+protected:
+	void init(FileReader& fw) override;
+	void dump(FileWriter& fw) const override;
+	void writePatches(const std::filesystem::path& outPath) const override;
+	void applyPatches(const std::filesystem::path& patchPath) override;
 
 private:
 	void sub_F8E4E0(FileReader& fw);

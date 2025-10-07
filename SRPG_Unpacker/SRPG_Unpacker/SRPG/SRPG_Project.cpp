@@ -31,11 +31,13 @@
 #include "Functions.h"
 #include "SRPG_Project.h"
 #include "Version.h"
+#include "Globals.h"
 
 namespace fs = std::filesystem;
 
 DWORD g_ArcVersion = 0;
 UnitNamesCollection g_UnitNames;
+std::string g_activeFile = "";
 
 SRPG_Project::SRPG_Project(const SRPG_ProjectData& projData) :
 	m_resources(projData.resFlag)
@@ -51,7 +53,9 @@ SRPG_Project::~SRPG_Project()
 void SRPG_Project::Dump(const std::filesystem::path& outPath) const
 {
 	FileWriter fw(outPath / PROJECT_DAT_NAME);
+	std::cout << "Dumping the project file to: " << (outPath / PROJECT_DAT_NAME) << std::endl;
 	dump(fw);
+	std::cout << "Finished dumping the project file" << std::endl;
 }
 
 void SRPG_Project::DumpProj(const std::filesystem::path& outPath) const
@@ -67,6 +71,7 @@ nlohmann::ordered_json SRPG_Project::GetResMapping() const
 
 void SRPG_Project::WritePatch(const fs::path& outPath) const
 {
+	std::cout << "Writing patches to: " << outPath << std::endl;
 	g_UnitNames = m_database.GetGlobalUnitNames();
 
 	m_maps.WritePatches(outPath);
@@ -84,10 +89,12 @@ void SRPG_Project::WritePatch(const fs::path& outPath) const
 	j["gameTitle"]     = m_database.GetGameTitle();
 	j["saveFileTitle"] = m_baseSettings.GetSaveFileTitle();
 	WriteJsonToFile(j, commonsPath, L"titles.json");
+	std::cout << "Finished writing patches" << std::endl;
 }
 
 void SRPG_Project::ApplyPatch(const std::filesystem::path& patchPath)
 {
+	std::cout << "Applying patches from: " << patchPath << std::endl;
 	m_maps.ApplyPatches(patchPath);
 	m_database.ApplyPatches(patchPath);
 	m_gameLayout.ApplyPatches(patchPath);
@@ -103,10 +110,13 @@ void SRPG_Project::ApplyPatch(const std::filesystem::path& patchPath)
 	CALL_STR_SET_FUNC_IF_IN_JSON(j, "windowTitle", m_database.SetWindowTitle);
 	CALL_STR_SET_FUNC_IF_IN_JSON(j, "gameTitle", m_database.SetGameTitle);
 	CALL_STR_SET_FUNC_IF_IN_JSON(j, "saveFileTitle", m_baseSettings.SetSaveFileTitle);
+
+	std::cout << "Finished applying patches" << std::endl;
 }
 
 void SRPG_Project::loadProject()
 {
+	std::cout << "Parsing the project file ..." << std::endl;
 	this_1 = m_fw.ReadDWord();
 	this_2 = m_fw.ReadDWord();
 	this_3 = m_fw.ReadDWord();
@@ -136,6 +146,8 @@ void SRPG_Project::loadProject()
 
 	if (m_fw.IsEndOfFile())
 		std::cout << "Successfully parsed the entire project file" << std::endl;
+	else
+		std::cout << "Warning: There is still unread data in the project file, something might have gone wrong" << std::endl;
 }
 
 // ---------------------------------

@@ -1,5 +1,5 @@
 /*
- *  File: SRPG_Maps.hpp
+ *  File: Globals.h
  *  Copyright (c) 2025 Sinflower
  *
  *  MIT License
@@ -26,43 +26,6 @@
 
 #pragma once
 
-#include <array>
+#include <string>
 
-#include "SRPG_ContainerBase.hpp"
-
-class SRPG_Maps : public SRPG_ContainerBase
-{
-public:
-	SRPG_Maps() :
-		SRPG_ContainerBase("Maps") {}
-	~SRPG_Maps() {}
-
-protected:
-	void init(FileReader& fw) override;
-	void dump(FileWriter& fw) const override;
-	void writePatches(const std::filesystem::path& outPath) const override;
-	void applyPatches(const std::filesystem::path& patchPath) override;
-
-private:
-	std::wstring formatMapFileName(const DWORD& mapID) const;
-
-private:
-	CMenuOperation* m_pMapData         = nullptr;
-	CMenuOperation* m_pMapTreeData1    = nullptr;
-	CMenuOperation* m_pMapTreeData2    = nullptr;
-	CMenuOperation* m_pDayNightData    = nullptr;
-	CMenuOperation* m_pMapCommonEvents = nullptr;
-	CMenuOperation* m_pBookmarkEvents  = nullptr;
-	CMenuOperation* m_pBookmarkUnits   = nullptr;
-
-	// sub_F8F6E0 - this_15
-	DWORD this_21 = 0;
-	BYTE this_22  = 0;
-	DWORD this_23 = 0;
-	BYTE this_24  = 0;
-
-	std::array<CMenuOperation*, 12> m_pJumpIDData   = { nullptr };
-	std::array<CMenuOperation*, 10> m_pJumpIDData2  = { nullptr };
-	std::array<CMenuOperation*, 6> m_pParamHeadData = { nullptr };
-	MemData this_37;
-};
+extern std::string g_activeFile;

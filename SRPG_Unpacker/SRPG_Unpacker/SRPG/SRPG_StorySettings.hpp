@@ -33,12 +33,15 @@ class CMenuOperation;
 class SRPG_StorySettings : public SRPG_ContainerBase
 {
 public:
-	SRPG_StorySettings() {}
+	SRPG_StorySettings() :
+		SRPG_ContainerBase("Story Settings") {}
 	virtual ~SRPG_StorySettings() {}
-	void Init(FileReader& fw) override;
-	void Dump(FileWriter& fw) const override;
-	void WritePatches(const std::filesystem::path& outPath) const override;
-	void ApplyPatches(const std::filesystem::path& patchPath) override;
+
+protected:
+	void init(FileReader& fw) override;
+	void dump(FileWriter& fw) const override;
+	void writePatches(const std::filesystem::path& outPath) const override;
+	void applyPatches(const std::filesystem::path& patchPath) override;
 
 private:
 	CMenuOperation* m_pCharacterData = nullptr; // this_239

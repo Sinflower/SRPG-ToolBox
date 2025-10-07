@@ -56,14 +56,11 @@ class SRPG_Resources : public SRPG_ContainerBase
 
 public:
 	SRPG_Resources(const DWORD& resFlag) :
+		SRPG_ContainerBase("Resources"),
 		m_resFlags(resFlag)
 	{}
 
 	virtual ~SRPG_Resources() {}
-	void Init(FileReader& fw) override;
-	void Dump(FileWriter& fw) const override;
-	void DumpProj(FileWriter& fw) const override;
-	void WritePatches(const std::filesystem::path& outPath) const;
 
 	nlohmann::ordered_json GetResMapping() const;
 
@@ -71,6 +68,12 @@ public:
 	{
 		return m_unknown;
 	}
+
+	protected:
+	void init(FileReader& fw) override;
+	void dump(FileWriter& fw) const override;
+	void dumpProj(FileWriter& fw) const override;
+	void writePatches(const std::filesystem::path& outPath) const;
 
 private:
 	ResourceFlags m_resFlags;

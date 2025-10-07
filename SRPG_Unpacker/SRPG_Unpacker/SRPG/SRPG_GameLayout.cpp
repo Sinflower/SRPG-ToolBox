@@ -33,11 +33,12 @@
 
 #include "Classes/RESOURCELAYOUTDATA.h"
 
-SRPG_GameLayout::SRPG_GameLayout() :
+SRPG_GameLayout::SRPG_GameLayout():
+	SRPG_ContainerBase("Game Layout"),
 	m_pResourceLayout(new RESOURCELAYOUTDATA)
 {}
 
-void SRPG_GameLayout::Init(FileReader& fw)
+void SRPG_GameLayout::init(FileReader& fw)
 {
 #ifdef DEBUG_PRINT
 	std::cout << "==== Method " << __FUNCSIG__ << " START ====" << std::endl;
@@ -121,7 +122,7 @@ void SRPG_GameLayout::Init(FileReader& fw)
 #endif
 }
 
-void SRPG_GameLayout::Dump(FileWriter& fw) const
+void SRPG_GameLayout::dump(FileWriter& fw) const
 {
 	if (g_ArcVersion >= 0x40F)
 	{
@@ -161,7 +162,7 @@ void SRPG_GameLayout::Dump(FileWriter& fw) const
 		m_pResourceLayout->dump(fw);
 }
 
-void SRPG_GameLayout::WritePatches(const std::filesystem::path& outPath) const
+void SRPG_GameLayout::writePatches(const std::filesystem::path& outPath) const
 {
 	const std::filesystem::path commonsFolder = CommonsPath(outPath);
 	const std::filesystem::path layoutsFolder = LayoutsPath(outPath);
@@ -175,7 +176,7 @@ void SRPG_GameLayout::WritePatches(const std::filesystem::path& outPath) const
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pTitleLayout, layoutsFolder, L"title.json");
 }
 
-void SRPG_GameLayout::ApplyPatches(const std::filesystem::path& patchPath)
+void SRPG_GameLayout::applyPatches(const std::filesystem::path& patchPath)
 {
 	const std::filesystem::path commonsFolder = CommonsPath(patchPath);
 	const std::filesystem::path layoutsFolder = LayoutsPath(patchPath);

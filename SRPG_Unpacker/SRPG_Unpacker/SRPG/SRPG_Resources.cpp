@@ -69,161 +69,6 @@ static const std::vector<std::string> SECTION_NAMES = {
 	"Video"
 };
 
-void SRPG_Resources::Init(FileReader& fw)
-{
-#ifdef DEBUG_PRINT
-	std::cout << "==== Method " << __func__ << " START ====" << std::endl;
-	std::cout << "OFFSET=" << fw.GetOffset() << std::endl;
-#endif
-
-	// NOTE: I don't know when this was added, but I know it was not
-	//       present in this version
-	if (g_ArcVersion > 0x4CA)
-		fw.ReadBytes(m_unknown.data(), static_cast<DWORD>(m_unknown.size() * sizeof(DWORD)));
-
-#ifdef DEBUG_PRINT
-	std::cout << "OFFSET-UNKNOWN=" << fw.GetOffset() << std::endl;
-#endif
-
-	if (m_resFlags.HasResData)
-	{
-		for (CMenuOperation*& pResData : m_resData)
-			allocAndSetCMenuOp(&pResData, SRPGClasses::RESDATA, fw);
-
-#ifdef DEBUG_PRINT
-		std::cout << "OFFSET-RESDATA=" << fw.GetOffset() << std::endl;
-#endif
-	}
-
-	if (m_resFlags.HasUIResData)
-	{
-		for (CMenuOperation*& pUiRes : m_uIResData)
-			allocAndSetCMenuOp(&pUiRes, SRPGClasses::UIRESDATA, fw);
-
-#ifdef DEBUG_PRINT
-		std::cout << "OFFSET-UIRESDATA=" << fw.GetOffset() << std::endl;
-#endif
-	}
-
-	if (m_resFlags.HasMediaData)
-	{
-		for (CMenuOperation*& pMediaData : m_mediaData)
-			allocAndSetCMenuOp(&pMediaData, SRPGClasses::MEDIADATA, fw);
-#ifdef DEBUG_PRINT
-		std::cout << "OFFSET-MEDIADATA=" << fw.GetOffset() << std::endl;
-#endif
-	}
-
-	if (m_resFlags.HasFontData)
-	{
-		allocAndSetCMenuOp(&m_pInstalledFontData, SRPGClasses::INSTALLEDFONTDATA, fw);
-#ifdef DEBUG_PRINT
-		std::cout << "OFFSET-INSTALLEDFONTDATA=" << fw.GetOffset() << std::endl;
-#endif
-	}
-
-	if (m_resFlags.HasVideoData)
-	{
-		allocAndSetCMenuOp(&m_pVideoData, SRPGClasses::VIDEODATA, fw);
-#ifdef DEBUG_PRINT
-		std::cout << "OFFSET-VIDEODATA=" << fw.GetOffset() << std::endl;
-#endif
-	}
-
-	if (g_ArcVersion >= 0x475)
-	{
-		for (CMenuOperation*& pCID : m_classIDData)
-			allocAndSetCMenuOp(&pCID, SRPGClasses::CLASSIDDATA, fw);
-	}
-
-#ifdef DEBUG_PRINT
-	std::cout << "OFFSET=" << fw.GetOffset() << std::endl;
-
-	std::cout << "==== Method END ====" << std::endl;
-#endif
-}
-
-void SRPG_Resources::Dump(FileWriter& fw) const
-{
-	// NOTE: I don't know when this was added, but I know it was not
-	//       present in this version
-	if (g_ArcVersion > 0x4C5)
-		fw.WriteBytes(m_unknown.data(), m_unknown.size() * sizeof(DWORD));
-
-	if (m_resFlags.HasResData)
-	{
-		for (const CMenuOperation* pResData : m_resData)
-			pResData->dump(fw);
-	}
-
-	if (m_resFlags.HasUIResData)
-	{
-		for (const CMenuOperation* pUiRes : m_uIResData)
-			pUiRes->dump(fw);
-	}
-
-	if (m_resFlags.HasMediaData)
-	{
-		for (const CMenuOperation* pMediaData : m_mediaData)
-			pMediaData->dump(fw);
-	}
-
-	if (m_resFlags.HasFontData)
-		m_pInstalledFontData->dump(fw);
-
-	if (m_resFlags.HasVideoData)
-		m_pVideoData->dump(fw);
-
-	if (g_ArcVersion >= 0x475)
-	{
-		for (const CMenuOperation* pCID : m_classIDData)
-			pCID->dump(fw);
-	}
-}
-
-void SRPG_Resources::DumpProj(FileWriter& fw) const
-{
-	for (const CMenuOperation* pResData : m_resData)
-	{
-		if (m_resFlags.HasResData)
-			pResData->dump(fw);
-		else
-			fw.Write(DWORD(0));
-	}
-
-	for (const CMenuOperation* pMediaData : m_mediaData)
-	{
-		if (m_resFlags.HasMediaData)
-			pMediaData->dump(fw);
-		else
-			fw.Write(DWORD(0));
-	}
-
-	for (const CMenuOperation* pUiRes : m_uIResData)
-	{
-		if (m_resFlags.HasUIResData)
-			pUiRes->dump(fw);
-		else
-			fw.Write(DWORD(0));
-	}
-
-	if (m_resFlags.HasFontData)
-		m_pInstalledFontData->dump(fw);
-	else
-		fw.Write(DWORD(0));
-
-	if (m_resFlags.HasVideoData)
-		m_pVideoData->dump(fw);
-	else
-		fw.Write(DWORD(0));
-
-	if (g_ArcVersion >= 0x475)
-	{
-		for (const CMenuOperation* pCID : m_classIDData)
-			pCID->dump(fw);
-	}
-}
-
 nlohmann::ordered_json SRPG_Resources::GetResMapping() const
 {
 	std::size_t secIdx = 0;
@@ -313,6 +158,161 @@ nlohmann::ordered_json SRPG_Resources::GetResMapping() const
 	return j2;
 }
 
-void SRPG_Resources::WritePatches(const std::filesystem::path& outPath) const
+void SRPG_Resources::init(FileReader& fw)
+{
+#ifdef DEBUG_PRINT
+	std::cout << "==== Method " << __func__ << " START ====" << std::endl;
+	std::cout << "OFFSET=" << fw.GetOffset() << std::endl;
+#endif
+
+	// NOTE: I don't know when this was added, but I know it was not
+	//       present in this version
+	if (g_ArcVersion > 0x4CA)
+		fw.ReadBytes(m_unknown.data(), static_cast<DWORD>(m_unknown.size() * sizeof(DWORD)));
+
+#ifdef DEBUG_PRINT
+	std::cout << "OFFSET-UNKNOWN=" << fw.GetOffset() << std::endl;
+#endif
+
+	if (m_resFlags.HasResData)
+	{
+		for (CMenuOperation*& pResData : m_resData)
+			allocAndSetCMenuOp(&pResData, SRPGClasses::RESDATA, fw);
+
+#ifdef DEBUG_PRINT
+		std::cout << "OFFSET-RESDATA=" << fw.GetOffset() << std::endl;
+#endif
+	}
+
+	if (m_resFlags.HasUIResData)
+	{
+		for (CMenuOperation*& pUiRes : m_uIResData)
+			allocAndSetCMenuOp(&pUiRes, SRPGClasses::UIRESDATA, fw);
+
+#ifdef DEBUG_PRINT
+		std::cout << "OFFSET-UIRESDATA=" << fw.GetOffset() << std::endl;
+#endif
+	}
+
+	if (m_resFlags.HasMediaData)
+	{
+		for (CMenuOperation*& pMediaData : m_mediaData)
+			allocAndSetCMenuOp(&pMediaData, SRPGClasses::MEDIADATA, fw);
+#ifdef DEBUG_PRINT
+		std::cout << "OFFSET-MEDIADATA=" << fw.GetOffset() << std::endl;
+#endif
+	}
+
+	if (m_resFlags.HasFontData)
+	{
+		allocAndSetCMenuOp(&m_pInstalledFontData, SRPGClasses::INSTALLEDFONTDATA, fw);
+#ifdef DEBUG_PRINT
+		std::cout << "OFFSET-INSTALLEDFONTDATA=" << fw.GetOffset() << std::endl;
+#endif
+	}
+
+	if (m_resFlags.HasVideoData)
+	{
+		allocAndSetCMenuOp(&m_pVideoData, SRPGClasses::VIDEODATA, fw);
+#ifdef DEBUG_PRINT
+		std::cout << "OFFSET-VIDEODATA=" << fw.GetOffset() << std::endl;
+#endif
+	}
+
+	if (g_ArcVersion >= 0x475)
+	{
+		for (CMenuOperation*& pCID : m_classIDData)
+			allocAndSetCMenuOp(&pCID, SRPGClasses::CLASSIDDATA, fw);
+	}
+
+#ifdef DEBUG_PRINT
+	std::cout << "OFFSET=" << fw.GetOffset() << std::endl;
+
+	std::cout << "==== Method END ====" << std::endl;
+#endif
+}
+
+void SRPG_Resources::dump(FileWriter& fw) const
+{
+	// NOTE: I don't know when this was added, but I know it was not
+	//       present in this version
+	if (g_ArcVersion > 0x4C5)
+		fw.WriteBytes(m_unknown.data(), m_unknown.size() * sizeof(DWORD));
+
+	if (m_resFlags.HasResData)
+	{
+		for (const CMenuOperation* pResData : m_resData)
+			pResData->dump(fw);
+	}
+
+	if (m_resFlags.HasUIResData)
+	{
+		for (const CMenuOperation* pUiRes : m_uIResData)
+			pUiRes->dump(fw);
+	}
+
+	if (m_resFlags.HasMediaData)
+	{
+		for (const CMenuOperation* pMediaData : m_mediaData)
+			pMediaData->dump(fw);
+	}
+
+	if (m_resFlags.HasFontData)
+		m_pInstalledFontData->dump(fw);
+
+	if (m_resFlags.HasVideoData)
+		m_pVideoData->dump(fw);
+
+	if (g_ArcVersion >= 0x475)
+	{
+		for (const CMenuOperation* pCID : m_classIDData)
+			pCID->dump(fw);
+	}
+}
+
+void SRPG_Resources::dumpProj(FileWriter& fw) const
+{
+	for (const CMenuOperation* pResData : m_resData)
+	{
+		if (m_resFlags.HasResData)
+			pResData->dump(fw);
+		else
+			fw.Write(DWORD(0));
+	}
+
+	for (const CMenuOperation* pMediaData : m_mediaData)
+	{
+		if (m_resFlags.HasMediaData)
+			pMediaData->dump(fw);
+		else
+			fw.Write(DWORD(0));
+	}
+
+	for (const CMenuOperation* pUiRes : m_uIResData)
+	{
+		if (m_resFlags.HasUIResData)
+			pUiRes->dump(fw);
+		else
+			fw.Write(DWORD(0));
+	}
+
+	if (m_resFlags.HasFontData)
+		m_pInstalledFontData->dump(fw);
+	else
+		fw.Write(DWORD(0));
+
+	if (m_resFlags.HasVideoData)
+		m_pVideoData->dump(fw);
+	else
+		fw.Write(DWORD(0));
+
+	if (g_ArcVersion >= 0x475)
+	{
+		for (const CMenuOperation* pCID : m_classIDData)
+			pCID->dump(fw);
+	}
+}
+
+void SRPG_Resources::writePatches(const std::filesystem::path& outPath) const
 {
 }

@@ -31,24 +31,24 @@
 #include "SRPG_Project.h"
 #include "Version.h"
 
-void SRPG_RecollectionEvents::Init(FileReader& fw)
+void SRPG_RecollectionEvents::init(FileReader& fw)
 {
 	allocAndSetCMenuOp(&m_pRecollectionEvents, SRPGClasses::EVENTDATA, fw);
 }
 
-void SRPG_RecollectionEvents::Dump(FileWriter& fw) const
+void SRPG_RecollectionEvents::dump(FileWriter& fw) const
 {
 	m_pRecollectionEvents->dump(fw);
 }
 
-void SRPG_RecollectionEvents::WritePatches(const std::filesystem::path& outPath) const
+void SRPG_RecollectionEvents::writePatches(const std::filesystem::path& outPath) const
 {
 	const std::filesystem::path extraFolder = ExtraPath(outPath);
 
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pRecollectionEvents, extraFolder, L"recollection.json");
 }
 
-void SRPG_RecollectionEvents::ApplyPatches(const std::filesystem::path& patchPath)
+void SRPG_RecollectionEvents::applyPatches(const std::filesystem::path& patchPath)
 {
 	const std::filesystem::path extraFolder = ExtraPath(patchPath);
 	CHECK_OBJ_AND_APPLY_PATCH(m_pRecollectionEvents, extraFolder, L"recollection.json");

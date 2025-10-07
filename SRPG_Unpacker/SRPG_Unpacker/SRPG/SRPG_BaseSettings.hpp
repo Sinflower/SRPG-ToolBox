@@ -35,12 +35,9 @@ class CMenuOperation;
 class SRPG_BaseSettings : public SRPG_ContainerBase
 {
 public:
-	SRPG_BaseSettings() {}
+	SRPG_BaseSettings() :
+		SRPG_ContainerBase("Base Settings") {}
 	virtual ~SRPG_BaseSettings() {}
-	void Init(FileReader& fw) override;
-	void Dump(FileWriter& fw) const override;
-	void WritePatches(const std::filesystem::path& outPath) const override;
-	void ApplyPatches(const std::filesystem::path& patchPath) override;
 
 	std::string GetSaveFileTitle() const
 	{
@@ -51,6 +48,12 @@ public:
 	{
 		saveFileTitle = title;
 	}
+
+protected:
+	void init(FileReader& fw) override;
+	void dump(FileWriter& fw) const override;
+	void writePatches(const std::filesystem::path& outPath) const override;
+	void applyPatches(const std::filesystem::path& patchPath) override;
 
 private:
 	CMenuOperation* m_pShops     = nullptr;
