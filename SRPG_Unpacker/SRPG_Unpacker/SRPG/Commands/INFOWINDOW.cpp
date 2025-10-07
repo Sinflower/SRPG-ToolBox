@@ -64,6 +64,5 @@ nlohmann::ordered_json INFOWINDOW::toJson() const
 
 void INFOWINDOW::applyPatch(const nlohmann::ordered_json& json)
 {
-	EDITDATA::applyPatch(json);
 	SET_STRING_IF_IN_JSON(json, "infoText", infoText);
 }
