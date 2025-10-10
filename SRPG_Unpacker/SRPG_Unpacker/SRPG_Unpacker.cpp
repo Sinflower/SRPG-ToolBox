@@ -129,7 +129,7 @@ void ProcessFile(const std::wstring& dtsFolder, const fs::path& path, const std:
 
 void CopyAndDecryptOpenData(const std::wstring& dtsFolder, const std::wstring& outFolder, const nlohmann::ordered_json& j)
 {
-	static std::vector<std::wstring> FOLDER_NAMES = { L"Graphics", L"UI", L"Audio", L"Fonts", L"Video" };
+	const static std::vector<std::wstring> FOLDER_NAMES = { L"Graphics", L"UI", L"Audio", L"Fonts", L"Video" };
 
 	for (const auto& folder : FOLDER_NAMES)
 	{
@@ -137,11 +137,13 @@ void CopyAndDecryptOpenData(const std::wstring& dtsFolder, const std::wstring& o
 
 		if (fs::exists(folderPath))
 		{
+			std::cout << " - Processing folder: " << ws2s(folderPath) << " ... " << std::flush;
 			for (const auto& entry : fs::recursive_directory_iterator(folderPath))
 			{
 				if (entry.is_regular_file())
 					ProcessFile(dtsFolder, entry.path(), outFolder, j);
 			}
+			std::cout << "Done" << std::endl;
 		}
 	}
 }
@@ -212,7 +214,9 @@ void unpack(const fs::path& dtsFile, const fs::path& outFolder = L"output")
 	SRPG_Project sp({ dtsT.GetVersion(), dtsT.GetResourceFlags(), dtsT.GetProjectData() });
 	sp.DumpProj(outFolder);
 
+	std::cout << "Copying and decrypting data not in the archive ... " << std::endl;
 	CopyAndDecryptOpenData(dtsFile.parent_path().wstring(), outFolder, sp.GetResMapping());
+	std::cout << "Finished copying and decrypting data" << std::endl;
 }
 
 void pack(const fs::path& inFolder, const fs::path& outFile = L"output.dts")
@@ -297,11 +301,13 @@ int main(int argc, char* argv[])
 		{
 			const fs::path outputPath = (output.empty() ? defaultUnpack : output);
 			unpack(inputPath, outputPath);
+			std::cout << "Successfully unpacked to: " << outputPath.string() << std::endl;
 		}
 		else if (fs::is_directory(inputPath))
 		{
 			const fs::path outputPath = (output.empty() ? defaultPack : output);
 			pack(inputPath, outputPath);
+			std::cout << "Successfully packed to: " << outputPath.string() << std::endl;
 		}
 		else if (inputPath.extension() == L".dat" && fs::exists(inputPath))
 		{

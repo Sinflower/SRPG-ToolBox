@@ -160,7 +160,9 @@ void FileHeader::initSections(bool verbose)
 	if (!m_oldFormat)
 		m_vSec.Init(&m_fileReader, (m_presentSegments & Sections::Video), secInfos);
 
-	m_sSec.Init(&m_fileReader, (m_encrypted == 1), (m_presentSegments & Sections::Script), secInfos);
+	// Not really sure on the conditions here, but it looks like the script section is always present in the archive if the file is encrypted.
+	// Additionally, the material section is only present if the script section is truely present, i.e., part of the segment flag.
+	m_sSec.Init(&m_fileReader, (m_presentSegments & Sections::Script) || (m_encrypted == 1), (m_presentSegments & Sections::Script), secInfos);
 	m_pSec.Init(&m_fileReader, m_projectDataAddress);
 
 	if (!m_fileReader.IsEoF())
