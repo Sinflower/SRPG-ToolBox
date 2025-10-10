@@ -30,7 +30,7 @@
 
 struct VIDEODATA : public EDITDATA
 {
-	MemData this_3;
+	MemData m_videoName;
 	DWORD this_4 = 0;
 	DWORD this_5 = 0;
 	void init(FileReader& fw) override;

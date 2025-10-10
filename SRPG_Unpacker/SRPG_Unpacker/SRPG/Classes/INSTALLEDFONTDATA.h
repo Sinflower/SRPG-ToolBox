@@ -30,7 +30,7 @@
 
 struct INSTALLEDFONTDATA : public EDITDATA
 {
-	MemData this_3;
+	MemData m_fontName;
 	MemData this_4;
 	DWORD this_5 = 0;
 	DWORD this_6 = 0;

@@ -34,7 +34,7 @@ void INSTALLEDFONTDATA::init(FileReader& fw)
 {
 	this_5 = fw.ReadDWord();
 
-	initMemData(this_3, fw);
+	initMemData(m_fontName, fw);
 	initMemData(this_4, fw);
 
 	if (g_ArcVersion >= 1137)
@@ -45,7 +45,7 @@ void INSTALLEDFONTDATA::dump(FileWriter& fw) const
 {
 	fw.Write(this_5);
 
-	this_3.Write(fw);
+	m_fontName.Write(fw);
 	this_4.Write(fw);
 
 	if (g_ArcVersion >= 1137)
@@ -54,7 +54,10 @@ void INSTALLEDFONTDATA::dump(FileWriter& fw) const
 
 nlohmann::ordered_json INSTALLEDFONTDATA::toJson() const
 {
-	return { { "name", ws2s(this_3.ToWString()) } };
+	nlohmann::ordered_json j = EDITDATA::toJson();
+
+	j["name"] = m_fontName.ToString();
+	return j;
 }
 
 void INSTALLEDFONTDATA::applyPatch(const [[maybe_unused]] nlohmann::ordered_json& json)

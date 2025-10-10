@@ -32,7 +32,7 @@ struct MEDIADATA : public EDITDATA
 {
 	DWORD this_3 = 0;
 	DWORD this_4 = 0;
-	MemData this_7;
+	MemData m_mediaName;
 	void init(FileReader& fw) override;
 	void dump([[maybe_unused]] FileWriter& fw) const override;
 

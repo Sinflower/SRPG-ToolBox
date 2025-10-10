@@ -35,7 +35,7 @@ void VIDEODATA::init(FileReader& fw)
 	this_4 = fw.ReadDWord();
 	this_5 = fw.ReadDWord();
 
-	initMemData(this_3, fw);
+	initMemData(m_videoName, fw);
 }
 
 void VIDEODATA::dump(FileWriter& fw) const
@@ -43,12 +43,15 @@ void VIDEODATA::dump(FileWriter& fw) const
 	fw.Write(this_4);
 	fw.Write(this_5);
 
-	this_3.Write(fw);
+	m_videoName.Write(fw);
 }
 
 nlohmann::ordered_json VIDEODATA::toJson() const
 {
-	return { { "name", ws2s(this_3.ToWString()) } };
+	nlohmann::ordered_json j = EDITDATA::toJson();
+
+	j["name"] = m_videoName.ToString();
+	return j;
 }
 
 void VIDEODATA::applyPatch(const [[maybe_unused]] nlohmann::ordered_json& json)

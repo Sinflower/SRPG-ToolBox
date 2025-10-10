@@ -33,7 +33,7 @@ void MEDIADATA::init(FileReader& fw)
 	this_3 = fw.ReadDWord();
 	this_4 = fw.ReadDWord();
 
-	initMemData(this_7, fw);
+	initMemData(m_mediaName, fw);
 }
 
 void MEDIADATA::dump(FileWriter& fw) const
@@ -41,12 +41,15 @@ void MEDIADATA::dump(FileWriter& fw) const
 	fw.Write(this_3);
 	fw.Write(this_4);
 
-	this_7.Write(fw);
+	m_mediaName.Write(fw);
 }
 
 nlohmann::ordered_json MEDIADATA::toJson() const
 {
-	return { { "name", ws2s(this_7.ToWString()) } };
+	nlohmann::ordered_json j = EDITDATA::toJson();
+
+	j["name"] = m_mediaName.ToString();
+	return j;
 }
 
 void MEDIADATA::applyPatch(const [[maybe_unused]] nlohmann::ordered_json& json)

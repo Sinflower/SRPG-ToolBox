@@ -34,19 +34,21 @@ void IMAGEDATA::init(FileReader& fw)
 {
 	this_4 = fw.ReadDWord();
 
-	initMemData(this_3, fw);
+	initMemData(m_imageName, fw);
 }
 
 void IMAGEDATA::dump(FileWriter& fw) const
 {
 	fw.Write(this_4);
-	this_3.Write(fw);
+	m_imageName.Write(fw);
 }
 
 nlohmann::ordered_json IMAGEDATA::toJson() const
 {
-	// Return the image name as a JSON object
-	return { { "name", ws2s(this_3.ToWString()) } };
+	nlohmann::ordered_json j = EDITDATA::toJson();
+
+	j["name"] = m_imageName.ToString();
+	return j;
 }
 
 void IMAGEDATA::applyPatch(const [[maybe_unused]] nlohmann::ordered_json& json)

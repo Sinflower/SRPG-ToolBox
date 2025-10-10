@@ -30,7 +30,7 @@
 
 struct IMAGEDATA : public EDITDATA
 {
-	MemData this_3;
+	MemData m_imageName;
 	DWORD this_4 = 0;
 	void init(FileReader& fw) override;
 	void dump([[maybe_unused]] FileWriter& fw) const override;

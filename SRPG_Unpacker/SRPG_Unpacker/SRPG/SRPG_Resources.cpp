@@ -142,7 +142,7 @@ nlohmann::ordered_json SRPG_Resources::GetResMapping() const
 		for (const auto& v : value)
 		{
 			// Get the name of the object
-			std::string name = v["data"]["name"].get<std::string>();
+			std::string name = v["name"].get<std::string>();
 
 			// Get the number of the object
 			uint32_t id = v["id"].get<uint32_t>();
