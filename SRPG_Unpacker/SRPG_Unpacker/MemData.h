@@ -157,6 +157,7 @@ struct MemData
 			return;
 		}
 
+		readSize = true;
 		size = static_cast<uint32_t>(str.size() * 2) + 2;
 		data.resize(size);
 		std::fill(data.begin(), data.end(), 0x0);
