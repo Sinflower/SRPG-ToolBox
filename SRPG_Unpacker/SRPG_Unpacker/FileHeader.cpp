@@ -212,7 +212,12 @@ void FileHeader::initDTS(const std::wstring &fileName)
 	m_projectDataAddress = m_fileReader.ReadUInt32() + (m_oldFormat ? DATA_START_OFFSET_OLD : DATA_START_OFFSET);
 
 	for (uint32_t i = 0; i < (m_oldFormat ? SECTION_COUNT_OLD : SECTION_COUNT); i++)
-		m_sectionDataAddresses.push_back({ i, m_fileReader.ReadUInt32() + (m_oldFormat ? DATA_START_OFFSET_OLD : DATA_START_OFFSET) });
+	{
+		uint32_t sectionIdx = i;
+		if (m_oldFormat && i >= 34)
+			sectionIdx++; // Skip video section in old format
+		m_sectionDataAddresses.push_back({ sectionIdx, m_fileReader.ReadUInt32() + (m_oldFormat ? DATA_START_OFFSET_OLD : DATA_START_OFFSET) });
+	}
 
 	Config.Add("magicNumber", m_magicNumber);
 	Config.Add("encrypted", m_encrypted);
