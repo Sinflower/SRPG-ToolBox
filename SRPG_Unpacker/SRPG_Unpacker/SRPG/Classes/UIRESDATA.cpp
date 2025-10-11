@@ -41,3 +41,9 @@ void UIRESDATA::dump(FileWriter& fw) const
 	IMAGEDATA::dump(fw);
 	fw.Write(this_35);
 }
+
+void UIRESDATA::initFromJson(const nlohmann::ordered_json& json)
+{
+	IMAGEDATA::initFromJson(json);
+	SET_DWORD_IF_IN_JSON(json, "section_idx", this_35);
+}

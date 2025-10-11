@@ -195,7 +195,7 @@ void ITEMDATA::dump(FileWriter& fw) const
 			fw.Write(this_65.this_0);
 			fw.Write(this_65.this_1);
 
-			this_65.pTypeIDData->dump(fw);
+			this_65.pTypeIDData->Dump(fw);
 			break;
 		case 4:
 			if (g_ArcVersion < 0x418)
@@ -269,7 +269,7 @@ void ITEMDATA::dump(FileWriter& fw) const
 			fw.Write(this_75.this_0);
 			fw.Write(this_75.this_1);
 			fw.Write(this_75.this_2);
-			this_75.pTypeIDData->dump(fw);
+			this_75.pTypeIDData->Dump(fw);
 			break;
 		case 16:
 			this_76.dump(fw);
@@ -280,7 +280,7 @@ void ITEMDATA::dump(FileWriter& fw) const
 			fw.Write(this_77[2]);
 			break;
 		case 18:
-			this_78.pTypeIDData->dump(fw);
+			this_78.pTypeIDData->Dump(fw);
 			break;
 		case 100:
 			this_79.Write(fw);
@@ -302,12 +302,12 @@ void ITEMDATA::dump(FileWriter& fw) const
 	if (g_ArcVersion >= 0x400)
 	{
 		fw.Write(this_58);
-		m_pTypeIDData1->dump(fw);
+		m_pTypeIDData1->Dump(fw);
 	}
 	if (g_ArcVersion >= 0x41D)
 	{
 		fw.Write(this_60);
-		m_pTypeIDData2->dump(fw);
+		m_pTypeIDData2->Dump(fw);
 
 		if (g_ArcVersion >= 1277 && HIWORD(this_60))
 		{

@@ -38,9 +38,9 @@ void SWITCHACTION::init(FileReader& fw)
 
 void SWITCHACTION::dump(FileWriter& fw) const
 {
-	this_4->dump(fw);
-	this_3->dump(fw);
-	this_5->dump(fw);
+	this_4->Dump(fw);
+	this_3->Dump(fw);
+	this_5->Dump(fw);
 }
 
 // void SWITCHACTION::sub_D1B60()

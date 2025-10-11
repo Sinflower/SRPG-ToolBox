@@ -81,13 +81,13 @@ void PASSCHIPDATA::dump(FileWriter& fw) const
 		fw.Write(this_14);
 
 	if (g_ArcVersion >= 0x465)
-		m_pTypeIDData1->dump(fw);
+		m_pTypeIDData1->Dump(fw);
 
 	if (g_ArcVersion >= 0x487)
 	{
 		this_41.Write(fw);
 		fw.Write(this_42);
-		m_pTypeIDData2->dump(fw);
+		m_pTypeIDData2->Dump(fw);
 
 		if (g_ArcVersion >= 1277 && HIWORD(this_42))
 		{

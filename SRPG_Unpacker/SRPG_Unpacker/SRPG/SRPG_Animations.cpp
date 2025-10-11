@@ -162,10 +162,10 @@ void SRPG_Animations::init(FileReader& fw)
 
 void SRPG_Animations::dump(FileWriter& fw) const
 {
-	m_pAnimeData1->dump(fw);
-	m_pAnimeData2->dump(fw);
-	m_pAnimeData3->dump(fw);
-	m_pAnimeData4->dump(fw);
+	m_pAnimeData1->Dump(fw);
+	m_pAnimeData2->Dump(fw);
+	m_pAnimeData3->Dump(fw);
+	m_pAnimeData4->Dump(fw);
 
 	fw.Write(this_42);
 	fw.Write(this_43);
@@ -187,9 +187,9 @@ void SRPG_Animations::dump(FileWriter& fw) const
 	fw.Write(this_58);
 	fw.Write(this_59);
 
-	m_pFrameOriginal1->dump(fw);
-	m_pFrameOriginal2->dump(fw);
-	m_pFrameOriginal3->dump(fw);
+	m_pFrameOriginal1->Dump(fw);
+	m_pFrameOriginal2->Dump(fw);
+	m_pFrameOriginal3->Dump(fw);
 
 	if (g_ArcVersion >= 0x409)
 	{

@@ -68,7 +68,7 @@ void WEAPONTYPEDATA::dump(FileWriter& fw) const
 
 	LEGENDDATA::dump(fw);
 
-	m_pCompatibledata->dump(fw);
+	m_pCompatibledata->Dump(fw);
 
 	if (g_ArcVersion >= 0x3FE)
 	{

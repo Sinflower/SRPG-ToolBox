@@ -68,7 +68,7 @@ void QUESTDATA::dump(FileWriter& fw) const
 	if (this_18)
 		this_19.dump(fw);
 
-	pRewardData->dump(fw);
+	pRewardData->Dump(fw);
 
 	this_21.Write(fw);
 	LEGENDDATA::dump(fw);

@@ -221,7 +221,7 @@ void EVENTPAGE_DATA::dump(FileWriter& fw) const
 			fw.Write(this_1);
 
 			if (g_ArcVersion >= 0x502)
-				this_2_new->dump(fw);
+				this_2_new->Dump(fw);
 		}
 
 		if ((checkData & 2) != 0)
@@ -251,7 +251,7 @@ void EVENTPAGE_DATA::dump(FileWriter& fw) const
 				fw.Write(this_16);
 			}
 			else
-				this_3_new->dump(fw);
+				this_3_new->Dump(fw);
 		}
 
 		if ((checkData & 8) != 0)
@@ -286,10 +286,10 @@ void EVENTPAGE_DATA::dump(FileWriter& fw) const
 		}
 
 		if ((checkData & 0x80u) != 0)
-			this_32->dump(fw);
+			this_32->Dump(fw);
 
 		if ((checkData & 0x100) != 0)
-			this_33->dump(fw);
+			this_33->Dump(fw);
 
 		if ((checkData & 0x200) != 0)
 		{
@@ -299,13 +299,13 @@ void EVENTPAGE_DATA::dump(FileWriter& fw) const
 			fw.Write(this_37);
 			fw.Write(this_38);
 
-			this_39->dump(fw);
-			this_40->dump(fw);
+			this_39->Dump(fw);
+			this_40->Dump(fw);
 
 			if (g_ArcVersion >= 0x442)
 			{
 				fw.Write(this_41);
-				this_42->dump(fw);
+				this_42->Dump(fw);
 			}
 		}
 
@@ -315,18 +315,18 @@ void EVENTPAGE_DATA::dump(FileWriter& fw) const
 			fw.Write(this_44);
 			fw.Write(distanceRange);
 
-			this_46->dump(fw);
+			this_46->Dump(fw);
 
 			if (g_ArcVersion >= 0x442)
 			{
 				fw.Write(this_48);
 				fw.Write(this_47);
 
-				this_49->dump(fw);
+				this_49->Dump(fw);
 
 				fw.Write(this_50);
 
-				this_51->dump(fw);
+				this_51->Dump(fw);
 			}
 
 			if (g_ArcVersion >= 1278)
@@ -341,12 +341,12 @@ void EVENTPAGE_DATA::dump(FileWriter& fw) const
 			fw.Write(this_55);
 			fw.Write(this_56);
 
-			this_57->dump(fw);
+			this_57->Dump(fw);
 
 			if (g_ArcVersion >= 0x487)
 			{
 				fw.Write(this_58);
-				this_59->dump(fw);
+				this_59->Dump(fw);
 			}
 		}
 
@@ -403,7 +403,7 @@ void EVENTPAGE_DATA::dump(FileWriter& fw) const
 		if ((checkData & 0x20000) != 0)
 		{
 			fw.Write(this_90);
-			this_91->dump(fw);
+			this_91->Dump(fw);
 		}
 
 		if ((checkData & 0x40000) != 0)
@@ -417,7 +417,7 @@ void EVENTPAGE_DATA::dump(FileWriter& fw) const
 			fw.Write(this_94);
 			fw.Write(this_95);
 
-			this_96->dump(fw);
+			this_96->Dump(fw);
 		}
 
 		if ((checkData & 0x100000) != 0)
@@ -428,7 +428,7 @@ void EVENTPAGE_DATA::dump(FileWriter& fw) const
 			fw.Write(dataTotalCondition);
 			fw.Write(this_101);
 
-			this_102->dump(fw);
+			this_102->Dump(fw);
 
 			if (g_ArcVersion >= 1277 && HIWORD(this_101))
 			{
@@ -577,7 +577,7 @@ void EVENTPAGE_DATA::dump(FileWriter& fw) const
 		}
 	}
 
-	this_42->dump(fw);
+	this_42->Dump(fw);
 
 	////
 
@@ -647,7 +647,7 @@ void EVENTPAGE_DATA::dump(FileWriter& fw) const
 			}
 		}
 
-		this_46->dump(fw);
+		this_46->Dump(fw);
 	}
 	else
 	{
@@ -656,7 +656,7 @@ void EVENTPAGE_DATA::dump(FileWriter& fw) const
 			fw.Write(enDistance);
 			fw.Write(this_44);
 
-			this_46->dump(fw);
+			this_46->Dump(fw);
 		}
 	}
 
@@ -682,7 +682,7 @@ void EVENTPAGE_DATA::dump(FileWriter& fw) const
 			}
 		}
 
-		this_57->dump(fw);
+		this_57->Dump(fw);
 	}
 
 	if (g_ArcVersion >= 0x41B)
@@ -724,11 +724,11 @@ void EVENTPAGE_DATA::dump(FileWriter& fw) const
 
 	this_2->dump(fw);
 
-	this_39->dump(fw);
-	this_40->dump(fw);
-	this_32->dump(fw);
-	this_33->dump(fw);
-	this_91->dump(fw);
+	this_39->Dump(fw);
+	this_40->Dump(fw);
+	this_32->Dump(fw);
+	this_33->Dump(fw);
+	this_91->Dump(fw);
 
 	this_93.Write(fw);
 }

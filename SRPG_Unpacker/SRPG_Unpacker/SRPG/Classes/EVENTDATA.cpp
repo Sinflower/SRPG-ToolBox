@@ -381,7 +381,7 @@ void EVENTDATA::dump(FileWriter& fw) const
 	fw.Write(this_20);
 	fw.Write(this_21);
 
-	pPages->dump(fw);
+	pPages->Dump(fw);
 
 	this_22.Write(fw);
 

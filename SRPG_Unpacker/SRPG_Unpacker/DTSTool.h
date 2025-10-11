@@ -70,6 +70,11 @@ public:
 		return m_fileHeader.GetProjectData();
 	}
 
+	nlohmann::ordered_json GetJson() const
+	{
+		return Config.GetJson();
+	}
+
 private:
 	FileHeader m_fileHeader = {};
 };

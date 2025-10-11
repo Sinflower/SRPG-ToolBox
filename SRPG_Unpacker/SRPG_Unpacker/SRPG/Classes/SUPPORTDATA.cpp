@@ -72,9 +72,9 @@ void SUPPORTDATA::dump(FileWriter& fw) const
 	if (g_ArcVersion >= 1260)
 		fw.Write(this_11);
 
-	this_4->dump(fw);
+	this_4->Dump(fw);
 	if (g_ArcVersion >= 1230)
-		this_12->dump(fw);
+		this_12->Dump(fw);
 	else
 	{
 		fw.Write(this_13);

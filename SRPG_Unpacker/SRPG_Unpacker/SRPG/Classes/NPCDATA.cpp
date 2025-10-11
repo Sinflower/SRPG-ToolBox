@@ -49,5 +49,5 @@ void NPCDATA::dump(FileWriter& fw) const
 	LEGENDDATA::dump(fw);
 
 	if (g_ArcVersion >= 0x3F1)
-		m_pImageIDData->dump(fw);
+		m_pImageIDData->Dump(fw);
 }

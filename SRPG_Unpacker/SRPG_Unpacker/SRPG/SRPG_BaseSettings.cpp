@@ -113,21 +113,21 @@ void SRPG_BaseSettings::init(FileReader& fw)
 
 void SRPG_BaseSettings::dump(FileWriter& fw) const
 {
-	m_pShops->dump(fw);
-	m_pBonuses->dump(fw);
-	m_pQuests->dump(fw);
-	m_pRestAreas->dump(fw);
+	m_pShops->Dump(fw);
+	m_pBonuses->Dump(fw);
+	m_pQuests->Dump(fw);
+	m_pRestAreas->Dump(fw);
 
 	for (const CMenuOperation* pCMO : m_pEventDatas)
-		pCMO->dump(fw);
+		pCMO->Dump(fw);
 
-	m_pSwitchData->dump(fw);
+	m_pSwitchData->Dump(fw);
 
 	saveFileTitle.Write(fw);
 
 	fw.Write(this_417);
 
-	m_pTestMember->dump(fw);
+	m_pTestMember->Dump(fw);
 
 	fw.Write(this_419);
 	fw.Write(this_420);
@@ -137,7 +137,7 @@ void SRPG_BaseSettings::dump(FileWriter& fw) const
 	if (g_ArcVersion >= 0x43D)
 		fw.Write(this_423);
 
-	m_pItemGroupData->dump(fw);
+	m_pItemGroupData->Dump(fw);
 
 	fw.Write(this_425);
 	fw.Write(this_426);

@@ -52,10 +52,10 @@ void DIFFICULTYDATA::dump(FileWriter& fw) const
 	fw.Write(this_9);
 
 	if (g_ArcVersion >= 0x418)
-		m_pTypeIDData1->dump(fw);
+		m_pTypeIDData1->Dump(fw);
 
 	if (g_ArcVersion >= 0x48E)
-		m_pTypeIDData2->dump(fw);
+		m_pTypeIDData2->Dump(fw);
 
 	this_12.Write(fw);
 

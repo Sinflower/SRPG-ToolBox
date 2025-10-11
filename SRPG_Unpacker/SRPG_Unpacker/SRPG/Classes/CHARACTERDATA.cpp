@@ -55,7 +55,7 @@ void CHARACTERDATA::dump(FileWriter& fw) const
 	fw.Write(this_14);
 	fw.Write(this_15);
 	this_8.Write(fw);
-	pDictionaryCondition->dump(fw);
+	pDictionaryCondition->Dump(fw);
 	LEGENDDATA::dump(fw);
 
 	if (g_ArcVersion >= 0x48D)

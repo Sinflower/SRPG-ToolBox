@@ -47,7 +47,7 @@ void EVENTPAGE::dump(FileWriter& fw) const
 	if (this_4)
 		this_5.dump(fw);
 
-	eventCommands->dump(fw);
+	eventCommands->Dump(fw);
 }
 
 void EVENTPAGE::print(std::ostream& os) const

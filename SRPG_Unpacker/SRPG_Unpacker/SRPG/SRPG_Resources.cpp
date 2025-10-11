@@ -158,6 +158,44 @@ nlohmann::ordered_json SRPG_Resources::GetResMapping() const
 	return j2;
 }
 
+void SRPG_Resources::InitInternalResourceData(const nlohmann::ordered_json& json)
+{
+	uint32_t secIdx = 0;
+	uint32_t secSubCount = 0;
+
+	if (!m_resFlags.HasResData)
+	{
+		for (CMenuOperation*& pResData : m_resData)
+			allocAndSetCMenuOp(&pResData, SRPGClasses::RESDATA, getJsonResSection(json, secIdx++, secSubCount));
+	}
+
+	secSubCount = secIdx;
+
+	if (!m_resFlags.HasUIResData)
+	{
+		for (CMenuOperation*& pUiRes : m_uIResData)
+			allocAndSetCMenuOp(&pUiRes, SRPGClasses::UIRESDATA, getJsonResSection(json, secIdx++, secSubCount));
+	}
+
+	secSubCount = secIdx;
+
+	if (!m_resFlags.HasMediaData)
+	{
+		for (CMenuOperation*& pMediaData : m_mediaData)
+			allocAndSetCMenuOp(&pMediaData, SRPGClasses::MEDIADATA, getJsonResSection(json, secIdx++, secSubCount));
+	}
+
+	secSubCount = secIdx;
+
+	if (!m_resFlags.HasFontData)
+		allocAndSetCMenuOp(&m_pInstalledFontData, SRPGClasses::INSTALLEDFONTDATA, getJsonResSection(json, secIdx++, secSubCount));
+
+	secSubCount = secIdx;
+
+	if (!m_resFlags.HasVideoData)
+		allocAndSetCMenuOp(&m_pVideoData, SRPGClasses::VIDEODATA, getJsonResSection(json, secIdx++, secSubCount));
+}
+
 void SRPG_Resources::init(FileReader& fw)
 {
 #ifdef DEBUG_PRINT
@@ -242,77 +280,71 @@ void SRPG_Resources::dump(FileWriter& fw) const
 	if (m_resFlags.HasResData)
 	{
 		for (const CMenuOperation* pResData : m_resData)
-			pResData->dump(fw);
+			pResData->Dump(fw);
 	}
 
 	if (m_resFlags.HasUIResData)
 	{
 		for (const CMenuOperation* pUiRes : m_uIResData)
-			pUiRes->dump(fw);
+			pUiRes->Dump(fw);
 	}
 
 	if (m_resFlags.HasMediaData)
 	{
 		for (const CMenuOperation* pMediaData : m_mediaData)
-			pMediaData->dump(fw);
+			pMediaData->Dump(fw);
 	}
 
 	if (m_resFlags.HasFontData)
-		m_pInstalledFontData->dump(fw);
+		m_pInstalledFontData->Dump(fw);
 
 	if (m_resFlags.HasVideoData)
-		m_pVideoData->dump(fw);
+		m_pVideoData->Dump(fw);
 
 	if (g_ArcVersion >= 0x475)
 	{
 		for (const CMenuOperation* pCID : m_classIDData)
-			pCID->dump(fw);
+			pCID->Dump(fw);
 	}
 }
 
 void SRPG_Resources::dumpProj(FileWriter& fw) const
 {
 	for (const CMenuOperation* pResData : m_resData)
-	{
-		if (m_resFlags.HasResData)
-			pResData->dump(fw);
-		else
-			fw.Write(DWORD(0));
-	}
+		pResData->Dump(fw);
 
 	for (const CMenuOperation* pMediaData : m_mediaData)
-	{
-		if (m_resFlags.HasMediaData)
-			pMediaData->dump(fw);
-		else
-			fw.Write(DWORD(0));
-	}
+		pMediaData->Dump(fw);
 
 	for (const CMenuOperation* pUiRes : m_uIResData)
-	{
-		if (m_resFlags.HasUIResData)
-			pUiRes->dump(fw);
-		else
-			fw.Write(DWORD(0));
-	}
+		pUiRes->Dump(fw);
 
-	if (m_resFlags.HasFontData)
-		m_pInstalledFontData->dump(fw);
-	else
-		fw.Write(DWORD(0));
+	m_pInstalledFontData->Dump(fw);
 
-	if (m_resFlags.HasVideoData)
-		m_pVideoData->dump(fw);
-	else
-		fw.Write(DWORD(0));
+	m_pVideoData->Dump(fw);
 
 	if (g_ArcVersion >= 0x475)
 	{
 		for (const CMenuOperation* pCID : m_classIDData)
-			pCID->dump(fw);
+			pCID->Dump(fw);
 	}
 }
 
 void SRPG_Resources::writePatches(const std::filesystem::path& outPath) const
 {
+}
+
+nlohmann::ordered_json SRPG_Resources::getJsonResSection(const nlohmann::ordered_json& json, const uint32_t& secIdx, const uint32_t& secReduce)
+{
+	const std::string& secName = SECTION_NAMES[secIdx];
+	if (!json.contains(secName) || !json[secName].is_array())
+		return nlohmann::ordered_json();
+
+	nlohmann::ordered_json j = json[secName];
+
+	// Add the section index to each element in the array
+	for (auto& elem : j)
+		elem["section_idx"] = secIdx - secReduce;
+
+	return j;
 }

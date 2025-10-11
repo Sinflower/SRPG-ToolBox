@@ -54,7 +54,7 @@ void ANIMEDATA::init(FileReader& fw)
 
 void ANIMEDATA::dump(FileWriter& fw) const
 {
-	m_pFrameList->dump(fw);
+	m_pFrameList->Dump(fw);
 	fw.Write(this_9);
 	fw.Write(this_10);
 	fw.Write(this_11);
@@ -74,7 +74,7 @@ void ANIMEDATA::dump(FileWriter& fw) const
 	fw.Write(this_16);
 	fw.Write(this_17);
 
-	m_pTypeIDData->dump(fw);
+	m_pTypeIDData->Dump(fw);
 
 	if (g_ArcVersion >= 0x40D)
 		this_18.Write(fw);

@@ -38,6 +38,15 @@
 	if (_JSON_.contains(_NAME_) && _JSON_[_NAME_].is_string()) \
 		_STR_ = _JSON_[_NAME_].get<std::string>();
 
+#define SET_FN_STRING_IF_IN_JSON(_JSON_, _NAME_, _STR_)        \
+	if (_JSON_.contains(_NAME_) && _JSON_[_NAME_].is_string()) \
+	{                                                          \
+		std::string fn = _JSON_[_NAME_].get<std::string>();    \
+		std::filesystem::path p(fn);                           \
+		fn    = p.stem().string();                             \
+		_STR_ = fn;                                            \
+	}
+
 #define SET_DWORD_IF_IN_JSON(_JSON_, _NAME_, _DWORD_)                   \
 	if (_JSON_.contains(_NAME_) && _JSON_[_NAME_].is_number_unsigned()) \
 		_DWORD_ = _JSON_[_NAME_].get<DWORD>();
@@ -53,8 +62,8 @@ public:
 	CMenuOperation(DWORD const& type);
 	~CMenuOperation();
 
-	void init(FileReader& fw);
-	void dump(FileWriter& fw) const;
+	void Init(FileReader& fw);
+	void Dump(FileWriter& fw) const;
 	nlohmann::ordered_json ToJson() const;
 	void ToJson(nlohmann::ordered_json& json, const std::string& name) const;
 
@@ -65,6 +74,8 @@ public:
 		if (!json.contains(name))
 			json[name] = def;
 	}
+
+	void InitFromJson(const nlohmann::ordered_json& json);
 
 	void WriteToJsonFile(const std::filesystem::path& outPath, const std::wstring& name) const;
 
@@ -116,3 +127,4 @@ private:
 
 void allocAndSetCMenuOp(CMenuOperation** ppCMenuOperation, const SRPGClasses& type, FileReader& fw);
 void allocAndSetCMenuOp(CMenuOperation** ppCMenuOperation, const DWORD& type, FileReader& fw);
+void allocAndSetCMenuOp(CMenuOperation** ppCMenuOperation, const SRPGClasses& type, const nlohmann::ordered_json& json);

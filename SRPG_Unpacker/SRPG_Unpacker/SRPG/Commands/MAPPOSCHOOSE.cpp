@@ -72,10 +72,10 @@ void MAPPOSCHOOSE::dump(FileWriter& fw) const
 		fw.Write(this_26);
 	}
 
-	this_20->dump(fw);
+	this_20->Dump(fw);
 
 	fw.Write(this_21);
 	fw.Write(this_22);
 
-	this_23->dump(fw);
+	this_23->Dump(fw);
 }

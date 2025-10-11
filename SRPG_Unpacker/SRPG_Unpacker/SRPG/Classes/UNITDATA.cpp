@@ -237,34 +237,34 @@ void UNITDATA::dump(FileWriter& fw) const
 	}
 
 	customParameters.Write(fw);
-	this_81->dump(fw);
+	this_81->Dump(fw);
 
 	/////
 
 	if (g_ArcVersion >= 0x3EF)
-		this_82->dump(fw);
+		this_82->Dump(fw);
 
 	if (g_ArcVersion >= 0x3F1)
-		this_84->dump(fw);
+		this_84->Dump(fw);
 
 	if (g_ArcVersion < 0x446)
 	{
 		NOT_IMPLEMENTED
 	}
 	else
-		this_85->dump(fw);
+		this_85->Dump(fw);
 
 	if (g_ArcVersion >= 0x491)
-		this_86->dump(fw);
+		this_86->Dump(fw);
 
 	if (g_ArcVersion >= 0x406)
-		this_83->dump(fw);
+		this_83->Dump(fw);
 
 	if (g_ArcVersion >= 0x43F)
 	{
-		this_87->dump(fw);
-		this_88->dump(fw);
-		this_89->dump(fw);
+		this_87->Dump(fw);
+		this_88->Dump(fw);
+		this_89->Dump(fw);
 	}
 
 	if (g_ArcVersion >= 0x4A4)
@@ -278,9 +278,9 @@ void UNITDATA::dump(FileWriter& fw) const
 
 	/////
 
-	unitEvents->dump(fw);
-	this_78->dump(fw);
-	this_80->dump(fw);
+	unitEvents->Dump(fw);
+	this_78->Dump(fw);
+	this_80->Dump(fw);
 }
 
 void UNITDATA::print(std::ostream& os) const

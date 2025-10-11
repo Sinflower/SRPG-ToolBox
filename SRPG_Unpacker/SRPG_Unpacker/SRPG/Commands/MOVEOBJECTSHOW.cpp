@@ -40,5 +40,5 @@ void MOVEOBJECTSHOW::dump(FileWriter& fw) const
 {
 	fw.WriteBytes(data.data(), 44);
 
-	m_pLinePosData->dump(fw);
+	m_pLinePosData->Dump(fw);
 }

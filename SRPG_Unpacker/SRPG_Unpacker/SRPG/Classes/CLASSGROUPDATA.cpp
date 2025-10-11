@@ -39,7 +39,7 @@ void CLASSGROUPDATA::init(FileReader& fw)
 void CLASSGROUPDATA::dump(FileWriter& fw) const
 {
 	name.Write(fw);
-	m_pClassGroupEntryData->dump(fw);
+	m_pClassGroupEntryData->Dump(fw);
 }
 
 nlohmann::ordered_json CLASSGROUPDATA::toJson() const

@@ -119,20 +119,20 @@ void SRPG_Maps::init(FileReader& fw)
 
 void SRPG_Maps::dump(FileWriter& fw) const
 {
-	m_pMapData->dump(fw);
-	m_pMapTreeData1->dump(fw);
-	m_pMapTreeData2->dump(fw);
+	m_pMapData->Dump(fw);
+	m_pMapTreeData1->Dump(fw);
+	m_pMapTreeData2->Dump(fw);
 
 	if (g_ArcVersion >= 0x4FE)
-		m_pDayNightData->dump(fw);
+		m_pDayNightData->Dump(fw);
 
 	if (g_ArcVersion >= 0x3F9)
-		m_pMapCommonEvents->dump(fw);
+		m_pMapCommonEvents->Dump(fw);
 
 	if (g_ArcVersion >= 0x432)
 	{
-		m_pBookmarkEvents->dump(fw);
-		m_pBookmarkUnits->dump(fw);
+		m_pBookmarkEvents->Dump(fw);
+		m_pBookmarkUnits->Dump(fw);
 	}
 
 	fw.Write(this_21);
@@ -143,19 +143,19 @@ void SRPG_Maps::dump(FileWriter& fw) const
 	if (g_ArcVersion >= 0x4A0)
 	{
 		for (const CMenuOperation* pMO : m_pJumpIDData)
-			pMO->dump(fw);
+			pMO->Dump(fw);
 	}
 
 	if (g_ArcVersion >= 0x503)
 	{
 		for (const CMenuOperation* pMO : m_pJumpIDData2)
-			pMO->dump(fw);
+			pMO->Dump(fw);
 	}
 
 	if (g_ArcVersion >= 0x4A4)
 	{
 		for (const CMenuOperation* pMO : m_pParamHeadData)
-			pMO->dump(fw);
+			pMO->Dump(fw);
 	}
 
 	if (g_ArcVersion >= 0x4E2)

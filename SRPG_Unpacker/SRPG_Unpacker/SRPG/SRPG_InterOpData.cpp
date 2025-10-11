@@ -84,14 +84,14 @@ void SRPG_InterOpData::init(FileReader& fw)
 
 void SRPG_InterOpData::dump(FileWriter& fw) const
 {
-	m_pInteropAnimeData->dump(fw);
-	m_pInteropMediaData->dump(fw);
-	m_pInteropGraphicsData->dump(fw);
-	m_pInteropUIData->dump(fw);
-	m_pInteropTextUIData->dump(fw);
-	m_pInteropScreenData->dump(fw);
-	m_pInteropStringData1->dump(fw);
-	m_pInteropStringData2->dump(fw);
+	m_pInteropAnimeData->Dump(fw);
+	m_pInteropMediaData->Dump(fw);
+	m_pInteropGraphicsData->Dump(fw);
+	m_pInteropUIData->Dump(fw);
+	m_pInteropTextUIData->Dump(fw);
+	m_pInteropScreenData->Dump(fw);
+	m_pInteropStringData1->Dump(fw);
+	m_pInteropStringData2->Dump(fw);
 }
 
 void SRPG_InterOpData::writePatches(const std::filesystem::path& outPath) const

@@ -49,7 +49,7 @@ std::size_t CMenuOperation::GetElemCount() const
 	return m_data.size();
 }
 
-void CMenuOperation::init(FileReader& fw)
+void CMenuOperation::Init(FileReader& fw)
 {
 	DWORD objCnt = fw.ReadDWord();
 
@@ -64,7 +64,7 @@ void CMenuOperation::init(FileReader& fw)
 	}
 }
 
-void CMenuOperation::dump(FileWriter& fw) const
+void CMenuOperation::Dump(FileWriter& fw) const
 {
 	fw.Write(static_cast<DWORD>(m_data.size()));
 
@@ -94,6 +94,25 @@ void CMenuOperation::ToJson(nlohmann::ordered_json& json, const std::string& nam
 	nlohmann::ordered_json j = ToJson();
 	if (!j.is_null() && !j.empty())
 		json[name] = j;
+}
+
+void CMenuOperation::InitFromJson(const nlohmann::ordered_json& json)
+{
+	// Clear existing data
+	for (EDITDATA*& p : m_data)
+		delete p;
+
+	m_data.clear();
+
+	for (const nlohmann::ordered_json& elem : json)
+	{
+		EDITDATA* pObj = createSRPGClass(m_type);
+		if (elem.contains("elems") && elem["elems"].is_array())
+			pObj->id = elem["elems"][0].get<DWORD>();
+
+		pObj->InitFromJson(elem);
+		m_data.push_back(pObj);
+	}
 }
 
 void CMenuOperation::WriteToJsonFile(const std::filesystem::path& outPath, const std::wstring& name) const
@@ -168,12 +187,19 @@ void allocAndSetCMenuOp(CMenuOperation** ppCMenuOperation, const SRPGClasses& ty
 {
 	if (*ppCMenuOperation == nullptr)
 		*ppCMenuOperation = new CMenuOperation(type);
-	(*ppCMenuOperation)->init(fw);
+	(*ppCMenuOperation)->Init(fw);
 }
 
 void allocAndSetCMenuOp(CMenuOperation** ppCMenuOperation, const DWORD& type, FileReader& fw)
 {
 	if (*ppCMenuOperation == nullptr)
 		*ppCMenuOperation = new CMenuOperation(type);
-	(*ppCMenuOperation)->init(fw);
+	(*ppCMenuOperation)->Init(fw);
+}
+
+void allocAndSetCMenuOp(CMenuOperation** ppCMenuOperation, const SRPGClasses& type, const nlohmann::ordered_json& json)
+{
+	if (*ppCMenuOperation == nullptr)
+		*ppCMenuOperation = new CMenuOperation(type);
+	(*ppCMenuOperation)->InitFromJson(json);
 }

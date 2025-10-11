@@ -43,7 +43,7 @@ void GALLERYDATA::init(FileReader& fw)
 
 void GALLERYDATA::dump(FileWriter& fw) const
 {
-	this_11->dump(fw);
+	this_11->Dump(fw);
 	fw.Write(this_8);
 	fw.Write(this_9);
 

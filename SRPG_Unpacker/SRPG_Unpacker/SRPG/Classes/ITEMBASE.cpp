@@ -131,7 +131,7 @@ void ITEMBASE::dump(FileWriter& fw) const
 	}
 	//////
 
-	m_pTypeIDData1->dump(fw);
+	m_pTypeIDData1->Dump(fw);
 
 	//////
 	if (g_ArcVersion < 0x41D)
@@ -153,7 +153,7 @@ void ITEMBASE::dump(FileWriter& fw) const
 	else
 	{
 		fw.Write(this_39);
-		m_pTypeIDData2->dump(fw);
+		m_pTypeIDData2->Dump(fw);
 	}
 	//////
 

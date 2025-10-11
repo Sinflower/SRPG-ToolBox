@@ -34,8 +34,8 @@ void INSTALLEDFONTDATA::init(FileReader& fw)
 {
 	this_5 = fw.ReadDWord();
 
-	initMemData(m_fontName, fw);
-	initMemData(this_4, fw);
+	initMemData(m_fontName, fw); // One of these is the actual font name and one is the font type name.
+	initMemData(this_4, fw);     // But it looks like during packing only the font type name is stored so they probably are always the same.
 
 	if (g_ArcVersion >= 1137)
 		this_6 = fw.ReadDWord();
@@ -58,6 +58,14 @@ nlohmann::ordered_json INSTALLEDFONTDATA::toJson() const
 
 	j["name"] = m_fontName.ToString();
 	return j;
+}
+
+void INSTALLEDFONTDATA::initFromJson(const nlohmann::ordered_json& json)
+{
+	SET_FN_STRING_IF_IN_JSON(json, "name", m_fontName);
+	SET_FN_STRING_IF_IN_JSON(json, "name", this_4);
+	this_5 = json["elems"][1].get<DWORD>();
+	SET_DWORD_IF_IN_JSON(json, "section_idx", this_6);
 }
 
 void INSTALLEDFONTDATA::applyPatch(const [[maybe_unused]] nlohmann::ordered_json& json)

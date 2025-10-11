@@ -39,5 +39,6 @@ struct INSTALLEDFONTDATA : public EDITDATA
 
 protected:
 	nlohmann::ordered_json toJson() const override;
+	void initFromJson(const nlohmann::ordered_json& json) override;
 	void applyPatch(const nlohmann::ordered_json& json) override;
 };

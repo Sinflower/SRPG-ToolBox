@@ -66,6 +66,7 @@ public:
 
 	void Dump(const std::filesystem::path& outPath) const;
 	void DumpProj(const std::filesystem::path& outPath) const;
+	void SetupInternalResources(const nlohmann::ordered_json& json);
 
 	nlohmann::ordered_json GetResMapping() const;
 

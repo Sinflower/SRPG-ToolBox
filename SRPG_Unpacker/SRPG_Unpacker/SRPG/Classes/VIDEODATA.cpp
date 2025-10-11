@@ -54,6 +54,13 @@ nlohmann::ordered_json VIDEODATA::toJson() const
 	return j;
 }
 
+void VIDEODATA::initFromJson(const nlohmann::ordered_json& json)
+{
+	SET_FN_STRING_IF_IN_JSON(json, "name", m_videoName);
+	this_5 = json["elems"][1].get<DWORD>();
+	SET_DWORD_IF_IN_JSON(json, "section_idx", this_4);
+}
+
 void VIDEODATA::applyPatch(const [[maybe_unused]] nlohmann::ordered_json& json)
 {
 }

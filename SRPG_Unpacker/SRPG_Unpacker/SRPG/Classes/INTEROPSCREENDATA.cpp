@@ -59,7 +59,7 @@ void INTEROPSCREENDATA::dump(FileWriter& fw) const
 	fw.Write(this_10);
 	fw.Write(this_11);
 
-	m_pInterOptextUIData->dump(fw);
+	m_pInterOptextUIData->Dump(fw);
 
 	INTEROPBASE::dump(fw);
 }

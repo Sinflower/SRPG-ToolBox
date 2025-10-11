@@ -52,9 +52,9 @@ void ITEMGROUPDATA::dump(FileWriter& fw) const
 	if (g_ArcVersion >= 0x43D)
 	{
 		fw.Write(this_5);
-		m_pTypeIDData->dump(fw);
+		m_pTypeIDData->Dump(fw);
 	}
 
 	if (g_ArcVersion >= 0x4F3)
-		m_pVariableConditionData->dump(fw);
+		m_pVariableConditionData->Dump(fw);
 }

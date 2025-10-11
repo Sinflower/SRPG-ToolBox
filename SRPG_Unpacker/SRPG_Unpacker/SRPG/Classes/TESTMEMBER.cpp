@@ -37,5 +37,5 @@ void TESTMEMBER::init(FileReader& fw)
 
 void TESTMEMBER::dump(FileWriter& fw) const
 {
-	this_3->dump(fw);
+	this_3->Dump(fw);
 }

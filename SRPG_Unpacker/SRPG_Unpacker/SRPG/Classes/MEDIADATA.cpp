@@ -52,6 +52,13 @@ nlohmann::ordered_json MEDIADATA::toJson() const
 	return j;
 }
 
+void MEDIADATA::initFromJson(const nlohmann::ordered_json& json)
+{
+	SET_FN_STRING_IF_IN_JSON(json, "name", m_mediaName);
+	this_4 = json["elems"][1].get<DWORD>();
+	SET_DWORD_IF_IN_JSON(json, "section_idx", this_3);
+}
+
 void MEDIADATA::applyPatch(const [[maybe_unused]] nlohmann::ordered_json& json)
 {
 }

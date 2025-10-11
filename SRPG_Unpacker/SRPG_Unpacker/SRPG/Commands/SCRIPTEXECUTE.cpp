@@ -67,7 +67,7 @@ void SCRIPTEXECUTE::dump(FileWriter& fw) const
 		fw.Write(this_19);
 		fw.Write(this_20);
 
-		m_pTypeIDData->dump(fw);
+		m_pTypeIDData->Dump(fw);
 
 		this_22.Write(fw);
 	}

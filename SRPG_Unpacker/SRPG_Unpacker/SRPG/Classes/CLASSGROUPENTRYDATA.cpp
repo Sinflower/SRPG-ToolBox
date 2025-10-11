@@ -71,5 +71,5 @@ void CLASSGROUPENTRYDATA::dump(FileWriter& fw) const
 	else
 		fw.WriteBytes(this_16.data(), 48);
 
-	m_pTypeIDData->dump(fw);
+	m_pTypeIDData->Dump(fw);
 }

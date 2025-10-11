@@ -120,7 +120,7 @@ void SKILLDATA::dump(FileWriter& fw) const
 				if (g_ArcVersion >= 0x415)
 				{
 					fw.Write(this_27);
-					m_pTypeIDData2->dump(fw);
+					m_pTypeIDData2->Dump(fw);
 				}
 			}
 			else
@@ -173,7 +173,7 @@ void SKILLDATA::dump(FileWriter& fw) const
 		else if (this_9 == 44)
 		{
 			if (g_ArcVersion < 0x41D)
-				m_pTypeIDData1->dump(fw);
+				m_pTypeIDData1->Dump(fw);
 		}
 	}
 	if (g_ArcVersion >= 0x446)
@@ -205,11 +205,11 @@ void SKILLDATA::dump(FileWriter& fw) const
 		fw.Write(this_25);
 		fw.Write(this_26);
 
-		m_pTypeIDData1->dump(fw);
+		m_pTypeIDData1->Dump(fw);
 
 		fw.Write(this_27);
 
-		m_pTypeIDData2->dump(fw);
+		m_pTypeIDData2->Dump(fw);
 
 		if (g_ArcVersion >= 1277 && HIWORD(this_27))
 		{

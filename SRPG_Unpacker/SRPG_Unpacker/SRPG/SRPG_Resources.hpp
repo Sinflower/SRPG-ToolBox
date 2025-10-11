@@ -69,11 +69,16 @@ public:
 		return m_unknown;
 	}
 
-	protected:
+	void InitInternalResourceData(const nlohmann::ordered_json& json);
+
+protected:
 	void init(FileReader& fw) override;
 	void dump(FileWriter& fw) const override;
 	void dumpProj(FileWriter& fw) const override;
 	void writePatches(const std::filesystem::path& outPath) const;
+
+private:
+	nlohmann::ordered_json getJsonResSection(const nlohmann::ordered_json& json, const uint32_t& secIdx, const uint32_t& secReduce = 0);
 
 private:
 	ResourceFlags m_resFlags;

@@ -41,7 +41,7 @@ void FRAMELIST::init(FileReader& fw)
 
 void FRAMELIST::dump(FileWriter& fw) const
 {
-	m_pFrameData->dump(fw);
+	m_pFrameData->Dump(fw);
 	fw.Write(this_5);
 	fw.Write(this_4);
 	fw.Write(this_6);

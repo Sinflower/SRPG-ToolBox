@@ -39,7 +39,7 @@ void DICTIONARYCONDITION::init(FileReader& fw)
 void DICTIONARYCONDITION::dump(FileWriter& fw) const
 {
 	text.Write(fw);
-	pSwitchActionData->dump(fw);
+	pSwitchActionData->Dump(fw);
 }
 
 nlohmann::ordered_json DICTIONARYCONDITION::toJson() const

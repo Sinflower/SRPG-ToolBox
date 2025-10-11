@@ -41,5 +41,5 @@ void REINFORCECONTAINER::dump(FileWriter& fw) const
 {
 	fw.Write(this_3);
 	fw.Write(this_4);
-	pReinforceData->dump(fw);
+	pReinforceData->Dump(fw);
 }

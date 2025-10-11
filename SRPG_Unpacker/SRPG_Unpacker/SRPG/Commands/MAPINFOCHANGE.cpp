@@ -43,9 +43,9 @@ void MAPINFOCHANGE::dump(FileWriter& fw) const
 {
 	fw.WriteBytes(this_3.data(), static_cast<DWORD>(this_3.size() * sizeof(DWORD)));
 	description.Write(fw);
-	this_23->dump(fw);
-	pVictoryCond->dump(fw);
-	pDefeatCond->dump(fw);
+	this_23->Dump(fw);
+	pVictoryCond->Dump(fw);
+	pDefeatCond->Dump(fw);
 }
 
 nlohmann::ordered_json MAPINFOCHANGE::toJson() const

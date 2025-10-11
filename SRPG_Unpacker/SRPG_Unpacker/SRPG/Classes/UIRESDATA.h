@@ -32,6 +32,9 @@
 struct UIRESDATA : public IMAGEDATA
 {
 	DWORD this_35 = 0;
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
+
+	protected:
+	void initFromJson(const nlohmann::ordered_json& json) override;
 };

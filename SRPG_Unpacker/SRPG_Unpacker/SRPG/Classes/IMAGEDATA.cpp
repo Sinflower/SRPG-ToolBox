@@ -51,6 +51,12 @@ nlohmann::ordered_json IMAGEDATA::toJson() const
 	return j;
 }
 
+void IMAGEDATA::initFromJson(const nlohmann::ordered_json& json)
+{
+	this_4 = json["elems"][1].get<DWORD>();
+	SET_FN_STRING_IF_IN_JSON(json, "name", m_imageName);
+}
+
 void IMAGEDATA::applyPatch(const [[maybe_unused]] nlohmann::ordered_json& json)
 {
 }

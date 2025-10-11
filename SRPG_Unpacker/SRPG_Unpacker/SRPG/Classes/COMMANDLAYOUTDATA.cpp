@@ -47,7 +47,7 @@ void COMMANDLAYOUTDATA::dump(FileWriter& fw) const
 	fw.Write(this_5);
 	fw.Write(this_6);
 
-	m_pTypeIDData->dump(fw);
+	m_pTypeIDData->Dump(fw);
 	commandName.Write(fw);
 }
 

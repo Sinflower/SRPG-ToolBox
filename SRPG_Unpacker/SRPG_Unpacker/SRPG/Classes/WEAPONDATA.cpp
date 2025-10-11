@@ -111,7 +111,7 @@ void WEAPONDATA::dump(FileWriter& fw) const
 	else
 	{
 		fw.Write(this_64);
-		m_pTypeIDData3->dump(fw);
+		m_pTypeIDData3->Dump(fw);
 
 		if (g_ArcVersion >= 1277 && HIWORD(this_64))
 		{
@@ -167,8 +167,8 @@ void WEAPONDATA::dump(FileWriter& fw) const
 		}
 		else
 		{
-			m_pImageIDData1->dump(fw);
-			m_pImageIDData2->dump(fw);
+			m_pImageIDData1->Dump(fw);
+			m_pImageIDData2->Dump(fw);
 		}
 	}
 	//////
@@ -338,9 +338,9 @@ void WEAPONDATA::dump_sub_FFF20(FileWriter& fw, int a3) const
 	}
 	else
 	{
-		m_pMotionIDData1->dump(fw);
-		m_pMotionIDData2->dump(fw);
-		m_pMotionIDData3->dump(fw);
+		m_pMotionIDData1->Dump(fw);
+		m_pMotionIDData2->Dump(fw);
+		m_pMotionIDData3->Dump(fw);
 	}
 }
 

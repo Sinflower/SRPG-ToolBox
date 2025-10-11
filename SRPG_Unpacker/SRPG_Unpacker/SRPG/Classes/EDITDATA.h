@@ -64,8 +64,14 @@ public:
 		return os;
 	}
 
+	void InitFromJson(const nlohmann::ordered_json& json)
+	{
+		initFromJson(json);
+	}
+
 protected:
 	virtual nlohmann::ordered_json toJson() const;
+	virtual void initFromJson(const nlohmann::ordered_json& json);
 	virtual void applyPatch(const nlohmann::ordered_json& json);
 
 public:

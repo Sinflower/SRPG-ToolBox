@@ -212,6 +212,7 @@ void unpack(const fs::path& dtsFile, const fs::path& outFolder = L"output")
 	dtsT.Unpack(dtsFile, outFolder);
 
 	SRPG_Project sp({ dtsT.GetVersion(), dtsT.GetResourceFlags(), dtsT.GetProjectData() });
+	sp.SetupInternalResources(dtsT.GetJson());
 	sp.DumpProj(outFolder);
 
 	std::cout << "Copying and decrypting data not in the archive ... " << std::endl;

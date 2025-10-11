@@ -43,3 +43,9 @@ void RESDATA::dump(FileWriter& fw) const
 
 	fw.Write(this_35);
 }
+
+void RESDATA::initFromJson(const nlohmann::ordered_json& json)
+{
+	IMAGEDATA::initFromJson(json);
+	SET_DWORD_IF_IN_JSON(json, "section_idx", this_35);
+}

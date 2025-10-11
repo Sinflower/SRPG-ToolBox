@@ -54,8 +54,8 @@ void FORCEBATTLE::dump(FileWriter& fw) const
 	fw.Write(this_6);
 	fw.Write(this_8);
 
-	pForceEntry1->dump(fw);
-	pForceEntry2->dump(fw);
+	pForceEntry1->Dump(fw);
+	pForceEntry2->Dump(fw);
 
 	if (g_ArcVersion >= 0x418)
 		fw.Write(this_11);

@@ -107,5 +107,5 @@ void MESSAGELAYOUTDATA::dump(FileWriter& fw) const
 
 	this_28.Write(fw);
 
-	m_pInterOptextUIData->dump(fw);
+	m_pInterOptextUIData->Dump(fw);
 }

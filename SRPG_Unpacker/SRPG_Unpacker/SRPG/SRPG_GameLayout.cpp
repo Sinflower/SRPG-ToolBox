@@ -139,23 +139,23 @@ void SRPG_GameLayout::dump(FileWriter& fw) const
 		}
 
 		if (g_ArcVersion >= 0x4FF)
-			m_pTypeIDData->dump(fw);
+			m_pTypeIDData->Dump(fw);
 
-		m_pMessageLayout->dump(fw);
-		m_pShopLayout->dump(fw);
+		m_pMessageLayout->Dump(fw);
+		m_pShopLayout->Dump(fw);
 	}
 
 	if (g_ArcVersion >= 0x428)
 	{
-		m_pTitleLayout->dump(fw);
-		m_pBattlePrepLayout->dump(fw);
-		m_pMapCommandsLayout->dump(fw);
+		m_pTitleLayout->Dump(fw);
+		m_pBattlePrepLayout->Dump(fw);
+		m_pMapCommandsLayout->Dump(fw);
 
 		if (g_ArcVersion >= 0x43D)
-			m_pBaseLayout->dump(fw);
+			m_pBaseLayout->Dump(fw);
 
 		if (g_ArcVersion >= 0x441)
-			m_pManageLayout->dump(fw);
+			m_pManageLayout->Dump(fw);
 	}
 
 	if (g_ArcVersion >= 0x49F)

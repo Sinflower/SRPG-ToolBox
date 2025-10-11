@@ -93,7 +93,7 @@ void STATEDATA::dump(FileWriter& fw) const
 	}
 
 	if (g_ArcVersion >= 0x404)
-		m_pTypeIDData->dump(fw);
+		m_pTypeIDData->Dump(fw);
 
 	if (g_ArcVersion < 0x418)
 	{

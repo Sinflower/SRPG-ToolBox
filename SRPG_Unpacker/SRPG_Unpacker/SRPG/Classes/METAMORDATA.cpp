@@ -117,7 +117,7 @@ void METAMORDATA::dump(FileWriter& fw) const
 	fw.Write(this_41);
 	fw.Write(this_42);
 
-	m_pTypeIDData1->dump(fw);
+	m_pTypeIDData1->Dump(fw);
 
 	if (g_ArcVersion >= 1277 && HIWORD(this_42))
 	{
@@ -126,7 +126,7 @@ void METAMORDATA::dump(FileWriter& fw) const
 		fw.Write(this_132);
 	}
 
-	m_pItemConvertData->dump(fw);
+	m_pItemConvertData->Dump(fw);
 
 	command.Write(fw);
 
@@ -136,7 +136,7 @@ void METAMORDATA::dump(FileWriter& fw) const
 
 	if (g_ArcVersion >= 0x4F0)
 	{
-		m_pTypeIDData2->dump(fw);
+		m_pTypeIDData2->Dump(fw);
 		fw.WriteBytes(this_47.data(), 264);
 		fw.Write(this_49);
 		fw.Write(this_50);

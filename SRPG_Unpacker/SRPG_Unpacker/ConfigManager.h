@@ -65,6 +65,11 @@ public:
 		return m_json[key].get<T>();
 	}
 
+	nlohmann::ordered_json GetJson() const
+	{
+		return m_json;
+	}
+
 	void Add2Array(const std::string& arr, const std::string& value, const std::vector<uint32_t>& elems)
 	{
 		if (!m_json.contains(arr))

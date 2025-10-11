@@ -124,7 +124,7 @@ void CHOICESHOW::dump(FileWriter& fw) const
 	}
 	else
 	{
-		pChoices->dump(fw);
+		pChoices->Dump(fw);
 		fw.Write(this_4);
 	}
 }

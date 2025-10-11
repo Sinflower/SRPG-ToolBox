@@ -123,14 +123,14 @@ void PATTERNDATA::dump(FileWriter& fw) const
 
 	fw.Write(this_12);
 
-	this_11->dump(fw);
+	this_11->Dump(fw);
 
 	fw.Write(this_13);
 
 	if (g_ArcVersion >= 0x424)
 	{
 		fw.Write(this_14);
-		this_15->dump(fw);
+		this_15->Dump(fw);
 
 		if (g_ArcVersion >= 1277 && HIWORD(this_14))
 		{
@@ -143,6 +143,6 @@ void PATTERNDATA::dump(FileWriter& fw) const
 	if (g_ArcVersion >= 0x40D)
 	{
 		fw.Write(this_16);
-		this_17->dump(fw);
+		this_17->Dump(fw);
 	}
 }

@@ -80,10 +80,10 @@ void SRPG_StorySettings::init(FileReader& fw)
 
 void SRPG_StorySettings::dump(FileWriter& fw) const
 {
-	m_pCharacterData->dump(fw);
-	m_pWordData->dump(fw);
-	m_pGalleryData->dump(fw);
-	m_pSoundModeData->dump(fw);
+	m_pCharacterData->Dump(fw);
+	m_pWordData->Dump(fw);
+	m_pGalleryData->Dump(fw);
+	m_pSoundModeData->Dump(fw);
 
 	if (g_ArcVersion >= 0x428)
 	{

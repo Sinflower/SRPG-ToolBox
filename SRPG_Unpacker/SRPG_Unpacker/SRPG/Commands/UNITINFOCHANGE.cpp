@@ -138,16 +138,16 @@ void UNITINFOCHANGE::dump(FileWriter& fw) const
 	if (g_ArcVersion < 0x446)
 		NOT_IMPLEMENTED
 	else
-		pTypeIDData->dump(fw);
+		pTypeIDData->Dump(fw);
 
 	if (g_ArcVersion >= 0x436)
-		pImageIDData1->dump(fw);
+		pImageIDData1->Dump(fw);
 
 	if (g_ArcVersion >= 0x43F)
 	{
-		pImageIDData2->dump(fw);
-		pImageIDData3->dump(fw);
-		pImageIDData4->dump(fw);
+		pImageIDData2->Dump(fw);
+		pImageIDData3->Dump(fw);
+		pImageIDData4->Dump(fw);
 	}
 
 	name.Write(fw);

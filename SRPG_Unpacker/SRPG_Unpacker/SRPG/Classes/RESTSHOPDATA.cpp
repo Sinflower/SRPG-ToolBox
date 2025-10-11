@@ -49,7 +49,7 @@ void RESTSHOPDATA::dump(FileWriter& fw) const
 {
 	fw.Write(this_8);
 
-	pItemGroupData->dump(fw);
+	pItemGroupData->Dump(fw);
 
 	fw.Write(this_10);
 

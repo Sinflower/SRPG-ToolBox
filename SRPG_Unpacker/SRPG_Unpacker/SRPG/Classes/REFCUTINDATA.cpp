@@ -39,7 +39,7 @@ void REFCUTINDATA::init(FileReader& fw)
 
 void REFCUTINDATA::dump(FileWriter& fw) const
 {
-	m_pImgIdData1->dump(fw);
-	m_pImgIdData2->dump(fw);
-	m_pImgIdData3->dump(fw);
+	m_pImgIdData1->Dump(fw);
+	m_pImgIdData2->Dump(fw);
+	m_pImgIdData3->Dump(fw);
 }

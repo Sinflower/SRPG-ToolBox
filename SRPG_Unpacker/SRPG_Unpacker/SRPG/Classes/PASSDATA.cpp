@@ -55,7 +55,7 @@ void PASSDATA::dump(FileWriter& fw) const
 	this_6.Write(fw);
 	this_7.Write(fw);
 
-	m_pPassChipData->dump(fw);
+	m_pPassChipData->Dump(fw);
 }
 
 nlohmann::ordered_json PASSDATA::toJson() const

@@ -147,14 +147,14 @@ void CLASSDATA::dump(FileWriter& fw) const
 			*/
 		}
 		else
-			m_pTypeIDData3->dump(fw);
+			m_pTypeIDData3->Dump(fw);
 	}
 
 	if (g_ArcVersion >= 0x42A)
 		fw.Write(this_20);
 
-	m_pTypeIDData2->dump(fw);
-	m_pTypeIDData1->dump(fw);
+	m_pTypeIDData2->Dump(fw);
+	m_pTypeIDData1->Dump(fw);
 
 	/////
 
@@ -253,14 +253,14 @@ void CLASSDATA::dump(FileWriter& fw) const
 	}
 	else
 	{
-		m_pMotionIDData1->dump(fw);
-		m_pMotionIDData2->dump(fw);
-		m_pMotionIDData3->dump(fw);
+		m_pMotionIDData1->Dump(fw);
+		m_pMotionIDData2->Dump(fw);
+		m_pMotionIDData3->Dump(fw);
 	}
 
 	/////
 
-	m_pUnitStatusData->dump(fw);
+	m_pUnitStatusData->Dump(fw);
 
 	/////////////////////////////////////////////
 	// Init for UNITPROTOTYPEDATA
@@ -325,7 +325,7 @@ void CLASSDATA::dump(FileWriter& fw) const
 	}
 
 	if (g_ArcVersion >= 0x443)
-		m_pCharReplaceData->dump(fw);
+		m_pCharReplaceData->Dump(fw);
 
 	if (g_ArcVersion >= 0x4A4)
 	{

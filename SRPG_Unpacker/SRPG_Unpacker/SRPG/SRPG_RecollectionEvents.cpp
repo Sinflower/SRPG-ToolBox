@@ -38,7 +38,7 @@ void SRPG_RecollectionEvents::init(FileReader& fw)
 
 void SRPG_RecollectionEvents::dump(FileWriter& fw) const
 {
-	m_pRecollectionEvents->dump(fw);
+	m_pRecollectionEvents->Dump(fw);
 }
 
 void SRPG_RecollectionEvents::writePatches(const std::filesystem::path& outPath) const

@@ -90,7 +90,7 @@ void FRAMEDATA::dump(FileWriter& fw) const
 {
 	if (g_ArcVersion < 0x47F)
 	{
-		m_pSpriteData->dump(fw);
+		m_pSpriteData->Dump(fw);
 
 		fw.Write(this_4);
 		fw.Write(this_3);
@@ -126,7 +126,7 @@ void FRAMEDATA::dump(FileWriter& fw) const
 		return;
 	}
 
-	m_pSpriteData->dump(fw);
+	m_pSpriteData->Dump(fw);
 
 	fw.Write(this_4);
 	fw.Write(this_3);

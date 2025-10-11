@@ -102,7 +102,7 @@ void UNITALLCOMMAND::dump(FileWriter& fw) const
 
 	fw.Write(this_8);
 
-	pTypeIDData->dump(fw);
+	pTypeIDData->Dump(fw);
 
 	if (g_ArcVersion >= 1277 && HIWORD(this_8))
 	{

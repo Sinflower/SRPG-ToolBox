@@ -118,13 +118,13 @@ void FUSIONDATA::dump(FileWriter& fw) const
 	{
 		fw.Write(this_16);
 		fw.Write(this_18);
-		m_pTypeIDData1->dump(fw);
-		m_pTypeIDData2->dump(fw);
+		m_pTypeIDData1->Dump(fw);
+		m_pTypeIDData2->Dump(fw);
 	}
 	else
 	{
 		fw.Write(this_16);
-		m_pTypeIDData1->dump(fw);
+		m_pTypeIDData1->Dump(fw);
 
 		if (g_ArcVersion >= 1277 && HIWORD(this_16))
 		{
@@ -134,7 +134,7 @@ void FUSIONDATA::dump(FileWriter& fw) const
 		}
 
 		fw.Write(this_18);
-		m_pTypeIDData2->dump(fw);
+		m_pTypeIDData2->Dump(fw);
 
 		if (g_ArcVersion >= 1277 && HIWORD(this_18))
 		{

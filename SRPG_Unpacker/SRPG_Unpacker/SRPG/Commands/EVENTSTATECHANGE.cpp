@@ -43,10 +43,10 @@ void EVENTSTATECHANGE::init(FileReader& fw)
 
 void EVENTSTATECHANGE::dump(FileWriter& fw) const
 {
-	pEventActionData1->dump(fw);
-	pEventActionData2->dump(fw);
-	pEventActionData3->dump(fw);
+	pEventActionData1->Dump(fw);
+	pEventActionData2->Dump(fw);
+	pEventActionData3->Dump(fw);
 
 	if (g_ArcVersion >= 0x3F9)
-		pEventActionData4->dump(fw);
+		pEventActionData4->Dump(fw);
 }

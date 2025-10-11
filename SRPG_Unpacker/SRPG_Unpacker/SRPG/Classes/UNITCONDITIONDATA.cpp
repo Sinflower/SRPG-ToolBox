@@ -218,7 +218,7 @@ void UNITCONDITIONDATA::dump(FileWriter& fw) const
 	if (g_ArcVersion >= 0x41D)
 	{
 		fw.Write(this_35);
-		pTypeIDData->dump(fw);
+		pTypeIDData->Dump(fw);
 
 		if (g_ArcVersion >= 1277 && HIWORD(this_35))
 		{

@@ -72,7 +72,7 @@ void CHARREPLACEDATA::dump(FileWriter& fw) const
 	fw.Write(this_5);
 	this_6.Write(fw);
 	fw.Write(this_7);
-	m_pTypeIDData->dump(fw);
+	m_pTypeIDData->Dump(fw);
 
 	if (g_ArcVersion >= 1277)
 	{

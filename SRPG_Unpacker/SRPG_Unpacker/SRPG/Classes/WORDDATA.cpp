@@ -53,7 +53,7 @@ void WORDDATA::dump(FileWriter& fw) const
 	fw.Write(this_13);
 
 	this_8.Write(fw);
-	pDictionaryCondition->dump(fw);
+	pDictionaryCondition->Dump(fw);
 
 	LEGENDDATA::dump(fw);
 

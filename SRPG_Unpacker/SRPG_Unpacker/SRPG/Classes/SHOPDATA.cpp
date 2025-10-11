@@ -47,5 +47,5 @@ void SHOPDATA::dump(FileWriter& fw) const
 	if (g_ArcVersion < 0x462)
 		this_4_old.Write(fw);
 	else
-		this_4->dump(fw);
+		this_4->Dump(fw);
 }

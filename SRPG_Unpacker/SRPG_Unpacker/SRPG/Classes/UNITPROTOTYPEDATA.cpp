@@ -86,5 +86,5 @@ void UNITPROTOTYPEDATA::dump(FileWriter& fw) const
 		fw.Write(this_13);
 	}
 
-	m_pUnitStatusData->dump(fw);
+	m_pUnitStatusData->Dump(fw);
 }

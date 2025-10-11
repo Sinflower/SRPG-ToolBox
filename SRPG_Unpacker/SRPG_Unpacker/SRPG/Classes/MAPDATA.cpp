@@ -273,33 +273,33 @@ void MAPDATA::dump(FileWriter& fw) const
 
 	LEGENDDATA::dump(fw);
 
-	victoryCond->dump(fw);
-	defeatCond->dump(fw);
-	localSwitches->dump(fw);
-	pEnemyUnits->dump(fw);
-	pAllyUnits->dump(fw);
+	victoryCond->Dump(fw);
+	defeatCond->Dump(fw);
+	localSwitches->Dump(fw);
+	pEnemyUnits->Dump(fw);
+	pAllyUnits->Dump(fw);
 
 	if (g_ArcVersion >= 0x3EE)
-		pGuestUnits->dump(fw);
+		pGuestUnits->Dump(fw);
 
-	pEvEnemyUnits->dump(fw);
-	pEvAllyUnits->dump(fw);
+	pEvEnemyUnits->Dump(fw);
+	pEvAllyUnits->Dump(fw);
 
 	if (g_ArcVersion >= 0x3EE)
-		pEvGuestUnits->dump(fw);
+		pEvGuestUnits->Dump(fw);
 
-	placeEvents->dump(fw);
-	autoEvents->dump(fw);
-	talkEvents->dump(fw);
-	openingEvents->dump(fw);
-	endingEvents->dump(fw);
-	communicationEvents->dump(fw);
-	this_148->dump(fw);
-	pReinforcementUnits->dump(fw);
+	placeEvents->Dump(fw);
+	autoEvents->Dump(fw);
+	talkEvents->Dump(fw);
+	openingEvents->Dump(fw);
+	endingEvents->Dump(fw);
+	communicationEvents->Dump(fw);
+	this_148->Dump(fw);
+	pReinforcementUnits->Dump(fw);
 
 	fw.Write(this_150);
 
-	this_151->dump(fw);
+	this_151->Dump(fw);
 
 	fw.Write(this_153);
 	fw.Write(this_154);
@@ -309,18 +309,18 @@ void MAPDATA::dump(FileWriter& fw) const
 	if (g_ArcVersion >= 0x43D)
 		fw.Write(this_157);
 
-	this_158->dump(fw);
+	this_158->Dump(fw);
 
-	this_159->dump(fw);
+	this_159->Dump(fw);
 
 	if (g_ArcVersion >= 0x404)
-		this_162->dump(fw);
+		this_162->Dump(fw);
 
 	if (g_ArcVersion >= 0x48A)
 	{
 		fw.Write(this_167);
 
-		this_168->dump(fw);
+		this_168->Dump(fw);
 
 		if (g_ArcVersion >= 0x4FD)
 		{

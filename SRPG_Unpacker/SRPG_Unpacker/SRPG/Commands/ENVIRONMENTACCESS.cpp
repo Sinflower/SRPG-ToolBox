@@ -40,9 +40,9 @@ void ENVIRONMENTACCESS::init(FileReader& fw)
 
 void ENVIRONMENTACCESS::dump(FileWriter& fw) const
 {
-	pTypeIDData1->dump(fw);
-	pTypeIDData2->dump(fw);
-	pTypeIDData3->dump(fw);
+	pTypeIDData1->Dump(fw);
+	pTypeIDData2->Dump(fw);
+	pTypeIDData3->Dump(fw);
 
 	fw.Write(this_6);
 }

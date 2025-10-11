@@ -190,42 +190,42 @@ void SRPG_Database::init(FileReader& fw)
 
 void SRPG_Database::dump(FileWriter& fw) const
 {
-	m_pPlayerUnits->dump(fw);
-	m_pClasses->dump(fw);
-	m_pWeapons->dump(fw);
-	m_pItems->dump(fw);
-	m_pSkills->dump(fw);
+	m_pPlayerUnits->Dump(fw);
+	m_pClasses->Dump(fw);
+	m_pWeapons->Dump(fw);
+	m_pItems->Dump(fw);
+	m_pSkills->Dump(fw);
 
 	if (g_ArcVersion >= 0x400)
-		m_pStates->dump(fw);
+		m_pStates->Dump(fw);
 
-	m_pOriginalTerrains->dump(fw);
-	m_pRuntimeTerrains->dump(fw);
-	m_pFonts->dump(fw);
+	m_pOriginalTerrains->Dump(fw);
+	m_pRuntimeTerrains->Dump(fw);
+	m_pFonts->Dump(fw);
 
 	if (g_ArcVersion >= 0x455)
 	{
 		for (const CMenuOperation* CMO : m_pNPCSettings)
-			CMO->dump(fw);
+			CMO->Dump(fw);
 
-		m_pStringData1->dump(fw);
+		m_pStringData1->Dump(fw);
 	}
 
-	m_pClassGroups->dump(fw);
-	m_pSwitchData->dump(fw);
-	m_pClassTypes->dump(fw);
-	m_pMoveTypeData->dump(fw);
-	m_pDifficulties->dump(fw);
-	m_pItemGroupData1->dump(fw);
-	m_pFacialData->dump(fw);
+	m_pClassGroups->Dump(fw);
+	m_pSwitchData->Dump(fw);
+	m_pClassTypes->Dump(fw);
+	m_pMoveTypeData->Dump(fw);
+	m_pDifficulties->Dump(fw);
+	m_pItemGroupData1->Dump(fw);
+	m_pFacialData->Dump(fw);
 
 	if (g_ArcVersion >= 0x439)
-		m_pStringData2->dump(fw);
+		m_pStringData2->Dump(fw);
 
 	uint32_t elems = (g_ArcVersion < 0x437) ? 3 : 4;
 
 	for (uint32_t i = 0; i < elems; i++)
-		m_pWeaponTypes[i]->dump(fw);
+		m_pWeaponTypes[i]->Dump(fw);
 
 	dump_sub_F8E4E0(fw);
 	dump_sub_F7DA50(fw);
@@ -552,42 +552,42 @@ void SRPG_Database::dump_sub_F8E4E0(FileWriter& fw) const
 		if (g_ArcVersion == 0x3F4)
 		{
 			for (uint32_t i = 0; i < 5; i++)
-				m_pVariableData[i]->dump(fw);
+				m_pVariableData[i]->Dump(fw);
 		}
 		else
 		{
 			for (const CMenuOperation* pCMO : m_pVariableData)
-				pCMO->dump(fw);
+				pCMO->Dump(fw);
 		}
 
-		m_pStringData3->dump(fw);
+		m_pStringData3->Dump(fw);
 	}
 
 	if (g_ArcVersion >= 0x3F7)
 	{
-		m_pCmdStrPlaceEv->dump(fw);
-		m_pCmdStrTalkEv->dump(fw);
+		m_pCmdStrPlaceEv->Dump(fw);
+		m_pCmdStrTalkEv->Dump(fw);
 	}
 
 	if (g_ArcVersion >= 0x3F9)
-		m_pTypeIDData->dump(fw);
+		m_pTypeIDData->Dump(fw);
 
 	if (g_ArcVersion >= 0x404)
 	{
 		if (g_ArcVersion < 0x41D)
-			m_pShopLayout1->dump(fw);
+			m_pShopLayout1->Dump(fw);
 		else
-			m_pRaces->dump(fw);
+			m_pRaces->Dump(fw);
 	}
 
 	if (g_ArcVersion >= 0x418)
 	{
-		m_pFusionSettings->dump(fw);
-		m_pTransformations->dump(fw);
+		m_pFusionSettings->Dump(fw);
+		m_pTransformations->Dump(fw);
 	}
 
 	if (g_ArcVersion >= 0x441)
-		m_pPassGroupData->dump(fw);
+		m_pPassGroupData->Dump(fw);
 
 	if (g_ArcVersion >= 0x446)
 	{
@@ -598,9 +598,9 @@ void SRPG_Database::dump_sub_F8E4E0(FileWriter& fw) const
 	if (g_ArcVersion >= 0x49F)
 	{
 		for (const CMenuOperation* pCMO : m_pOriginalData)
-			pCMO->dump(fw);
+			pCMO->Dump(fw);
 
-		m_pStringData6->dump(fw);
+		m_pStringData6->Dump(fw);
 	}
 }
 
@@ -661,8 +661,8 @@ void SRPG_Database::dump_sub_F7DA50(FileWriter& fw) const
 	if (g_ArcVersion >= 0x43D)
 		fw.Write(this_183);
 
-	m_pItemGroupData->dump(fw);
-	m_pUnitIDData->dump(fw);
+	m_pItemGroupData->Dump(fw);
+	m_pUnitIDData->Dump(fw);
 }
 
 void SRPG_Database::dump_sub_F7DD10(FileWriter& fw) const

@@ -86,6 +86,11 @@ nlohmann::ordered_json EDITDATA::toJson() const
 	return j;
 }
 
+void EDITDATA::initFromJson(const nlohmann::ordered_json& json)
+{
+	std::cerr << __FUNCTION__ << " - IMPLEMENT ME - " << name() << std::endl;
+}
+
 void EDITDATA::applyPatch(const nlohmann::ordered_json& json)
 {
 	if (id != json["id"])
