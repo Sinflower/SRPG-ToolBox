@@ -145,7 +145,7 @@ void FileHeader::initSections(bool verbose)
 {
 	if (m_sectionInitDone || !m_fileReader) return;
 
-	std::cout << "Initializing sections ...";
+	std::cout << "Initializing sections ..." << std::flush;
 
 	if (verbose)
 		std::cout << std::endl;

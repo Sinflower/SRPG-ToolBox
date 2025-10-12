@@ -37,6 +37,7 @@
 class ScriptSection : public SectionBase<ScriptData>
 {
 	inline static const std::string MAT_SEC_NAME = "MaterialSection";
+	inline static const std::string MAT_PRESENT  = "MaterialsPresent";
 
 public:
 	ScriptSection();

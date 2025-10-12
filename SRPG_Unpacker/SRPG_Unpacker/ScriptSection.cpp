@@ -36,6 +36,7 @@ ScriptSection::ScriptSection() :
 void ScriptSection::Init(FileReader *pFileReader, const bool &present, const bool &matPresent, std::deque<SecInfo> &secInfos)
 {
 	m_matPresent = matPresent;
+	Config.Add(MAT_PRESENT, m_matPresent);
 	// Call the base class Init
 	SectionBase::Init(pFileReader, present, secInfos);
 }
@@ -49,10 +50,13 @@ std::vector<uint32_t> ScriptSection::SecSizes() const
 	for (const ScriptData &data : m_data)
 		size += data.Size();
 
-	size += 4; // Material count
+	if (m_matPresent)
+	{
+		size += 4; // Material count
 
-	for (const MaterialData &data : m_matData)
-		size += data.Size();
+		for (const MaterialData &data : m_matData)
+			size += data.Size();
+	}
 
 	return { size };
 }
@@ -65,11 +69,11 @@ void ScriptSection::build(const std::wstring &inputFolder)
 			m_data.push_back(ScriptData(inputFolder, secIdx));
 	}
 
+	m_matPresent = Config.Get<bool>(MAT_PRESENT);
+
 	SecMap matSecElemCnt = Config.Get<SecMap>(MAT_SEC_NAME);
 	if (matSecElemCnt.empty())
 		return;
-
-	m_matPresent = true;
 
 	const uint32_t matSecIdx = static_cast<uint32_t>(SECTION_NAMES.size() - 1);
 	const uint32_t matCnt    = matSecElemCnt[matSecIdx];
