@@ -24,7 +24,7 @@
  *
  */
 
-// Compatible up to v1.292
+// Compatible up to v1.317
 
 #include "REFCUTINDATA.h"
 #include "../CMenuOperation.h"

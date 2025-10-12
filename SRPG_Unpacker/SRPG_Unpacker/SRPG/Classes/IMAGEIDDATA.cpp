@@ -24,7 +24,7 @@
  *
  */
 
-// Compatible up to v1.292
+// Compatible up to v1.317
 
 #include "IMAGEIDDATA.h"
 #include "../CMenuOperation.h"

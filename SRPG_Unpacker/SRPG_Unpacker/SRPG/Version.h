@@ -33,7 +33,7 @@
 
 extern DWORD g_ArcVersion; // dts archive file version, i.e., SRPG version
 
-constexpr DWORD MAX_SUPPORTED_VERSION = 0x50C; // v1.292
+constexpr DWORD MAX_SUPPORTED_VERSION = 0x525; // v1.317
 
 #define NOT_IMPLEMENTED                                                                                  \
 	{                                                                                                    \

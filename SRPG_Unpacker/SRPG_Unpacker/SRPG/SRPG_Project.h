@@ -26,7 +26,7 @@
 
 #pragma once
 
-// Compatible up to v1.292
+// Compatible up to v1.317
 
 #include <windows.h>
 
