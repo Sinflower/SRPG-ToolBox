@@ -42,6 +42,7 @@ static const std::vector<std::wstring> SCRIPT_NAMES = {
 	L"base\\base-scrollbar.js",
 	L"base\\base-top.js",
 	L"constants\\constants-enumeratedtype.js",
+	L"constants\\constants-stringtable.js",
 	L"eventcommand\\eventcommand-backgroundchange.js",
 	L"eventcommand\\eventcommand-bonuschange.js",
 	L"eventcommand\\eventcommand-chaptershow.js",
