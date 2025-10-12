@@ -42,6 +42,16 @@ std::string g_activeFile = "";
 SRPG_Project::SRPG_Project(const SRPG_ProjectData& projData) :
 	m_resources(projData.resFlag)
 {
+	if (projData.version > MAX_SUPPORTED_VERSION)
+	{
+		std::cerr << "======================================= WARNING ========================================" << std::endl
+				  << std::format("The project file version (0x{:X}) is newer than the maximum supported version (0x{:X}).", projData.version, MAX_SUPPORTED_VERSION) << std::endl
+				  << "Parsing the project file will most likely fail." << std::endl
+				  << "Please check 'https://github.com/Sinflower/SRPG-ToolBox' for a new version." << std::endl
+				  << "In case no new version is present please open an issue and include the name of the game." << std::endl
+				  << "======================================= WARNING ========================================" << std::endl;
+	}
+
 	g_ArcVersion = projData.version;
 	m_fw.InitData(projData.data);
 	loadProject();
