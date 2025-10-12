@@ -33,69 +33,6 @@
 #include "FileAccess.h"
 #include "Utils.h"
 
-namespace memData
-{
-static bool g_isUTF8 = true;
-
-inline std::string sjis2utf8(const std::string& sjis)
-{
-	std::string utf8String = "";
-
-	LPCCH pSJIS             = sjis.c_str();
-	const int32_t utf16Size = ::MultiByteToWideChar(932, MB_ERR_INVALID_CHARS, pSJIS, -1, 0, 0);
-	if (utf16Size != 0)
-	{
-		LPWSTR pUTF16 = new WCHAR[utf16Size];
-		if (::MultiByteToWideChar(932, 0, pSJIS, -1, pUTF16, utf16Size) != 0)
-		{
-			const int32_t utf8Size = ::WideCharToMultiByte(CP_UTF8, 0, pUTF16, -1, 0, 0, 0, 0);
-			if (utf8Size != 0)
-			{
-				LPSTR pUTF8 = new CHAR[utf8Size + 16];
-				ZeroMemory(pUTF8, utf8Size + 16);
-				if (::WideCharToMultiByte(CP_UTF8, 0, pUTF16, -1, pUTF8, utf8Size, 0, 0) != 0)
-					utf8String = std::string(pUTF8);
-
-				delete[] pUTF8;
-			}
-		}
-
-		delete[] pUTF16;
-	}
-
-	return utf8String;
-}
-
-inline std::string utf82sjis(const std::string& utf8)
-{
-	std::string sjisString = "";
-
-	LPCCH pUTF8             = utf8.c_str();
-	const int32_t utf16Size = ::MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, pUTF8, -1, 0, 0);
-	if (utf16Size != 0)
-	{
-		LPWSTR pUTF16 = new WCHAR[utf16Size];
-		if (::MultiByteToWideChar(CP_UTF8, 0, pUTF8, -1, pUTF16, utf16Size) != 0)
-		{
-			const int32_t sjisSize = ::WideCharToMultiByte(932, 0, pUTF16, -1, 0, 0, 0, 0);
-			if (sjisSize != 0)
-			{
-				LPSTR pSJIS = new CHAR[sjisSize + 16];
-				ZeroMemory(pSJIS, sjisSize + 16);
-				if (::WideCharToMultiByte(932, 0, pUTF16, -1, pSJIS, sjisSize, 0, 0) != 0)
-					sjisString = std::string(pSJIS);
-
-				delete[] pSJIS;
-			}
-		}
-
-		delete[] pUTF16;
-	}
-
-	return sjisString;
-}
-} // namespace memData
-
 struct MemData
 {
 	std::vector<BYTE> data = {};
@@ -111,19 +48,6 @@ struct MemData
 		size(size)
 	{
 	}
-
-	// std::string ToString() const
-	//{
-	//	std::string str = "";
-
-	//	if (!data.empty() && data.size() > 1)
-	//		str = std::string(reinterpret_cast<const char*>(data.data()), data.size() - ((data.back() == 0x0) ? 1 : 0));
-
-	//	if (!memData::g_isUTF8)
-	//		str = memData::sjis2utf8(str);
-
-	//	return str;
-	//}
 
 	std::string ToString() const
 	{

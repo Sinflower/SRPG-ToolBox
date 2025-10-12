@@ -196,10 +196,11 @@ void DataBase::buildData(const std::wstring &inputFolder)
 
 	if (j.empty()) return;
 
-	const std::string file = j["name"].get<std::string>();
-	std::wstring ext       = s2ws(fs::path(file).extension().string());
+	const std::string file   = j["name"].get<std::string>();
+	const std::wstring wFile = s2ws(file);
+	std::wstring ext         = fs::path(wFile).extension().wstring();
 
-	m_name         = s2ws(fs::path(file).stem().string());
+	m_name         = fs::path(wFile).stem().wstring();
 	m_reserved0    = j["elems"][0].get<uint32_t>();
 	m_reserved1    = j["elems"][1].get<uint32_t>();
 	m_subElemCount = j["elems"][2].get<uint32_t>();

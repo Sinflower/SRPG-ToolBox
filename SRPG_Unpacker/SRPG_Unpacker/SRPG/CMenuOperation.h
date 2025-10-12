@@ -41,9 +41,10 @@
 #define SET_FN_STRING_IF_IN_JSON(_JSON_, _NAME_, _STR_)        \
 	if (_JSON_.contains(_NAME_) && _JSON_[_NAME_].is_string()) \
 	{                                                          \
-		std::string fn = _JSON_[_NAME_].get<std::string>();    \
-		std::filesystem::path p(fn);                           \
-		fn    = p.stem().string();                             \
+		std::string fn   = _JSON_[_NAME_].get<std::string>();  \
+		std::wstring wFn = s2ws(fn);                           \
+		std::filesystem::path p(wFn);                          \
+		fn    = ws2s(p.stem().wstring());                      \
 		_STR_ = fn;                                            \
 	}
 

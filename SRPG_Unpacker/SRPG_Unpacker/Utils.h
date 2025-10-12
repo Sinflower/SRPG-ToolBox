@@ -34,12 +34,40 @@
 
 inline std::wstring s2ws(const std::string &str)
 {
-	return std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(str);
+	//return std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(str);
+	if (str.empty()) return std::wstring();
+
+	int32_t size = MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, nullptr, 0);
+
+	if (size == 0)
+		return std::wstring();
+
+	std::wstring wStr(size, 0);
+	MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, &wStr[0], size);
+
+	// Remove the null terminator
+	wStr.pop_back();
+
+	return wStr;
 }
 
 inline std::string ws2s(const std::wstring &wstr)
 {
-	return std::wstring_convert<std::codecvt_utf8<wchar_t>>().to_bytes(wstr);
+	//return std::wstring_convert<std::codecvt_utf8<wchar_t>>().to_bytes(wstr);
+	if (wstr.empty()) return std::string();
+
+	int32_t size = WideCharToMultiByte(CP_UTF8, 0, wstr.c_str(), -1, nullptr, 0, nullptr, nullptr);
+
+	if (size == 0)
+		return std::string();
+
+	std::string str(size, 0);
+	WideCharToMultiByte(CP_UTF8, 0, wstr.c_str(), -1, &str[0], size, nullptr, nullptr);
+
+	// Remove the null terminator
+	str.pop_back();
+
+	return str;
 }
 
 inline uint32_t SumVector(const std::vector<uint32_t> &vec)
