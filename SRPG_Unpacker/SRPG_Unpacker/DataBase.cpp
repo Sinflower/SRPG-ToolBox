@@ -44,6 +44,7 @@ void DataBase::Unpack(const std::wstring &outputFolder) const
 		fs::create_directories(dirPath);
 
 	uint32_t subElemIdx = 0;
+	std::wstring ext    = L"";
 
 	if (m_data.empty())
 		add2Config(fs::path(m_name.ToWString()));
@@ -53,10 +54,10 @@ void DataBase::Unpack(const std::wstring &outputFolder) const
 		std::vector<uint8_t> dat = getData(data);
 
 		std::wstring fileName = m_name.ToWString();
-		std::wstring ext      = L"";
 
 		// Check if the file already has an extension
-		if (fs::path(fileName).extension().empty())
+		// Check for not dat empty because there is a chance for 0 byte sub-elements
+		if (fs::path(fileName).extension().empty() && !dat.empty())
 			ext = GetFileExtension(dat);
 
 		fileName                    = std::format(L"{}{}{}", fileName, (subElemIdx == 0 ? L"" : std::format(L"-{}", wchar_t(0x60 + subElemIdx))), ext);

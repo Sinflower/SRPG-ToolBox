@@ -71,6 +71,9 @@ void Crypt::crypt(std::vector<uint8_t> &data, bool decrypt)
 	if (!m_doCrypt)
 		return;
 
+	if (data.empty())
+		return;
+
 	BOOL res;
 	DWORD length = static_cast<DWORD>(data.size());
 

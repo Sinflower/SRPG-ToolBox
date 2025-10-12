@@ -60,7 +60,7 @@ public:
 	T Get(const std::string& key)
 	{
 		if (!m_json.contains(key))
-			throw std::runtime_error(std::format("Error: Key '{}' not found.", key));
+			return T();
 
 		return m_json[key].get<T>();
 	}
