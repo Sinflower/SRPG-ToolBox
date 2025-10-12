@@ -206,6 +206,10 @@ void FileHeader::initDTS(const std::wstring &fileName)
 	if (m_fileVersion < 0x474)
 		m_oldFormat = true;
 
+	// Since version 1.301 the encryption key has changed
+	if (m_fileVersion >= 1301)
+		Crypt::SwitchToNewKey();
+
 	m_loadRuntime     = m_fileReader.ReadUInt32();
 	m_presentSegments = m_fileReader.ReadUInt32();
 
@@ -225,7 +229,7 @@ void FileHeader::initDTS(const std::wstring &fileName)
 	Config.Add("loadRuntime", m_loadRuntime);
 	Config.Add("segments", m_presentSegments);
 
-	EnableCrypt(m_encrypted == 1);
+	Crypt::EnableCrypt(m_encrypted == 1);
 }
 
 void FileHeader::initFolder(const std::wstring &inputFolder)
@@ -240,6 +244,11 @@ void FileHeader::initFolder(const std::wstring &inputFolder)
 
 	if (m_fileVersion < 0x474)
 		m_oldFormat = true;
+
+	if (m_fileVersion >= 1301)
+		Crypt::SwitchToNewKey();
+
+	Crypt::EnableCrypt(m_encrypted == 1);
 
 	if (m_presentSegments & Sections::Graphics)
 		m_gSec.Build(inputFolder);

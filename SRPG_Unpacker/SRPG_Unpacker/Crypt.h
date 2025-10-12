@@ -30,13 +30,10 @@
 #include <string>
 #include <vector>
 
-#define DecryptData Crypt::GetInstance().Decrypt
-#define EncryptData Crypt::GetInstance().Encrypt
-#define EnableCrypt Crypt::GetInstance().SetDoCrypt
-
 class Crypt
 {
-	inline static const std::wstring CRYPT_KEY = L"keyset";
+	inline static const std::wstring CRYPT_KEY_OLD = L"keyset";
+	inline static const std::wstring CRYPT_KEY_NEW = L"_dynamic";
 
 public:
 	static Crypt &GetInstance()
@@ -53,14 +50,24 @@ public:
 		m_doCrypt = en;
 	}
 
-	void Decrypt(std::vector<uint8_t> &data)
+	static void DecryptData(std::vector<uint8_t> &data)
 	{
-		crypt(data, true);
+		GetInstance().crypt(data, true);
 	}
 
-	void Encrypt(std::vector<uint8_t> &data)
+	static void EncryptData(std::vector<uint8_t> &data)
 	{
-		crypt(data, false);
+		GetInstance().crypt(data, false);
+	}
+
+	static void EnableCrypt(const bool &en)
+	{
+		GetInstance().SetDoCrypt(en);
+	}
+
+	static void SwitchToNewKey()
+	{
+		GetInstance().switchToNewKey();
 	}
 
 private:
@@ -78,11 +85,14 @@ private:
 
 	void destoryCryptEngine();
 
+	void switchToNewKey();
+
 	void crypt(std::vector<uint8_t> &data, bool decrypt = true);
 
 private:
 	HCRYPTKEY m_hKey        = NULL;
 	HCRYPTPROV m_hCryptProv = NULL;
 
-	bool m_doCrypt = true;
+	bool m_doCrypt   = true;
+	bool m_useNewKey = false;
 };

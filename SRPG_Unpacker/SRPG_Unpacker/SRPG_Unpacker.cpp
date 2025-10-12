@@ -114,7 +114,7 @@ void ProcessFile(const std::wstring& dtsFolder, const fs::path& path, const std:
 		localPath = std::format(L"{}/{}", s2ws(secName), JoinString(folders, L'\\'));
 
 		fN = RestoreFileName(ws2s(fN), secName, j);
-		DecryptData(data);
+		Crypt::DecryptData(data);
 	}
 
 	ext = GetFileExtension(data);

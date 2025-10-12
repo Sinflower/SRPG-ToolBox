@@ -57,7 +57,7 @@ void ProjectData::Pack(FileWriter &fileWriter) const
 	readFromFile(m_data.front().fileName, dat);
 
 	if (m_decrypt)
-		EncryptData(dat);
+		Crypt::EncryptData(dat);
 
 	fileWriter.WriteBytesVec(dat);
 }

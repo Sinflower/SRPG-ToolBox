@@ -36,19 +36,21 @@ bool Crypt::initCryptEngine()
 	{
 		if (!CryptAcquireContext(&m_hCryptProv, NULL, NULL, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT))
 		{
-			std::cerr << "Error: Unable to create Crypt Context." << std::endl;
+			std::cerr << "Error: Unable to create Crypt Context" << std::endl;
 			return false;
 		}
 
 		if (CryptCreateHash(m_hCryptProv, CALG_MD5, 0, 0, &phHash))
 		{
+			const std::wstring &CRYPT_KEY = (m_useNewKey ? CRYPT_KEY_NEW : CRYPT_KEY_OLD);
 			CryptHashData(phHash, reinterpret_cast<const BYTE *>(CRYPT_KEY.c_str()), static_cast<DWORD>(CRYPT_KEY.length()), 0);
 			CryptDeriveKey(m_hCryptProv, CALG_RC4, phHash, 0, &m_hKey);
 			CryptDestroyHash(phHash);
+			std::cout << "Info: Crypt Engine initialized using " << (m_useNewKey ? "new" : "old") << " key" << std::endl;
 		}
 		else
 		{
-			std::cerr << "Error: Unable to create Crypt Hash." << std::endl;
+			std::cerr << "Error: Unable to create Crypt Hash" << std::endl;
 			CryptReleaseContext(m_hCryptProv, 0);
 			m_hCryptProv = NULL;
 			return false;
@@ -61,9 +63,25 @@ bool Crypt::initCryptEngine()
 void Crypt::destoryCryptEngine()
 {
 	if (m_hKey)
+	{
 		CryptDestroyKey(m_hKey);
+		m_hKey = NULL;
+	}
 	if (m_hCryptProv)
+	{
 		CryptReleaseContext(m_hCryptProv, 0);
+		m_hCryptProv = NULL;
+	}
+}
+
+void Crypt::switchToNewKey()
+{
+	std::cout << "Info: Switching to new crypt key" << std::endl;
+	if (m_useNewKey)
+		return;
+	m_useNewKey = true;
+	destoryCryptEngine();
+	initCryptEngine();
 }
 
 void Crypt::crypt(std::vector<uint8_t> &data, bool decrypt)

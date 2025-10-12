@@ -94,7 +94,7 @@ void DataBase::Pack(FileWriter &fileWriter) const
 		readFromFile(data.fileName, dat);
 
 		if (m_decrypt)
-			EncryptData(dat);
+			Crypt::EncryptData(dat);
 
 		fileWriter.WriteBytesVec(dat);
 	}
@@ -130,7 +130,7 @@ std::vector<uint8_t> DataBase::getData(const MemData &data) const
 	m_pFileReader->ReadBytesVecAt(dat, data.offset, data.size);
 
 	if (m_decrypt)
-		DecryptData(dat);
+		Crypt::DecryptData(dat);
 
 	return dat;
 }
