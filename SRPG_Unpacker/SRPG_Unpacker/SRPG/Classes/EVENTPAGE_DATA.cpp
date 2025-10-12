@@ -735,27 +735,7 @@ void EVENTPAGE_DATA::dump(FileWriter& fw) const
 
 void EVENTPAGE_DATA::sub_D5E70(FileReader& fw)
 {
-	if (g_ArcVersion < 0x3F4)
-	{
-		this_12                 = 0;
-		this_13                 = 0;
-		this_14                 = 0;
-		this_15                 = 0;
-		this_16                 = 0;
-		this_17                 = 0;
-		this_18                 = 0;
-		enTurn                  = 0;
-		turn                    = 1;
-		turnCondition           = 0;
-		turnArmy                = 0;
-		turnTreatAsRelativeTurn = 0;
-		enGold                  = 0;
-		gold                    = 0;
-
-		enProbability = 0;
-		probability   = 0;
-	}
-	else
+	if (g_ArcVersion >= 0x3F4)
 	{
 		if (g_ArcVersion >= 0x41B)
 		{

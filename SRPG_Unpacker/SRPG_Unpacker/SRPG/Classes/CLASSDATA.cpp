@@ -425,28 +425,11 @@ void CLASSDATA::sub_37E310(FileReader& fw)
 		this_71 = fw.ReadDWord();
 		this_72 = fw.ReadDWord();
 		this_73 = fw.ReadDWord();
-
-		this_74 = 0;
-		this_75 = 0;
 	}
 	else
 	{
 		res1 = fw.ReadDWord();
-		if (res1)
-		{
-			this_65 = 0;
-			this_66 = 0;
-			this_67 = 0;
-			this_68 = 0;
-			this_69 = 0;
-			this_70 = 0;
-			this_71 = 0;
-			this_72 = 0;
-			this_73 = 0;
-			this_74 = 0;
-			this_75 = 0;
-		}
-		else
+		if (!res1)
 		{
 			this_65 = fw.ReadDWord();
 			this_66 = fw.ReadDWord();
@@ -475,8 +458,6 @@ void CLASSDATA::sub_36E310(FileReader& fw)
 		paramBonusDef = fw.ReadDWord();
 		paramBonusRes = fw.ReadDWord();
 		paramBonusMov = fw.ReadDWord();
-		paramBonusWlv = 0;
-		paramBonusBld = 0;
 		grothBonusHp  = fw.ReadDWord();
 		grothBonusStr = fw.ReadDWord();
 		grothBonusMag = fw.ReadDWord();
@@ -486,27 +467,11 @@ void CLASSDATA::sub_36E310(FileReader& fw)
 		grothBonusDef = fw.ReadDWord();
 		grothBonusRes = fw.ReadDWord();
 		grothBonusMov = fw.ReadDWord();
-		grothBonusWlv = 0;
-		grothBonusBld = 0;
 	}
 	else
 	{
 		res2 = fw.ReadDWord();
-		if (res2)
-		{
-			paramBonusHp  = 0;
-			paramBonusStr = 0;
-			paramBonusMag = 0;
-			paramBonusSkl = 0;
-			paramBonusSpd = 0;
-			paramBonusLck = 0;
-			paramBonusDef = 0;
-			paramBonusRes = 0;
-			paramBonusMov = 0;
-			paramBonusWlv = 0;
-			paramBonusBld = 0;
-		}
-		else
+		if (!res2)
 		{
 			paramBonusHp  = fw.ReadDWord();
 			paramBonusStr = fw.ReadDWord();
@@ -522,21 +487,7 @@ void CLASSDATA::sub_36E310(FileReader& fw)
 		}
 
 		res3 = fw.ReadDWord();
-		if (res3)
-		{
-			grothBonusHp  = 0;
-			grothBonusStr = 0;
-			grothBonusMag = 0;
-			grothBonusSkl = 0;
-			grothBonusSpd = 0;
-			grothBonusLck = 0;
-			grothBonusDef = 0;
-			grothBonusRes = 0;
-			grothBonusMov = 0;
-			grothBonusWlv = 0;
-			grothBonusBld = 0;
-		}
-		else
+		if (!res3)
 		{
 			grothBonusHp  = fw.ReadDWord();
 			grothBonusStr = fw.ReadDWord();

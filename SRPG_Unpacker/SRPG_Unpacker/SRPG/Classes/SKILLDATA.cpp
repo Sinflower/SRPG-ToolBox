@@ -306,21 +306,7 @@ void SKILLDATA::sub_10E310(FileReader& fw)
 	{
 		res = fw.ReadDWord();
 
-		if (res)
-		{
-			this_22[0]  = 0;
-			this_22[1]  = 0;
-			this_22[2]  = 0;
-			this_22[3]  = 0;
-			this_22[4]  = 0;
-			this_22[5]  = 0;
-			this_22[6]  = 0;
-			this_22[7]  = 0;
-			this_22[8]  = 0;
-			this_22[9]  = 0;
-			this_22[10] = 0;
-		}
-		else
+		if (!res)
 		{
 			this_22[0]  = fw.ReadDWord();
 			this_22[1]  = fw.ReadDWord();

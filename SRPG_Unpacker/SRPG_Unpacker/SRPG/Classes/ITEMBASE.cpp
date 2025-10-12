@@ -154,6 +154,12 @@ void ITEMBASE::dump(FileWriter& fw) const
 	{
 		fw.Write(this_39);
 		m_pTypeIDData2->Dump(fw);
+		if (g_ArcVersion >= 1277 && this_39)
+		{
+			fw.WriteBytes(this_130.data(), static_cast<DWORD>(this_130.size() * sizeof(DWORD)));
+			fw.WriteBytes(this_131.data(), static_cast<DWORD>(this_131.size() * sizeof(DWORD)));
+			fw.Write(this_132);
+		}
 	}
 	//////
 
@@ -193,6 +199,12 @@ void ITEMBASE::sub_101AB0(FileReader& fw)
 	{
 		this_39 = fw.ReadDWord();
 		allocAndSetCMenuOp(&m_pTypeIDData2, SRPGClasses::TYPEIDDATA, fw);
+		if (g_ArcVersion >= 1277 && this_39)
+		{
+			fw.ReadBytes(this_130.data(), static_cast<DWORD>(this_130.size() * sizeof(DWORD)));
+			fw.ReadBytes(this_131.data(), static_cast<DWORD>(this_131.size() * sizeof(DWORD)));
+			this_132 = fw.ReadDWord();
+		}
 	}
 }
 
@@ -209,8 +221,6 @@ void ITEMBASE::sub_36E310(FileReader& fw)
 		paramBonusDef = fw.ReadDWord();
 		paramBonusRes = fw.ReadDWord();
 		paramBonusMov = fw.ReadDWord();
-		paramBonusWlv = 0;
-		paramBonusBld = 0;
 
 		grothBonusHp  = fw.ReadDWord();
 		grothBonusStr = fw.ReadDWord();
@@ -221,27 +231,11 @@ void ITEMBASE::sub_36E310(FileReader& fw)
 		grothBonusDef = fw.ReadDWord();
 		grothBonusRes = fw.ReadDWord();
 		grothBonusMov = fw.ReadDWord();
-		grothBonusWlv = 0;
-		grothBonusBld = 0;
 	}
 	else
 	{
 		res1 = fw.ReadDWord();
-		if (res1)
-		{
-			paramBonusHp  = 0;
-			paramBonusStr = 0;
-			paramBonusMag = 0;
-			paramBonusSkl = 0;
-			paramBonusSpd = 0;
-			paramBonusLck = 0;
-			paramBonusDef = 0;
-			paramBonusRes = 0;
-			paramBonusMov = 0;
-			paramBonusWlv = 0;
-			paramBonusBld = 0;
-		}
-		else
+		if (!res1)
 		{
 			paramBonusHp  = fw.ReadDWord();
 			paramBonusStr = fw.ReadDWord();
@@ -257,21 +251,7 @@ void ITEMBASE::sub_36E310(FileReader& fw)
 		}
 
 		res2 = fw.ReadDWord();
-		if (res2)
-		{
-			grothBonusHp  = 0;
-			grothBonusStr = 0;
-			grothBonusMag = 0;
-			grothBonusSkl = 0;
-			grothBonusSpd = 0;
-			grothBonusLck = 0;
-			grothBonusDef = 0;
-			grothBonusRes = 0;
-			grothBonusMov = 0;
-			grothBonusWlv = 0;
-			grothBonusBld = 0;
-		}
-		else
+		if (!res2)
 		{
 			grothBonusHp  = fw.ReadDWord();
 			grothBonusStr = fw.ReadDWord();

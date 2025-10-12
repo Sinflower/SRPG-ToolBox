@@ -34,40 +34,47 @@ struct ITEMDATA : public ITEMBASE
 {
 	struct ELEM_65
 	{
-		DWORD this_0                      = 0;
-		DWORD this_1                      = 0;
+		DWORD this_0 = 0;
+		DWORD this_1 = 0;
+
 		class CMenuOperation* pTypeIDData = nullptr;
 	};
 
 	struct ELEM_75
 	{
-		DWORD this_0                      = 0;
-		DWORD this_1                      = 0;
-		DWORD this_2                      = 0;
+		DWORD this_0 = 0;
+		DWORD this_1 = 0;
+		DWORD this_2 = 0;
+
 		class CMenuOperation* pTypeIDData = nullptr;
 	};
 
 	struct ELEM_78
 	{
 		class CMenuOperation* pTypeIDData = nullptr;
-		DWORD this_1                      = 0;
+
+		DWORD this_1 = 0;
 	};
 
-	DWORD res                            = 0;
-	DWORD itemType                       = 0;
-	DWORD expGain                        = 0;
-	DWORD this_52                        = 0;
-	DWORD this_54                        = 0;
-	DWORD this_55                        = 0;
-	DWORD this_56                        = 0;
-	DWORD this_57                        = 0;
-	DWORD this_58                        = 0;
+	DWORD res      = 0;
+	DWORD itemType = 0;
+	DWORD expGain  = 0;
+	DWORD this_52  = 0;
+	DWORD this_54  = 0;
+	DWORD this_55  = 0;
+	DWORD this_56  = 0;
+	DWORD this_57  = 0;
+	DWORD this_58  = 0;
+
 	class CMenuOperation* m_pTypeIDData1 = nullptr;
-	DWORD this_60                        = 0;
+
+	DWORD this_60 = 0;
+
 	class CMenuOperation* m_pTypeIDData2 = nullptr;
-	DWORD this_62[3]                     = { 0 };
-	DWORD this_63[3]                     = { 0 };
-	DWORD this_64[3]                     = { 0 };
+
+	DWORD this_62[3] = { 0 };
+	DWORD this_63[3] = { 0 };
+	DWORD this_64[3] = { 0 };
 	ELEM_65 this_65;
 	DWORD this_66[12] = { 0 };
 	DWORD this_67[2]  = { 0 };
