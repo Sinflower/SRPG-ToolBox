@@ -35,7 +35,8 @@
 #include "Crypt.h"
 #include "DTSTool.h"
 #include "FileHeader.h"
-#include "SRPG\SRPG_Project.h"
+#include "SRPG/SRPG_Project.h"
+#include "SRPG/Version.h"
 #include "SectionNames.h"
 
 namespace fs = std::filesystem;
@@ -214,6 +215,12 @@ void unpack(const fs::path& dtsFile, const fs::path& outFolder = L"output")
 	SRPG_Project sp({ dtsT.GetVersion(), dtsT.GetResourceFlags(), dtsT.GetProjectData() });
 	sp.SetupInternalResources(dtsT.GetJson());
 	sp.DumpProj(outFolder);
+
+	if (dtsT.GetVersion() >= NEW_CRYPT_START_VERSION)
+	{
+		// Switch the encryption key
+		Crypt::SwitchToCustomKey(sp.GetEncryptionKey());
+	}
 
 	std::cout << "Copying and decrypting data not in the archive ... " << std::endl;
 	CopyAndDecryptOpenData(dtsFile.parent_path().wstring(), outFolder, sp.GetResMapping());

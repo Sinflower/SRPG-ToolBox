@@ -29,6 +29,7 @@
 #include <filesystem>
 
 #include "Crypt.h"
+#include "SRPG/Version.h"
 
 namespace fs = std::filesystem;
 
@@ -203,11 +204,11 @@ void FileHeader::initDTS(const std::wstring &fileName)
 	m_encrypted   = m_fileReader.ReadUInt32();
 	m_fileVersion = m_fileReader.ReadUInt32();
 
-	if (m_fileVersion < 0x474)
+	if (m_fileVersion < NEW_FILE_FORMAT_START_VERSION)
 		m_oldFormat = true;
 
 	// Since version 1.301 the encryption key has changed
-	if (m_fileVersion >= 1301)
+	if (m_fileVersion >= NEW_CRYPT_START_VERSION)
 		Crypt::SwitchToNewKey();
 
 	m_loadRuntime     = m_fileReader.ReadUInt32();
@@ -242,10 +243,10 @@ void FileHeader::initFolder(const std::wstring &inputFolder)
 	m_loadRuntime     = Config.Get<uint32_t>("loadRuntime");
 	m_presentSegments = Config.Get<uint32_t>("segments");
 
-	if (m_fileVersion < 0x474)
+	if (m_fileVersion < NEW_FILE_FORMAT_START_VERSION)
 		m_oldFormat = true;
 
-	if (m_fileVersion >= 1301)
+	if (m_fileVersion >= NEW_CRYPT_START_VERSION)
 		Crypt::SwitchToNewKey();
 
 	Crypt::EnableCrypt(m_encrypted == 1);

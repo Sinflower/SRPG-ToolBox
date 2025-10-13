@@ -155,6 +155,11 @@ nlohmann::ordered_json SRPG_Resources::GetResMapping() const
 		j2[key] = j3;
 	}
 
+	// Write j2 to a file for debugging
+	//std::ofstream ofs("res_mapping.json");
+	//ofs << j2.dump(4);
+	//ofs.close();
+
 	return j2;
 }
 
@@ -200,7 +205,7 @@ void SRPG_Resources::init(FileReader& fw)
 {
 #ifdef DEBUG_PRINT
 	std::cout << "==== Method " << __func__ << " START ====" << std::endl;
-	std::cout << "OFFSET=" << fw.GetOffset() << std::endl;
+	std::cout << std::hex << "OFFSET=" << fw.GetOffset() << std::endl;
 #endif
 
 	// NOTE: I don't know when this was added, but I know it was not
@@ -266,7 +271,7 @@ void SRPG_Resources::init(FileReader& fw)
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET=" << fw.GetOffset() << std::endl;
 
-	std::cout << "==== Method END ====" << std::endl;
+	std::cout << "==== Method END ====" << std::dec << std::endl;
 #endif
 }
 

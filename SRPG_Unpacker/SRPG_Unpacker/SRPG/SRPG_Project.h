@@ -53,6 +53,8 @@ struct SRPG_ProjectData
 	std::vector<BYTE> data;
 };
 
+using EncryptionKey = std::array<BYTE, 16>;
+
 class SRPG_Project
 {
 public:
@@ -72,6 +74,11 @@ public:
 
 	void WritePatch(const std::filesystem::path& outPath) const;
 	void ApplyPatch(const std::filesystem::path& patchPath);
+
+	const EncryptionKey& GetEncryptionKey() const
+	{
+		return m_encryptionKey;
+	}
 
 private:
 	void loadProject();
@@ -95,8 +102,5 @@ private:
 	DWORD res1 = 0;
 	DWORD res2 = 0;
 
-	DWORD this_1 = 0;
-	DWORD this_2 = 0;
-	DWORD this_3 = 0;
-	DWORD this_4 = 0;
+	EncryptionKey m_encryptionKey = { 0 };
 };

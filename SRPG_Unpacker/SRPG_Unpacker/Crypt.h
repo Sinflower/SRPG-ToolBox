@@ -70,6 +70,12 @@ public:
 		GetInstance().switchToNewKey();
 	}
 
+	template<typename T, std::size_t S>
+	static void SwitchToCustomKey(const std::array<T, S>& key)
+	{
+		GetInstance().switchToCustomKey(key.data(), key.size() * sizeof(T));
+	}
+
 private:
 	Crypt()
 	{
@@ -87,6 +93,8 @@ private:
 
 	void switchToNewKey();
 
+	void switchToCustomKey(const void *key, const std::size_t &size);
+
 	void crypt(std::vector<uint8_t> &data, bool decrypt = true);
 
 private:
@@ -95,4 +103,7 @@ private:
 
 	bool m_doCrypt   = true;
 	bool m_useNewKey = false;
+	bool m_useCustom = false;
+
+	std::vector<BYTE> m_customKey = {};
 };

@@ -27,6 +27,7 @@
 #include "Crypt.h"
 
 #include <iostream>
+#include <format>
 
 bool Crypt::initCryptEngine()
 {
@@ -43,10 +44,25 @@ bool Crypt::initCryptEngine()
 		if (CryptCreateHash(m_hCryptProv, CALG_MD5, 0, 0, &phHash))
 		{
 			const std::wstring &CRYPT_KEY = (m_useNewKey ? CRYPT_KEY_NEW : CRYPT_KEY_OLD);
-			CryptHashData(phHash, reinterpret_cast<const BYTE *>(CRYPT_KEY.c_str()), static_cast<DWORD>(CRYPT_KEY.length()), 0);
+
+			const BYTE *pKey    = nullptr;
+			DWORD keySize = 0;
+
+			if (m_useCustom)
+			{
+				pKey    = m_customKey.data();
+				keySize = static_cast<DWORD>(m_customKey.size());
+			}
+			else
+			{
+				pKey    = reinterpret_cast<const BYTE *>(CRYPT_KEY.c_str());
+				keySize = static_cast<DWORD>(CRYPT_KEY.length());
+			}
+
+			CryptHashData(phHash, pKey, keySize, 0);
 			CryptDeriveKey(m_hCryptProv, CALG_RC4, phHash, 0, &m_hKey);
 			CryptDestroyHash(phHash);
-			std::cout << "Info: Crypt Engine initialized using " << (m_useNewKey ? "new" : "old") << " key" << std::endl;
+			std::cout << std::format("Info: Crypt Engine initialized using the {} key", (m_useCustom ? "custom" : (m_useNewKey ? "new" : "old"))) << std::endl;
 		}
 		else
 		{
@@ -79,7 +95,22 @@ void Crypt::switchToNewKey()
 	std::cout << "Info: Switching to new crypt key" << std::endl;
 	if (m_useNewKey)
 		return;
+
+	m_useCustom = false;
 	m_useNewKey = true;
+	destoryCryptEngine();
+	initCryptEngine();
+}
+
+void Crypt::switchToCustomKey(const void *key, const std::size_t &size)
+{
+	std::cout << "Info: Switching to custom crypt key" << std::endl;
+	if (m_useCustom && m_customKey.size() == size && memcmp(m_customKey.data(), key, size) == 0)
+		return;
+
+	m_useCustom = true;
+	m_customKey.resize(size);
+	memcpy(m_customKey.data(), key, size);
 	destoryCryptEngine();
 	initCryptEngine();
 }

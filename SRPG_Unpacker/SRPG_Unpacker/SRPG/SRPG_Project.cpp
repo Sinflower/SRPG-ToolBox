@@ -134,10 +134,7 @@ void SRPG_Project::ApplyPatch(const std::filesystem::path& patchPath)
 void SRPG_Project::loadProject()
 {
 	std::cout << "Parsing the project file ..." << std::endl;
-	this_1 = m_fw.ReadDWord();
-	this_2 = m_fw.ReadDWord();
-	this_3 = m_fw.ReadDWord();
-	this_4 = m_fw.ReadDWord();
+	m_fw.ReadBytesArr(m_encryptionKey);
 
 	// Not sure if this is the correct version but I know that it's not present in this version
 	if (g_ArcVersion > 0x470)
@@ -171,10 +168,7 @@ void SRPG_Project::loadProject()
 
 void SRPG_Project::dump(FileWriter& fw) const
 {
-	fw.Write(this_1);
-	fw.Write(this_2);
-	fw.Write(this_3);
-	fw.Write(this_4);
+	fw.WriteArr<BYTE>(m_encryptionKey);
 
 	// Not sure if this is the correct version but I know that it's not present in this version
 	if (g_ArcVersion > 0x461)
@@ -217,10 +211,7 @@ void SRPG_Project::dumpAsProj(FileWriter& fw) const
 {
 	fw.WriteBytesVec({ 0x53, 0x52, 0x50, 0x47, 0x01, 0x00, 0x00, 0x01 });
 	fw.Write(g_ArcVersion);
-	fw.Write(this_1);
-	fw.Write(this_2);
-	fw.Write(this_3);
-	fw.Write(this_4);
+	fw.WriteArr<BYTE>(m_encryptionKey);
 
 	// Graphics
 	fw.Write(DWORD(0x0));
