@@ -32,8 +32,9 @@
 
 class Crypt
 {
-	inline static const std::wstring CRYPT_KEY_OLD = L"keyset";
-	inline static const std::wstring CRYPT_KEY_NEW = L"_dynamic";
+	inline static const std::wstring CRYPT_KEY_VERY_OLD = L"_dummy";
+	inline static const std::wstring CRYPT_KEY_OLD      = L"keyset";
+	inline static const std::wstring CRYPT_KEY_NEW      = L"_dynamic";
 
 public:
 	static Crypt &GetInstance()
@@ -65,6 +66,11 @@ public:
 		GetInstance().SetDoCrypt(en);
 	}
 
+	static void SwitchToVeryOldKey()
+	{
+		GetInstance().switchToVeryOldKey();
+	}
+
 	static void SwitchToNewKey()
 	{
 		GetInstance().switchToNewKey();
@@ -79,6 +85,7 @@ public:
 private:
 	Crypt()
 	{
+		setKey(CRYPT_KEY_OLD.c_str(), CRYPT_KEY_OLD.length());
 		initCryptEngine();
 	}
 
@@ -91,19 +98,29 @@ private:
 
 	void destoryCryptEngine();
 
+	void reinitCryptEngine()
+	{
+		destoryCryptEngine();
+		initCryptEngine();
+	}
+
+	void switchToVeryOldKey();
 	void switchToNewKey();
 
 	void switchToCustomKey(const void *key, const std::size_t &size);
 
 	void crypt(std::vector<uint8_t> &data, bool decrypt = true);
 
+	void setKey(const void *key, const std::size_t &size);
+	bool isThisKeyAlreadySet(const std::wstring &key) const;
+	bool isThisKeyAlreadySet(const void *key, const std::size_t &size) const;
+
 private:
 	HCRYPTKEY m_hKey        = NULL;
 	HCRYPTPROV m_hCryptProv = NULL;
+	ALG_ID m_algorithm      = CALG_RC4;
+
+	std::vector<BYTE> m_cryptKey = {};
 
 	bool m_doCrypt   = true;
-	bool m_useNewKey = false;
-	bool m_useCustom = false;
-
-	std::vector<BYTE> m_customKey = {};
 };

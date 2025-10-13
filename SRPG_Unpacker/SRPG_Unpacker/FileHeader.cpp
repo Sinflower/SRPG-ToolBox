@@ -196,33 +196,77 @@ void FileHeader::initDTS(const std::wstring &fileName)
 
 	if (m_magicNumber != HEADER_MAGIC)
 	{
-		std::cerr << "File does not contain SRPG magic number, either the file is invalid or is encrypted." << std::endl;
-		std::cerr << "Exiting ..." << std::endl;
-		exit(0);
+		std::cerr << "File does not contain SRPG magic number, either the file is invalid or is encrypted, trying very old parsing style ..." << std::endl;
+		m_fileReader.Seek(0);
+		m_magicNumber = -1;
+
+
+		std::cout << "Reading entire file into memory ... " << std::flush;
+		DWORD fileSize = m_fileReader.GetSize();
+		std::vector<uint8_t> fileData(fileSize);
+		m_fileReader.ReadBytesVec(fileData);
+		m_fileReader.Close();
+		std::cout << "Done" << std::endl;
+
+		std::cout << "Decrypting file with very old decryption method ... " << std::flush;
+		veryOldDtsCrypt(fileData, 1);
+		std::cout << "Done" << std::endl;
+
+		m_fileReader.InitData(fileData);
+
+		m_encrypted   = 0;
+		m_fileVersion = m_fileReader.ReadUInt32();
+
+		m_loadRuntime = m_fileReader.ReadUInt32();
+
+		m_projectDataAddress = m_fileReader.ReadUInt32();
+
+		const DWORD graphicsFlag = m_fileReader.ReadUInt32();
+		const DWORD uiFlag       = m_fileReader.ReadUInt32();
+		const DWORD audioFlag    = m_fileReader.ReadUInt32();
+		const DWORD fontFlag     = m_fileReader.ReadUInt32();
+		const DWORD scriptFlag   = m_fileReader.ReadUInt32();
+
+		m_presentSegments = 0;
+		if (graphicsFlag != 0) m_presentSegments |= Sections::Graphics;
+		if (uiFlag != 0) m_presentSegments |= Sections::UI;
+		if (audioFlag != 0) m_presentSegments |= Sections::Audio;
+		if (fontFlag != 0) m_presentSegments |= Sections::Font;
+		if (scriptFlag != 0) m_presentSegments |= Sections::Script;
+	}
+	else
+	{
+		m_encrypted   = m_fileReader.ReadUInt32();
+		m_fileVersion = m_fileReader.ReadUInt32();
+
+		// Since version 1.301 the encryption key has changed
+		if (m_fileVersion >= NEW_CRYPT_START_VERSION)
+			Crypt::SwitchToNewKey();
+
+		m_loadRuntime     = m_fileReader.ReadUInt32();
+		m_presentSegments = m_fileReader.ReadUInt32();
+
+		m_projectDataAddress = m_fileReader.ReadUInt32();
 	}
 
-	m_encrypted   = m_fileReader.ReadUInt32();
-	m_fileVersion = m_fileReader.ReadUInt32();
+	// End of structure that differs between the very old and newer format
+	// ---------------------------------------------------------------------
 
 	if (m_fileVersion < NEW_FILE_FORMAT_START_VERSION)
 		m_oldFormat = true;
-
-	// Since version 1.301 the encryption key has changed
-	if (m_fileVersion >= NEW_CRYPT_START_VERSION)
-		Crypt::SwitchToNewKey();
-
-	m_loadRuntime     = m_fileReader.ReadUInt32();
-	m_presentSegments = m_fileReader.ReadUInt32();
-
-	m_projectDataAddress = m_fileReader.ReadUInt32() + (m_oldFormat ? DATA_START_OFFSET_OLD : DATA_START_OFFSET);
 
 	for (uint32_t i = 0; i < (m_oldFormat ? SECTION_COUNT_OLD : SECTION_COUNT); i++)
 	{
 		uint32_t sectionIdx = i;
 		if (m_oldFormat && i >= 34)
 			sectionIdx++; // Skip video section in old format
-		m_sectionDataAddresses.push_back({ sectionIdx, m_fileReader.ReadUInt32() + (m_oldFormat ? DATA_START_OFFSET_OLD : DATA_START_OFFSET) });
+		m_sectionDataAddresses.push_back({ sectionIdx, m_fileReader.ReadUInt32() });
 	}
+
+	m_projectDataAddress += m_fileReader.GetOffset();
+
+	for (SecInfo &info : m_sectionDataAddresses)
+		info.second += m_fileReader.GetOffset();
 
 	Config.Add("magicNumber", m_magicNumber);
 	Config.Add("encrypted", m_encrypted);
@@ -231,6 +275,24 @@ void FileHeader::initDTS(const std::wstring &fileName)
 	Config.Add("segments", m_presentSegments);
 
 	Crypt::EnableCrypt(m_encrypted == 1);
+}
+
+void FileHeader::veryOldDtsCrypt(std::vector<uint8_t> &data, const uint32_t &mode) const
+{
+	std::array<uint32_t, 4> xors = { 0x58C19454, 0x1B924CF4, 0x3A9EE0AD, 0x92C9D149 };
+
+	if (mode == 1)
+		xors[2] = 0x3A8EE0AD;
+	else if (mode == 2)
+		xors[3] = 0x92C9D148;
+
+	DWORD *pData = reinterpret_cast<DWORD *>(data.data());
+
+	for (uint32_t i = 0; i < 4; i++)
+		pData[i] ^= xors[i];
+
+	Crypt::SwitchToVeryOldKey();
+	Crypt::DecryptData(data);
 }
 
 void FileHeader::initFolder(const std::wstring &inputFolder)

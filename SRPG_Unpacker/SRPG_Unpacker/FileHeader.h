@@ -40,11 +40,8 @@
 class FileHeader
 {
 	static constexpr uint32_t HEADER_MAGIC      = 0x53544453; // SDTS
-	static constexpr uint32_t DATA_START_OFFSET = 0xA8;
 	static constexpr uint32_t SECTION_COUNT     = 36;
-
-	static constexpr uint32_t DATA_START_OFFSET_OLD = 0xA4;
-	static constexpr uint32_t SECTION_COUNT_OLD     = 35;
+	static constexpr uint32_t SECTION_COUNT_OLD = 35;
 
 	enum Sections
 	{
@@ -93,6 +90,7 @@ private:
 	void writeOffsets(FileWriter &fileWriter, const std::vector<uint32_t> &sizes, uint32_t &offset) const;
 
 	void initDTS(const std::wstring &fileName);
+	void veryOldDtsCrypt(std::vector<uint8_t> &data, const uint32_t &mode) const;
 
 	void initFolder(const std::wstring &inputFolder);
 

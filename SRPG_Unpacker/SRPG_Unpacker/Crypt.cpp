@@ -43,26 +43,12 @@ bool Crypt::initCryptEngine()
 
 		if (CryptCreateHash(m_hCryptProv, CALG_MD5, 0, 0, &phHash))
 		{
-			const std::wstring &CRYPT_KEY = (m_useNewKey ? CRYPT_KEY_NEW : CRYPT_KEY_OLD);
-
-			const BYTE *pKey = nullptr;
-			DWORD keySize    = 0;
-
-			if (m_useCustom)
-			{
-				pKey    = m_customKey.data();
-				keySize = static_cast<DWORD>(m_customKey.size());
-			}
-			else
-			{
-				pKey    = reinterpret_cast<const BYTE *>(CRYPT_KEY.c_str());
-				keySize = static_cast<DWORD>(CRYPT_KEY.length());
-			}
+			const BYTE *pKey = m_cryptKey.data();
+			DWORD keySize    = static_cast<DWORD>(m_cryptKey.size());
 
 			CryptHashData(phHash, pKey, keySize, 0);
-			CryptDeriveKey(m_hCryptProv, CALG_RC4, phHash, 0, &m_hKey);
+			CryptDeriveKey(m_hCryptProv, m_algorithm, phHash, 0, &m_hKey);
 			CryptDestroyHash(phHash);
-			std::cout << std::format("Info: Crypt Engine initialized using the {} key", (m_useCustom ? "custom" : (m_useNewKey ? "new" : "old"))) << std::endl;
 		}
 		else
 		{
@@ -90,29 +76,32 @@ void Crypt::destoryCryptEngine()
 	}
 }
 
-void Crypt::switchToNewKey()
+void Crypt::switchToVeryOldKey()
 {
-	std::cout << "Info: Switching to new crypt key" << std::endl;
-	if (m_useNewKey)
+	if (isThisKeyAlreadySet(CRYPT_KEY_VERY_OLD))
 		return;
 
-	m_useCustom = false;
-	m_useNewKey = true;
-	destoryCryptEngine();
-	initCryptEngine();
+	m_algorithm = CALG_RC2;
+	// Yes it is really just length() the type is ignored
+	setKey(CRYPT_KEY_VERY_OLD.c_str(), CRYPT_KEY_VERY_OLD.length());
+	reinitCryptEngine();
+}
+
+void Crypt::switchToNewKey()
+{
+	if (isThisKeyAlreadySet(CRYPT_KEY_NEW))
+		return;
+
+	m_algorithm = CALG_RC4;
+	setKey(CRYPT_KEY_NEW.c_str(), CRYPT_KEY_NEW.length());
+	reinitCryptEngine();
 }
 
 void Crypt::switchToCustomKey(const void *key, const std::size_t &size)
 {
-	std::cout << "Info: Switching to custom crypt key" << std::endl;
-	if (m_useCustom && m_customKey.size() == size && memcmp(m_customKey.data(), key, size) == 0)
-		return;
-
-	m_useCustom = true;
-	m_customKey.resize(size);
-	memcpy(m_customKey.data(), key, size);
-	destoryCryptEngine();
-	initCryptEngine();
+	m_algorithm = CALG_RC4;
+	setKey(key, size);
+	reinitCryptEngine();
 }
 
 void Crypt::crypt(std::vector<uint8_t> &data, bool decrypt)
@@ -135,4 +124,24 @@ void Crypt::crypt(std::vector<uint8_t> &data, bool decrypt)
 
 	if (!res)
 		std::cerr << "Error: CryptDecrypt/CryptEncrypt failed: " << GetLastError() << std::endl;
+}
+
+void Crypt::setKey(const void *key, const std::size_t &size)
+{
+	m_cryptKey.resize(size);
+	memcpy(m_cryptKey.data(), key, size);
+}
+
+bool Crypt::isThisKeyAlreadySet(const std::wstring &key) const
+{
+	if (m_cryptKey.size() != key.length())
+		return false;
+	return (memcmp(m_cryptKey.data(), key.c_str(), key.length()) == 0);
+}
+
+bool Crypt::isThisKeyAlreadySet(const void *key, const std::size_t &size) const
+{
+	if (m_cryptKey.size() != size)
+		return false;
+	return (memcmp(m_cryptKey.data(), key, size) == 0);
 }
