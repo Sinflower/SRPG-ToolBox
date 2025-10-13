@@ -26,8 +26,8 @@
 
 #include "Crypt.h"
 
-#include <iostream>
 #include <format>
+#include <iostream>
 
 bool Crypt::initCryptEngine()
 {
@@ -45,8 +45,8 @@ bool Crypt::initCryptEngine()
 		{
 			const std::wstring &CRYPT_KEY = (m_useNewKey ? CRYPT_KEY_NEW : CRYPT_KEY_OLD);
 
-			const BYTE *pKey    = nullptr;
-			DWORD keySize = 0;
+			const BYTE *pKey = nullptr;
+			DWORD keySize    = 0;
 
 			if (m_useCustom)
 			{

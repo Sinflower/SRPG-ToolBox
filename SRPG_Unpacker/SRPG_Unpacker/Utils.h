@@ -34,7 +34,6 @@
 
 inline std::wstring s2ws(const std::string &str)
 {
-	//return std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(str);
 	if (str.empty()) return std::wstring();
 
 	int32_t size = MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, nullptr, 0);
@@ -53,7 +52,6 @@ inline std::wstring s2ws(const std::string &str)
 
 inline std::string ws2s(const std::wstring &wstr)
 {
-	//return std::wstring_convert<std::codecvt_utf8<wchar_t>>().to_bytes(wstr);
 	if (wstr.empty()) return std::string();
 
 	int32_t size = WideCharToMultiByte(CP_UTF8, 0, wstr.c_str(), -1, nullptr, 0, nullptr, nullptr);

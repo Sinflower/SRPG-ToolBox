@@ -82,7 +82,7 @@ struct MemData
 		}
 
 		readSize = true;
-		size = static_cast<uint32_t>(str.size() * 2) + 2;
+		size     = static_cast<uint32_t>(str.size() * 2) + 2;
 		data.resize(size);
 		std::fill(data.begin(), data.end(), 0x0);
 		std::copy(str.begin(), str.end(), reinterpret_cast<wchar_t*>(data.data()));

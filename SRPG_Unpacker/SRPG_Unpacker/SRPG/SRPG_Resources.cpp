@@ -156,16 +156,16 @@ nlohmann::ordered_json SRPG_Resources::GetResMapping() const
 	}
 
 	// Write j2 to a file for debugging
-	//std::ofstream ofs("res_mapping.json");
-	//ofs << j2.dump(4);
-	//ofs.close();
+	// std::ofstream ofs("res_mapping.json");
+	// ofs << j2.dump(4);
+	// ofs.close();
 
 	return j2;
 }
 
 void SRPG_Resources::InitInternalResourceData(const nlohmann::ordered_json& json)
 {
-	uint32_t secIdx = 0;
+	uint32_t secIdx      = 0;
 	uint32_t secSubCount = 0;
 
 	if (!m_resFlags.HasResData)

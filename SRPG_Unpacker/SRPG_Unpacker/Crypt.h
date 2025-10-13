@@ -71,7 +71,7 @@ public:
 	}
 
 	template<typename T, std::size_t S>
-	static void SwitchToCustomKey(const std::array<T, S>& key)
+	static void SwitchToCustomKey(const std::array<T, S> &key)
 	{
 		GetInstance().switchToCustomKey(key.data(), key.size() * sizeof(T));
 	}

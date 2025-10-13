@@ -82,7 +82,7 @@ nlohmann::ordered_json EDITDATA::toJson() const
 {
 	nlohmann::ordered_json j;
 	j["id"] = id;
-	//j["type"] = name();
+	// j["type"] = name();
 	return j;
 }
 

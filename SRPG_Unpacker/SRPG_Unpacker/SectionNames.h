@@ -64,8 +64,8 @@ static inline const std::vector<std::string> SECTION_NAMES = {
 	"Audio\\music",
 	"Audio\\sound",
 	"Fonts",
-	"Video", // 34
-	"Script", // 35
+	"Video",   // 34
+	"Script",  // 35
 	"Material" // 36
 };
 

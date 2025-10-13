@@ -41,11 +41,11 @@ class CMenuOperation;
 	if (_OBJ_ != nullptr)                                             \
 		_OBJ_->WriteToJsonFile(_OUT_PATH_, _FILE_NAME_);
 
-#define CHECK_OBJ_AND_APPLY_PATCH(_OBJ_, _PATCH_PATH_, _FILE_NAME_)                 \
-	if (_OBJ_ != nullptr)                                                           \
-	{                                                                               \
-		g_activeFile = ws2s(_FILE_NAME_);                                           \
-		_OBJ_->ApplyPatch(_PATCH_PATH_, _FILE_NAME_);                               \
+#define CHECK_OBJ_AND_APPLY_PATCH(_OBJ_, _PATCH_PATH_, _FILE_NAME_) \
+	if (_OBJ_ != nullptr)                                           \
+	{                                                               \
+		g_activeFile = ws2s(_FILE_NAME_);                           \
+		_OBJ_->ApplyPatch(_PATCH_PATH_, _FILE_NAME_);               \
 	}
 
 #define CALL_STR_SET_FUNC_IF_IN_JSON(_JSON_, _NAME_, _FUNC_) \

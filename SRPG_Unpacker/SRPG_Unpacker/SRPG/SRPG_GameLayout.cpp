@@ -33,7 +33,7 @@
 
 #include "Classes/RESOURCELAYOUTDATA.h"
 
-SRPG_GameLayout::SRPG_GameLayout():
+SRPG_GameLayout::SRPG_GameLayout() :
 	SRPG_ContainerBase("Game Layout"),
 	m_pResourceLayout(new RESOURCELAYOUTDATA)
 {}
