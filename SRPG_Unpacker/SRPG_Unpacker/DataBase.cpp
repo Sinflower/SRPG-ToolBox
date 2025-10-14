@@ -215,7 +215,8 @@ void DataBase::buildData(const std::wstring &inputFolder)
 		// If the file does not exist, try to find it with a different extension
 		if (!fs::exists(filePath))
 		{
-			std::wcout << std::format(L"File not found: {} - Trying to find it with a different extension ...", filePath) << std::endl;
+			std::cout << std::endl
+					  << std::format("File not found: {} - Trying to find it with a different extension ...", ws2s(filePath)) << std::endl;
 
 			ext = L"";
 			for (const auto &entry : fs::directory_iterator(dirPath))
