@@ -51,14 +51,14 @@ public:
 		m_doCrypt = en;
 	}
 
-	static void DecryptData(std::vector<uint8_t> &data)
+	static void DecryptData(std::vector<uint8_t> &data, const bool &overrideDoFlag = false)
 	{
-		GetInstance().crypt(data, true);
+		GetInstance().crypt(data, true, overrideDoFlag);
 	}
 
-	static void EncryptData(std::vector<uint8_t> &data)
+	static void EncryptData(std::vector<uint8_t> &data, const bool &overrideDoFlag = false)
 	{
-		GetInstance().crypt(data, false);
+		GetInstance().crypt(data, false, overrideDoFlag);
 	}
 
 	static void EnableCrypt(const bool &en)
@@ -109,11 +109,12 @@ private:
 
 	void switchToCustomKey(const void *key, const std::size_t &size);
 
-	void crypt(std::vector<uint8_t> &data, bool decrypt = true);
+	void crypt(std::vector<uint8_t> &data, const bool &decrypt = true, const bool &overrideDoFlag = false);
 
 	void setKey(const void *key, const std::size_t &size);
 	bool isThisKeyAlreadySet(const std::wstring &key) const;
 	bool isThisKeyAlreadySet(const void *key, const std::size_t &size) const;
+	DWORD getBlockLength() const;
 
 private:
 	HCRYPTKEY m_hKey        = NULL;
@@ -122,5 +123,5 @@ private:
 
 	std::vector<BYTE> m_cryptKey = {};
 
-	bool m_doCrypt   = true;
+	bool m_doCrypt = true;
 };

@@ -90,7 +90,7 @@ private:
 	void writeOffsets(FileWriter &fileWriter, const std::vector<uint32_t> &sizes, uint32_t &offset) const;
 
 	void initDTS(const std::wstring &fileName);
-	void veryOldDtsCrypt(std::vector<uint8_t> &data, const uint32_t &mode) const;
+	void veryOldDtsCrypt(std::vector<uint8_t> &data, const uint32_t &mode, const bool &decrypt = true) const;
 
 	void initFolder(const std::wstring &inputFolder);
 

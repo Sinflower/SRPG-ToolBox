@@ -83,12 +83,6 @@ void FileHeader::Pack(const std::wstring &outputFile)
 	FileWriter fileWriter;
 	fileWriter.Open(outputFile);
 
-	fileWriter.Write<uint32_t>(m_magicNumber);
-	fileWriter.Write<uint32_t>(m_encrypted);
-	fileWriter.Write<uint32_t>(m_fileVersion);
-	fileWriter.Write<uint32_t>(m_loadRuntime);
-	fileWriter.Write<uint32_t>(m_presentSegments);
-
 	std::vector<uint32_t> gSecSize = m_gSec.SecSizes();
 	std::vector<uint32_t> uSecSize = m_uSec.SecSizes();
 	std::vector<uint32_t> aSecSize = m_aSec.SecSizes();
@@ -96,10 +90,34 @@ void FileHeader::Pack(const std::wstring &outputFile)
 	std::vector<uint32_t> vSecSize = m_vSec.SecSizes();
 	std::vector<uint32_t> sSecSize = m_sSec.SecSizes();
 
-	uint32_t allSecSize = SumVector(gSecSize) + SumVector(uSecSize) + SumVector(aSecSize) + SumVector(fSecSize) + SumVector(vSecSize) + SumVector(sSecSize);
+	uint32_t projectDataAddr = SumVector(gSecSize) + SumVector(uSecSize) + SumVector(aSecSize) + SumVector(fSecSize) + SumVector(vSecSize) + SumVector(sSecSize);
 
-	// Write project data address
-	fileWriter.Write<uint32_t>(allSecSize);
+	if (m_magicNumber == -1)
+	{
+		// Switch the filewriter to buffer mode
+		fileWriter.OpenInBufferMode();
+
+		fileWriter.Write<uint32_t>(m_fileVersion);
+		fileWriter.Write<uint32_t>(m_loadRuntime);
+		fileWriter.Write<uint32_t>(projectDataAddr);
+
+		fileWriter.Write<uint32_t>(m_presentSegments & Sections::Graphics ? 1 : 0);
+		fileWriter.Write<uint32_t>(m_presentSegments & Sections::UI ? 1 : 0);
+		fileWriter.Write<uint32_t>(m_presentSegments & Sections::Audio ? 1 : 0);
+		fileWriter.Write<uint32_t>(m_presentSegments & Sections::Font ? 1 : 0);
+		fileWriter.Write<uint32_t>(m_presentSegments & Sections::Script ? 1 : 0);
+	}
+	else
+	{
+		fileWriter.Write<uint32_t>(m_magicNumber);
+		fileWriter.Write<uint32_t>(m_encrypted);
+		fileWriter.Write<uint32_t>(m_fileVersion);
+		fileWriter.Write<uint32_t>(m_loadRuntime);
+		fileWriter.Write<uint32_t>(m_presentSegments);
+
+		// Write project data address
+		fileWriter.Write<uint32_t>(projectDataAddr);
+	}
 
 	uint32_t offset = 0;
 
@@ -119,6 +137,17 @@ void FileHeader::Pack(const std::wstring &outputFile)
 		m_vSec.Pack(fileWriter);
 	m_sSec.Pack(fileWriter);
 	m_pSec.Pack(fileWriter);
+
+	if (m_magicNumber == -1)
+	{
+		std::cout << "Encrypting file with very old encryption method ... " << std::flush;
+		veryOldDtsCrypt(fileWriter.GetVec(), 1, false);
+		std::cout << "Done" << std::endl;
+
+		std::cout << "Writing entire file to disk ... " << std::flush;
+		fileWriter.WriteToFile(outputFile);
+		std::cout << "Done" << std::endl;
+	}
 }
 
 void FileHeader::Reset()
@@ -200,7 +229,6 @@ void FileHeader::initDTS(const std::wstring &fileName)
 		m_fileReader.Seek(0);
 		m_magicNumber = -1;
 
-
 		std::cout << "Reading entire file into memory ... " << std::flush;
 		DWORD fileSize = m_fileReader.GetSize();
 		std::vector<uint8_t> fileData(fileSize);
@@ -277,8 +305,9 @@ void FileHeader::initDTS(const std::wstring &fileName)
 	Crypt::EnableCrypt(m_encrypted == 1);
 }
 
-void FileHeader::veryOldDtsCrypt(std::vector<uint8_t> &data, const uint32_t &mode) const
+void FileHeader::veryOldDtsCrypt(std::vector<uint8_t> &data, const uint32_t &mode, const bool &decrypt) const
 {
+	Crypt::SwitchToVeryOldKey();
 	std::array<uint32_t, 4> xors = { 0x58C19454, 0x1B924CF4, 0x3A9EE0AD, 0x92C9D149 };
 
 	if (mode == 1)
@@ -286,13 +315,16 @@ void FileHeader::veryOldDtsCrypt(std::vector<uint8_t> &data, const uint32_t &mod
 	else if (mode == 2)
 		xors[3] = 0x92C9D148;
 
+	if (!decrypt)
+		Crypt::EncryptData(data, true);
+
 	DWORD *pData = reinterpret_cast<DWORD *>(data.data());
 
 	for (uint32_t i = 0; i < 4; i++)
 		pData[i] ^= xors[i];
 
-	Crypt::SwitchToVeryOldKey();
-	Crypt::DecryptData(data);
+	if (decrypt)
+		Crypt::DecryptData(data, true);
 }
 
 void FileHeader::initFolder(const std::wstring &inputFolder)

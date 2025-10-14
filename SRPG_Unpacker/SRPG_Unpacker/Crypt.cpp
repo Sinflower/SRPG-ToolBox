@@ -104,9 +104,9 @@ void Crypt::switchToCustomKey(const void *key, const std::size_t &size)
 	reinitCryptEngine();
 }
 
-void Crypt::crypt(std::vector<uint8_t> &data, bool decrypt)
+void Crypt::crypt(std::vector<uint8_t> &data, const bool &decrypt, const bool &overrideDoFlag)
 {
-	if (!m_doCrypt)
+	if (!m_doCrypt && !overrideDoFlag)
 		return;
 
 	if (data.empty())
@@ -114,13 +114,35 @@ void Crypt::crypt(std::vector<uint8_t> &data, bool decrypt)
 
 	BOOL res;
 	DWORD length = static_cast<DWORD>(data.size());
+	DWORD bufLen = length;
 
 	uint8_t *pData = data.data();
 
 	if (decrypt)
+	{
 		res = CryptDecrypt(m_hKey, NULL, TRUE, NULL, pData, &length);
+
+		if (m_algorithm == CALG_RC2)
+		{
+			// For the RC2 cypher the length is updated to the real data length (minus padding)
+			// Make sure the data vector is resized to the new length
+			data.resize(length);
+		}
+	}
 	else
-		res = CryptEncrypt(m_hKey, NULL, TRUE, NULL, pData, &length, length);
+	{
+		if (m_algorithm == CALG_RC2)
+		{
+			// As the old format uses the RC2 cypher the data buffer must be a multiple of the block size
+			DWORD blockSize = getBlockLength();
+			DWORD padding   = blockSize - (length % blockSize);
+			if (padding == 0) padding = blockSize;
+			data.resize(data.size() + padding, 0);
+			bufLen += padding;
+		}
+
+		res = CryptEncrypt(m_hKey, NULL, TRUE, NULL, pData, &length, bufLen);
+	}
 
 	if (!res)
 		std::cerr << "Error: CryptDecrypt/CryptEncrypt failed: " << GetLastError() << std::endl;
@@ -144,4 +166,23 @@ bool Crypt::isThisKeyAlreadySet(const void *key, const std::size_t &size) const
 	if (m_cryptKey.size() != size)
 		return false;
 	return (memcmp(m_cryptKey.data(), key, size) == 0);
+}
+
+DWORD Crypt::getBlockLength() const
+{
+	if (m_hKey == NULL)
+	{
+		std::cerr << "Error: Cryptographic key not initialized" << std::endl;
+		return 0;
+	}
+
+	DWORD blockLen = 0;
+	DWORD size     = sizeof(DWORD);
+	if (!CryptGetKeyParam(m_hKey, KP_BLOCKLEN, reinterpret_cast<BYTE *>(&blockLen), &size, 0))
+	{
+		std::cerr << "Error: Unable to get block length" << std::endl;
+		return 0;
+	}
+
+	return blockLen / 8; // Convert bits to bytes
 }

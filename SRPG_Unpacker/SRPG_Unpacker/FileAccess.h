@@ -450,15 +450,33 @@ public:
 		m_bufferMode = false;
 	}
 
-	~FileWriter()
+	void OpenInBufferMode()
+	{
+		Close();
+		m_buffer.clear();
+		m_size       = 0;
+		m_bufferMode = true;
+	}
+
+	void Close()
 	{
 		if (m_file.is_open())
 			m_file.close();
 	}
 
+	~FileWriter()
+	{
+		Close();
+	}
+
 	PBYTE Get()
 	{
 		return m_buffer.data();
+	}
+
+	std::vector<uint8_t>& GetVec()
+	{
+		return m_buffer;
 	}
 
 	void SetAt(const uint64_t& offset, const BYTE& value)
