@@ -45,25 +45,12 @@ void SKILLDATA::init(FileReader& fw)
 
 	LEGENDDATA::init(fw);
 
-	if (g_ArcVersion < 0x409)
-	{
-		this_14 = 0;
-		this_15 = 0x20000;
-		this_16 = 0;
-		this_17 = 0x20000;
-	}
-	else
+	if (g_ArcVersion >= 0x409)
 	{
 		this_14 = fw.ReadDWord();
 		this_15 = fw.ReadDWord();
 		this_16 = fw.ReadDWord();
 		this_17 = fw.ReadDWord();
-	}
-
-	if (g_ArcVersion < 0x418)
-	{
-		// if (this_11 == 9 || this_11 == 10)
-		//	this_11 += 2;
 	}
 
 	if (g_ArcVersion >= 0x41D)
@@ -222,21 +209,7 @@ void SKILLDATA::dump(FileWriter& fw) const
 
 void SKILLDATA::sub_1046E0(FileReader& fw)
 {
-	if (g_ArcVersion < 0x3F8)
-	{
-		this_18 = 0;
-		this_19 = 0;
-
-		if (this_9 == 22)
-			this_18 = 1;
-		else if (this_9 == 30)
-			this_18 = 5;
-		else if (this_9 == 31)
-			this_18 = 200;
-		else if (this_9 == 32)
-			this_18 = 50;
-	}
-	else
+	if (g_ArcVersion >= 0x3F8)
 	{
 		this_18 = fw.ReadDWord();
 		this_19 = fw.ReadDWord();
@@ -266,17 +239,8 @@ void SKILLDATA::sub_1046E0(FileReader& fw)
 			if (g_ArcVersion < 0x41D)
 				allocAndSetCMenuOp(&m_pTypeIDData1, SRPGClasses::TYPEIDDATA, fw);
 		}
-		else if (this_9 == 10)
-		{
-			if (g_ArcVersion < 0x436)
-				this_19 = this_19 ? 100 : 50;
-		}
-		else if (this_9 == 32 && g_ArcVersion < 0x436)
-			this_19 = 50;
 	}
-	if (g_ArcVersion < 0x446)
-		this_20 = 0;
-	else
+	if (g_ArcVersion >= 0x446)
 		this_20 = fw.ReadDWord();
 
 	if (g_ArcVersion >= 0x4A4)
@@ -290,17 +254,15 @@ void SKILLDATA::sub_10E310(FileReader& fw)
 {
 	if (g_ArcVersion < 0x418)
 	{
-		this_22[0]  = fw.ReadDWord();
-		this_22[1]  = fw.ReadDWord();
-		this_22[2]  = fw.ReadDWord();
-		this_22[3]  = fw.ReadDWord();
-		this_22[4]  = fw.ReadDWord();
-		this_22[5]  = fw.ReadDWord();
-		this_22[6]  = fw.ReadDWord();
-		this_22[7]  = fw.ReadDWord();
-		this_22[8]  = fw.ReadDWord();
-		this_22[9]  = 0;
-		this_22[10] = 0;
+		this_22[0] = fw.ReadDWord();
+		this_22[1] = fw.ReadDWord();
+		this_22[2] = fw.ReadDWord();
+		this_22[3] = fw.ReadDWord();
+		this_22[4] = fw.ReadDWord();
+		this_22[5] = fw.ReadDWord();
+		this_22[6] = fw.ReadDWord();
+		this_22[7] = fw.ReadDWord();
+		this_22[8] = fw.ReadDWord();
 	}
 	else
 	{

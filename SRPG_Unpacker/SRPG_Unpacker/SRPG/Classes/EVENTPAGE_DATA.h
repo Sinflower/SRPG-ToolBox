@@ -152,6 +152,9 @@ private:
 	void initNewFormat(FileReader& fw);
 	void initOldFormat(FileReader& fw);
 
+	void dumpNewFormat(FileWriter& fw) const;
+	void dumpOldFormat(FileWriter& fw) const;
+
 public:
 	DWORD checkData = 0;
 

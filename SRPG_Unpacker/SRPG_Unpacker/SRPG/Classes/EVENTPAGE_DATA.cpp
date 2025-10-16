@@ -26,6 +26,8 @@
 
 // Compatible up to v1.317
 
+// TODO Rewrite part of this by reducing redundant code through an old flag that overrides the > 0 check
+
 #include "EVENTPAGE_DATA.h"
 #include "../CMenuOperation.h"
 #include "../Commands/SWITCHACTION.h"
@@ -42,525 +44,9 @@ void EVENTPAGE_DATA::init(FileReader& fw)
 void EVENTPAGE_DATA::dump(FileWriter& fw) const
 {
 	if (g_ArcVersion >= 0x432)
-	{
-		fw.Write(checkData);
-
-		if ((checkData & 1) != 0)
-		{
-			fw.Write(this_0);
-			fw.Write(this_1);
-
-			if (g_ArcVersion >= 0x502)
-				this_2_new->Dump(fw);
-		}
-
-		if ((checkData & 2) != 0)
-		{
-			if (this_2)
-				this_2->dump(fw);
-		}
-
-		if ((checkData & 4) != 0)
-		{
-			// NOTE: This was changed in new versions, might cause problems
-			if (g_ArcVersion < 0x4CE)
-			{
-				fw.Write(this_3);
-				fw.Write(this_4);
-				fw.Write(this_5);
-				fw.Write(this_6);
-				fw.Write(this_7);
-				fw.Write(this_8);
-				fw.Write(this_9);
-				fw.Write(this_10);
-				fw.Write(this_11);
-				fw.Write(this_12);
-				fw.Write(this_13);
-				fw.Write(this_14);
-				fw.Write(this_15);
-				fw.Write(this_16);
-			}
-			else
-				this_3_new->Dump(fw);
-		}
-
-		if ((checkData & 8) != 0)
-		{
-			fw.Write(this_17);
-			fw.Write(this_18);
-		}
-
-		if ((checkData & 0x10) != 0)
-		{
-			fw.Write(enTurn);
-			fw.Write(turn);
-			fw.Write(turnCondition);
-			fw.Write(turnArmy);
-			fw.Write(turnTreatAsRelativeTurn);
-		}
-
-		if ((checkData & 0x20) != 0)
-		{
-			fw.Write(enUnitTotal);
-			fw.Write(unitTotal);
-			fw.Write(unitTotalCondition);
-			fw.Write(unitTotalArmy);
-			fw.Write(unitTotalLifeCondition);
-		}
-
-		if ((checkData & 0x40) != 0)
-		{
-			fw.Write(enGold);
-			fw.Write(gold);
-			fw.Write(goldCondition);
-		}
-
-		if ((checkData & 0x80u) != 0)
-			this_32->Dump(fw);
-
-		if ((checkData & 0x100) != 0)
-			this_33->Dump(fw);
-
-		if ((checkData & 0x200) != 0)
-		{
-			fw.Write(this_34);
-			fw.Write(this_35);
-			fw.Write(this_36);
-			fw.Write(this_37);
-			fw.Write(this_38);
-
-			this_39->Dump(fw);
-			this_40->Dump(fw);
-
-			if (g_ArcVersion >= 0x442)
-			{
-				fw.Write(this_41);
-				this_42->Dump(fw);
-			}
-		}
-
-		if ((checkData & 0x400) != 0)
-		{
-			fw.Write(enDistance);
-			fw.Write(this_44);
-			fw.Write(distanceRange);
-
-			this_46->Dump(fw);
-
-			if (g_ArcVersion >= 0x442)
-			{
-				fw.Write(this_48);
-				fw.Write(this_47);
-
-				this_49->Dump(fw);
-
-				fw.Write(this_50);
-
-				this_51->Dump(fw);
-			}
-
-			if (g_ArcVersion >= 1278)
-				fw.Write(this_140);
-		}
-
-		if ((checkData & 0x800) != 0)
-		{
-			fw.Write(this_52);
-			fw.Write(this_53);
-			fw.Write(this_54);
-			fw.Write(this_55);
-			fw.Write(this_56);
-
-			this_57->Dump(fw);
-
-			if (g_ArcVersion >= 0x487)
-			{
-				fw.Write(this_58);
-				this_59->Dump(fw);
-			}
-		}
-
-		if ((checkData & 0x1000) != 0)
-		{
-			fw.Write(this_60);
-			fw.Write(this_61);
-			fw.Write(this_62);
-			fw.Write(this_63);
-		}
-
-		if ((checkData & 0x2000) != 0)
-		{
-			fw.Write(enStatComparison);
-			fw.Write(this_65);
-			fw.Write(this_66);
-			fw.Write(this_67);
-			fw.Write(statComparisonLeftOp);
-			fw.Write(this_69);
-			fw.Write(this_70);
-			fw.Write(this_71);
-			fw.Write(statComparisonCondition);
-			fw.Write(this_73);
-			fw.Write(this_74);
-			fw.Write(this_75);
-			fw.Write(statComparisonRightOp);
-			fw.Write(this_77);
-			fw.Write(this_78);
-			fw.Write(this_79);
-			fw.Write(statComparisonEnParamBonus);
-			fw.Write(this_81);
-			fw.Write(this_82);
-		}
-
-		if ((checkData & 0x4000) != 0)
-		{
-			fw.Write(enBonus);
-			fw.Write(bonus);
-			fw.Write(bonusCondition);
-		}
-
-		if ((checkData & 0x8000) != 0)
-		{
-			fw.Write(enProbability);
-			fw.Write(probability);
-		}
-
-		if ((checkData & 0x10000) != 0)
-		{
-			fw.Write(enEnvironment);
-			fw.Write(environmentCondition);
-		}
-
-		if ((checkData & 0x20000) != 0)
-		{
-			fw.Write(this_90);
-			this_91->Dump(fw);
-		}
-
-		if ((checkData & 0x40000) != 0)
-		{
-			fw.Write(this_92);
-			this_93.Write(fw);
-		}
-
-		if ((checkData & 0x80000) != 0)
-		{
-			fw.Write(this_94);
-			fw.Write(this_95);
-
-			this_96->Dump(fw);
-		}
-
-		if ((checkData & 0x100000) != 0)
-		{
-			fw.Write(enDataTotal);
-			fw.Write(dataTotal);
-			fw.Write(this_99);
-			fw.Write(dataTotalCondition);
-			fw.Write(this_101);
-
-			this_102->Dump(fw);
-
-			if (g_ArcVersion >= 1277 && HIWORD(this_101))
-			{
-				fw.WriteBytes(this_141.data(), static_cast<DWORD>(this_141.size() * sizeof(DWORD)));
-				fw.WriteBytes(this_142.data(), static_cast<DWORD>(this_142.size() * sizeof(DWORD)));
-
-				if (g_ArcVersion >= 1051)
-					fw.Write(this_143);
-			}
-		}
-
-		return;
-	}
-
-	fw.Write(this_0);
-
-	if (g_ArcVersion < 0x41B)
-		fw.Write(this_1);
+		dumpNewFormat(fw);
 	else
-	{
-		if (this_0 > 0)
-			fw.Write(this_1);
-	}
-
-	fw.Write(this_17);
-
-	if (g_ArcVersion < 0x41B)
-		fw.Write(this_18);
-	else
-	{
-		if (this_17 > 0)
-			fw.Write(this_18);
-	}
-
-	fw.Write(enTurn);
-
-	if (g_ArcVersion < 0x41B)
-	{
-		fw.Write(turn);
-		fw.Write(turnCondition);
-		fw.Write(turnArmy);
-		fw.Write(turnTreatAsRelativeTurn);
-	}
-	else
-	{
-		if (enTurn > 0)
-		{
-			fw.Write(turn);
-			fw.Write(turnCondition);
-			fw.Write(turnArmy);
-			fw.Write(turnTreatAsRelativeTurn);
-		}
-	}
-
-	fw.Write(enGold);
-	if (g_ArcVersion < 0x41B)
-	{
-		fw.Write(gold);
-		fw.Write(goldCondition);
-	}
-	else
-	{
-		if (enGold > 0)
-		{
-			fw.Write(gold);
-			fw.Write(goldCondition);
-		}
-	}
-
-	fw.Write(enUnitTotal);
-	if (g_ArcVersion < 0x41B)
-	{
-		fw.Write(unitTotal);
-		fw.Write(unitTotalCondition);
-		fw.Write(unitTotalArmy);
-		fw.Write(unitTotalLifeCondition);
-	}
-	else
-	{
-		if (enUnitTotal > 0)
-		{
-			fw.Write(unitTotal);
-			fw.Write(unitTotalCondition);
-			fw.Write(unitTotalArmy);
-			fw.Write(unitTotalLifeCondition);
-		}
-	}
-
-	fw.Write(enBonus);
-	if (g_ArcVersion < 0x41B)
-	{
-		fw.Write(bonus);
-		fw.Write(bonusCondition);
-	}
-	else
-	{
-		if (enBonus > 0)
-		{
-			fw.Write(bonus);
-			fw.Write(bonusCondition);
-		}
-	}
-
-	fw.Write(enEnvironment);
-	if (g_ArcVersion < 0x41B)
-	{
-		fw.Write(environmentCondition);
-	}
-	else
-	{
-		if (enEnvironment > 0)
-			fw.Write(environmentCondition);
-	}
-
-	fw.Write(this_90);
-	fw.Write(this_92);
-
-	if (g_ArcVersion < 0x3F5)
-	{
-		fw.Write(this_34);
-		fw.Write(this_35);
-		fw.Write(this_36);
-		fw.Write(this_37);
-	}
-	else
-	{
-		if (g_ArcVersion < 0x41B)
-		{
-			fw.Write(this_34);
-			fw.Write(this_35);
-			fw.Write(this_36);
-			fw.Write(this_37);
-			fw.Write(this_38);
-		}
-		else
-		{
-			fw.Write(this_34);
-
-			if (this_34 > 0)
-			{
-				fw.Write(this_35);
-				fw.Write(this_36);
-				fw.Write(this_37);
-				fw.Write(this_38);
-			}
-		}
-	}
-
-	this_42->Dump(fw);
-
-	////
-
-	if (g_ArcVersion >= 0x3F4)
-	{
-		fw.Write(this_12);
-		if (g_ArcVersion >= 0x41B)
-		{
-			if (this_12 > 0)
-			{
-				fw.Write(this_13);
-				fw.Write(this_14);
-				fw.Write(this_15);
-				fw.Write(this_16);
-				fw.Write(this_17);
-				fw.Write(this_18);
-				fw.Write(enTurn);
-				fw.Write(turn);
-				fw.Write(turnCondition);
-				fw.Write(turnArmy);
-				fw.Write(turnTreatAsRelativeTurn);
-				fw.Write(enGold);
-				fw.Write(gold);
-			}
-		}
-		else
-		{
-			fw.Write(this_13);
-			fw.Write(this_14);
-			fw.Write(this_15);
-			fw.Write(this_16);
-			fw.Write(this_17);
-			fw.Write(this_18);
-			fw.Write(enTurn);
-			fw.Write(turn);
-			fw.Write(turnCondition);
-			fw.Write(turnArmy);
-			fw.Write(turnTreatAsRelativeTurn);
-			fw.Write(enGold);
-			fw.Write(gold);
-		}
-
-		fw.Write(enProbability);
-		if (g_ArcVersion < 0x41B)
-			fw.Write(probability);
-		else
-		{
-			if (enProbability > 0)
-				fw.Write(probability);
-		}
-	}
-
-	if (g_ArcVersion >= 0x411)
-	{
-		fw.Write(enDistance);
-		if (g_ArcVersion < 0x41B)
-		{
-			fw.Write(this_44);
-			fw.Write(distanceRange);
-		}
-		else
-		{
-			if (enDistance > 0)
-			{
-				fw.Write(this_44);
-				fw.Write(distanceRange);
-			}
-		}
-
-		this_46->Dump(fw);
-	}
-	else
-	{
-		if (g_ArcVersion >= 0x3F9)
-		{
-			fw.Write(enDistance);
-			fw.Write(this_44);
-
-			this_46->Dump(fw);
-		}
-	}
-
-	if (g_ArcVersion >= 0x418)
-	{
-		fw.Write(this_52);
-
-		if (g_ArcVersion < 0x41B)
-		{
-			fw.Write(this_53);
-			fw.Write(this_54);
-			fw.Write(this_55);
-			fw.Write(this_56);
-		}
-		else
-		{
-			if (this_52)
-			{
-				fw.Write(this_53);
-				fw.Write(this_54);
-				fw.Write(this_55);
-				fw.Write(this_56);
-			}
-		}
-
-		this_57->Dump(fw);
-	}
-
-	if (g_ArcVersion >= 0x41B)
-	{
-		fw.Write(this_60);
-		if (this_60)
-		{
-			fw.Write(this_61);
-			fw.Write(this_62);
-			fw.Write(this_63);
-		}
-
-		fw.Write(enStatComparison);
-
-		if (enStatComparison)
-		{
-			fw.Write(this_65);
-			fw.Write(this_66);
-			fw.Write(this_67);
-			fw.Write(statComparisonLeftOp);
-			fw.Write(this_69);
-			fw.Write(this_70);
-			fw.Write(this_71);
-			fw.Write(statComparisonCondition);
-			fw.Write(this_73);
-			fw.Write(this_74);
-			fw.Write(this_75);
-			fw.Write(statComparisonRightOp);
-			fw.Write(this_77);
-			fw.Write(this_78);
-			fw.Write(this_79);
-			fw.Write(statComparisonEnParamBonus);
-			fw.Write(this_81);
-			fw.Write(this_82);
-		}
-	}
-
-	////
-
-	this_2->dump(fw);
-
-	this_39->Dump(fw);
-	this_40->Dump(fw);
-	this_32->Dump(fw);
-	this_33->Dump(fw);
-	this_91->Dump(fw);
-
-	this_93.Write(fw);
+		dumpOldFormat(fw);
 }
 
 void EVENTPAGE_DATA::sub_D5E70(FileReader& fw)
@@ -938,8 +424,8 @@ void EVENTPAGE_DATA::initOldFormat(FileReader& fw)
 {
 	if (g_ArcVersion < 0x41B)
 	{
-		this_0 = fw.ReadDWord();
-		this_1 = fw.ReadDWord();
+		this_0  = fw.ReadDWord();
+		this_1  = fw.ReadDWord();
 		this_17 = fw.ReadDWord();
 		this_18 = fw.ReadDWord();
 
@@ -1061,4 +547,497 @@ void EVENTPAGE_DATA::initOldFormat(FileReader& fw)
 	allocAndSetCMenuOp(&this_91, SRPGClasses::TYPEIDDATA, fw);
 
 	initMemData(this_93, fw);
+}
+
+void EVENTPAGE_DATA::dumpNewFormat(FileWriter& fw) const
+{
+	fw.Write(checkData);
+
+	if ((checkData & 1) != 0)
+	{
+		fw.Write(this_0);
+		fw.Write(this_1);
+
+		if (g_ArcVersion >= 0x502)
+			this_2_new->Dump(fw);
+	}
+
+	if ((checkData & 2) != 0)
+	{
+		if (this_2)
+			this_2->dump(fw);
+	}
+
+	if ((checkData & 4) != 0)
+	{
+		// NOTE: This was changed in new versions, might cause problems
+		if (g_ArcVersion < 0x4CE)
+		{
+			fw.Write(this_3);
+			fw.Write(this_4);
+			fw.Write(this_5);
+			fw.Write(this_6);
+			fw.Write(this_7);
+			fw.Write(this_8);
+			fw.Write(this_9);
+			fw.Write(this_10);
+			fw.Write(this_11);
+			fw.Write(this_12);
+			fw.Write(this_13);
+			fw.Write(this_14);
+			fw.Write(this_15);
+			fw.Write(this_16);
+		}
+		else
+			this_3_new->Dump(fw);
+	}
+
+	if ((checkData & 8) != 0)
+	{
+		fw.Write(this_17);
+		fw.Write(this_18);
+	}
+
+	if ((checkData & 0x10) != 0)
+	{
+		fw.Write(enTurn);
+		fw.Write(turn);
+		fw.Write(turnCondition);
+		fw.Write(turnArmy);
+		fw.Write(turnTreatAsRelativeTurn);
+	}
+
+	if ((checkData & 0x20) != 0)
+	{
+		fw.Write(enUnitTotal);
+		fw.Write(unitTotal);
+		fw.Write(unitTotalCondition);
+		fw.Write(unitTotalArmy);
+		fw.Write(unitTotalLifeCondition);
+	}
+
+	if ((checkData & 0x40) != 0)
+	{
+		fw.Write(enGold);
+		fw.Write(gold);
+		fw.Write(goldCondition);
+	}
+
+	if ((checkData & 0x80u) != 0)
+		this_32->Dump(fw);
+
+	if ((checkData & 0x100) != 0)
+		this_33->Dump(fw);
+
+	if ((checkData & 0x200) != 0)
+	{
+		fw.Write(this_34);
+		fw.Write(this_35);
+		fw.Write(this_36);
+		fw.Write(this_37);
+		fw.Write(this_38);
+
+		this_39->Dump(fw);
+		this_40->Dump(fw);
+
+		if (g_ArcVersion >= 0x442)
+		{
+			fw.Write(this_41);
+			this_42->Dump(fw);
+		}
+	}
+
+	if ((checkData & 0x400) != 0)
+	{
+		fw.Write(enDistance);
+		fw.Write(this_44);
+		fw.Write(distanceRange);
+
+		this_46->Dump(fw);
+
+		if (g_ArcVersion >= 0x442)
+		{
+			fw.Write(this_48);
+			fw.Write(this_47);
+
+			this_49->Dump(fw);
+
+			fw.Write(this_50);
+
+			this_51->Dump(fw);
+		}
+
+		if (g_ArcVersion >= 1278)
+			fw.Write(this_140);
+	}
+
+	if ((checkData & 0x800) != 0)
+	{
+		fw.Write(this_52);
+		fw.Write(this_53);
+		fw.Write(this_54);
+		fw.Write(this_55);
+		fw.Write(this_56);
+
+		this_57->Dump(fw);
+
+		if (g_ArcVersion >= 0x487)
+		{
+			fw.Write(this_58);
+			this_59->Dump(fw);
+		}
+	}
+
+	if ((checkData & 0x1000) != 0)
+	{
+		fw.Write(this_60);
+		fw.Write(this_61);
+		fw.Write(this_62);
+		fw.Write(this_63);
+	}
+
+	if ((checkData & 0x2000) != 0)
+	{
+		fw.Write(enStatComparison);
+		fw.Write(this_65);
+		fw.Write(this_66);
+		fw.Write(this_67);
+		fw.Write(statComparisonLeftOp);
+		fw.Write(this_69);
+		fw.Write(this_70);
+		fw.Write(this_71);
+		fw.Write(statComparisonCondition);
+		fw.Write(this_73);
+		fw.Write(this_74);
+		fw.Write(this_75);
+		fw.Write(statComparisonRightOp);
+		fw.Write(this_77);
+		fw.Write(this_78);
+		fw.Write(this_79);
+		fw.Write(statComparisonEnParamBonus);
+		fw.Write(this_81);
+		fw.Write(this_82);
+	}
+
+	if ((checkData & 0x4000) != 0)
+	{
+		fw.Write(enBonus);
+		fw.Write(bonus);
+		fw.Write(bonusCondition);
+	}
+
+	if ((checkData & 0x8000) != 0)
+	{
+		fw.Write(enProbability);
+		fw.Write(probability);
+	}
+
+	if ((checkData & 0x10000) != 0)
+	{
+		fw.Write(enEnvironment);
+		fw.Write(environmentCondition);
+	}
+
+	if ((checkData & 0x20000) != 0)
+	{
+		fw.Write(this_90);
+		this_91->Dump(fw);
+	}
+
+	if ((checkData & 0x40000) != 0)
+	{
+		fw.Write(this_92);
+		this_93.Write(fw);
+	}
+
+	if ((checkData & 0x80000) != 0)
+	{
+		fw.Write(this_94);
+		fw.Write(this_95);
+
+		this_96->Dump(fw);
+	}
+
+	if ((checkData & 0x100000) != 0)
+	{
+		fw.Write(enDataTotal);
+		fw.Write(dataTotal);
+		fw.Write(this_99);
+		fw.Write(dataTotalCondition);
+		fw.Write(this_101);
+
+		this_102->Dump(fw);
+
+		if (g_ArcVersion >= 1277 && HIWORD(this_101))
+		{
+			fw.WriteBytes(this_141.data(), static_cast<DWORD>(this_141.size() * sizeof(DWORD)));
+			fw.WriteBytes(this_142.data(), static_cast<DWORD>(this_142.size() * sizeof(DWORD)));
+
+			if (g_ArcVersion >= 1051)
+				fw.Write(this_143);
+		}
+	}
+}
+
+void EVENTPAGE_DATA::dumpOldFormat(FileWriter& fw) const
+{
+	if (g_ArcVersion < 0x41B)
+	{
+		fw.Write(this_0);
+		fw.Write(this_1);
+		fw.Write(this_17);
+		fw.Write(this_18);
+
+		fw.Write(enTurn);
+		fw.Write(turn);
+		fw.Write(turnCondition);
+		fw.Write(turnArmy);
+		fw.Write(turnTreatAsRelativeTurn);
+
+		fw.Write(enGold);
+		fw.Write(gold);
+		fw.Write(goldCondition);
+
+		fw.Write(enUnitTotal);
+		fw.Write(unitTotal);
+		fw.Write(unitTotalCondition);
+		fw.Write(unitTotalArmy);
+		fw.Write(unitTotalLifeCondition);
+
+		fw.Write(enBonus);
+		fw.Write(bonus);
+		fw.Write(bonusCondition);
+
+		fw.Write(enEnvironment);
+		fw.Write(environmentCondition);
+	}
+	else
+	{
+		fw.Write(this_0);
+		if (this_0 > 0)
+			fw.Write(this_1);
+
+		fw.Write(this_17);
+		if (this_17 > 0)
+			fw.Write(this_18);
+
+		fw.Write(enTurn);
+		if (enTurn > 0)
+		{
+			fw.Write(turn);
+			fw.Write(turnCondition);
+			fw.Write(turnArmy);
+			fw.Write(turnTreatAsRelativeTurn);
+		}
+
+		fw.Write(enGold);
+		if (enGold > 0)
+		{
+			fw.Write(gold);
+			fw.Write(goldCondition);
+		}
+
+		fw.Write(enUnitTotal);
+		if (enUnitTotal > 0)
+		{
+			fw.Write(unitTotal);
+			fw.Write(unitTotalCondition);
+			fw.Write(unitTotalArmy);
+			fw.Write(unitTotalLifeCondition);
+		}
+
+		fw.Write(enBonus);
+		if (enBonus > 0)
+		{
+			fw.Write(bonus);
+			fw.Write(bonusCondition);
+		}
+
+		fw.Write(enEnvironment);
+		if (enEnvironment > 0)
+			fw.Write(environmentCondition);
+	}
+
+	fw.Write(this_90);
+	fw.Write(this_92);
+
+	if (g_ArcVersion < 0x3F5)
+	{
+		fw.Write(this_34);
+		fw.Write(this_35);
+		fw.Write(this_36);
+		fw.Write(this_37);
+	}
+	else
+	{
+		if (g_ArcVersion < 0x41B)
+		{
+			fw.Write(this_34);
+			fw.Write(this_35);
+			fw.Write(this_36);
+			fw.Write(this_37);
+			fw.Write(this_38);
+		}
+		else
+		{
+			fw.Write(this_34);
+
+			if (this_34 > 0)
+			{
+				fw.Write(this_35);
+				fw.Write(this_36);
+				fw.Write(this_37);
+				fw.Write(this_38);
+			}
+		}
+	}
+
+	if (g_ArcVersion >= 0x3F4)
+	{
+		if (g_ArcVersion < 0x41B)
+		{
+			fw.Write(this_3);
+			fw.Write(this_4);
+			fw.Write(this_5);
+			fw.Write(this_6);
+			fw.Write(this_7);
+			fw.Write(this_8);
+			fw.Write(this_9);
+			fw.Write(this_10);
+			fw.Write(this_11);
+			fw.Write(this_12);
+			fw.Write(this_13);
+			fw.Write(this_14);
+			fw.Write(this_15);
+			fw.Write(this_16);
+
+			fw.Write(enProbability);
+			fw.Write(probability);
+		}
+		else
+		{
+			fw.Write(this_3);
+			if (this_3 > 0)
+			{
+				fw.Write(this_4);
+				fw.Write(this_5);
+				fw.Write(this_6);
+				fw.Write(this_7);
+				fw.Write(this_8);
+				fw.Write(this_9);
+				fw.Write(this_10);
+				fw.Write(this_11);
+				fw.Write(this_12);
+				fw.Write(this_13);
+				fw.Write(this_14);
+				fw.Write(this_15);
+				fw.Write(this_16);
+			}
+
+			fw.Write(enProbability);
+			if (enProbability > 0)
+				fw.Write(probability);
+		}
+	}
+
+	if (g_ArcVersion >= 0x411)
+	{
+		if (g_ArcVersion < 0x41B)
+		{
+			fw.Write(enDistance);
+			fw.Write(this_44);
+			fw.Write(distanceRange);
+		}
+		else
+		{
+			fw.Write(enDistance);
+			if (enDistance > 0)
+			{
+				fw.Write(this_44);
+				fw.Write(distanceRange);
+			}
+		}
+	}
+	else
+	{
+		if (g_ArcVersion >= 0x3F9)
+		{
+			fw.Write(enDistance);
+			fw.Write(this_44);
+		}
+	}
+
+	this_46->Dump(fw);
+
+	if (g_ArcVersion >= 0x418)
+	{
+		if (g_ArcVersion < 0x41B)
+		{
+			fw.Write(this_52);
+			fw.Write(this_53);
+			fw.Write(this_54);
+			fw.Write(this_55);
+			fw.Write(this_56);
+		}
+		else
+		{
+			fw.Write(this_52);
+			if (this_52)
+			{
+				fw.Write(this_53);
+				fw.Write(this_54);
+				fw.Write(this_55);
+				fw.Write(this_56);
+			}
+		}
+
+		this_57->Dump(fw);
+	}
+
+	if (g_ArcVersion >= 0x41B)
+	{
+		fw.Write(this_60);
+		if (this_60)
+		{
+			fw.Write(this_61);
+			fw.Write(this_62);
+			fw.Write(this_63);
+		}
+
+		fw.Write(enStatComparison);
+
+		if (enStatComparison)
+		{
+			fw.Write(this_65);
+			fw.Write(this_66);
+			fw.Write(this_67);
+			fw.Write(statComparisonLeftOp);
+			fw.Write(this_69);
+			fw.Write(this_70);
+			fw.Write(this_71);
+			fw.Write(statComparisonCondition);
+			fw.Write(this_73);
+			fw.Write(this_74);
+			fw.Write(this_75);
+			fw.Write(statComparisonRightOp);
+			fw.Write(this_77);
+			fw.Write(this_78);
+			fw.Write(this_79);
+			fw.Write(statComparisonEnParamBonus);
+			fw.Write(this_81);
+			fw.Write(this_82);
+		}
+	}
+
+	////
+
+	this_2->dump(fw);
+
+	this_39->Dump(fw);
+	this_40->Dump(fw);
+	this_32->Dump(fw);
+	this_33->Dump(fw);
+	this_91->Dump(fw);
+
+	this_93.Write(fw);
 }

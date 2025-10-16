@@ -104,12 +104,12 @@ void SRPG_Project::WritePatch(const fs::path& outPath) const
 
 	std::filesystem::path commonsPath = SRPG_ContainerBase::CommonsPath(outPath);
 	nlohmann::ordered_json j;
-	j["windowTitle"]   = m_database.GetWindowTitle();
-	j["gameTitle"]     = m_database.GetGameTitle();
+	j["windowTitle"] = m_database.GetWindowTitle();
+	j["gameTitle"]   = m_database.GetGameTitle();
 
 	if (g_ArcVersion >= 1085)
 		j["saveFileTitle"] = m_baseSettings.GetSaveFileTitle();
-	
+
 	WriteJsonToFile(j, commonsPath, L"titles.json");
 	std::cout << "Finished writing patches" << std::endl;
 }

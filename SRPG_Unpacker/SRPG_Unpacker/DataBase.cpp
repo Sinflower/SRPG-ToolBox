@@ -261,7 +261,7 @@ uint32_t DataBase::getFileSizeUTF16(const std::wstring &filePath) const
 		data.push_back(0x0);
 
 	size = MultiByteToWideChar(CP_UTF8, 0, reinterpret_cast<const char *>(data.data()), -1, nullptr, 0);
-	size--; // Remove null-terminator
+	size--;    // Remove null-terminator
 	size *= 2; // UTF-16 uses 2 bytes per character
 
 	return static_cast<uint32_t>(size);

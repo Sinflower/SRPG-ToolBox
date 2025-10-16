@@ -68,7 +68,7 @@ inline std::string ws2s(const std::wstring &wstr)
 	return str;
 }
 
-inline std::vector<uint8_t> s2ws(const std::vector<uint8_t>& data)
+inline std::vector<uint8_t> s2ws(const std::vector<uint8_t> &data)
 {
 	if (data.empty()) return std::vector<uint8_t>();
 
@@ -87,7 +87,7 @@ inline std::vector<uint8_t> s2ws(const std::vector<uint8_t>& data)
 	return wdata;
 }
 
-inline std::vector<uint8_t> ws2s(const std::vector<uint8_t>& wdata)
+inline std::vector<uint8_t> ws2s(const std::vector<uint8_t> &wdata)
 {
 	if (wdata.empty()) return std::vector<uint8_t>();
 

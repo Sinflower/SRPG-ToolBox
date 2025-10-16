@@ -225,6 +225,8 @@ void SRPG_Database::dump(FileWriter& fw) const
 
 		m_pStringData1->Dump(fw);
 	}
+	else
+		m_pNPCSettings[0]->Dump(fw);
 
 	m_pClassGroups->Dump(fw);
 	m_pSwitchData->Dump(fw);
