@@ -35,6 +35,7 @@ extern DWORD g_ArcVersion; // dts archive file version, i.e., SRPG version
 
 constexpr DWORD NEW_FILE_FORMAT_START_VERSION = 1140;
 constexpr DWORD NEW_CRYPT_START_VERSION       = 1301;
+constexpr DWORD VIDEO_RESOURCE_ADD_VERSION    = 1110; // Based on the changelog this should be the version where video resources were added
 
 constexpr DWORD MAX_SUPPORTED_VERSION = 1317;
 

@@ -44,30 +44,7 @@ void CLASSDATA::init(FileReader& fw)
 	if (g_ArcVersion >= 0x41D)
 	{
 		if (g_ArcVersion < 0x461)
-		{
-			DWORD v19 = fw.ReadDWord();
-			NOT_IMPLEMENTED
-			/*
-			v6 = *(_DWORD **)(this + 96);
-
-			Sizea = (*(int (__thiscall **)(_DWORD *))*v6)(v6);
-			*(_DWORD *)(Sizea + 8) = sub_381340(v6);
-			v7 = v6[1];
-			v8 = v7 + 4;
-			if ( *(_DWORD *)(v7 + 4) )
-			{
-				do
-				{
-					v7 = *(_DWORD *)v8;
-					v9 = *(_DWORD *)(*(_DWORD *)v8 + 4) == 0;
-					v8 = *(_DWORD *)v8 + 4;
-				}
-				while ( !v9 );
-			}
-			*(_DWORD *)(v7 + 4) = Sizea;
-			*(_DWORD *)(Sizea + 12) = v19;
-			*/
-		}
+			this_21 = fw.ReadDWord();
 		else
 			allocAndSetCMenuOp(&m_pTypeIDData3, SRPGClasses::TYPEIDDATA, fw);
 	}
@@ -82,7 +59,7 @@ void CLASSDATA::init(FileReader& fw)
 
 	this_25 = fw.ReadDWord();
 
-	sub_35FF20(fw, this_9);
+	sub_35FF20(fw);
 
 	allocAndSetCMenuOp(&m_pUnitStatusData, SRPGClasses::UNITSTATUSDATA, fw);
 
@@ -122,30 +99,7 @@ void CLASSDATA::dump(FileWriter& fw) const
 	if (g_ArcVersion >= 0x41D)
 	{
 		if (g_ArcVersion < 0x461)
-		{
-			NOT_IMPLEMENTED
-			/*
-			DWORD v19 = fw.ReadDWord();
-			v6 = *(_DWORD **)(this + 96);
-
-			Sizea = (*(int (__thiscall **)(_DWORD *))*v6)(v6);
-			*(_DWORD *)(Sizea + 8) = sub_381340(v6);
-			v7 = v6[1];
-			v8 = v7 + 4;
-			if ( *(_DWORD *)(v7 + 4) )
-			{
-			do
-			{
-			v7 = *(_DWORD *)v8;
-			v9 = *(_DWORD *)(*(_DWORD *)v8 + 4) == 0;
-			v8 = *(_DWORD *)v8 + 4;
-			}
-			while ( !v9 );
-			}
-			*(_DWORD *)(v7 + 4) = Sizea;
-			*(_DWORD *)(Sizea + 12) = v19;
-			*/
-		}
+			fw.Write(this_21);
 		else
 			m_pTypeIDData3->Dump(fw);
 	}
@@ -222,34 +176,12 @@ void CLASSDATA::dump(FileWriter& fw) const
 
 	if (g_ArcVersion < 0x43F)
 	{
-		NOT_IMPLEMENTED
-		/*
-		lpMem = 0;
-		v12 = 0;
-		v13 = 0;
-		sub_360240(&lpMem, a3);
-		sub_3602E0(&lpMem, a2, (void*)a3);
-		sub_360010(&lpMem, this);
-		if (lpMem)
-		{
-		v8 = lpMem;
-		v5 = GetProcessHeap();
-		HeapFree(v5, 0, v8);
-		}
-		if (v12)
-		{
-		v9 = v12;
-		v6 = GetProcessHeap();
-		HeapFree(v6, 0, v9);
-		}
-		result = (int*)v13;
-		if (v13)
-		{
-		v10 = v13;
-		v7 = GetProcessHeap();
-		result = (int*)HeapFree(v7, 0, v10);
-		}
-		*/
+		if (v5 & 1)
+			fw.WriteBytes(old_0.data(), static_cast<DWORD>(old_0.size() * 4));
+		if (v5 & 2)
+			fw.WriteBytes(old_1.data(), static_cast<DWORD>(old_1.size() * 4));
+		if (v5 & 4)
+			fw.WriteBytes(old_2.data(), static_cast<DWORD>(old_2.size() * 4));
 	}
 	else
 	{
@@ -272,9 +204,7 @@ void CLASSDATA::dump(FileWriter& fw) const
 	if (g_ArcVersion >= 0x3F3)
 	{
 		if (g_ArcVersion < 0x418)
-		{
 			fw.WriteBytes(this_53.data(), 36);
-		}
 		else
 			fw.WriteBytes(this_53.data(), 44);
 	}
@@ -347,46 +277,12 @@ void CLASSDATA::sub_360EA0(FileReader& fw)
 	else
 	{
 		if (g_ArcVersion < 0x418)
-		{
 			fw.ReadBytes(this_53.data(), 36);
-			this_53[9]  = 30;
-			this_53[10] = 30;
-		}
 		else
 			fw.ReadBytes(this_53.data(), 44);
 	}
 
-	if (g_ArcVersion < 0x3FA)
-	{
-		this_14 = 0;
-		this_15 = 0x20000;
-		this_16 = 0;
-		this_17 = 0x20000;
-		if (this_9)
-		{
-			if (this_9 == 1)
-			{
-				this_14 = this_12;
-				this_9  = 2;
-				this_15 = this_13;
-				this_12 = 0;
-				this_13 = 0x20000;
-			}
-			else if (this_9 == 2)
-			{
-				this_16 = this_12;
-				this_9  = 4;
-				this_17 = this_13;
-				this_12 = 0;
-				this_13 = 0x20000;
-			}
-			else
-				this_9 = 0;
-		}
-		else
-			this_9 = 1;
-	}
-	else
+	if (g_ArcVersion >= 0x3FA)
 	{
 		this_14 = fw.ReadDWord();
 		this_15 = fw.ReadDWord();
@@ -394,9 +290,7 @@ void CLASSDATA::sub_360EA0(FileReader& fw)
 		this_17 = fw.ReadDWord();
 	}
 
-	if (g_ArcVersion < 0x40C)
-		this_64 = -1;
-	else
+	if (g_ArcVersion >= 0x40C)
 		this_64 = fw.ReadDWord();
 
 	if (g_ArcVersion >= 0x418)
@@ -503,38 +397,52 @@ void CLASSDATA::sub_36E310(FileReader& fw)
 		}
 	}
 }
-void CLASSDATA::sub_35FF20(FileReader& fw, int a3)
+void CLASSDATA::sub_35FF20(FileReader& fw)
 {
 	if (g_ArcVersion < 0x43F)
 	{
-		NOT_IMPLEMENTED
-		/*
-		lpMem = 0;
-		v12 = 0;
-		v13 = 0;
-		sub_360240(&lpMem, a3);
-		sub_3602E0(&lpMem, a2, (void*)a3);
-		sub_360010(&lpMem, this);
-		if (lpMem)
+		if (g_ArcVersion >= 1018)
+			v5 = this_9;
+		else
 		{
-			v8 = lpMem;
-			v5 = GetProcessHeap();
-			HeapFree(v5, 0, v8);
+			if (this_9)
+			{
+				if (this_9 == 1)
+					v5 = 2;
+				else
+				{
+					if (this_9 != 2)
+						return;
+
+					v5 = 4;
+				}
+			}
+			else
+				v5 = 1;
 		}
-		if (v12)
-		{
-			v9 = v12;
-			v6 = GetProcessHeap();
-			HeapFree(v6, 0, v9);
-		}
-		result = (int*)v13;
-		if (v13)
-		{
-			v10 = v13;
-			v7 = GetProcessHeap();
-			result = (int*)HeapFree(v7, 0, v10);
-		}
-		*/
+
+		const DWORD size_1034_up[] = { 18, 7, 7 };
+		const DWORD size_1033[]    = { 15, 7, 7 };
+		const DWORD size_older[]   = { 11, 5, 5 };
+
+		const DWORD* sizes = nullptr;
+		if (g_ArcVersion >= 1034)
+			sizes = size_1034_up;
+		else if (g_ArcVersion == 1033)
+			sizes = size_1033;
+		else
+			sizes = size_older;
+
+		old_0.resize(sizes[0]);
+		old_1.resize(sizes[1]);
+		old_2.resize(sizes[2]);
+
+		if (v5 & 1)
+			fw.ReadBytes(old_0.data(), sizes[0] * sizeof(DWORD));
+		if (v5 & 2)
+			fw.ReadBytes(old_1.data(), sizes[1] * sizeof(DWORD));
+		if (v5 & 4)
+			fw.ReadBytes(old_2.data(), sizes[2] * sizeof(DWORD));
 	}
 	else
 	{

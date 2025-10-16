@@ -40,6 +40,8 @@ struct UNITINFOCHANGE : public EDITDATA
 	DWORD this_11 = 0;
 	DWORD this_12 = 0;
 	DWORD this_13 = 0;
+	DWORD this_14 = 0;
+	DWORD this_15 = 0;
 	MemData name;
 	MemData description;
 	class CMenuOperation* pImageIDData1 = nullptr;

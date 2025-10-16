@@ -123,7 +123,7 @@ nlohmann::ordered_json SRPG_Resources::GetResMapping() const
 	else
 		secIdx++;
 
-	if (m_resFlags.HasVideoData)
+	if (m_resFlags.HasVideoData && g_ArcVersion >= VIDEO_RESOURCE_ADD_VERSION)
 	{
 		const nlohmann::ordered_json data = m_pVideoData->ToJson();
 		if (!data.empty())
@@ -197,7 +197,7 @@ void SRPG_Resources::InitInternalResourceData(const nlohmann::ordered_json& json
 
 	secSubCount = secIdx;
 
-	if (!m_resFlags.HasVideoData)
+	if (!m_resFlags.HasVideoData && g_ArcVersion >= VIDEO_RESOURCE_ADD_VERSION)
 		allocAndSetCMenuOp(&m_pVideoData, SRPGClasses::VIDEODATA, getJsonResSection(json, secIdx++, secSubCount));
 }
 
@@ -254,7 +254,7 @@ void SRPG_Resources::init(FileReader& fw)
 #endif
 	}
 
-	if (m_resFlags.HasVideoData)
+	if (m_resFlags.HasVideoData && g_ArcVersion >= VIDEO_RESOURCE_ADD_VERSION)
 	{
 		allocAndSetCMenuOp(&m_pVideoData, SRPGClasses::VIDEODATA, fw);
 #ifdef DEBUG_PRINT
@@ -279,7 +279,7 @@ void SRPG_Resources::dump(FileWriter& fw) const
 {
 	// NOTE: I don't know when this was added, but I know it was not
 	//       present in this version
-	if (g_ArcVersion > 0x4C5)
+	if (g_ArcVersion > 0x4CA)
 		fw.WriteBytes(m_unknown.data(), m_unknown.size() * sizeof(DWORD));
 
 	if (m_resFlags.HasResData)
@@ -303,7 +303,7 @@ void SRPG_Resources::dump(FileWriter& fw) const
 	if (m_resFlags.HasFontData)
 		m_pInstalledFontData->Dump(fw);
 
-	if (m_resFlags.HasVideoData)
+	if (m_resFlags.HasVideoData && g_ArcVersion >= VIDEO_RESOURCE_ADD_VERSION)
 		m_pVideoData->Dump(fw);
 
 	if (g_ArcVersion >= 0x475)

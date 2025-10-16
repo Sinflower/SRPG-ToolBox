@@ -149,7 +149,8 @@ struct EVENTPAGE_DATA
 
 private:
 	void sub_D5E70(FileReader& fw);
-	void sub_D4F50(FileReader& fw);
+	void initNewFormat(FileReader& fw);
+	void initOldFormat(FileReader& fw);
 
 public:
 	DWORD checkData = 0;

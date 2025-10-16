@@ -247,11 +247,7 @@ void UNITDATA::dump(FileWriter& fw) const
 	if (g_ArcVersion >= 0x3F1)
 		this_84->Dump(fw);
 
-	if (g_ArcVersion < 0x446)
-	{
-		NOT_IMPLEMENTED
-	}
-	else
+	if (g_ArcVersion >= 0x446)
 		this_85->Dump(fw);
 
 	if (g_ArcVersion >= 0x491)
@@ -442,54 +438,7 @@ void UNITDATA::sub_F6F1D0(FileReader& fw)
 		allocAndSetCMenuOp(&this_84, SRPGClasses::IMAGEIDDATA, fw);
 
 	if (g_ArcVersion < 0x446)
-	{
 		this_85 = new CMenuOperation(SRPGClasses::TYPEIDDATA);
-
-		NOT_IMPLEMENTED
-
-		/*if (this_65 != -1)
-		{
-			v5 = (*(int (__thiscall **)(_DWORD *))*this_85)(this_85);
-			*(_DWORD *)(v5 + 8) = 0;
-			v6 = this_85[1];
-			v7 = v6 + 4;
-			if ( *(_DWORD *)(v6 + 4) )
-			{
-				do
-				{
-					v6 = *(_DWORD *)v7;
-					v8 = *(_DWORD *)(*(_DWORD *)v7 + 4) == 0;
-					v7 = *(_DWORD *)v7 + 4;
-				}
-				while ( !v8 );
-			}
-			*(_DWORD *)(v6 + 4) = v5;
-			*(_DWORD *)(v5 + 12) = v14;
-		}
-
-		v15 = this_85;
-		if ( this_66 != -1 )
-		{
-			v10 = (**(int (__thiscall ***)(_DWORD))this_85)(this_85);
-			*(_DWORD *)(v10 + 8) = 1;
-			v11 = *(_DWORD *)(v15 + 4);
-			v12 = v11 + 4;
-
-			if ( *(_DWORD *)(v11 + 4) )
-			{
-				do
-				{
-					v11 = *(_DWORD *)v12;
-					v8 = *(_DWORD *)(*(_DWORD *)v12 + 4) == 0;
-					v12 = *(_DWORD *)v12 + 4;
-				}
-				while ( !v8 );
-			}
-
-			*(_DWORD *)(v11 + 4) = v10;
-			*(_DWORD *)(v10 + 12) = v9;
-		}*/
-	}
 	else
 		allocAndSetCMenuOp(&this_85, SRPGClasses::TYPEIDDATA, fw);
 

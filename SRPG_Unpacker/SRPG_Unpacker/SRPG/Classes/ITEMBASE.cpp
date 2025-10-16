@@ -40,9 +40,6 @@ void ITEMBASE::init(FileReader& fw)
 	this_34 = fw.ReadDWord();
 	this_35 = fw.ReadDWord();
 
-	// if (g_ArcVersion < 0x437)
-	//	this_35 = (this_35 == 0);
-
 	sub_36E310(fw);
 
 	allocAndSetCMenuOp(&m_pTypeIDData1, SRPGClasses::TYPEIDDATA, fw);
@@ -52,10 +49,10 @@ void ITEMBASE::init(FileReader& fw)
 
 	initMemData(this_41, fw);
 
-	if (g_ArcVersion >= 0x3EA)
+	if (g_ArcVersion >= 1002)
 		this_36 = fw.ReadDWord();
 
-	if (g_ArcVersion >= 0x4A4)
+	if (g_ArcVersion >= 1188)
 	{
 		this_42 = fw.ReadDWord();
 		initMemData(this_43, fw);
@@ -136,19 +133,8 @@ void ITEMBASE::dump(FileWriter& fw) const
 	//////
 	if (g_ArcVersion < 0x41D)
 	{
-		NOT_IMPLEMENTED
-		/*
-		Block = alloc_CMenuOperation((void *)0x9C6);
-		CMenuInit(Block, a2);
-		v3 = alloc_CMenuOperation((void *)0x9C6);
-		CMenuInit(v3, a2);
-		sub_1019F0(0);
-		sub_1019F0(1);
-		if ( Block )
-		sub_1212F0(Block);
-		if ( v3 )
-		sub_1212F0(v3);
-		*/
+		m_pTypeIDDataOld0->Dump(fw);
+		m_pTypeIDDataOld1->Dump(fw);
 	}
 	else
 	{
@@ -179,21 +165,10 @@ void ITEMBASE::dump(FileWriter& fw) const
 
 void ITEMBASE::sub_101AB0(FileReader& fw)
 {
-	if (g_ArcVersion < 0x41D)
+	if (g_ArcVersion < 1053)
 	{
-		NOT_IMPLEMENTED
-		/*
-		Block = alloc_CMenuOperation((void *)0x9C6);
-		CMenuInit(Block, a2);
-		v3 = alloc_CMenuOperation((void *)0x9C6);
-		CMenuInit(v3, a2);
-		sub_1019F0(0);
-		sub_1019F0(1);
-		if ( Block )
-			sub_1212F0(Block);
-		if ( v3 )
-			sub_1212F0(v3);
-		*/
+		allocAndSetCMenuOp(&m_pTypeIDDataOld0, SRPGClasses::TYPEIDDATA, fw);
+		allocAndSetCMenuOp(&m_pTypeIDDataOld1, SRPGClasses::TYPEIDDATA, fw);
 	}
 	else
 	{

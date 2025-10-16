@@ -47,7 +47,7 @@ void SUPPORTDATA::init(FileReader& fw)
 
 	if (g_ArcVersion >= 1230)
 		allocAndSetCMenuOp(&this_12, SRPGClasses::VARIABLECONDITIONDATA, fw);
-	else
+	else if (g_ArcVersion >= 1043)
 	{
 		this_13 = fw.ReadDWord();
 		if (this_13 != 0)

@@ -70,6 +70,9 @@ struct ITEMBASE : public LEGENDDATA
 
 	class CMenuOperation* m_pTypeIDData2 = nullptr;
 
+	class CMenuOperation* m_pTypeIDDataOld0 = nullptr;
+	class CMenuOperation* m_pTypeIDDataOld1 = nullptr;
+
 	MemData this_41;
 	DWORD this_42 = 0;
 	MemData this_43;

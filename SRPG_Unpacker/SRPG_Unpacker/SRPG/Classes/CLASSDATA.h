@@ -46,6 +46,7 @@ struct CLASSDATA : public LEGENDDATA
 	DWORD this_18     = 0;
 	DWORD this_19     = 0;
 	DWORD this_20     = 0;
+	DWORD this_21     = 0;
 
 	class CMenuOperation* m_pUnitStatusData = nullptr;
 	class CMenuOperation* m_pTypeIDData1    = nullptr;
@@ -100,6 +101,12 @@ struct CLASSDATA : public LEGENDDATA
 	DWORD this_78 = 0;
 	MemData this_79;
 
+	std::vector<DWORD> old_0;
+	std::vector<DWORD> old_1;
+	std::vector<DWORD> old_2;
+
+	DWORD v5 = 0;
+
 	void init(FileReader& fw) override;
 	void dump([[maybe_unused]] FileWriter& fw) const override;
 	void print(std::ostream& os) const override;
@@ -108,5 +115,5 @@ private:
 	void sub_360EA0(FileReader& fw);
 	void sub_37E310(FileReader& fw);
 	void sub_36E310(FileReader& fw);
-	void sub_35FF20(FileReader& fw, int a3);
+	void sub_35FF20(FileReader& fw);
 };

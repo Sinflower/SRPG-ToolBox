@@ -40,6 +40,9 @@ UnitNamesCollection SRPG_Database::GetGlobalUnitNames() const
 
 	for (std::size_t i = 0; i < m_pNPCSettings.size(); i++)
 	{
+		if (m_pNPCSettings[i] == nullptr)
+			continue;
+
 		UnitNameMap map = buildUnitNameMap(m_pNPCSettings[i], static_cast<DWORD>(i));
 		names[1].insert(map.begin(), map.end());
 	}
@@ -79,7 +82,7 @@ void SRPG_Database::init(FileReader& fw)
 	std::cout << "OFFSET-SKILLDATA=" << fw.GetOffset() << std::endl;
 #endif
 
-	if (g_ArcVersion >= 0x400)
+	if (g_ArcVersion >= 1024)
 		allocAndSetCMenuOp(&m_pStates, SRPGClasses::STATEDATA, fw);
 #ifdef DEBUG_PRINT
 	std::cout << "OFFSET-STATEDATA=" << fw.GetOffset() << std::endl;
@@ -104,7 +107,7 @@ void SRPG_Database::init(FileReader& fw)
 	// Config Tab
 	///////////////
 
-	if (g_ArcVersion >= 0x455)
+	if (g_ArcVersion >= 1109)
 	{
 		for (CMenuOperation*& CMO : m_pNPCSettings)
 			allocAndSetCMenuOp(&CMO, SRPGClasses::NPCDATA, fw);
@@ -115,6 +118,15 @@ void SRPG_Database::init(FileReader& fw)
 		allocAndSetCMenuOp(&m_pStringData1, SRPGClasses::STRINGDATA, fw);
 #ifdef DEBUG_PRINT
 		std::cout << "OFFSET-STRINGDATA1=" << fw.GetOffset() << std::endl;
+#endif
+	}
+	else
+	{
+		allocAndSetCMenuOp(&m_pNPCSettings[0], SRPGClasses::NPCDATA, fw);
+		for (std::size_t i = 1; i < m_pNPCSettings.size(); i++)
+			m_pNPCSettings[i] = nullptr;
+#ifdef DEBUG_PRINT
+		std::cout << "OFFSET-NPCDATA=" << fw.GetOffset() << std::endl;
 #endif
 	}
 
@@ -206,7 +218,10 @@ void SRPG_Database::dump(FileWriter& fw) const
 	if (g_ArcVersion >= 0x455)
 	{
 		for (const CMenuOperation* CMO : m_pNPCSettings)
-			CMO->Dump(fw);
+		{
+			if (CMO)
+				CMO->Dump(fw);
+		}
 
 		m_pStringData1->Dump(fw);
 	}

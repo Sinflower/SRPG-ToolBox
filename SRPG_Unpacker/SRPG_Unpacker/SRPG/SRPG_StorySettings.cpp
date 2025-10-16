@@ -58,7 +58,7 @@ void SRPG_StorySettings::init(FileReader& fw)
 	std::cout << "OFFSET-SOUNDMODEDATA=" << fw.GetOffset() << std::endl;
 #endif
 
-	if (g_ArcVersion >= 0x428)
+	if (g_ArcVersion >= 1064)
 	{
 		this_243 = fw.ReadDWord();
 		this_244 = fw.ReadDWord();
@@ -68,7 +68,7 @@ void SRPG_StorySettings::init(FileReader& fw)
 		this_248 = fw.ReadDWord();
 	}
 
-	if (g_ArcVersion >= 0x48D)
+	if (g_ArcVersion >= 1165)
 		this_249 = fw.ReadDWord();
 
 #ifdef DEBUG_PRINT
@@ -85,7 +85,7 @@ void SRPG_StorySettings::dump(FileWriter& fw) const
 	m_pGalleryData->Dump(fw);
 	m_pSoundModeData->Dump(fw);
 
-	if (g_ArcVersion >= 0x428)
+	if (g_ArcVersion >= 1064)
 	{
 		fw.Write(this_243);
 		fw.Write(this_244);
@@ -95,7 +95,7 @@ void SRPG_StorySettings::dump(FileWriter& fw) const
 		fw.Write(this_248);
 	}
 
-	if (g_ArcVersion >= 0x48D)
+	if (g_ArcVersion >= 1165)
 		fw.Write(this_249);
 }
 

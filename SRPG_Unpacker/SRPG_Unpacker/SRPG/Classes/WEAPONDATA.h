@@ -64,6 +64,14 @@ struct WEAPONDATA : public ITEMBASE
 	class CMenuOperation* m_pImageIDData1 = nullptr;
 	class CMenuOperation* m_pImageIDData2 = nullptr;
 
+	// OLD
+	DWORD v5 = 0;
+	std::vector<DWORD> old_0;
+	std::vector<DWORD> old_1;
+	std::vector<DWORD> old_2;
+	std::array<DWORD, 24> old_4;
+	//////
+
 	// NEW
 	std::array<DWORD, 12> this_130;
 	std::array<DWORD, 12> this_131;
@@ -71,8 +79,8 @@ struct WEAPONDATA : public ITEMBASE
 
 	void sub_102420(FileReader& fw);
 	void sub_100680(FileReader& fw);
-	void sub_FFF20(FileReader& fw, int a3);
-	void dump_sub_FFF20(FileWriter& fw, int a3) const;
+	void sub_FFF20(FileReader& fw);
+	void dump_sub_FFF20(FileWriter& fw) const;
 	void sub_102390(FileReader& fw);
 
 	virtual void init(FileReader& fw);

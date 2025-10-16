@@ -34,179 +34,9 @@
 void EVENTPAGE_DATA::init(FileReader& fw)
 {
 	if (g_ArcVersion >= 0x432)
-	{
-		sub_D4F50(fw);
-		return;
-	}
-
-	if (g_ArcVersion < 0x41B)
-	{
-		this_0 = fw.ReadDWord();
-		this_1 = fw.ReadDWord();
-	}
+		initNewFormat(fw);
 	else
-	{
-		this_0 = fw.ReadDWord();
-		if (this_0 > 0)
-			this_1 = fw.ReadDWord();
-	}
-
-	if (g_ArcVersion < 0x41B)
-	{
-		this_17 = fw.ReadDWord();
-		this_18 = fw.ReadDWord();
-	}
-	else
-	{
-		this_17 = fw.ReadDWord();
-		if (this_17 > 0)
-			this_18 = fw.ReadDWord();
-	}
-
-	if (g_ArcVersion < 0x41B)
-	{
-		enTurn                  = fw.ReadDWord();
-		turn                    = fw.ReadDWord();
-		turnCondition           = fw.ReadDWord();
-		turnArmy                = fw.ReadDWord();
-		turnTreatAsRelativeTurn = fw.ReadDWord();
-	}
-	else
-	{
-		enTurn = fw.ReadDWord();
-		if (enTurn > 0)
-		{
-			turn                    = fw.ReadDWord();
-			turnCondition           = fw.ReadDWord();
-			turnArmy                = fw.ReadDWord();
-			turnTreatAsRelativeTurn = fw.ReadDWord();
-		}
-	}
-
-	if (g_ArcVersion < 0x41B)
-	{
-		enGold        = fw.ReadDWord();
-		gold          = fw.ReadDWord();
-		goldCondition = fw.ReadDWord();
-	}
-	else
-	{
-		enGold = fw.ReadDWord();
-		if (enGold > 0)
-		{
-			gold          = fw.ReadDWord();
-			goldCondition = fw.ReadDWord();
-		}
-	}
-
-	if (g_ArcVersion < 0x41B)
-	{
-		enUnitTotal            = fw.ReadDWord();
-		unitTotal              = fw.ReadDWord();
-		unitTotalCondition     = fw.ReadDWord();
-		unitTotalArmy          = fw.ReadDWord();
-		unitTotalLifeCondition = fw.ReadDWord();
-	}
-	else
-	{
-		enUnitTotal = fw.ReadDWord();
-		if (enUnitTotal > 0)
-		{
-			unitTotal              = fw.ReadDWord();
-			unitTotalCondition     = fw.ReadDWord();
-			unitTotalArmy          = fw.ReadDWord();
-			unitTotalLifeCondition = fw.ReadDWord();
-		}
-	}
-
-	if (g_ArcVersion < 0x41B)
-	{
-		enBonus        = fw.ReadDWord();
-		bonus          = fw.ReadDWord();
-		bonusCondition = fw.ReadDWord();
-	}
-	else
-	{
-		enBonus = fw.ReadDWord();
-		if (enBonus > 0)
-		{
-			bonus          = fw.ReadDWord();
-			bonusCondition = fw.ReadDWord();
-		}
-	}
-
-	if (g_ArcVersion < 0x41B)
-	{
-		enEnvironment        = fw.ReadDWord();
-		environmentCondition = fw.ReadDWord();
-	}
-	else
-	{
-		enEnvironment = fw.ReadDWord();
-		if (enEnvironment > 0)
-			environmentCondition = fw.ReadDWord();
-	}
-
-	if (g_ArcVersion < 0x41B)
-		this_90 = fw.ReadDWord();
-	else
-		this_90 = fw.ReadDWord();
-
-	if (g_ArcVersion < 0x41B)
-		this_92 = fw.ReadDWord();
-	else
-		this_92 = fw.ReadDWord();
-
-	if (g_ArcVersion < 0x3F5)
-	{
-		this_34 = fw.ReadDWord();
-		this_35 = fw.ReadDWord();
-		this_36 = fw.ReadDWord();
-		this_37 = fw.ReadDWord();
-		this_38 = 1;
-	}
-	else
-	{
-		if (g_ArcVersion < 0x41B)
-		{
-			this_34 = fw.ReadDWord();
-			this_35 = fw.ReadDWord();
-			this_36 = fw.ReadDWord();
-			this_37 = fw.ReadDWord();
-			this_38 = fw.ReadDWord();
-		}
-		else
-		{
-			this_34 = fw.ReadDWord();
-
-			if (this_34 > 0)
-			{
-				this_35 = fw.ReadDWord();
-				this_36 = fw.ReadDWord();
-				this_37 = fw.ReadDWord();
-				this_38 = fw.ReadDWord();
-			}
-		}
-
-		this_37 = ((this_37 == 0) ? 1 : 7);
-	}
-
-	this_41 = 0;
-	this_42 = new CMenuOperation(SRPGClasses::TYPEIDDATA);
-	sub_D5E70(fw);
-
-	if (!this_2)
-		this_2 = new SWITCHACTION;
-
-	this_2->init(fw);
-
-	allocAndSetCMenuOp(&this_39, SRPGClasses::MAPPOSDATA, fw);
-	allocAndSetCMenuOp(&this_40, SRPGClasses::MAPPOSDATA, fw);
-	allocAndSetCMenuOp(&this_32, SRPGClasses::ITEMCONDITIONDATA, fw);
-	allocAndSetCMenuOp(&this_33, SRPGClasses::UNITCONDITIONDATA, fw);
-	allocAndSetCMenuOp(&this_91, SRPGClasses::TYPEIDDATA, fw);
-
-	initMemData(this_93, fw);
+		initOldFormat(fw);
 }
 
 void EVENTPAGE_DATA::dump(FileWriter& fw) const
@@ -737,51 +567,46 @@ void EVENTPAGE_DATA::sub_D5E70(FileReader& fw)
 {
 	if (g_ArcVersion >= 0x3F4)
 	{
-		if (g_ArcVersion >= 0x41B)
-		{
-			this_12 = fw.ReadDWord();
-			if (this_12 > 0)
-			{
-				this_13                 = fw.ReadDWord();
-				this_14                 = fw.ReadDWord();
-				this_15                 = fw.ReadDWord();
-				this_16                 = fw.ReadDWord();
-				this_17                 = fw.ReadDWord();
-				this_18                 = fw.ReadDWord();
-				enTurn                  = fw.ReadDWord();
-				turn                    = fw.ReadDWord();
-				turnCondition           = fw.ReadDWord();
-				turnArmy                = fw.ReadDWord();
-				turnTreatAsRelativeTurn = fw.ReadDWord();
-				enGold                  = fw.ReadDWord();
-				gold                    = fw.ReadDWord();
-			}
-		}
-		else
-		{
-			this_12                 = fw.ReadDWord();
-			this_13                 = fw.ReadDWord();
-			this_14                 = fw.ReadDWord();
-			this_15                 = fw.ReadDWord();
-			this_16                 = fw.ReadDWord();
-			this_17                 = fw.ReadDWord();
-			this_18                 = fw.ReadDWord();
-			enTurn                  = fw.ReadDWord();
-			turn                    = fw.ReadDWord();
-			turnCondition           = fw.ReadDWord();
-			turnArmy                = fw.ReadDWord();
-			turnTreatAsRelativeTurn = fw.ReadDWord();
-			enGold                  = fw.ReadDWord();
-			gold                    = fw.ReadDWord();
-		}
-
 		if (g_ArcVersion < 0x41B)
 		{
+			this_3  = fw.ReadDWord();
+			this_4  = fw.ReadDWord();
+			this_5  = fw.ReadDWord();
+			this_6  = fw.ReadDWord();
+			this_7  = fw.ReadDWord();
+			this_8  = fw.ReadDWord();
+			this_9  = fw.ReadDWord();
+			this_10 = fw.ReadDWord();
+			this_11 = fw.ReadDWord();
+			this_12 = fw.ReadDWord();
+			this_13 = fw.ReadDWord();
+			this_14 = fw.ReadDWord();
+			this_15 = fw.ReadDWord();
+			this_16 = fw.ReadDWord();
+
 			enProbability = fw.ReadDWord();
 			probability   = fw.ReadDWord();
 		}
 		else
 		{
+			this_3 = fw.ReadDWord();
+			if (this_3 > 0)
+			{
+				this_4  = fw.ReadDWord();
+				this_5  = fw.ReadDWord();
+				this_6  = fw.ReadDWord();
+				this_7  = fw.ReadDWord();
+				this_8  = fw.ReadDWord();
+				this_9  = fw.ReadDWord();
+				this_10 = fw.ReadDWord();
+				this_11 = fw.ReadDWord();
+				this_12 = fw.ReadDWord();
+				this_13 = fw.ReadDWord();
+				this_14 = fw.ReadDWord();
+				this_15 = fw.ReadDWord();
+				this_16 = fw.ReadDWord();
+			}
+
 			enProbability = fw.ReadDWord();
 			if (enProbability > 0)
 				probability = fw.ReadDWord();
@@ -806,33 +631,14 @@ void EVENTPAGE_DATA::sub_D5E70(FileReader& fw)
 				distanceRange = fw.ReadDWord();
 			}
 		}
-
-		allocAndSetCMenuOp(&this_46, SRPGClasses::TYPEIDDATA, fw);
 	}
-	else
+	else if (g_ArcVersion >= 0x3F9)
 	{
-		if (g_ArcVersion < 0x3F9)
-		{
-			enDistance = 0;
-			this_44    = 0;
-			this_46    = new CMenuOperation(SRPGClasses::TYPEIDDATA);
-		}
-		else
-		{
-			enDistance = fw.ReadDWord();
-			this_44    = fw.ReadDWord();
-
-			allocAndSetCMenuOp(&this_46, SRPGClasses::TYPEIDDATA, fw);
-		}
-		distanceRange = 1;
+		enDistance = fw.ReadDWord();
+		this_44    = fw.ReadDWord();
 	}
 
-	this_47 = 0;
-	this_48 = 1;
-
-	this_49 = new CMenuOperation(SRPGClasses::TYPEIDDATA);
-	this_50 = 0;
-	this_51 = new CMenuOperation(SRPGClasses::TYPEIDDATA);
+	allocAndSetCMenuOp(&this_46, SRPGClasses::TYPEIDDATA, fw);
 
 	if (g_ArcVersion >= 0x418)
 	{
@@ -858,62 +664,8 @@ void EVENTPAGE_DATA::sub_D5E70(FileReader& fw)
 
 		allocAndSetCMenuOp(&this_57, SRPGClasses::TYPEIDDATA, fw);
 	}
-	else
-	{
-		this_52 = 0;
-		this_53 = 0;
-		this_54 = 0;
-		this_55 = 1;
-		this_56 = 0;
-		this_57 = new CMenuOperation(SRPGClasses::TYPEIDDATA);
 
-		if (this_6 == 4)
-		{
-			if (this_8 > 9)
-				this_8 += +2;
-		}
-		if (this_9 == 4)
-		{
-			if (this_11 > 9)
-				this_11 += 2;
-		}
-		if (this_13 == 4)
-		{
-			if (this_15 > 9)
-				this_15 += 2;
-		}
-	}
-
-	this_58 = 0;
-	this_59 = new CMenuOperation(SRPGClasses::TYPEIDDATA);
-
-	if (g_ArcVersion < 0x41B)
-	{
-		this_60                    = 0;
-		this_61                    = 0;
-		this_62                    = 0;
-		this_63                    = 1;
-		enStatComparison           = 0;
-		this_65                    = 0;
-		this_66                    = 12;
-		this_67                    = 0;
-		statComparisonLeftOp       = 0;
-		this_69                    = 0;
-		this_70                    = 12;
-		this_71                    = 0;
-		statComparisonCondition    = 0;
-		this_73                    = 0;
-		this_74                    = 12;
-		this_75                    = 0;
-		statComparisonRightOp      = 0;
-		this_77                    = 0;
-		this_78                    = 12;
-		this_79                    = 0;
-		statComparisonEnParamBonus = 0;
-		this_81                    = 0;
-		this_82                    = 0;
-	}
-	else
+	if (g_ArcVersion >= 0x41B)
 	{
 		this_60 = fw.ReadDWord();
 		if (this_60)
@@ -948,7 +700,7 @@ void EVENTPAGE_DATA::sub_D5E70(FileReader& fw)
 	}
 }
 
-void EVENTPAGE_DATA::sub_D4F50(FileReader& fw)
+void EVENTPAGE_DATA::initNewFormat(FileReader& fw)
 {
 	checkData = fw.ReadDWord();
 
@@ -1045,9 +797,7 @@ void EVENTPAGE_DATA::sub_D4F50(FileReader& fw)
 		allocAndSetCMenuOp(&this_39, SRPGClasses::MAPPOSDATA, fw);
 		allocAndSetCMenuOp(&this_40, SRPGClasses::MAPPOSDATA, fw);
 
-		if (g_ArcVersion < 0x442)
-			this_37 = (this_37 > 0) ? 7 : 1;
-		else
+		if (g_ArcVersion >= 0x442)
 		{
 			this_41 = fw.ReadDWord();
 			allocAndSetCMenuOp(&this_42, SRPGClasses::TYPEIDDATA, fw);
@@ -1182,4 +932,133 @@ void EVENTPAGE_DATA::sub_D4F50(FileReader& fw)
 			this_143 = fw.ReadDWord();
 		}
 	}
+}
+
+void EVENTPAGE_DATA::initOldFormat(FileReader& fw)
+{
+	if (g_ArcVersion < 0x41B)
+	{
+		this_0 = fw.ReadDWord();
+		this_1 = fw.ReadDWord();
+		this_17 = fw.ReadDWord();
+		this_18 = fw.ReadDWord();
+
+		enTurn                  = fw.ReadDWord();
+		turn                    = fw.ReadDWord();
+		turnCondition           = fw.ReadDWord();
+		turnArmy                = fw.ReadDWord();
+		turnTreatAsRelativeTurn = fw.ReadDWord();
+
+		enGold        = fw.ReadDWord();
+		gold          = fw.ReadDWord();
+		goldCondition = fw.ReadDWord();
+
+		enUnitTotal            = fw.ReadDWord();
+		unitTotal              = fw.ReadDWord();
+		unitTotalCondition     = fw.ReadDWord();
+		unitTotalArmy          = fw.ReadDWord();
+		unitTotalLifeCondition = fw.ReadDWord();
+
+		enBonus        = fw.ReadDWord();
+		bonus          = fw.ReadDWord();
+		bonusCondition = fw.ReadDWord();
+
+		enEnvironment        = fw.ReadDWord();
+		environmentCondition = fw.ReadDWord();
+	}
+	else
+	{
+		this_0 = fw.ReadDWord();
+		if (this_0 > 0)
+			this_1 = fw.ReadDWord();
+
+		this_17 = fw.ReadDWord();
+		if (this_17 > 0)
+			this_18 = fw.ReadDWord();
+
+		enTurn = fw.ReadDWord();
+		if (enTurn > 0)
+		{
+			turn                    = fw.ReadDWord();
+			turnCondition           = fw.ReadDWord();
+			turnArmy                = fw.ReadDWord();
+			turnTreatAsRelativeTurn = fw.ReadDWord();
+		}
+
+		enGold = fw.ReadDWord();
+		if (enGold > 0)
+		{
+			gold          = fw.ReadDWord();
+			goldCondition = fw.ReadDWord();
+		}
+
+		enUnitTotal = fw.ReadDWord();
+		if (enUnitTotal > 0)
+		{
+			unitTotal              = fw.ReadDWord();
+			unitTotalCondition     = fw.ReadDWord();
+			unitTotalArmy          = fw.ReadDWord();
+			unitTotalLifeCondition = fw.ReadDWord();
+		}
+
+		enBonus = fw.ReadDWord();
+		if (enBonus > 0)
+		{
+			bonus          = fw.ReadDWord();
+			bonusCondition = fw.ReadDWord();
+		}
+
+		enEnvironment = fw.ReadDWord();
+		if (enEnvironment > 0)
+			environmentCondition = fw.ReadDWord();
+	}
+
+	this_90 = fw.ReadDWord();
+	this_92 = fw.ReadDWord();
+
+	if (g_ArcVersion < 0x3F5)
+	{
+		this_34 = fw.ReadDWord();
+		this_35 = fw.ReadDWord();
+		this_36 = fw.ReadDWord();
+		this_37 = fw.ReadDWord();
+	}
+	else
+	{
+		if (g_ArcVersion < 0x41B)
+		{
+			this_34 = fw.ReadDWord();
+			this_35 = fw.ReadDWord();
+			this_36 = fw.ReadDWord();
+			this_37 = fw.ReadDWord();
+			this_38 = fw.ReadDWord();
+		}
+		else
+		{
+			this_34 = fw.ReadDWord();
+
+			if (this_34 > 0)
+			{
+				this_35 = fw.ReadDWord();
+				this_36 = fw.ReadDWord();
+				this_37 = fw.ReadDWord();
+				this_38 = fw.ReadDWord();
+			}
+		}
+	}
+
+	sub_D5E70(fw);
+
+	if (!this_2)
+		this_2 = new SWITCHACTION;
+
+	this_2->init(fw);
+
+	allocAndSetCMenuOp(&this_39, SRPGClasses::MAPPOSDATA, fw);
+	allocAndSetCMenuOp(&this_40, SRPGClasses::MAPPOSDATA, fw);
+	allocAndSetCMenuOp(&this_32, SRPGClasses::ITEMCONDITIONDATA, fw);
+	allocAndSetCMenuOp(&this_33, SRPGClasses::UNITCONDITIONDATA, fw);
+	allocAndSetCMenuOp(&this_91, SRPGClasses::TYPEIDDATA, fw);
+
+	initMemData(this_93, fw);
 }

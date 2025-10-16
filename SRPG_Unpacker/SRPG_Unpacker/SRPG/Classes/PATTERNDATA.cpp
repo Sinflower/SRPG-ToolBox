@@ -70,12 +70,7 @@ void PATTERNDATA::init(FileReader& fw)
 
 	this_13 = fw.ReadDWord();
 
-	if (g_ArcVersion < 0x424)
-	{
-		if (this_13)
-			this_13 = 2;
-	}
-	else
+	if (g_ArcVersion >= 0x424)
 	{
 		this_14 = fw.ReadDWord();
 		allocAndSetCMenuOp(&this_15, SRPGClasses::TYPEIDDATA, fw);

@@ -98,13 +98,18 @@ void SRPG_Project::WritePatch(const fs::path& outPath) const
 	m_recollectionEvents.WritePatches(outPath);
 	m_interOpData.WritePatches(outPath);
 	m_storySettings.WritePatches(outPath);
-	m_baseSettings.WritePatches(outPath);
+
+	if (g_ArcVersion >= 1085)
+		m_baseSettings.WritePatches(outPath);
 
 	std::filesystem::path commonsPath = SRPG_ContainerBase::CommonsPath(outPath);
 	nlohmann::ordered_json j;
 	j["windowTitle"]   = m_database.GetWindowTitle();
 	j["gameTitle"]     = m_database.GetGameTitle();
-	j["saveFileTitle"] = m_baseSettings.GetSaveFileTitle();
+
+	if (g_ArcVersion >= 1085)
+		j["saveFileTitle"] = m_baseSettings.GetSaveFileTitle();
+	
 	WriteJsonToFile(j, commonsPath, L"titles.json");
 	std::cout << "Finished writing patches" << std::endl;
 }
@@ -118,7 +123,9 @@ void SRPG_Project::ApplyPatch(const std::filesystem::path& patchPath)
 	m_recollectionEvents.ApplyPatches(patchPath);
 	m_interOpData.ApplyPatches(patchPath);
 	m_storySettings.ApplyPatches(patchPath);
-	m_baseSettings.ApplyPatches(patchPath);
+
+	if (g_ArcVersion >= 1085)
+		m_baseSettings.ApplyPatches(patchPath);
 
 	std::filesystem::path commonsPath = SRPG_ContainerBase::CommonsPath(patchPath);
 
@@ -126,7 +133,11 @@ void SRPG_Project::ApplyPatch(const std::filesystem::path& patchPath)
 
 	CALL_STR_SET_FUNC_IF_IN_JSON(j, "windowTitle", m_database.SetWindowTitle);
 	CALL_STR_SET_FUNC_IF_IN_JSON(j, "gameTitle", m_database.SetGameTitle);
-	CALL_STR_SET_FUNC_IF_IN_JSON(j, "saveFileTitle", m_baseSettings.SetSaveFileTitle);
+
+	if (g_ArcVersion >= 1085)
+	{
+		CALL_STR_SET_FUNC_IF_IN_JSON(j, "saveFileTitle", m_baseSettings.SetSaveFileTitle);
+	}
 
 	std::cout << "Finished applying patches" << std::endl;
 }
@@ -154,14 +165,19 @@ void SRPG_Project::loadProject()
 
 	m_interOpData.Init(m_fw);
 	m_storySettings.Init(m_fw);
-	m_baseSettings.Init(m_fw);
+
+	if (g_ArcVersion >= 1085)
+		m_baseSettings.Init(m_fw);
 
 	m_resources.Init(m_fw);
 
 	if (m_fw.IsEndOfFile())
 		std::cout << "Successfully parsed the entire project file" << std::endl;
 	else
+	{
 		std::cout << "Warning: There is still unread data in the project file, something might have gone wrong" << std::endl;
+		std::cout << std::format("Unread data size: 0x{:X} bytes", m_fw.GetSize() - m_fw.GetOffset()) << std::endl;
+	}
 }
 
 // ---------------------------------
@@ -183,12 +199,14 @@ void SRPG_Project::dump(FileWriter& fw) const
 	m_animations.Dump(fw);
 	m_database.Dump(fw);
 	m_gameLayout.Dump(fw);
-
 	m_recollectionEvents.Dump(fw);
 
 	m_interOpData.Dump(fw);
 	m_storySettings.Dump(fw);
-	m_baseSettings.Dump(fw);
+
+	if (g_ArcVersion >= 1085)
+		m_baseSettings.Dump(fw);
+
 	m_resources.Dump(fw);
 }
 
@@ -267,5 +285,7 @@ void SRPG_Project::dumpAsProj(FileWriter& fw) const
 	m_storySettings.Dump(fw);
 
 	m_resources.DumpProj(fw);
-	m_baseSettings.Dump(fw);
+
+	if (g_ArcVersion >= 1085)
+		m_baseSettings.Dump(fw);
 }
