@@ -229,6 +229,15 @@ void unpack(const fs::path& dtsFile, const fs::path& outFolder = L"output")
 
 void pack(const fs::path& inFolder, const fs::path& outFile = L"output.dts")
 {
+	// Make sure the output file is not currently in use
+	if (fs::exists(outFile))
+	{
+		std::ifstream testFile(outFile, std::ios::binary);
+		if (!testFile.is_open())
+			throw std::runtime_error(std::format("Output dts file ({}) is currently in use.\nIs the game maybe running?", outFile.string()));
+		testFile.close();
+	}
+
 	DTSTool dtsT;
 	dtsT.Pack(inFolder, outFile);
 }
