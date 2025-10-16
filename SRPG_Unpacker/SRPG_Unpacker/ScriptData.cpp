@@ -95,44 +95,43 @@ void ScriptData::add2Config(const fs::path &file) const
 
 void ScriptData::write2File(const std::wstring &filePath, const std::vector<uint8_t> &data) const
 {
-	const std::locale utf8_locale = std::locale(std::locale(), new std::codecvt_utf8<wchar_t>());
-	std::wofstream file(filePath, std::ios::out | std::ios::binary);
+	std::ofstream file(filePath, std::ios::out | std::ios::binary);
 
 	if (file.fail())
 		throw std::runtime_error(std::format("Failed to open file: {}", ws2s(filePath)));
 
-	file.imbue(utf8_locale);
+	std::vector<uint8_t> wdata = ws2s(data);
 
-	std::size_t size = data.size();
+	std::size_t size = wdata.size();
 
-	if (data.back() == 0x0)
-		size -= 2;
+	if (wdata.back() == 0x0)
+		size -= 1;
 
-	file.write(reinterpret_cast<const wchar_t *>(data.data()), size / 2);
+	file.write(reinterpret_cast<const char *>(wdata.data()), size);
 	file.close();
 }
 
 void ScriptData::readFromFile(const std::wstring &filePath, std::vector<uint8_t> &data) const
 {
-	const std::locale utf8_locale = std::locale(std::locale(), new std::codecvt_utf8<wchar_t>());
-	std::wifstream file(filePath, std::ios::in | std::ios::binary);
+	std::ifstream file(filePath, std::ios::in | std::ios::binary);
 
 	if (file.fail())
 		throw std::runtime_error(std::format("Failed to open file: {}", ws2s(filePath)));
 
-	file.imbue(utf8_locale);
-	std::wstringstream buffer;
-	buffer << file.rdbuf();
+	file.seekg(0, std::ios::end);
+	std::size_t size = file.tellg();
+	file.seekg(0, std::ios::beg);
 
-	buffer.seekg(0, std::ios::end);
-	std::size_t size = buffer.tellg() * 2;
-	buffer.seekg(0, std::ios::beg);
+	std::vector<uint8_t> sdata(size, 0);
+	file.read((char *)sdata.data(), size);
 
-	data.resize(size, 0);
-	std::memcpy(data.data(), (uint8_t *)buffer.str().c_str(), size);
+	// Add a null-terminator if not present
+	if (sdata.empty() || sdata.back() != 0x0)
+		sdata.push_back(0x0);
 
-	data.push_back(0x0);
-	data.push_back(0x0);
+	std::vector<uint8_t> wdata = s2ws(sdata);
+
+	data.swap(wdata);
 
 	file.close();
 }

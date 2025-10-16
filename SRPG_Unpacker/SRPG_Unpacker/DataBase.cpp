@@ -243,20 +243,26 @@ void DataBase::buildData(const std::wstring &inputFolder)
 //       fs::file_size() * 2 does not return the correct size for this type of file
 uint32_t DataBase::getFileSizeUTF16(const std::wstring &filePath) const
 {
-	const std::locale utf8_locale = std::locale(std::locale(), new std::codecvt_utf8<wchar_t>());
-	std::wifstream file(filePath, std::ios::in | std::ios::binary);
+	std::ifstream file(filePath, std::ios::in | std::ios::binary);
 
 	if (file.fail())
 		throw std::runtime_error(std::format("Failed to open file: {}", ws2s(filePath)));
 
-	file.imbue(utf8_locale);
-	std::wstringstream buffer;
-	buffer << file.rdbuf();
+	file.seekg(0, std::ios::end);
+	std::size_t size = file.tellg();
+	file.seekg(0, std::ios::beg);
 
-	buffer.seekg(0, std::ios::end);
-	std::size_t size = buffer.tellg() * 2;
-
+	std::vector<uint8_t> data(size, 0);
+	file.read((char *)data.data(), size);
 	file.close();
+
+	// Add a null-terminator if not present
+	if (data.empty() || data.back() != 0x0)
+		data.push_back(0x0);
+
+	size = MultiByteToWideChar(CP_UTF8, 0, reinterpret_cast<const char *>(data.data()), -1, nullptr, 0);
+	size--; // Remove null-terminator
+	size *= 2; // UTF-16 uses 2 bytes per character
 
 	return static_cast<uint32_t>(size);
 }

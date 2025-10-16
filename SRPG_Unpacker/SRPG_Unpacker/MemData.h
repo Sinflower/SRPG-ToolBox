@@ -52,7 +52,7 @@ struct MemData
 	std::string ToString() const
 	{
 		std::wstring wstr = ToWString();
-		std::string str   = fileAccessUtils::ws2s(wstr);
+		std::string str   = ws2s(wstr);
 		return str;
 	}
 

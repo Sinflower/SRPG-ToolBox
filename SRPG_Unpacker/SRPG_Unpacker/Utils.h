@@ -68,6 +68,44 @@ inline std::string ws2s(const std::wstring &wstr)
 	return str;
 }
 
+inline std::vector<uint8_t> s2ws(const std::vector<uint8_t>& data)
+{
+	if (data.empty()) return std::vector<uint8_t>();
+
+	// Make sure the data is null-terminated
+	if (data.back() != 0x0)
+		throw std::runtime_error("Input data is not null-terminated");
+
+	int32_t size = MultiByteToWideChar(CP_UTF8, 0, reinterpret_cast<const char *>(data.data()), -1, nullptr, 0);
+
+	if (size == 0)
+		return std::vector<uint8_t>();
+
+	std::vector<uint8_t> wdata(size * 2, 0);
+	MultiByteToWideChar(CP_UTF8, 0, reinterpret_cast<const char *>(data.data()), -1, reinterpret_cast<wchar_t *>(wdata.data()), size);
+
+	return wdata;
+}
+
+inline std::vector<uint8_t> ws2s(const std::vector<uint8_t>& wdata)
+{
+	if (wdata.empty()) return std::vector<uint8_t>();
+
+	// Make sure the data is null-terminated
+	if (wdata.size() < 2 || (wdata[wdata.size() - 1] != 0x0 || wdata[wdata.size() - 2] != 0x0))
+		throw std::runtime_error("Input wide data is not null-terminated");
+
+	int32_t size = WideCharToMultiByte(CP_UTF8, 0, reinterpret_cast<const wchar_t *>(wdata.data()), -1, nullptr, 0, nullptr, nullptr);
+
+	if (size == 0)
+		return std::vector<uint8_t>();
+
+	std::vector<uint8_t> data(size, 0);
+	WideCharToMultiByte(CP_UTF8, 0, reinterpret_cast<const wchar_t *>(wdata.data()), -1, reinterpret_cast<char *>(data.data()), size, nullptr, nullptr);
+
+	return data;
+}
+
 inline uint32_t SumVector(const std::vector<uint32_t> &vec)
 {
 	uint32_t sum = 0;
