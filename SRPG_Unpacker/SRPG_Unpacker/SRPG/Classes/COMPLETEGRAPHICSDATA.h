@@ -30,4 +30,6 @@
 
 struct COMPLETEGRAPHICSDATA : public EDITDATA
 {
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
 };

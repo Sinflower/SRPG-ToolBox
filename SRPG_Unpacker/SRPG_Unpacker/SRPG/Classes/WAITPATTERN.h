@@ -26,8 +26,10 @@
 
 #pragma once
 
-#include "EDITDATA.h"
+#include "BASEPATTERN.h"
 
 struct WAITPATTERN : public BASEPATTERN
 {
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
 };

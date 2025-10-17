@@ -621,6 +621,123 @@
     <ClCompile Include="SRPG\SRPG_RecollectionEvents.cpp">
       <Filter>SRPG</Filter>
     </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITFUSION.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITPERFORMANCE.cpp">
+      <Filter>SRPG\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\APPROACHPATTERN.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\BACKLOGDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\BASEPATTERN.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\CHANGEINFODATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\CHECKDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\CLEARSAVEDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\COMPLETEGRAPHICSDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\COMPLETEMEDIADATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\COMPLETERECOLLECTIONDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\COMPLETESWITCHDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\DECORATIONDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\DYNAMICANIME.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\DYNAMICGRAPHICS.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\DYNAMICMOVEOBJECT.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\DYNAMICUNITEVENT.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\EXECUTEREFDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\FONTGROUPDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\GEN_EVDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\GEN_JSDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\INVENTORYDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\JIMODATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\JUMPIDDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MAPBASE.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MATERIALDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MEMDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\METAMORHISTORY.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MOSTRECENTINFO.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MYDECODATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\OCCUPYDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\ORIGINALDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\PAIRKEYDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\RENDERPOOLDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\SCRIPTCODEDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\TITLESDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\TROPHYDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\TURNSTATEDATA.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\WAITPATTERN.cpp">
+      <Filter>SRPG\Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileAccess.h">

@@ -31,4 +31,6 @@
 
 struct ORIGINALDATA : public EDITDATA //, public LEGENDDATA -- Include this when implementing the class
 {
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
 };

@@ -156,193 +156,1362 @@
     <ClCompile Include="ScriptData.cpp" />
     <ClCompile Include="ScriptSection.cpp" />
     <ClCompile Include="SectionData.cpp" />
-    <ClCompile Include="SRPG\Classes\ANIMEDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\ANIMEIDDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\CHARACTERDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\CHARREPLACEDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\CHOICEDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\CLASSDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\CLASSGROUPDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\CLASSGROUPENTRYDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\CLASSIDDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\CLASSTYPEDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\COMMANDLAYOUTDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\COMPATIBLEDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\CUSTOMPATTERN.cpp" />
-    <ClCompile Include="SRPG\Classes\DAYNIGHTDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\DICTIONARYCONDITION.cpp" />
-    <ClCompile Include="SRPG\Classes\DIFFICULTYDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\EDITDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\EVENTACTIONDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\EVENTCOMMAND.cpp" />
-    <ClCompile Include="SRPG\Classes\EVENTDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\EVENTPAGE.cpp" />
-    <ClCompile Include="SRPG\Classes\EVENTPAGE_DATA.cpp" />
-    <ClCompile Include="SRPG\Classes\FACIALDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\FONTDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\FORCEENTRY.cpp" />
-    <ClCompile Include="SRPG\Classes\FORCESORTIEDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\FRAMEDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\FRAMELIST.cpp" />
-    <ClCompile Include="SRPG\Classes\FRAMEORIGINAL.cpp" />
-    <ClCompile Include="SRPG\Classes\FUSIONDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\GALLERYDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\GALLERYGROUPDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\IMAGEDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\IMAGEIDDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\INSTALLEDFONTDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\INTEROPANIMEDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\INTEROPBASE.cpp" />
-    <ClCompile Include="SRPG\Classes\INTEROPGRAPHICSDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\INTEROPMEDIADATA.cpp" />
-    <ClCompile Include="SRPG\Classes\INTEROPSCREENDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\INTEROPSTRINGDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\INTEROPTEXTUIDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\INTEROPUIDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\ITEMBASE.cpp" />
-    <ClCompile Include="SRPG\Classes\ITEMCONDITIONDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\ITEMCONVERTDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\ITEMDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\ITEMGROUPDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\LEGENDDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\LINEPOSDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\MAPDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\MAPPOSDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\MAPTREEDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\MEDIADATA.cpp" />
-    <ClCompile Include="SRPG\Classes\MESSAGELAYOUTDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\METAMORDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\MOTIONIDDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\MOVEPATTERN.cpp" />
-    <ClCompile Include="SRPG\Classes\MOVETYPEDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\MULTICOMMANDDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\NEWSKILLDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\NPCDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\PARAMHEADDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\PASSCHIPDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\PASSDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\PASSGROUPDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\PATTERNDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\QUESTDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\RACEDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\REFCUTINDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\REINFORCECONTAINER.cpp" />
-    <ClCompile Include="SRPG\Classes\REINFORCEDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\RESDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\RESOURCELAYOUTDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\RESTAREADATA.cpp" />
-    <ClCompile Include="SRPG\Classes\RESTSHOPDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\REWARDDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\RPASSDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\SHOPDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\SHOPLAYOUT.cpp" />
-    <ClCompile Include="SRPG\Classes\SKILLDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\SOUNDMODEDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\SPRITEDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\STATEDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\STRINGDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\SUPPORTDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\SWITCHACTIONDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\SWITCHDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\TESTMEMBER.cpp" />
-    <ClCompile Include="SRPG\Classes\TYPEIDDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\UIRESDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\UNITCONDITIONDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\UNITDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\UNITIDDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\UNITPROTOTYPEDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\UNITSTATUSDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\VARIABLECONDITIONDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\VARIABLEDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\VIDEODATA.cpp" />
-    <ClCompile Include="SRPG\Classes\WEAPONDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\WEAPONTYPEDATA.cpp" />
-    <ClCompile Include="SRPG\Classes\WORDDATA.cpp" />
-    <ClCompile Include="SRPG\CMenuOperation.cpp" />
-    <ClCompile Include="SRPG\Commands\ANIMATIONPLAY.cpp" />
-    <ClCompile Include="SRPG\Commands\ANIMATIONSTOP.cpp" />
-    <ClCompile Include="SRPG\Commands\BACKGROUNDCHANGE.cpp" />
-    <ClCompile Include="SRPG\Commands\BONUSCHANGE.cpp" />
-    <ClCompile Include="SRPG\Commands\CHAPTERSHOW.cpp" />
-    <ClCompile Include="SRPG\Commands\CHOICESHOW.cpp" />
-    <ClCompile Include="SRPG\Commands\CLASSCHANGE.cpp" />
-    <ClCompile Include="SRPG\Commands\CONSOLELOG.cpp" />
-    <ClCompile Include="SRPG\Commands\DAICE.cpp" />
-    <ClCompile Include="SRPG\Commands\DAMAGEHIT.cpp" />
-    <ClCompile Include="SRPG\Commands\ENVIRONMENTACCESS.cpp" />
-    <ClCompile Include="SRPG\Commands\EVENTSKIP.cpp" />
-    <ClCompile Include="SRPG\Commands\EVENTSTATECHANGE.cpp" />
-    <ClCompile Include="SRPG\Commands\EXPERIENCEPLUS.cpp" />
-    <ClCompile Include="SRPG\Commands\FORCEBATTLE.cpp" />
-    <ClCompile Include="SRPG\Commands\GOLDCHANGE.cpp" />
-    <ClCompile Include="SRPG\Commands\GRAPHICSHIDE.cpp" />
-    <ClCompile Include="SRPG\Commands\GRAPHICSSHOW.cpp" />
-    <ClCompile Include="SRPG\Commands\HPRECOVERY.cpp" />
-    <ClCompile Include="SRPG\Commands\INFOWINDOW.cpp" />
-    <ClCompile Include="SRPG\Commands\ITEMCHANGE.cpp" />
-    <ClCompile Include="SRPG\Commands\ITEMDURABILITYCHANGE.cpp" />
-    <ClCompile Include="SRPG\Commands\ITEMUSE.cpp" />
-    <ClCompile Include="SRPG\Commands\LOCATIONFOCUS.cpp" />
-    <ClCompile Include="SRPG\Commands\MAPCHIPCHANGE.cpp" />
-    <ClCompile Include="SRPG\Commands\MAPINFOCHANGE.cpp" />
-    <ClCompile Include="SRPG\Commands\MAPPOSCHOOSE.cpp" />
-    <ClCompile Include="SRPG\Commands\MAPPOSOPERATION.cpp" />
-    <ClCompile Include="SRPG\Commands\MAPSCROLL.cpp" />
-    <ClCompile Include="SRPG\Commands\MAPSTATECHANGE.cpp" />
-    <ClCompile Include="SRPG\Commands\MESSAGEBASE.cpp" />
-    <ClCompile Include="SRPG\Commands\MESSAGEERASE.cpp" />
-    <ClCompile Include="SRPG\Commands\MESSAGESCROLL.cpp" />
-    <ClCompile Include="SRPG\Commands\MESSAGESHOW.cpp" />
-    <ClCompile Include="SRPG\Commands\MESSAGETEROP.cpp" />
-    <ClCompile Include="SRPG\Commands\MESSAGETITLE.cpp" />
-    <ClCompile Include="SRPG\Commands\MOVEOBJECTHIDE.cpp" />
-    <ClCompile Include="SRPG\Commands\MOVEOBJECTSHOW.cpp" />
-    <ClCompile Include="SRPG\Commands\MUSICPLAY.cpp" />
-    <ClCompile Include="SRPG\Commands\MUSICSTOP.cpp" />
-    <ClCompile Include="SRPG\Commands\OBJECTADJUST.cpp" />
-    <ClCompile Include="SRPG\Commands\PARAMATERCHANGE.cpp" />
-    <ClCompile Include="SRPG\Commands\RELATIVETURNMEASURE.cpp" />
-    <ClCompile Include="SRPG\Commands\SAVECALL.cpp" />
-    <ClCompile Include="SRPG\Commands\SCENECHANGE.cpp" />
-    <ClCompile Include="SRPG\Commands\SCREENEFFECT.cpp" />
-    <ClCompile Include="SRPG\Commands\SCREENSCROLL.cpp" />
-    <ClCompile Include="SRPG\Commands\SCREENSHAKE.cpp" />
-    <ClCompile Include="SRPG\Commands\SCREENSTATECHANGE.cpp" />
-    <ClCompile Include="SRPG\Commands\SCRIPTEXECUTE.cpp" />
-    <ClCompile Include="SRPG\Commands\SKILLCHANGE.cpp" />
-    <ClCompile Include="SRPG\Commands\SOUNDPLAY.cpp" />
-    <ClCompile Include="SRPG\Commands\SOUNDSTOP.cpp" />
-    <ClCompile Include="SRPG\Commands\STILLMESSAGE.cpp" />
-    <ClCompile Include="SRPG\Commands\SWITCHACTION.cpp" />
-    <ClCompile Include="SRPG\Commands\SYSTEMSETTINGS.cpp" />
-    <ClCompile Include="SRPG\Commands\TROPHYCHANGE.cpp" />
-    <ClCompile Include="SRPG\Commands\UNITALLCOMMAND.cpp" />
-    <ClCompile Include="SRPG\Commands\UNITAPPEAR.cpp" />
-    <ClCompile Include="SRPG\Commands\UNITASSIGN.cpp" />
-    <ClCompile Include="SRPG\Commands\UNITCAPACITYCHANGE.cpp" />
-    <ClCompile Include="SRPG\Commands\UNITINFOCHANGE.cpp" />
-    <ClCompile Include="SRPG\Commands\UNITMETAMOR.cpp" />
-    <ClCompile Include="SRPG\Commands\UNITMOVE.cpp" />
-    <ClCompile Include="SRPG\Commands\UNITREMOVE.cpp" />
-    <ClCompile Include="SRPG\Commands\UNITSLIDE.cpp" />
-    <ClCompile Include="SRPG\Commands\UNITSTATEADDITION.cpp" />
-    <ClCompile Include="SRPG\Commands\UNITSTATECHANGE.cpp" />
-    <ClCompile Include="SRPG\Commands\VARIABLEACTION.cpp" />
-    <ClCompile Include="SRPG\Commands\VICTORYMAP.cpp" />
-    <ClCompile Include="SRPG\Commands\VIDEOPLAY.cpp" />
-    <ClCompile Include="SRPG\Commands\WAITACTION.cpp" />
-    <ClCompile Include="SRPG\Functions.cpp" />
-    <ClCompile Include="SRPG\SRPG_Animations.cpp" />
-    <ClCompile Include="SRPG\SRPG_BaseSettings.cpp" />
-    <ClCompile Include="SRPG\SRPG_ContainerBase.cpp" />
-    <ClCompile Include="SRPG\SRPG_Database.cpp" />
-    <ClCompile Include="SRPG\SRPG_GameLayout.cpp" />
-    <ClCompile Include="SRPG\SRPG_InterOpData.cpp" />
-    <ClCompile Include="SRPG\SRPG_Maps.cpp" />
-    <ClCompile Include="SRPG\SRPG_Project.cpp" />
-    <ClCompile Include="SRPG\SRPG_RecollectionEvents.cpp" />
-    <ClCompile Include="SRPG\SRPG_Resources.cpp" />
-    <ClCompile Include="SRPG\SRPG_StorySettings.cpp" />
+    <ClCompile Include="SRPG\Classes\ANIMEDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\ANIMEIDDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\APPROACHPATTERN.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\BACKLOGDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\BASEPATTERN.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\CHANGEINFODATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\CHARACTERDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\CHARREPLACEDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\CHECKDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\CHOICEDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\CLASSDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\CLASSGROUPDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\CLASSGROUPENTRYDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\CLASSIDDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\CLASSTYPEDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\CLEARSAVEDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\COMMANDLAYOUTDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\COMPATIBLEDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\COMPLETEGRAPHICSDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\COMPLETEMEDIADATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\COMPLETERECOLLECTIONDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\COMPLETESWITCHDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\CUSTOMPATTERN.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\DAYNIGHTDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\DECORATIONDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\DICTIONARYCONDITION.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\DIFFICULTYDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\DYNAMICANIME.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\DYNAMICGRAPHICS.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\DYNAMICMOVEOBJECT.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\DYNAMICUNITEVENT.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\EDITDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\EVENTACTIONDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\EVENTCOMMAND.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\EVENTDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\EVENTPAGE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\EVENTPAGE_DATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\EXECUTEREFDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\FACIALDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\FONTDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\FONTGROUPDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\FORCEENTRY.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\FORCESORTIEDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\FRAMEDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\FRAMELIST.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\FRAMEORIGINAL.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\FUSIONDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\GALLERYDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\GALLERYGROUPDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\GEN_EVDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\GEN_JSDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\IMAGEDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\IMAGEIDDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\INSTALLEDFONTDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\INTEROPANIMEDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\INTEROPBASE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\INTEROPGRAPHICSDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\INTEROPMEDIADATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\INTEROPSCREENDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\INTEROPSTRINGDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\INTEROPTEXTUIDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\INTEROPUIDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\INVENTORYDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\ITEMBASE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\ITEMCONDITIONDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\ITEMCONVERTDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\ITEMDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\ITEMGROUPDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\JIMODATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\JUMPIDDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\LEGENDDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\LINEPOSDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MAPBASE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MAPDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MAPPOSDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MAPTREEDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MATERIALDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MEDIADATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MEMDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MESSAGELAYOUTDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\METAMORDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\METAMORHISTORY.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MOSTRECENTINFO.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MOTIONIDDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MOVEPATTERN.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MOVETYPEDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MULTICOMMANDDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\MYDECODATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\NEWSKILLDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\NPCDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\OCCUPYDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\ORIGINALDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\PAIRKEYDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\PARAMHEADDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\PASSCHIPDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\PASSDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\PASSGROUPDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\PATTERNDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\QUESTDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\RACEDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\REFCUTINDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\REINFORCECONTAINER.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\REINFORCEDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\RENDERPOOLDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\RESDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\RESOURCELAYOUTDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\RESTAREADATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\RESTSHOPDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\REWARDDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\RPASSDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\SCRIPTCODEDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\SHOPDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\SHOPLAYOUT.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\SKILLDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\SOUNDMODEDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\SPRITEDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\STATEDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\STRINGDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\SUPPORTDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\SWITCHACTIONDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\SWITCHDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\TESTMEMBER.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\TITLESDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\TROPHYDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\TURNSTATEDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\TYPEIDDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\UIRESDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\UNITCONDITIONDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\UNITDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\UNITIDDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\UNITPROTOTYPEDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\UNITSTATUSDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\VARIABLECONDITIONDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\VARIABLEDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\VIDEODATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\WAITPATTERN.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\WEAPONDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\WEAPONTYPEDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Classes\WORDDATA.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\CMenuOperation.cpp" >
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\ANIMATIONPLAY.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\ANIMATIONSTOP.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\BACKGROUNDCHANGE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\BONUSCHANGE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\CHAPTERSHOW.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\CHOICESHOW.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\CLASSCHANGE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\CONSOLELOG.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\DAICE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\DAMAGEHIT.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\ENVIRONMENTACCESS.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\EVENTSKIP.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\EVENTSTATECHANGE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\EXPERIENCEPLUS.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\FORCEBATTLE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\GOLDCHANGE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\GRAPHICSHIDE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\GRAPHICSSHOW.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\HPRECOVERY.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\INFOWINDOW.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\ITEMCHANGE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\ITEMDURABILITYCHANGE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\ITEMUSE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\LOCATIONFOCUS.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MAPCHIPCHANGE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MAPINFOCHANGE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MAPPOSCHOOSE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MAPPOSOPERATION.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MAPSCROLL.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MAPSTATECHANGE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MESSAGEBASE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MESSAGEERASE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MESSAGESCROLL.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MESSAGESHOW.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MESSAGETEROP.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MESSAGETITLE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MOVEOBJECTHIDE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MOVEOBJECTSHOW.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MUSICPLAY.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\MUSICSTOP.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\OBJECTADJUST.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\PARAMATERCHANGE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\RELATIVETURNMEASURE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SAVECALL.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SCENECHANGE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SCREENEFFECT.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SCREENSCROLL.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SCREENSHAKE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SCREENSTATECHANGE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SCRIPTEXECUTE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SKILLCHANGE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SOUNDPLAY.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SOUNDSTOP.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\STILLMESSAGE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SWITCHACTION.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\SYSTEMSETTINGS.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\TROPHYCHANGE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITALLCOMMAND.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITAPPEAR.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITASSIGN.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITCAPACITYCHANGE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITFUSION.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITINFOCHANGE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITMETAMOR.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITMOVE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITPERFORMANCE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITREMOVE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITSLIDE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITSTATEADDITION.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\UNITSTATECHANGE.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\VARIABLEACTION.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\VICTORYMAP.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\VIDEOPLAY.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Commands\WAITACTION.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Commands\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\Functions.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\SRPG_Animations.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\SRPG_BaseSettings.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\SRPG_ContainerBase.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\SRPG_Database.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\SRPG_GameLayout.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\SRPG_InterOpData.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\SRPG_Maps.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\SRPG_Project.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\SRPG_RecollectionEvents.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\SRPG_Resources.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="SRPG\SRPG_StorySettings.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="SRPG_Unpacker.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -32,4 +32,7 @@ struct BASEPATTERN
 {
 	DWORD this_1 = 0;
 	DWORD this_2 = 0;
+
+	virtual void init([[maybe_unused]] FileReader& fw) {};
+	virtual void dump([[maybe_unused]] FileWriter& fw) const {}
 };

@@ -33,6 +33,6 @@ struct CUSTOMPATTERN : public BASEPATTERN
 {
 	MemData this_1;
 
-	virtual void init(FileReader& fw);
-	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+	void init(FileReader& fw) override;
+	void dump([[maybe_unused]] FileWriter& fw) const override;
 };
