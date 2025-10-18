@@ -326,7 +326,8 @@ void SRPG_Resources::dumpProj(FileWriter& fw) const
 
 	m_pInstalledFontData->Dump(fw);
 
-	m_pVideoData->Dump(fw);
+	if (g_ArcVersion >= VIDEO_RESOURCE_ADD_VERSION)
+		m_pVideoData->Dump(fw);
 
 	if (g_ArcVersion >= 0x475)
 	{

@@ -339,6 +339,7 @@ void CLASSDATA::sub_37E310(FileReader& fw)
 		}
 	}
 }
+
 void CLASSDATA::sub_36E310(FileReader& fw)
 {
 	if (g_ArcVersion < 0x418)
@@ -397,6 +398,7 @@ void CLASSDATA::sub_36E310(FileReader& fw)
 		}
 	}
 }
+
 void CLASSDATA::sub_35FF20(FileReader& fw)
 {
 	if (g_ArcVersion < 1087)
