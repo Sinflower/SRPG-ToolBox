@@ -28,10 +28,10 @@
 
 void UNITPERFORMANCE::init(FileReader& fw)
 {
-	EDITDATA::init(fw);
+	fw.ReadArr(m_data);
 }
 
 void UNITPERFORMANCE::dump([[maybe_unused]] FileWriter& fw) const
 {
-	EDITDATA::dump(fw);
+	fw.WriteArr(m_data);
 }
