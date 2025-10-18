@@ -38,9 +38,3 @@ constexpr DWORD NEW_CRYPT_START_VERSION       = 1301;
 constexpr DWORD VIDEO_RESOURCE_ADD_VERSION    = 1110; // Based on the changelog this should be the version where video resources were added
 
 constexpr DWORD MAX_SUPPORTED_VERSION = 1317;
-
-#define NOT_IMPLEMENTED                                                                                  \
-	{                                                                                                    \
-		std::cerr << __FILE__ << ":" << __LINE__ << " ERROR This has not been implemented" << std::endl; \
-		exit(-1);                                                                                        \
-	}

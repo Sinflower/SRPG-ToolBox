@@ -34,6 +34,14 @@ struct CHOICESHOW : public EDITDATA
 
 	DWORD this_4 = 0;
 
+	// OLD
+	DWORD old_0 = 0;
+	DWORD old_1 = 0;
+	DWORD old_2 = 0;
+	DWORD old_3 = 0;
+	std::array<MemData, 4> old_choices;
+	//////
+
 	void init(FileReader& fw) override;
 	void dump([[maybe_unused]] FileWriter& fw) const override;
 

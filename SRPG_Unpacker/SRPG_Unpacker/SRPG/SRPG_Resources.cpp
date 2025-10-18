@@ -208,9 +208,7 @@ void SRPG_Resources::init(FileReader& fw)
 	std::cout << std::hex << "OFFSET=" << fw.GetOffset() << std::endl;
 #endif
 
-	// NOTE: I don't know when this was added, but I know it was not
-	//       present in this version
-	if (g_ArcVersion > 0x4CA)
+	if (g_ArcVersion > 1226)
 		fw.ReadBytes(m_unknown.data(), static_cast<DWORD>(m_unknown.size() * sizeof(DWORD)));
 
 #ifdef DEBUG_PRINT
@@ -262,7 +260,7 @@ void SRPG_Resources::init(FileReader& fw)
 #endif
 	}
 
-	if (g_ArcVersion >= 0x475)
+	if (g_ArcVersion >= 1141)
 	{
 		for (CMenuOperation*& pCID : m_classIDData)
 			allocAndSetCMenuOp(&pCID, SRPGClasses::CLASSIDDATA, fw);
@@ -277,9 +275,7 @@ void SRPG_Resources::init(FileReader& fw)
 
 void SRPG_Resources::dump(FileWriter& fw) const
 {
-	// NOTE: I don't know when this was added, but I know it was not
-	//       present in this version
-	if (g_ArcVersion > 0x4CA)
+	if (g_ArcVersion > 1226)
 		fw.WriteBytes(m_unknown.data(), m_unknown.size() * sizeof(DWORD));
 
 	if (m_resFlags.HasResData)
@@ -306,7 +302,7 @@ void SRPG_Resources::dump(FileWriter& fw) const
 	if (m_resFlags.HasVideoData && g_ArcVersion >= VIDEO_RESOURCE_ADD_VERSION)
 		m_pVideoData->Dump(fw);
 
-	if (g_ArcVersion >= 0x475)
+	if (g_ArcVersion >= 1141)
 	{
 		for (const CMenuOperation* pCID : m_classIDData)
 			pCID->Dump(fw);
@@ -329,7 +325,7 @@ void SRPG_Resources::dumpProj(FileWriter& fw) const
 	if (g_ArcVersion >= VIDEO_RESOURCE_ADD_VERSION)
 		m_pVideoData->Dump(fw);
 
-	if (g_ArcVersion >= 0x475)
+	if (g_ArcVersion >= 1141)
 	{
 		for (const CMenuOperation* pCID : m_classIDData)
 			pCID->Dump(fw);

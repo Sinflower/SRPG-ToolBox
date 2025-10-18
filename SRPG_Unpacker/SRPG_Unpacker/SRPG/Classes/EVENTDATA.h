@@ -114,6 +114,10 @@ struct EVENTDATA : public LEGENDDATA
 	MemData this_22;
 	DWORD this_23 = 0;
 
+	// OLD STUFF
+	std::array<DWORD, 15> old_0;
+	////////////
+
 protected:
 	nlohmann::ordered_json toJson() const override;
 	void applyPatch(const nlohmann::ordered_json& json) override;

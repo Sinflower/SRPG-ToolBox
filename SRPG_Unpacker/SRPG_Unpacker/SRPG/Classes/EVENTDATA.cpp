@@ -127,14 +127,10 @@ void EVENTDATA::init(FileReader& fw)
 
 				pD[1] = fw.ReadDWord();
 
-				if (g_ArcVersion < 0x3F7)
-					pD[2] = 0;
-				else
+				if (g_ArcVersion >= 0x3F7)
 					pD[2] = fw.ReadDWord();
 
-				if (g_ArcVersion < 0x42D)
-					pD[3] = 0;
-				else
+				if (g_ArcVersion >= 0x42D)
 					pD[3] = fw.ReadDWord();
 			}
 			else if (this_8 != 4 && this_8 != 5)
@@ -168,7 +164,6 @@ void EVENTDATA::init(FileReader& fw)
 							pD[3]     = fw.ReadDWord();
 							pD[4]     = fw.ReadDWord();
 							pD[5]     = fw.ReadDWord();
-							pD[6]     = 1;
 						}
 						else
 							fw.ReadBytes(this_16, 0x20);
@@ -202,50 +197,23 @@ void EVENTDATA::init(FileReader& fw)
 		this_9.dropBonus         = fw.ReadDWord();
 		this_9.this_7            = fw.ReadDWord();
 
-		if (this_9.shopData.this_4) // v6[18]
-		{
-			delete (this_9.shopData.this_4);
-			this_9.shopData.this_4 = nullptr;
-		}
-
-		this_9.shopData.this_4 = new CMenuOperation(SRPGClasses::ITEMGROUPDATA);
-
-		if (g_ArcVersion < 0x404)
-		{
-			this_9.shopData.id     = 0;
-			this_9.shopData.this_3 = 0;
-			NOT_IMPLEMENTED
-			// sub_FC7950((_DWORD*)Size, *(_DWORD*)(*(_DWORD*)(this + 36) + 72));
-		}
+		if (g_ArcVersion < 1028)
+			fw.ReadArr(old_0);
 		else
-		{
 			this_9.shopData.init(fw);
-			//(*(void(__thiscall**)(int, size_t))(*(_DWORD*)(*(_DWORD*)(this + 36) + 56) + 8))(*(_DWORD*)(this + 36) + 56, Size);
-		}
 
 		this_9.changeChips = fw.ReadQWord();
 		this_9.this_10     = fw.ReadDWord();
 
 		initMemData(this_9.this_11, fw);
 
-		if (g_ArcVersion < 0x3F7)
-		{
-			this_9.this_12 = 0;
-			this_9.this_13 = 1;
-		}
-		else
+		if (g_ArcVersion >= 0x3F7)
 		{
 			this_9.this_12 = fw.ReadDWord();
 			this_9.this_13 = fw.ReadDWord();
 		}
 
-		if (g_ArcVersion < 0x4D2)
-		{
-			this_9.this_22 = 0;
-			this_9.this_23 = 0;
-			this_9.this_24 = 1;
-		}
-		else
+		if (g_ArcVersion >= 0x4D2)
 		{
 			this_9.this_22 = fw.ReadDWord();
 			this_9.this_23 = fw.ReadDWord();
@@ -356,7 +324,9 @@ void EVENTDATA::dump(FileWriter& fw) const
 		fw.Write(this_9.dropBonus);
 		fw.Write(this_9.this_7);
 
-		if (g_ArcVersion > 0x404)
+		if (g_ArcVersion < 1028)
+			fw.WriteArr(old_0);
+		else
 			this_9.shopData.dump(fw);
 
 		fw.Write(this_9.changeChips);
@@ -391,18 +361,7 @@ void EVENTDATA::dump(FileWriter& fw) const
 void EVENTDATA::sub_FD4620(FileReader& fw)
 {
 	res = fw.ReadDWord();
-	if (res == -1)
-	{
-		// this_18
-		DWORD* pD = reinterpret_cast<DWORD*>(this_18);
-		pD[0]     = 0;
-		pD[1]     = 0;
-		pD[2]     = 2;
-		pD[3]     = 15;
-		pD[4]     = 0;
-		pD[5]     = 0x20000;
-	}
-	else
+	if (res != -1)
 	{
 		fw.Seek(fw.GetOffset() - 4);
 		QWORD* pD = reinterpret_cast<QWORD*>(this_18);

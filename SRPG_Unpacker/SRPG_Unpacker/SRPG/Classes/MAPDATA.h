@@ -102,6 +102,5 @@ protected:
 private:
 	void sub_F7D9C0(FileReader& fw);
 	void sub_F7A340(FileReader& fw);
-	void sub_F77950(FileReader& fw);
 	void sub_F7A3B0(FileReader& fw);
 };

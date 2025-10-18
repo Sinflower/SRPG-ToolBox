@@ -355,57 +355,6 @@ void MAPDATA::sub_F7A340(FileReader& fw)
 		allocAndSetCMenuOp(&pEvGuestUnits, SRPGClasses::UNITDATA, fw);
 }
 
-void MAPDATA::sub_F77950(FileReader& fw)
-{
-	NOT_IMPLEMENTED
-	/*
-	int32_t v14[15];
-
-	fw.ReadBytes(v14, 0x3Cu);
-	for (uint32_t i = 0; i < 15; ++i)
-	{
-		if (v14[i] != -1)
-		{
-			int16_t v6 = 0;
-			v12 = (**(int(__thiscall***)(int))a2)(a2);
-			do
-			{
-				v7 = *(_DWORD*)(*(_DWORD*)(a2 + 4) + 4);
-				if (!v7)
-				{
-LABEL_7:
-					v8 = v6;
-					goto LABEL_8;
-				}
-				while (v6 != *(unsigned __int16*)(v7 + 8))
-				{
-					v7 = *(_DWORD*)(v7 + 4);
-					if (!v7)
-						goto LABEL_7;
-				}
-				++v6;
-			} while (v6 < 9999);
-			v8 = -1;
-LABEL_8:
-			*(_DWORD*)(v12 + 8) = v8;
-			v9 = *(_DWORD*)(a2 + 4);
-			v10 = v9 + 4;
-			if (*(_DWORD*)(v9 + 4))
-			{
-				do
-				{
-					v9 = *(_DWORD*)v10;
-					v11 = *(_DWORD*)(*(_DWORD*)v10 + 4) == 0;
-					v10 = *(_DWORD*)v10 + 4;
-				} while (!v11);
-			}
-			result = v14[i];
-			*(_DWORD*)(v9 + 4) = v12;
-			*(_DWORD*)(v12 + 12) = result;
-		}
-	}*/
-}
-
 void MAPDATA::sub_F7A3B0(FileReader& fw)
 {
 	if (g_ArcVersion < 0x406)
