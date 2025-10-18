@@ -45,13 +45,13 @@ std::vector<uint32_t> ScriptSection::SecSizes() const
 {
 	uint32_t size = 0;
 
-	if (!m_present)
-		return { size };
+	if (!m_data.empty())
+	{
+		size += 4; // Element count
 
-	size += 4; // Element count
-
-	for (const ScriptData &data : m_data)
-		size += data.Size();
+		for (const ScriptData &data : m_data)
+			size += data.Size();
+	}
 
 	if (m_matPresent)
 	{
