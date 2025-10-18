@@ -53,7 +53,7 @@ UnitNamesCollection SRPG_Database::GetGlobalUnitNames() const
 void SRPG_Database::init(FileReader& fw)
 {
 #ifdef DEBUG_PRINT
-	std::cout << "==== Method " << __FUNCSIG__ << " START ====" << std::endl;
+	std::cout << "==== Method " << __FUNCSIG__ << " START ====" << std::hex << std::endl;
 	std::cout << "OFFSET=" << fw.GetOffset() << std::endl;
 #endif
 
@@ -100,7 +100,7 @@ void SRPG_Database::init(FileReader& fw)
 
 	allocAndSetCMenuOp(&m_pFonts, SRPGClasses::FONTDATA, fw);
 #ifdef DEBUG_PRINT
-	std::cout << "OFFSET-FONTDATA=" << fw.GetOffset() << std::endl;
+	std::cout << "OFFSET-FONTDATA=" << fw.GetOffset() << std::dec << std::endl;
 #endif
 
 	///////////////
@@ -430,7 +430,7 @@ void SRPG_Database::sub_F7DA50(FileReader& fw)
 		m_maxBld = fw.ReadDWord();
 	}
 
-	this_178 = fw.ReadDWord();
+	this_178 = fw.ReadDWord(); // probaby resolution
 
 	m_pursuitValue = fw.ReadDWord();
 	m_minExp       = fw.ReadDWord();

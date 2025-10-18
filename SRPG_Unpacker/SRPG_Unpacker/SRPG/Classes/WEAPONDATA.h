@@ -65,7 +65,6 @@ struct WEAPONDATA : public ITEMBASE
 	class CMenuOperation* m_pImageIDData2 = nullptr;
 
 	// OLD
-	DWORD v5 = 0;
 	std::vector<DWORD> old_0;
 	std::vector<DWORD> old_1;
 	std::vector<DWORD> old_2;

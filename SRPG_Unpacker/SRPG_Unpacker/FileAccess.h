@@ -304,6 +304,17 @@ public:
 			throw(FileReaderException("ReadVec: size is larger than buffer size"));
 	}
 
+	template<typename T, std::size_t S>
+	void ReadArr(std::array<T, S>& buffer, const DWORD& dwordCnt = -1)
+	{
+		if (dwordCnt == -1)
+			ReadBytes(buffer.data(), static_cast<DWORD>(S * sizeof(T)));
+		else if (dwordCnt <= S)
+			ReadBytes(buffer.data(), static_cast<DWORD>(dwordCnt * sizeof(T)));
+		else
+			throw(FileReaderException("ReadArr: size is larger than buffer size"));
+	}
+
 	void Seek(const DWORD& offset)
 	{
 		if (!m_init)

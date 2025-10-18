@@ -175,25 +175,6 @@ void WEAPONDATA::sub_FFF20(FileReader& fw)
 {
 	if (g_ArcVersion < 1087)
 	{
-		if (g_ArcVersion < 1018)
-			v5 = this_50;
-		else
-		{
-			v5 = 0;
-			if (this_50)
-			{
-				if (this_50 == 1)
-					v5 = 2;
-				else
-				{
-					if (this_50 == 2)
-						v5 = 4;
-				}
-			}
-			else
-				v5 = 1;
-		}
-
 		const DWORD size_1034_up[] = { 18, 7, 7 };
 		const DWORD size_1033[]    = { 15, 7, 7 };
 		const DWORD size_older[]   = { 11, 5, 5 };
@@ -210,11 +191,11 @@ void WEAPONDATA::sub_FFF20(FileReader& fw)
 		old_1.resize(sizes[1]);
 		old_2.resize(sizes[2]);
 
-		if (v5 & 1)
+		if (this_50 == 0)
 			fw.ReadBytes(old_0.data(), sizes[0] * sizeof(DWORD));
-		if (v5 & 2)
+		if (this_50 == 1)
 			fw.ReadBytes(old_1.data(), sizes[1] * sizeof(DWORD));
-		if (v5 & 4)
+		if (this_50 == 2)
 			fw.ReadBytes(old_2.data(), sizes[2] * sizeof(DWORD));
 	}
 	else
@@ -229,11 +210,11 @@ void WEAPONDATA::dump_sub_FFF20(FileWriter& fw) const
 {
 	if (g_ArcVersion < 1087)
 	{
-		if (v5 & 1)
+		if (this_50 == 0)
 			fw.WriteBytes(old_0.data(), static_cast<DWORD>(old_0.size() * 4));
-		if (v5 & 2)
+		if (this_50 == 1)
 			fw.WriteBytes(old_1.data(), static_cast<DWORD>(old_1.size() * 4));
-		if (v5 & 4)
+		if (this_50 == 2)
 			fw.WriteBytes(old_2.data(), static_cast<DWORD>(old_2.size() * 4));
 	}
 	else

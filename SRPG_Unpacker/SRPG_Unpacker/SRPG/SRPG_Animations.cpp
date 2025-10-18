@@ -34,7 +34,7 @@
 void SRPG_Animations::init(FileReader& fw)
 {
 #ifdef DEBUG_PRINT
-	std::cout << "==== Method " << __FUNCSIG__ << " START ====" << std::endl;
+	std::cout << "==== Method " << __FUNCSIG__ << " START ====" << std::hex << std::endl;
 	std::cout << "OFFSET=" << fw.GetOffset() << std::endl;
 #endif
 
@@ -154,7 +154,7 @@ void SRPG_Animations::init(FileReader& fw)
 	}
 
 #ifdef DEBUG_PRINT
-	std::cout << "OFFSET=" << fw.GetOffset() << std::endl;
+	std::cout << "OFFSET=" << fw.GetOffset() << std::dec << std::endl;
 
 	std::cout << "==== Method END ====" << std::endl;
 #endif

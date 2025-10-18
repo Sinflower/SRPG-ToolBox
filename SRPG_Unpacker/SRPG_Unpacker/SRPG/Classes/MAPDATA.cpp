@@ -99,10 +99,7 @@ void MAPDATA::init(FileReader& fw)
 	bgmBattlePrep   = fw.ReadQWord();
 
 	if (g_ArcVersion < 0x404)
-	{
-		NOT_IMPLEMENTED
-		// sub_F77950((_DWORD*)Size, *(_DWORD*)(this_162));
-	}
+		fw.ReadArr(old_0);
 
 	DWORD v8 = 4 * width * height;
 
@@ -261,10 +258,7 @@ void MAPDATA::dump(FileWriter& fw) const
 	fw.Write(bgmBattlePrep);
 
 	if (g_ArcVersion < 0x404)
-	{
-		NOT_IMPLEMENTED
-		// sub_F77950((_DWORD*)Size, *(_DWORD*)(this_162));
-	}
+		fw.WriteArr(old_0);
 
 	this_136.Write(fw);
 	this_137.Write(fw);

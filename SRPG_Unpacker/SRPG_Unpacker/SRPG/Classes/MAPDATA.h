@@ -87,6 +87,10 @@ struct MAPDATA : public LEGENDDATA
 	std::array<DWORD, 12> this_201;
 	DWORD this_202 = 0;
 
+	// OLD STUFF
+	std::array<DWORD, 15> old_0;
+	////////////
+
 	void print(std::ostream& os) const override;
 	void init(FileReader& fw) override;
 	void dump([[maybe_unused]] FileWriter& fw) const override;

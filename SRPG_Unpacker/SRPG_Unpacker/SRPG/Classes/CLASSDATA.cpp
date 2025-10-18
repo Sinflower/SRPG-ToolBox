@@ -399,26 +399,13 @@ void CLASSDATA::sub_36E310(FileReader& fw)
 }
 void CLASSDATA::sub_35FF20(FileReader& fw)
 {
-	if (g_ArcVersion < 0x43F)
+	if (g_ArcVersion < 1087)
 	{
-		if (g_ArcVersion >= 1018)
-			v5 = this_9;
-		else
+		v5 = this_9;
+		if (g_ArcVersion < 1018)
 		{
-			if (this_9)
-			{
-				if (this_9 == 1)
-					v5 = 2;
-				else
-				{
-					if (this_9 != 2)
-						return;
-
-					v5 = 4;
-				}
-			}
-			else
-				v5 = 1;
+			if (this_9 > 2) return;
+			v5 = 1 << this_9;
 		}
 
 		const DWORD size_1034_up[] = { 18, 7, 7 };
