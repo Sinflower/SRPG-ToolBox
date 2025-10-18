@@ -24,14 +24,16 @@
  *
  */
 
+// Compatible up to v1.317
+
 #include "DYNAMICANIME.h"
 
 void DYNAMICANIME::init(FileReader& fw)
 {
-	EDITDATA::init(fw);
+	m_data = fw.ReadDWord();
 }
 
 void DYNAMICANIME::dump([[maybe_unused]] FileWriter& fw) const
 {
-	EDITDATA::dump(fw);
+	fw.Write(m_data);
 }

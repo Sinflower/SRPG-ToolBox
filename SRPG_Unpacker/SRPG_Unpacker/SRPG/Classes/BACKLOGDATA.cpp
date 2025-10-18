@@ -24,14 +24,16 @@
  *
  */
 
+// Compatible up to v1.317
+
 #include "BACKLOGDATA.h"
 
 void BACKLOGDATA::init(FileReader& fw)
 {
-	EDITDATA::init(fw);
+	m_data = fw.ReadDWord();
 }
 
 void BACKLOGDATA::dump([[maybe_unused]] FileWriter& fw) const
 {
-	EDITDATA::dump(fw);
+	fw.Write(m_data);
 }

@@ -24,14 +24,18 @@
  *
  */
 
+// Compatible up to v1.317
+
 #include "SCRIPTCODEDATA.h"
 
 void SCRIPTCODEDATA::init(FileReader& fw)
 {
-	EDITDATA::init(fw);
+	initMemData(m_memData0, fw);
+	initMemData(m_memData1, fw);
 }
 
 void SCRIPTCODEDATA::dump([[maybe_unused]] FileWriter& fw) const
 {
-	EDITDATA::dump(fw);
+	m_memData0.Write(fw);
+	m_memData1.Write(fw);
 }

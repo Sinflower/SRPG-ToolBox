@@ -24,6 +24,8 @@
  *
  */
 
+// Compatible up to v1.317
+
 #include "UNITFUSION.h"
 
 void UNITFUSION::init(FileReader& fw)

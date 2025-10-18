@@ -30,6 +30,8 @@
 
 struct MYDECODATA : public EDITDATA
 {
+	DWORD m_data = 0;
+
 	void init(FileReader& fw) override;
 	void dump([[maybe_unused]] FileWriter& fw) const override;
 };

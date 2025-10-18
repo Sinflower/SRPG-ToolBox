@@ -24,14 +24,16 @@
  *
  */
 
+// Compatible up to v1.317
+
 #include "COMPLETESWITCHDATA.h"
 
 void COMPLETESWITCHDATA::init(FileReader& fw)
 {
-	EDITDATA::init(fw);
+	m_data = fw.ReadDWord();
 }
 
 void COMPLETESWITCHDATA::dump([[maybe_unused]] FileWriter& fw) const
 {
-	EDITDATA::dump(fw);
+	fw.Write(m_data);
 }

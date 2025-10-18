@@ -24,14 +24,16 @@
  *
  */
 
+// Compatible up to v1.317
+
 #include "EXECUTEREFDATA.h"
 
 void EXECUTEREFDATA::init(FileReader& fw)
 {
-	EDITDATA::init(fw);
+	fw.ReadArr(m_data);
 }
 
 void EXECUTEREFDATA::dump([[maybe_unused]] FileWriter& fw) const
 {
-	EDITDATA::dump(fw);
+	fw.WriteArr(m_data);
 }

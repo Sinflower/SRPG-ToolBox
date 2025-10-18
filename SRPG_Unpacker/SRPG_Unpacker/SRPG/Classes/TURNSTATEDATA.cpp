@@ -24,14 +24,30 @@
  *
  */
 
+// Compatible up to v1.317
+
 #include "TURNSTATEDATA.h"
 
 void TURNSTATEDATA::init(FileReader& fw)
 {
-	EDITDATA::init(fw);
+	this_3 = fw.ReadDWord();
+	this_4 = fw.ReadDWord();
+
+	if (g_ArcVersion >= 1166)
+		this_5 = fw.ReadDWord();
+
+	if (g_ArcVersion >= 1272)
+		initMemData(this_6, fw);
 }
 
 void TURNSTATEDATA::dump([[maybe_unused]] FileWriter& fw) const
 {
-	EDITDATA::dump(fw);
+	fw.Write(this_3);
+	fw.Write(this_4);
+
+	if (g_ArcVersion >= 1166)
+		fw.Write(this_5);
+
+	if (g_ArcVersion >= 1272)
+		this_6.Write(fw);
 }

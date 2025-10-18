@@ -24,14 +24,16 @@
  *
  */
 
+// Compatible up to v1.317
+
 #include "OCCUPYDATA.h"
 
 void OCCUPYDATA::init(FileReader& fw)
 {
-	EDITDATA::init(fw);
+	m_data = fw.ReadDWord();
 }
 
 void OCCUPYDATA::dump([[maybe_unused]] FileWriter& fw) const
 {
-	EDITDATA::dump(fw);
+	fw.Write(m_data);
 }

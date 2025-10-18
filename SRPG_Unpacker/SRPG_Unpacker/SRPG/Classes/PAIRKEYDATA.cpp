@@ -24,14 +24,16 @@
  *
  */
 
+// Compatible up to v1.317
+
 #include "PAIRKEYDATA.h"
 
 void PAIRKEYDATA::init(FileReader& fw)
 {
-	EDITDATA::init(fw);
+	m_data = fw.ReadDWord();
 }
 
 void PAIRKEYDATA::dump([[maybe_unused]] FileWriter& fw) const
 {
-	EDITDATA::dump(fw);
+	fw.Write(m_data);
 }

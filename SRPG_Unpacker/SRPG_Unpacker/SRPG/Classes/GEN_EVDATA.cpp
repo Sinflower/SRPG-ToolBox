@@ -24,14 +24,18 @@
  *
  */
 
+// Compatible up to v1.317
+
 #include "GEN_EVDATA.h"
 
 void GEN_EVDATA::init(FileReader& fw)
 {
-	EDITDATA::init(fw);
+	initMemData(this_3, fw);
+	initMemData(this_4, fw);
 }
 
 void GEN_EVDATA::dump([[maybe_unused]] FileWriter& fw) const
 {
-	EDITDATA::dump(fw);
+	this_3.Write(fw);
+	this_4.Write(fw);
 }

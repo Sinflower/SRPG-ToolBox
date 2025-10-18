@@ -24,14 +24,16 @@
  *
  */
 
+// Compatible up to v1.317
+
 #include "RENDERPOOLDATA.h"
 
 void RENDERPOOLDATA::init(FileReader& fw)
 {
-	EDITDATA::init(fw);
+	m_data = fw.ReadDWord();
 }
 
 void RENDERPOOLDATA::dump([[maybe_unused]] FileWriter& fw) const
 {
-	EDITDATA::dump(fw);
+	fw.Write(m_data);
 }

@@ -24,14 +24,24 @@
  *
  */
 
+// Compatible up to v1.317
+
 #include "METAMORHISTORY.h"
 
 void METAMORHISTORY::init(FileReader& fw)
 {
-	EDITDATA::init(fw);
+	this_3 = fw.ReadDWord();
+	this_4 = fw.ReadDWord();
+
+	if (g_ArcVersion >= 1177)
+	this_5 = fw.ReadDWord();
 }
 
 void METAMORHISTORY::dump([[maybe_unused]] FileWriter& fw) const
 {
-	EDITDATA::dump(fw);
+	fw.Write(this_3);
+	fw.Write(this_4);
+
+	if (g_ArcVersion >= 1177)
+		fw.Write(this_5);
 }

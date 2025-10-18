@@ -24,6 +24,8 @@
  *
  */
 
+// Compatible up to v1.317
+
 #include "UNITPERFORMANCE.h"
 
 void UNITPERFORMANCE::init(FileReader& fw)

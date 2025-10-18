@@ -24,14 +24,49 @@
  *
  */
 
+// Compatible up to v1.317
+
 #include "ORIGINALDATA.h"
+#include "../CMenuOperation.h"
 
 void ORIGINALDATA::init(FileReader& fw)
 {
-	EDITDATA::init(fw);
+	initMemData(this_3, fw);
+	LEGENDDATA::init(fw);
+
+	fw.ReadArr(this_4);
+	fw.ReadArr(this_5);
+	this_6 = fw.ReadDWord();
+
+	allocAndSetCMenuOp(&this_7, SRPGClasses::TYPEIDDATA, fw);
+
+	if (g_ArcVersion >= 1277 && HIWORD(this_6))
+	{
+		fw.ReadArr(this_8);
+		fw.ReadArr(this_9);
+		this_10 = fw.ReadDWord();
+	}
+
+	initMemData(this_11, fw);
 }
 
 void ORIGINALDATA::dump([[maybe_unused]] FileWriter& fw) const
 {
-	EDITDATA::dump(fw);
+	this_3.Write(fw);
+	LEGENDDATA::dump(fw);
+
+	fw.WriteArr(this_4);
+	fw.WriteArr(this_5);
+	fw.Write(this_6);
+
+	this_7->Dump(fw);
+
+	if (g_ArcVersion >= 1277 && HIWORD(this_6))
+	{
+		fw.WriteArr(this_8);
+		fw.WriteArr(this_9);
+		fw.Write(this_10);
+	}
+
+	this_11.Write(fw);
 }

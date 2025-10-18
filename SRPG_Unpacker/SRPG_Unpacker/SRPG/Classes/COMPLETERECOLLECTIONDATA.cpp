@@ -24,14 +24,16 @@
  *
  */
 
+// Compatible up to v1.317
+
 #include "COMPLETERECOLLECTIONDATA.h"
 
 void COMPLETERECOLLECTIONDATA::init(FileReader& fw)
 {
-	EDITDATA::init(fw);
+	m_data = fw.ReadDWord();
 }
 
 void COMPLETERECOLLECTIONDATA::dump([[maybe_unused]] FileWriter& fw) const
 {
-	EDITDATA::dump(fw);
+	fw.Write(m_data);
 }

@@ -30,6 +30,9 @@
 
 struct SCRIPTCODEDATA : public EDITDATA
 {
+	MemData m_memData0;
+	MemData m_memData1;
+
 	void init(FileReader& fw) override;
 	void dump([[maybe_unused]] FileWriter& fw) const override;
 };

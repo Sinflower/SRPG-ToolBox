@@ -24,14 +24,26 @@
  *
  */
 
+// Compatible up to v1.317
+
 #include "INVENTORYDATA.h"
 
 void INVENTORYDATA::init(FileReader& fw)
 {
-	EDITDATA::init(fw);
+	this_3 = fw.ReadDWord();
+	this_4 = fw.ReadDWord();
+	this_5 = fw.ReadDWord();
+	
+	if (g_ArcVersion >= 1287)
+		this_7 = fw.ReadDWord();
 }
 
 void INVENTORYDATA::dump([[maybe_unused]] FileWriter& fw) const
 {
-	EDITDATA::dump(fw);
+	fw.Write(this_3);
+	fw.Write(this_4);
+	fw.Write(this_5);
+	
+	if (g_ArcVersion >= 1287)
+		fw.Write(this_7);
 }

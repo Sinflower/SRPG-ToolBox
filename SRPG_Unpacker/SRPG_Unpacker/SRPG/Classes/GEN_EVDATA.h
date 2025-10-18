@@ -30,6 +30,9 @@
 
 struct GEN_EVDATA : public EDITDATA
 {
+	MemData this_3;
+	MemData this_4;
+
 	void init(FileReader& fw) override;
 	void dump([[maybe_unused]] FileWriter& fw) const override;
 };

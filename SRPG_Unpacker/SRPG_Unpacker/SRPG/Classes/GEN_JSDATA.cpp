@@ -24,14 +24,22 @@
  *
  */
 
+// Compatible up to v1.317
+
 #include "GEN_JSDATA.h"
 
 void GEN_JSDATA::init(FileReader& fw)
 {
-	EDITDATA::init(fw);
+	initMemData(this_3, fw);
+	initMemData(this_4, fw);
+	this_5 = fw.ReadWord();
+	this_6 = fw.ReadWord();
 }
 
 void GEN_JSDATA::dump([[maybe_unused]] FileWriter& fw) const
 {
-	EDITDATA::dump(fw);
+	this_3.Write(fw);
+	this_4.Write(fw);
+	fw.Write(this_5);
+	fw.Write(this_6);
 }

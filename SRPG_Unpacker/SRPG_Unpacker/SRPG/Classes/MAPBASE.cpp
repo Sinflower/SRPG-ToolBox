@@ -24,14 +24,16 @@
  *
  */
 
+// Compatible up to v1.317
+
 #include "MAPBASE.h"
 
 void MAPBASE::init(FileReader& fw)
 {
-	EDITDATA::init(fw);
+	m_data = fw.ReadDWord();
 }
 
 void MAPBASE::dump([[maybe_unused]] FileWriter& fw) const
 {
-	EDITDATA::dump(fw);
+	fw.Write(m_data);
 }

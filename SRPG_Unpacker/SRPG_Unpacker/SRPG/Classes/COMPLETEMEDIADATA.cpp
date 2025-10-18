@@ -24,14 +24,16 @@
  *
  */
 
+// Compatible up to v1.317
+
 #include "COMPLETEMEDIADATA.h"
 
 void COMPLETEMEDIADATA::init(FileReader& fw)
 {
-	EDITDATA::init(fw);
+	fw.ReadArr(m_data);
 }
 
 void COMPLETEMEDIADATA::dump([[maybe_unused]] FileWriter& fw) const
 {
-	EDITDATA::dump(fw);
+	fw.WriteArr(m_data);
 }

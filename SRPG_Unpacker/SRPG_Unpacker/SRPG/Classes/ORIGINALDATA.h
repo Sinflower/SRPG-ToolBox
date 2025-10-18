@@ -26,11 +26,23 @@
 
 #pragma once
 
-#include "EDITDATA.h"
 #include "LEGENDDATA.h"
 
-struct ORIGINALDATA : public EDITDATA //, public LEGENDDATA -- Include this when implementing the class
+struct ORIGINALDATA : public LEGENDDATA
 {
+	MemData this_3;
+	std::array<DWORD, 7> this_4;
+	std::array<DWORD, 6> this_5;
+	DWORD this_6 = 0;
+
+	class CMenuOperation* this_7 = nullptr;
+
+	std::array<DWORD, 12> this_8;
+	std::array<DWORD, 12> this_9;
+	DWORD this_10 = 0;
+
+	MemData this_11;
+
 	void init(FileReader& fw) override;
 	void dump([[maybe_unused]] FileWriter& fw) const override;
 };

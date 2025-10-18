@@ -28,7 +28,6 @@
 
 #include "FACIALDATA.h"
 #include "../CMenuOperation.h"
-#include "EDITDATA.h"
 
 void FACIALDATA::init(FileReader& fw)
 {

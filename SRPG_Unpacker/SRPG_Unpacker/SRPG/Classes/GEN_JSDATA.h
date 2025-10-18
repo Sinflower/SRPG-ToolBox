@@ -30,6 +30,11 @@
 
 struct GEN_JSDATA : public EDITDATA
 {
+	MemData this_3;
+	MemData this_4;
+	WORD this_5 = 0;
+	WORD this_6 = 0;
+
 	void init(FileReader& fw) override;
 	void dump([[maybe_unused]] FileWriter& fw) const override;
 };

@@ -30,6 +30,10 @@
 
 struct METAMORHISTORY : public EDITDATA
 {
+	DWORD this_3 = 0;
+	DWORD this_4 = 0;
+	DWORD this_5 = 0;
+
 	void init(FileReader& fw) override;
 	void dump([[maybe_unused]] FileWriter& fw) const override;
 };

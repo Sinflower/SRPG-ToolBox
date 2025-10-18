@@ -30,6 +30,8 @@
 
 struct MOSTRECENTINFO : public EDITDATA
 {
+	std::array<DWORD, 4> m_data;
+
 	void init(FileReader& fw) override;
 	void dump([[maybe_unused]] FileWriter& fw) const override;
 };

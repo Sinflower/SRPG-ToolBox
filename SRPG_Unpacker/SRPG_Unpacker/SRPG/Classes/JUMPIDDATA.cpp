@@ -24,14 +24,18 @@
  *
  */
 
+// Compatible up to v1.317
+
 #include "JUMPIDDATA.h"
 
 void JUMPIDDATA::init(FileReader& fw)
 {
-	EDITDATA::init(fw);
+	m_data = fw.ReadDWord();
+	initMemData(m_memData, fw);
 }
 
 void JUMPIDDATA::dump([[maybe_unused]] FileWriter& fw) const
 {
-	EDITDATA::dump(fw);
+	fw.Write(m_data);
+	m_memData.Write(fw);
 }
