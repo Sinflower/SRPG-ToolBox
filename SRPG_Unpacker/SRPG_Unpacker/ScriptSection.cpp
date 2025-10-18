@@ -45,6 +45,9 @@ std::vector<uint32_t> ScriptSection::SecSizes() const
 {
 	uint32_t size = 0;
 
+	if (!m_present)
+		return { size };
+
 	size += 4; // Element count
 
 	for (const ScriptData &data : m_data)

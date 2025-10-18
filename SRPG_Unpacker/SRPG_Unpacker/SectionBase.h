@@ -47,6 +47,7 @@ public:
 
 	void Init(FileReader *pFileReader, const bool &present, std::deque<SecInfo> &secInfos)
 	{
+		m_present     = present;
 		m_pFileReader = pFileReader;
 
 		if (present)
@@ -221,4 +222,5 @@ protected:
 	std::vector<T> m_data           = {};
 	uint32_t m_sections             = 0;
 	SecMap m_secElemCnt             = {};
+	bool m_present                  = false;
 };

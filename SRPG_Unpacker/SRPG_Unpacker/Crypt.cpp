@@ -116,11 +116,9 @@ void Crypt::crypt(std::vector<uint8_t> &data, const bool &decrypt, const bool &o
 	DWORD length = static_cast<DWORD>(data.size());
 	DWORD bufLen = length;
 
-	uint8_t *pData = data.data();
-
 	if (decrypt)
 	{
-		res = CryptDecrypt(m_hKey, NULL, TRUE, NULL, pData, &length);
+		res = CryptDecrypt(m_hKey, NULL, TRUE, NULL, data.data(), &length);
 
 		if (m_algorithm == CALG_RC2)
 		{
@@ -141,7 +139,7 @@ void Crypt::crypt(std::vector<uint8_t> &data, const bool &decrypt, const bool &o
 			bufLen += padding;
 		}
 
-		res = CryptEncrypt(m_hKey, NULL, TRUE, NULL, pData, &length, bufLen);
+		res = CryptEncrypt(m_hKey, NULL, TRUE, NULL, data.data(), &length, bufLen);
 	}
 
 	if (!res)
