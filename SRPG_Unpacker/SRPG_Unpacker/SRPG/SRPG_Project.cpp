@@ -63,7 +63,8 @@ SRPG_Project::~SRPG_Project()
 void SRPG_Project::Dump(const std::filesystem::path& outPath) const
 {
 	FileWriter fw(outPath / PROJECT_DAT_NAME);
-	std::cout << "Dumping the project file to: " << (outPath / PROJECT_DAT_NAME) << std::endl;
+	fs::path outProject = outPath / PROJECT_FILE_NAME;
+	std::cout << "Dumping the project file to: " << ws2s(outProject.wstring()) << std::endl;
 	dump(fw);
 	std::cout << "Finished dumping the project file" << std::endl;
 }
@@ -88,7 +89,7 @@ nlohmann::ordered_json SRPG_Project::GetResMapping() const
 
 void SRPG_Project::WritePatch(const fs::path& outPath) const
 {
-	std::cout << "Writing patches to: " << outPath << std::endl;
+	std::cout << "Writing patches to: " << ws2s(outPath.wstring()) << std::endl;
 	g_UnitNames = m_database.GetGlobalUnitNames();
 
 	m_maps.WritePatches(outPath);
@@ -116,7 +117,7 @@ void SRPG_Project::WritePatch(const fs::path& outPath) const
 
 void SRPG_Project::ApplyPatch(const std::filesystem::path& patchPath)
 {
-	std::cout << "Applying patches from: " << patchPath << std::endl;
+	std::cout << "Applying patches from: " << ws2s(patchPath.wstring()) << std::endl;
 	m_maps.ApplyPatches(patchPath);
 	m_database.ApplyPatches(patchPath);
 	m_gameLayout.ApplyPatches(patchPath);

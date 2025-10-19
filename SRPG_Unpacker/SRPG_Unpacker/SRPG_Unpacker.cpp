@@ -85,7 +85,7 @@ std::wstring RestoreFileName(const std::string& filename, const std::string& sec
 	return fN;
 }
 
-void ProcessFile(const std::wstring& dtsFolder, const fs::path& path, const std::filesystem::path& outFolder, const nlohmann::ordered_json& j)
+void ProcessFile(const std::wstring& dtsFolder, const fs::path& path, const fs::path& outFolder, const nlohmann::ordered_json& j)
 {
 	const std::wstring parentFolder = path.parent_path().wstring();
 	std::wstring localPath          = parentFolder.substr(dtsFolder.size() + 1);
@@ -128,7 +128,7 @@ void ProcessFile(const std::wstring& dtsFolder, const fs::path& path, const std:
 	FileWriter::WriteFile(outPath.wstring(), data);
 }
 
-void CopyAndDecryptOpenData(const std::wstring& dtsFolder, const std::filesystem::path& outFolder, const nlohmann::ordered_json& j)
+void CopyAndDecryptOpenData(const std::wstring& dtsFolder, const fs::path& outFolder, const nlohmann::ordered_json& j)
 {
 	const static std::vector<std::wstring> FOLDER_NAMES = { L"Graphics", L"UI", L"Audio", L"Fonts", L"Video" };
 
@@ -318,13 +318,13 @@ int main(int argc, char* argv[])
 		{
 			const fs::path outputPath = (output.empty() ? defaultUnpack : output);
 			unpack(inputPath, outputPath);
-			std::cout << "Successfully unpacked to: " << outputPath.string() << std::endl;
+			std::cout << "Successfully unpacked to: " << ws2s(outputPath.wstring()) << std::endl;
 		}
 		else if (fs::is_directory(inputPath))
 		{
 			const fs::path outputPath = (output.empty() ? defaultPack : output);
 			pack(inputPath, outputPath);
-			std::cout << "Successfully packed to: " << outputPath.string() << std::endl;
+			std::cout << "Successfully packed to: " << ws2s(outputPath.wstring()) << std::endl;
 		}
 		else if (inputPath.extension() == L".dat" && fs::exists(inputPath))
 		{
@@ -344,6 +344,7 @@ int main(int argc, char* argv[])
 	catch (std::exception& e)
 	{
 		std::cerr << "ERROR: " << e.what() << std::endl;
+		return -1;
 	}
 
 	return 0;
