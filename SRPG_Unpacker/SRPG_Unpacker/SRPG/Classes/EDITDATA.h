@@ -26,16 +26,16 @@
 
 #pragma once
 
-#include <Windows.h>
 #include <array>
 #include <fstream>
 #include <vector>
 
-#include <nlohmann\json.hpp>
+#include <nlohmann/json.hpp>
 
 #include "../../FileAccess.h"
 #include "../../Utils.h"
 #include "../Functions.h"
+#include "../Types.h"
 #include "../Version.h"
 
 class EDITDATA

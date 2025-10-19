@@ -1,5 +1,5 @@
 /*
- *  File: Types.h
+ *  File: SRPG_Types.h
  *  Copyright (c) 2024 Sinflower
  *
  *  MIT License

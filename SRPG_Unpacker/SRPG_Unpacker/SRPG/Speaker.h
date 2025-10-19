@@ -26,10 +26,11 @@
 
 #pragma once
 
-#include <Windows.h>
 #include <array>
 #include <map>
 #include <string>
+
+#include "../Types.h"
 
 using UnitNameMap         = std::map<DWORD, std::string>;
 using UnitNamesCollection = std::array<UnitNameMap, 2>;

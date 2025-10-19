@@ -25,12 +25,13 @@
  */
 
 #pragma once
-#include <cstdint>
+
 #include <filesystem>
 #include <string>
 #include <vector>
 
 #include "MemData.h"
+#include "Types.h"
 
 class DataBase
 {

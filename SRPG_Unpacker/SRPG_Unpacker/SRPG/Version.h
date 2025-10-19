@@ -26,10 +26,9 @@
 
 #pragma once
 
-#include <Windows.h>
-#include <codecvt>
-#include <stdint.h>
 #include <string>
+
+#include "../Types.h"
 
 extern DWORD g_ArcVersion; // dts archive file version, i.e., SRPG version
 

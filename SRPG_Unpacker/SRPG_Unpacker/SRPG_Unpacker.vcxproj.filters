@@ -806,7 +806,7 @@
     <ClInclude Include="SRPG\SRPG_Project.h">
       <Filter>SRPG</Filter>
     </ClInclude>
-    <ClInclude Include="SRPG\Types.h">
+    <ClInclude Include="SRPG\SRPG_Types.h">
       <Filter>SRPG</Filter>
     </ClInclude>
     <ClInclude Include="SRPG\Version.h">

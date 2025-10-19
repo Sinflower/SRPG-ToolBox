@@ -28,13 +28,12 @@
 
 // Compatible up to v1.317
 
-#include <windows.h>
-
 #include <filesystem>
 #include <nlohmann/json.hpp>
 #include <vector>
 
 #include "../FileAccess.h"
+#include "../Types.h"
 
 #include "SRPG_Animations.hpp"
 #include "SRPG_BaseSettings.hpp"

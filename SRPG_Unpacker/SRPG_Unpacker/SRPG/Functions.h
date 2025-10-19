@@ -26,10 +26,9 @@
 
 #pragma once
 
-#include <Windows.h>
-
 #include "../FileAccess.h"
 #include "../MemData.h"
+#include "../Types.h"
 
 #include <nlohmann/json.hpp>
 

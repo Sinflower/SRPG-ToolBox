@@ -29,7 +29,7 @@
 #include <filesystem>
 #include <format>
 #include <iostream>
-#include <nlohmann\json.hpp>
+#include <nlohmann/json.hpp>
 #include <string>
 
 #include "Crypt.h"
@@ -85,7 +85,7 @@ std::wstring RestoreFileName(const std::string& filename, const std::string& sec
 	return fN;
 }
 
-void ProcessFile(const std::wstring& dtsFolder, const fs::path& path, const std::wstring& outFolder, const nlohmann::ordered_json& j)
+void ProcessFile(const std::wstring& dtsFolder, const fs::path& path, const std::filesystem::path& outFolder, const nlohmann::ordered_json& j)
 {
 	const std::wstring parentFolder = path.parent_path().wstring();
 	std::wstring localPath          = parentFolder.substr(dtsFolder.size() + 1);
@@ -120,7 +120,7 @@ void ProcessFile(const std::wstring& dtsFolder, const fs::path& path, const std:
 
 	ext = GetFileExtension(data);
 
-	fs::path outPath = std::format(L"{}/{}/{}{}", outFolder, localPath, fN, ext);
+	fs::path outPath = outFolder / localPath / std::format(L"{}{}", fN, ext);
 
 	// Make sure the folder exists
 	fs::create_directories(outPath.parent_path());
@@ -128,7 +128,7 @@ void ProcessFile(const std::wstring& dtsFolder, const fs::path& path, const std:
 	FileWriter::WriteFile(outPath.wstring(), data);
 }
 
-void CopyAndDecryptOpenData(const std::wstring& dtsFolder, const std::wstring& outFolder, const nlohmann::ordered_json& j)
+void CopyAndDecryptOpenData(const std::wstring& dtsFolder, const std::filesystem::path& outFolder, const nlohmann::ordered_json& j)
 {
 	const static std::vector<std::wstring> FOLDER_NAMES = { L"Graphics", L"UI", L"Audio", L"Fonts", L"Video" };
 

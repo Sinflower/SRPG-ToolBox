@@ -108,7 +108,7 @@ void CHOICESHOW::applyPatch(const nlohmann::ordered_json& json)
 		}
 		else
 		{
-			auto it   = arr.begin();
+			auto it = arr.begin();
 			for (auto* pObj : *pChoices)
 			{
 				if (it == arr.end())

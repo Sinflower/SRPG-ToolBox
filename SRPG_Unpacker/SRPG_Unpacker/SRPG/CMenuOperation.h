@@ -26,13 +26,13 @@
 
 #pragma once
 
-#include <Windows.h>
 #include <fstream>
-#include <nlohmann\json.hpp>
+#include <nlohmann/json.hpp>
 #include <vector>
 
 #include "../FileAccess.h"
-#include "Types.h"
+#include "../Types.h"
+#include "SRPG_Types.h"
 
 #define SET_STRING_IF_IN_JSON(_JSON_, _NAME_, _STR_)           \
 	if (_JSON_.contains(_NAME_) && _JSON_[_NAME_].is_string()) \

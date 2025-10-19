@@ -30,10 +30,11 @@
 #include <fstream>
 #include <iostream>
 #include <map>
-#include <nlohmann\json.hpp>
+#include <nlohmann/json.hpp>
 #include <string>
 #include <vector>
 
+#include "Types.h"
 #include "Utils.h"
 
 #define Config ConfigManager::GetInstance()

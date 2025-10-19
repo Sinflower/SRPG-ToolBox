@@ -34,7 +34,7 @@ void METAMORHISTORY::init(FileReader& fw)
 	this_4 = fw.ReadDWord();
 
 	if (g_ArcVersion >= 1177)
-	this_5 = fw.ReadDWord();
+		this_5 = fw.ReadDWord();
 }
 
 void METAMORHISTORY::dump([[maybe_unused]] FileWriter& fw) const

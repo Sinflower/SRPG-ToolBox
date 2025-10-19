@@ -26,11 +26,11 @@
 
 #pragma once
 
-#include <Windows.h>
 #include <fstream>
 #include <vector>
 
 #include "FileAccess.h"
+#include "Types.h"
 #include "Utils.h"
 
 struct MemData

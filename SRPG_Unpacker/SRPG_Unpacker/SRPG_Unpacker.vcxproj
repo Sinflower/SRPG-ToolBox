@@ -990,7 +990,7 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\Classes\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\SRPG\Classes\</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="SRPG\CMenuOperation.cpp" >
+    <ClCompile Include="SRPG\CMenuOperation.cpp">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\SRPG\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\SRPG\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\SRPG\</ObjectFileName>
@@ -1761,7 +1761,7 @@
     <ClInclude Include="SRPG\SRPG_RecollectionEvents.hpp" />
     <ClInclude Include="SRPG\SRPG_Resources.hpp" />
     <ClInclude Include="SRPG\SRPG_StorySettings.hpp" />
-    <ClInclude Include="SRPG\Types.h" />
+    <ClInclude Include="SRPG\SRPG_Types.h" />
     <ClInclude Include="SRPG\Version.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="Utils.h" />
