@@ -111,7 +111,7 @@ struct EVENTDATA : public LEGENDDATA
 
 	DWORD this_20 = 0;
 	DWORD this_21 = 0;
-	MemData this_22;
+	MemData customParameters;
 	DWORD this_23 = 0;
 
 	// OLD STUFF

@@ -63,7 +63,7 @@ void EVENTDATA::print(std::ostream& os) const
 	os << "pages: " << *pPages << std::endl;
 	os << "this_20: " << this_20 << std::endl;
 	os << "this_21: " << this_21 << std::endl;
-	os << "this_22: " << this_22 << std::endl;
+	os << "customParameters: " << customParameters << std::endl;
 	os << "this_23: " << this_23 << std::endl;
 }
 
@@ -226,7 +226,7 @@ void EVENTDATA::init(FileReader& fw)
 
 	allocAndSetCMenuOp(&pPages, SRPGClasses::EVENTPAGE, fw);
 
-	initMemData(this_22, fw);
+	initMemData(customParameters, fw);
 
 	LEGENDDATA::init(fw);
 }
@@ -353,7 +353,7 @@ void EVENTDATA::dump(FileWriter& fw) const
 
 	pPages->Dump(fw);
 
-	this_22.Write(fw);
+	customParameters.Write(fw);
 
 	LEGENDDATA::dump(fw);
 }
@@ -375,13 +375,14 @@ nlohmann::ordered_json EVENTDATA::toJson() const
 {
 	nlohmann::ordered_json j = EDITDATA::toJson();
 
-	j["command"]    = this_15.command.ToString();
-	j["commandMsg"] = this_15.commandMsg.ToString();
+	j["command"]          = this_15.command.ToString();
+	j["commandMsg"]       = this_15.commandMsg.ToString();
+	j["customParameters"] = customParameters.ToString();
 
 	pPages->ToJson(j, "pages");
 
 	// If there is no command[Msg] or actual page data skip the entire event
-	if ((j["command"].empty() && j["commandMSg"].empty()) && (!j.contains("pages") || j["pages"].empty()))
+	if ((j["command"].empty() && j["commandMSg"].empty() && j["customParameters"].empty()) && (!j.contains("pages") || j["pages"].empty()))
 		j.clear();
 
 	return j;
@@ -392,5 +393,6 @@ void EVENTDATA::applyPatch(const nlohmann::ordered_json& json)
 	EDITDATA::applyPatch(json);
 	SET_STRING_IF_IN_JSON(json, "command", this_15.command);
 	SET_STRING_IF_IN_JSON(json, "commandMsg", this_15.commandMsg);
+	SET_STRING_IF_IN_JSON(json, "customParameters", customParameters);
 	APPLY_PATCH_IF_IN_JSON(json, "pages", pPages);
 }
