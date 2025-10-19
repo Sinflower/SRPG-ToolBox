@@ -59,6 +59,6 @@ void MEDIADATA::initFromJson(const nlohmann::ordered_json& json)
 	SET_DWORD_IF_IN_JSON(json, "section_idx", this_3);
 }
 
-void MEDIADATA::applyPatch(const [[maybe_unused]] nlohmann::ordered_json& json)
+void MEDIADATA::applyPatch([[maybe_unused]] const nlohmann::ordered_json& json)
 {
 }

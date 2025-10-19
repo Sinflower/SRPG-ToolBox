@@ -41,7 +41,7 @@ public:
 	{
 		m_fileHeader.Reset();
 		m_fileHeader.Init(dtsFile);
-		m_fileHeader.Unpack(outputFolder);
+		m_fileHeader.Unpack(outputFolder.wstring());
 
 		return true;
 	}
@@ -50,7 +50,7 @@ public:
 	{
 		m_fileHeader.Reset();
 		m_fileHeader.Init(inputFolder);
-		m_fileHeader.Pack(dtsFile);
+		m_fileHeader.Pack(dtsFile.wstring());
 
 		return true;
 	}

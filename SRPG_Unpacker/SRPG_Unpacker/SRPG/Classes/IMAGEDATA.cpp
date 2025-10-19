@@ -57,6 +57,6 @@ void IMAGEDATA::initFromJson(const nlohmann::ordered_json& json)
 	SET_FN_STRING_IF_IN_JSON(json, "name", m_imageName);
 }
 
-void IMAGEDATA::applyPatch(const [[maybe_unused]] nlohmann::ordered_json& json)
+void IMAGEDATA::applyPatch([[maybe_unused]] const nlohmann::ordered_json& json)
 {
 }

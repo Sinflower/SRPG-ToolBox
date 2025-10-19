@@ -33,17 +33,17 @@
 
 namespace fs = std::filesystem;
 
-FileHeader::FileHeader(const std::wstring &fileName)
+FileHeader::FileHeader(const std::filesystem::path &fileName)
 {
 	Init(fileName);
 }
 
-void FileHeader::Init(const std::wstring &fileName)
+void FileHeader::Init(const std::filesystem::path &fileName)
 {
 	if (fs::path(fileName).extension() == L".dts")
 		initDTS(fileName);
 	else
-		initFolder(fileName);
+		initFolder(fileName.wstring());
 }
 
 void FileHeader::Print() const
@@ -217,9 +217,9 @@ void FileHeader::writeOffsets(FileWriter &fileWriter, const std::vector<uint32_t
 	}
 }
 
-void FileHeader::initDTS(const std::wstring &fileName)
+void FileHeader::initDTS(const std::filesystem::path &fileName)
 {
-	m_fileReader.Open(fileName);
+	m_fileReader.Open(fileName.wstring());
 
 	m_magicNumber = m_fileReader.ReadUInt32();
 

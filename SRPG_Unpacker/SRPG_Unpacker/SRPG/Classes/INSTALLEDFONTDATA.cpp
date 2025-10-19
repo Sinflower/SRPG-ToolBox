@@ -68,6 +68,6 @@ void INSTALLEDFONTDATA::initFromJson(const nlohmann::ordered_json& json)
 	SET_DWORD_IF_IN_JSON(json, "section_idx", this_6);
 }
 
-void INSTALLEDFONTDATA::applyPatch(const [[maybe_unused]] nlohmann::ordered_json& json)
+void INSTALLEDFONTDATA::applyPatch([[maybe_unused]] const nlohmann::ordered_json& json)
 {
 }

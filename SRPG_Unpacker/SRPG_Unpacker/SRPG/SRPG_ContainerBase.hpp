@@ -76,7 +76,7 @@ public:
 	void Dump(FileWriter& fw) const;
 	void DumpProj(FileWriter& fw) const;
 	void WritePatches(const std::filesystem::path& outPath) const;
-	void ApplyPatches(const [[maybe_unused]] std::filesystem::path& patchPath);
+	void ApplyPatches([[maybe_unused]] const std::filesystem::path& patchPath);
 
 	static std::filesystem::path CommonsPath(const std::filesystem::path& basePath);
 
@@ -101,7 +101,7 @@ protected:
 	}
 
 	virtual void writePatches(const std::filesystem::path& outPath) const = 0;
-	virtual void applyPatches(const [[maybe_unused]] std::filesystem::path& patchPath) {}
+	virtual void applyPatches([[maybe_unused]] const std::filesystem::path& patchPath) {}
 
 	static UnitNameMap buildUnitNameMap(const CMenuOperation* pObjs, const DWORD& npcIdOffset = 0x0);
 

@@ -61,6 +61,6 @@ void VIDEODATA::initFromJson(const nlohmann::ordered_json& json)
 	SET_DWORD_IF_IN_JSON(json, "section_idx", this_4);
 }
 
-void VIDEODATA::applyPatch(const [[maybe_unused]] nlohmann::ordered_json& json)
+void VIDEODATA::applyPatch([[maybe_unused]] const nlohmann::ordered_json& json)
 {
 }
