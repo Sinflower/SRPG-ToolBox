@@ -281,6 +281,7 @@ std::wstring DataBase::buildSubElemName(const std::wstring& baseName, const uint
 
 	if (subIdx > 0)
 	{
+		suffix = L"-";
 		if (level2 > 0)
 			suffix += wchar_t(0x60 + level2);
 		suffix += wchar_t(0x60 + val);
