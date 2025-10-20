@@ -153,6 +153,13 @@ void SRPG_BaseSettings::writePatches(const std::filesystem::path& outPath) const
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pShops, basePath, L"shops.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pBonuses, basePath, L"bonuses.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pQuests, basePath, L"quests.json");
+
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pEventDatas[0], basePath, L"placeevents.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pEventDatas[1], basePath, L"autoevents.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pEventDatas[2], basePath, L"talkevents.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pEventDatas[3], basePath, L"openingevents.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pEventDatas[4], basePath, L"endingevents.json");
+	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pEventDatas[5], basePath, L"communicationevents.json");
 }
 
 void SRPG_BaseSettings::applyPatches(const std::filesystem::path& patchPath)
@@ -162,4 +169,11 @@ void SRPG_BaseSettings::applyPatches(const std::filesystem::path& patchPath)
 	CHECK_OBJ_AND_APPLY_PATCH(m_pShops, basePath, L"shops.json");
 	CHECK_OBJ_AND_APPLY_PATCH(m_pBonuses, basePath, L"bonuses.json");
 	CHECK_OBJ_AND_APPLY_PATCH(m_pQuests, basePath, L"quests.json");
+
+	CHECK_OBJ_AND_APPLY_PATCH(m_pEventDatas[0], basePath, L"placeevents.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pEventDatas[1], basePath, L"autoevents.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pEventDatas[2], basePath, L"talkevents.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pEventDatas[3], basePath, L"openingevents.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pEventDatas[4], basePath, L"endingevents.json");
+	CHECK_OBJ_AND_APPLY_PATCH(m_pEventDatas[5], basePath, L"communicationevents.json");
 }

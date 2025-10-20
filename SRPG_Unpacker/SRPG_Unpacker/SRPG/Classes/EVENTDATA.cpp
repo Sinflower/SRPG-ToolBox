@@ -373,7 +373,7 @@ void EVENTDATA::sub_FD4620(FileReader& fw)
 
 nlohmann::ordered_json EVENTDATA::toJson() const
 {
-	nlohmann::ordered_json j = EDITDATA::toJson();
+	nlohmann::ordered_json j = LEGENDDATA::toJson();
 
 	j["command"]          = this_15.command.ToString();
 	j["commandMsg"]       = this_15.commandMsg.ToString();
@@ -390,7 +390,7 @@ nlohmann::ordered_json EVENTDATA::toJson() const
 
 void EVENTDATA::applyPatch(const nlohmann::ordered_json& json)
 {
-	EDITDATA::applyPatch(json);
+	LEGENDDATA::applyPatch(json);
 	SET_STRING_IF_IN_JSON(json, "command", this_15.command);
 	SET_STRING_IF_IN_JSON(json, "commandMsg", this_15.commandMsg);
 	SET_STRING_IF_IN_JSON(json, "customParameters", customParameters);
