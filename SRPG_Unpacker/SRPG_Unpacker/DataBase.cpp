@@ -55,12 +55,14 @@ void DataBase::Unpack(const std::wstring &outputFolder) const
 
 		std::wstring fileName = m_name.ToWString();
 
-		// Check if the file already has an extension
+		const std::wstring curExt = fs::path(fileName).extension();
+
+		// Check if the file already has an extension but make sure it's not just a dot
 		// Check for not dat empty because there is a chance for 0 byte sub-elements
-		if (fs::path(fileName).extension().empty() && !dat.empty())
+		if ((curExt.empty() || curExt == L".") && !dat.empty())
 			ext = GetFileExtension(dat);
 
-		fileName                    = std::format(L"{}{}{}", fileName, (subElemIdx == 0 ? L"" : std::format(L"-{}", wchar_t(0x60 + subElemIdx))), ext);
+		fileName = std::format(L"{}{}", buildSubElemName(fileName, subElemIdx), ext);
 		const std::wstring filePath = std::format(L"{}{}", dirPath, fileName);
 
 		if (subElemIdx == 0)
@@ -209,7 +211,7 @@ void DataBase::buildData(const std::wstring &inputFolder)
 
 	for (uint32_t i = 0; i < m_subElemCount; i++)
 	{
-		const std::wstring name     = std::format(L"{}{}", m_name.ToWString(), (i == 0 ? L"" : std::format(L"-{}", wchar_t(0x60 + i))));
+		const std::wstring name     = buildSubElemName(m_name.ToWString(), i);
 		const std::wstring basePath = std::format(L"{}/{}", dirPath, name);
 		std::wstring filePath       = std::format(L"{}{}", basePath, ext);
 		// If the file does not exist, try to find it with a different extension
@@ -265,4 +267,24 @@ uint32_t DataBase::getFileSizeUTF16(const std::wstring &filePath) const
 	size *= 2; // UTF-16 uses 2 bytes per character
 
 	return static_cast<uint32_t>(size);
+}
+
+std::wstring DataBase::buildSubElemName(const std::wstring& baseName, const uint32_t& subIdx) const
+{
+	const uint32_t level2 = subIdx / 26;
+	const uint32_t val = subIdx % 26;
+
+	if (subIdx > 676)
+		throw std::runtime_error("Sub-element index exceeds maximum supported value of 676");
+
+	std::wstring suffix = L"";
+
+	if (subIdx > 0)
+	{
+		if (level2 > 0)
+			suffix += wchar_t(0x60 + level2);
+		suffix += wchar_t(0x60 + val);
+	}
+
+	return std::format(L"{}{}", baseName, suffix);
 }

@@ -74,6 +74,8 @@ protected:
 
 	uint32_t getFileSizeUTF16(const std::wstring &filePath) const;
 
+	std::wstring buildSubElemName(const std::wstring& baseName, const uint32_t& subIdx) const;
+
 protected:
 	FileReader *m_pFileReader = nullptr;
 	uint32_t m_idx            = 0;
