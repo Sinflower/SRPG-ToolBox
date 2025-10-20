@@ -26,15 +26,16 @@
 
 #pragma once
 
-#include <windows.h>
-
-#include <codecvt>
+#include <cstring>
 #include <exception>
+#include <filesystem>
 #include <format>
 #include <fstream>
 #include <iostream>
 #include <string>
 #include <vector>
+
+#include "Types.h"
 
 using QWORD = uint64_t;
 
@@ -467,10 +468,8 @@ class FileWriter
 {
 public:
 	FileWriter() {}
-	FileWriter(const std::string& filename) :
-		FileWriter(fileAccessUtils::s2ws(filename)) {}
 
-	FileWriter(const std::wstring& filename)
+	FileWriter(const std::filesystem::path& filename)
 	{
 		Open(filename);
 	}
@@ -479,7 +478,7 @@ public:
 	FileWriter(const FileWriter&)            = delete;
 	FileWriter& operator=(const FileWriter&) = delete;
 
-	void Open(const std::wstring& filename)
+	void Open(const std::filesystem::path& filename)
 	{
 		m_file = std::fstream(filename, std::ios::out | std::ios::binary);
 		if (!m_file.is_open())
@@ -529,12 +528,7 @@ public:
 		return m_size;
 	}
 
-	void WriteToFile(const std::string& filename)
-	{
-		WriteToFile(fileAccessUtils::s2ws(filename));
-	}
-
-	void WriteToFile(const std::wstring& filename)
+	void WriteToFile(const std::filesystem::path& filename)
 	{
 		if (m_bufferMode)
 		{
@@ -609,7 +603,7 @@ public:
 			throw(FileWriterException("FileWriter not initialized"));
 	}
 
-	static void WriteFile(const std::wstring& filename, const std::vector<uint8_t>& buffer)
+	static void WriteFile(const std::filesystem::path& filename, const std::vector<uint8_t>& buffer)
 	{
 		try
 		{

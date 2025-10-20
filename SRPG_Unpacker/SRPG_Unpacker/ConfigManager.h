@@ -129,7 +129,7 @@ private:
 	ConfigManager()  = default;
 	~ConfigManager() = default;
 
-	void load(const std::wstring& filename)
+	void load(const std::filesystem::path& filename)
 	{
 		std::ifstream file(filename);
 		if (!file.is_open())
@@ -144,7 +144,7 @@ private:
 		m_map.clear();
 	}
 
-	void save(const std::wstring& filename)
+	void save(const std::filesystem::path& filename)
 	{
 		std::ofstream file(filename);
 		if (!file.is_open())

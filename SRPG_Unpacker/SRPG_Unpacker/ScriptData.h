@@ -43,9 +43,9 @@ protected:
 
 	void add2Config(const std::filesystem::path &file) const override;
 
-	void write2File(const std::wstring &filePath, const std::vector<uint8_t> &data) const override;
+	void write2File(const std::filesystem::path &filePath, const std::vector<uint8_t> &data) const override;
 
-	void readFromFile(const std::wstring &filePath, std::vector<uint8_t> &data) const override;
+	void readFromFile(const std::filesystem::path &filePath, std::vector<uint8_t> &data) const override;
 
 	void loadData() override;
 

@@ -147,7 +147,7 @@ void DataBase::add2Config(const fs::path &file) const
 	Config.Add2Array(SECTION_NAMES[m_idx], file.filename().wstring(), { m_reserved0, m_reserved1, m_subElemCount });
 }
 
-void DataBase::write2File(const std::wstring &filePath, const std::vector<uint8_t> &data) const
+void DataBase::write2File(const std::filesystem::path &filePath, const std::vector<uint8_t> &data) const
 {
 	std::ofstream outFile(filePath, std::ofstream::binary);
 
@@ -155,12 +155,12 @@ void DataBase::write2File(const std::wstring &filePath, const std::vector<uint8_
 	outFile.close();
 }
 
-void DataBase::readFromFile(const std::wstring &filePath, std::vector<uint8_t> &data) const
+void DataBase::readFromFile(const std::filesystem::path &filePath, std::vector<uint8_t> &data) const
 {
 	std::ifstream inFile(filePath, std::ifstream::binary);
 
 	if (!inFile.is_open())
-		throw std::runtime_error(std::format("Failed to open file: {}", ws2s(filePath)));
+		throw std::runtime_error(std::format("Failed to open file: {}", ws2s(filePath.wstring())));
 
 	inFile.seekg(0, inFile.end);
 	std::size_t size = inFile.tellg();
@@ -169,7 +169,7 @@ void DataBase::readFromFile(const std::wstring &filePath, std::vector<uint8_t> &
 	if (data.empty())
 		data.resize(size, 0);
 	else if (size != data.size())
-		throw std::runtime_error(std::format("File size mismatch: {} - Got: {} - Expected: {}", ws2s(filePath), size, data.size()));
+		throw std::runtime_error(std::format("File size mismatch: {} - Got: {} - Expected: {}", ws2s(filePath.wstring()), size, data.size()));
 
 	inFile.read(reinterpret_cast<char *>(data.data()), size);
 	inFile.close();

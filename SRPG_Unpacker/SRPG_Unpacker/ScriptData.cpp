@@ -93,12 +93,12 @@ void ScriptData::add2Config(const fs::path &file) const
 	Config.Add2Array(getFolderName(), file.wstring(), {});
 }
 
-void ScriptData::write2File(const std::wstring &filePath, const std::vector<uint8_t> &data) const
+void ScriptData::write2File(const std::filesystem::path &filePath, const std::vector<uint8_t> &data) const
 {
 	std::ofstream file(filePath, std::ios::out | std::ios::binary);
 
 	if (file.fail())
-		throw std::runtime_error(std::format("Failed to open file: {}", ws2s(filePath)));
+		throw std::runtime_error(std::format("Failed to open file: {}", ws2s(filePath.wstring())));
 
 	std::vector<uint8_t> wdata = ws2s(data);
 
@@ -111,12 +111,12 @@ void ScriptData::write2File(const std::wstring &filePath, const std::vector<uint
 	file.close();
 }
 
-void ScriptData::readFromFile(const std::wstring &filePath, std::vector<uint8_t> &data) const
+void ScriptData::readFromFile(const std::filesystem::path &filePath, std::vector<uint8_t> &data) const
 {
 	std::ifstream file(filePath, std::ios::in | std::ios::binary);
 
 	if (file.fail())
-		throw std::runtime_error(std::format("Failed to open file: {}", ws2s(filePath)));
+		throw std::runtime_error(std::format("Failed to open file: {}", ws2s(filePath.wstring())));
 
 	file.seekg(0, std::ios::end);
 	std::size_t size = file.tellg();
