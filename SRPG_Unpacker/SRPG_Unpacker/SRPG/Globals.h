@@ -27,5 +27,7 @@
 #pragma once
 
 #include <string>
+#include <fstream>
 
 extern std::string g_activeFile;
+extern std::ofstream g_debugMemDataLog;

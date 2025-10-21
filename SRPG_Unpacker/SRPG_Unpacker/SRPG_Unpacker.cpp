@@ -303,6 +303,9 @@ int main(int argc, char* argv[])
 	bool applyPatch = false;
 	app.add_flag("-a,--apply-patch", applyPatch, "Apply a patch to the provided project.dat");
 
+	bool createMemDataLog = false;
+	app.add_flag("--log-mem-data", createMemDataLog, "Create a debug log file with the content of each mem data object initialized");
+
 	CLI11_PARSE(app, argc, argv);
 
 	EnableUTF8Print();
@@ -312,6 +315,9 @@ int main(int argc, char* argv[])
 
 	try
 	{
+		if (createMemDataLog)
+			SRPG_Project::CreateMemDataLog();
+
 		fs::path inputPath = fs::path(input);
 
 		if (inputPath.extension() == L".dts" && fs::exists(inputPath))

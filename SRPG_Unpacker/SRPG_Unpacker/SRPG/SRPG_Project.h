@@ -79,6 +79,11 @@ public:
 		return m_encryptionKey;
 	}
 
+	static void CreateMemDataLog()
+	{
+		s_createMemDataLog = true;
+	}
+
 private:
 	void loadProject();
 
@@ -102,4 +107,6 @@ private:
 	DWORD res2 = 0;
 
 	EncryptionKey m_encryptionKey = { 0 };
+
+	inline static bool s_createMemDataLog = false;
 };

@@ -30,9 +30,10 @@
 #include "../MemData.h"
 #include "../Types.h"
 
+#include <source_location>
 #include <nlohmann/json.hpp>
 
-void initMemData(MemData& memData, FileReader& fw, const DWORD& size = -1);
+void initMemData(MemData& memData, FileReader& fw, const DWORD& size = -1, std::source_location location = std::source_location::current());
 void WriteJsonToFile(const nlohmann::ordered_json& json, const std::filesystem::path& path, const std::wstring& name);
 nlohmann::ordered_json ReadJsonFromFile(const std::filesystem::path& path, const std::wstring& name);
 void ReadJsonFromFile(nlohmann::ordered_json& json, const std::filesystem::path& path, const std::wstring& name);

@@ -38,6 +38,7 @@ namespace fs = std::filesystem;
 DWORD g_ArcVersion = 0;
 UnitNamesCollection g_UnitNames;
 std::string g_activeFile = "";
+std::ofstream g_debugMemDataLog;
 
 SRPG_Project::SRPG_Project(const SRPG_ProjectData& projData) :
 	m_resources(projData.resFlag)
@@ -52,13 +53,23 @@ SRPG_Project::SRPG_Project(const SRPG_ProjectData& projData) :
 				  << "======================================= WARNING ========================================" << std::endl;
 	}
 
+	if (s_createMemDataLog)
+	{
+		g_debugMemDataLog.open("SRPG_MemDataLog.txt", std::ios::out | std::ios::trunc);
+		if (!g_debugMemDataLog.is_open())
+			std::cerr << "Failed to open SRPG_MemDataLog.txt for writing memory data log" << std::endl;
+	}
+
 	g_ArcVersion = projData.version;
 	m_fw.InitData(projData.data);
 	loadProject();
 }
 
 SRPG_Project::~SRPG_Project()
-{}
+{
+	if (g_debugMemDataLog.is_open())
+		g_debugMemDataLog.close();
+}
 
 void SRPG_Project::Dump(const std::filesystem::path& outPath) const
 {

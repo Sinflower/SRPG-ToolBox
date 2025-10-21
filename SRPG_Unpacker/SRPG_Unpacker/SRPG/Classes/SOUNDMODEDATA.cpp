@@ -35,7 +35,7 @@ void SOUNDMODEDATA::init(FileReader& fw)
 	this_8  = fw.ReadDWord();
 	this_10 = fw.ReadDWord();
 	this_11 = fw.ReadDWord();
-	InitMemData(this_12, fw);
+	initMemData(this_12, fw);
 
 	LEGENDDATA::init(fw);
 }

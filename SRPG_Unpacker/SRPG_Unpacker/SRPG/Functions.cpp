@@ -25,6 +25,7 @@
  */
 
 #include "Functions.h"
+#include "Globals.h"
 
 /*************CLASSES****************/
 #include "Classes/ANIMEDATA.h"
@@ -229,7 +230,7 @@
 #include "Commands/WAITACTION.h"
 /*************COMMANDS****************/
 
-void initMemData(MemData& memData, FileReader& fw, const DWORD& size)
+void initMemData(MemData& memData, FileReader& fw, const DWORD& size, std::source_location location)
 {
 	memData.offset = fw.GetOffset();
 
@@ -245,6 +246,12 @@ void initMemData(MemData& memData, FileReader& fw, const DWORD& size)
 	{
 		memData.data.resize(memData.size);
 		fw.ReadBytesVec(memData.data);
+	}
+
+	if (g_debugMemDataLog.is_open())
+	{
+		g_debugMemDataLog << "initMemData called from " << std::filesystem::path(location.file_name()).filename() << ":" << location.line() << " - Offset: " << memData.offset << ", Size: " << memData.size << std::endl;
+		g_debugMemDataLog << memData << std::endl;
 	}
 }
 
