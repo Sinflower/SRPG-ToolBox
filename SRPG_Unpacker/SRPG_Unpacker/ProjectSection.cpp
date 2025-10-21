@@ -59,6 +59,20 @@ std::vector<uint8_t> ProjectSection::GetData() const
 	return data;
 }
 
+std::array<uint8_t, 16> ProjectSection::GetCryptKey() const
+{
+	std::array<uint8_t, 16> key;
+
+	std::vector<uint8_t> dat = GetData();
+
+	if (dat.size() >= 16)
+		std::copy(dat.begin(), dat.begin() + 16, key.begin());
+	else
+		throw std::runtime_error("[ProjectSection] Project data too small to contain a valid crypt key");
+
+	return key;
+}
+
 void ProjectSection::build(const std::wstring &inputFolder)
 {
 	m_data.push_back(ProjectData(inputFolder));

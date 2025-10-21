@@ -29,6 +29,8 @@
 #include "ProjectData.h"
 #include "SectionBase.h"
 
+#include <array>
+
 class ProjectSection : public SectionBase<ProjectData>
 {
 public:
@@ -39,6 +41,8 @@ public:
 	std::vector<uint32_t> SecSizes() const override;
 
 	std::vector<uint8_t> GetData() const;
+
+	std::array<uint8_t, 16> GetCryptKey() const;
 
 protected:
 	void build(const std::wstring &inputFolder) override;

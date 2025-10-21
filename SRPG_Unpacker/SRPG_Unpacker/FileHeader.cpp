@@ -65,6 +65,14 @@ void FileHeader::Unpack(const std::wstring &outputFolder)
 	if (!m_sectionInitDone)
 		initSections();
 
+	if (m_fileVersion >= NEW_CRYPT_START_VERSION)
+	{
+		// Switch the encryption key
+		std::array<uint8_t, 16> key = m_pSec.GetCryptKey();
+		Crypt::SwitchToCustomKey(key);
+		Config.Add("customKey", key);
+	}
+
 	m_gSec.Unpack(outputFolder);
 	m_uSec.Unpack(outputFolder);
 	m_aSec.Unpack(outputFolder);
@@ -72,6 +80,13 @@ void FileHeader::Unpack(const std::wstring &outputFolder)
 
 	if (!m_oldFormat)
 		m_vSec.Unpack(outputFolder);
+
+	if(m_fileVersion >= NEW_CRYPT_START_VERSION)
+	{
+		// Switch back to default key
+		Crypt::SwitchToNewKey();
+	}
+
 	m_sSec.Unpack(outputFolder);
 	m_pSec.Unpack(outputFolder);
 
@@ -129,12 +144,26 @@ void FileHeader::Pack(const std::wstring &outputFile)
 		writeOffsets(fileWriter, vSecSize, offset);
 	writeOffsets(fileWriter, sSecSize, offset);
 
+	if(m_fileVersion >= NEW_CRYPT_START_VERSION)
+	{
+		// Switch the encryption key
+		std::array<uint8_t, 16> key = Config.Get<std::array<uint8_t, 16>>("customKey");
+		Crypt::SwitchToCustomKey(key);
+	}
+
 	m_gSec.Pack(fileWriter);
 	m_uSec.Pack(fileWriter);
 	m_aSec.Pack(fileWriter);
 	m_fSec.Pack(fileWriter);
 	if (!m_oldFormat)
 		m_vSec.Pack(fileWriter);
+
+	if (m_fileVersion >= NEW_CRYPT_START_VERSION)
+	{
+		// Switch back to default key
+		Crypt::SwitchToNewKey();
+	}
+
 	m_sSec.Pack(fileWriter);
 	m_pSec.Pack(fileWriter);
 
