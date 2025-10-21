@@ -41,7 +41,11 @@ struct QUESTDATA : public LEGENDDATA
 	DWORD this_18 = 0;
 	EVENTPAGE_DATA this_19;
 	class CMenuOperation* pRewardData = nullptr;
-	MemData this_21;
+	MemData customParameters;
 	void init(FileReader& fw) override;
 	void dump([[maybe_unused]] FileWriter& fw) const override;
+
+protected:
+	nlohmann::ordered_json toJson() const override;
+	void applyPatch(const nlohmann::ordered_json& json) override;
 };

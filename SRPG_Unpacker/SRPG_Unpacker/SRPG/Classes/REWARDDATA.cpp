@@ -56,12 +56,13 @@ void REWARDDATA::dump(FileWriter& fw) const
 
 nlohmann::ordered_json REWARDDATA::toJson() const
 {
-	nlohmann::ordered_json j;
-	j["text"] = text.ToString();
-	return j;
+	return text.ToString();
 }
 
 void REWARDDATA::applyPatch(const nlohmann::ordered_json& json)
 {
-	SET_STRING_IF_IN_JSON(json, "text", text);
+	if (json.is_string())
+		text = json.get<std::string>();
+	else
+		throw std::runtime_error("STRINGDATA::applyPatch: JSON is not a string");
 }

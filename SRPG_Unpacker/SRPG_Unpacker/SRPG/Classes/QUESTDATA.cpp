@@ -48,7 +48,7 @@ void QUESTDATA::init(FileReader& fw)
 
 	allocAndSetCMenuOp(&pRewardData, SRPGClasses::REWARDDATA, fw);
 
-	initMemData(this_21, fw);
+	initMemData(customParameters, fw);
 	LEGENDDATA::init(fw);
 }
 
@@ -70,6 +70,23 @@ void QUESTDATA::dump(FileWriter& fw) const
 
 	pRewardData->Dump(fw);
 
-	this_21.Write(fw);
+	customParameters.Write(fw);
 	LEGENDDATA::dump(fw);
+}
+
+nlohmann::ordered_json QUESTDATA::toJson() const
+{
+	nlohmann::ordered_json json = LEGENDDATA::toJson();
+	json["rewardData"] = pRewardData->ToJson();
+	json["customParameters"] = customParameters.ToString();
+	return json;
+}
+
+void QUESTDATA::applyPatch(const nlohmann::ordered_json& json)
+{
+	LEGENDDATA::applyPatch(json);
+	
+
+	APPLY_PATCH_IF_IN_JSON(json, "rewardData", pRewardData)
+	SET_STRING_IF_IN_JSON(json, "customParameters", customParameters);
 }
