@@ -81,4 +81,9 @@ void SUPPORTDATA::dump(FileWriter& fw) const
 		if (this_13 != 0)
 			fw.WriteBytesArr(this_14);
 	}
+	else if (g_writingProject)
+	{
+		// The editor does not contain the v1.043 check and expects at least one DWORD here
+		fw.Write(0x0);
+	}
 }

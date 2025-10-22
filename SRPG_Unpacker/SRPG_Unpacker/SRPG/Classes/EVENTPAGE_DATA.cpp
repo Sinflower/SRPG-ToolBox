@@ -35,7 +35,7 @@
 
 void EVENTPAGE_DATA::init(FileReader& fw)
 {
-	if (g_ArcVersion >= 0x432)
+	if (g_ArcVersion >= 1074)
 		initNewFormat(fw);
 	else
 		initOldFormat(fw);
@@ -43,7 +43,7 @@ void EVENTPAGE_DATA::init(FileReader& fw)
 
 void EVENTPAGE_DATA::dump(FileWriter& fw) const
 {
-	if (g_ArcVersion >= 0x432)
+	if (g_ArcVersion >= 1074)
 		dumpNewFormat(fw);
 	else
 		dumpOldFormat(fw);
@@ -51,9 +51,9 @@ void EVENTPAGE_DATA::dump(FileWriter& fw) const
 
 void EVENTPAGE_DATA::sub_D5E70(FileReader& fw)
 {
-	if (g_ArcVersion >= 0x3F4)
+	if (g_ArcVersion >= 1012)
 	{
-		if (g_ArcVersion < 0x41B)
+		if (g_ArcVersion < 1051)
 		{
 			this_3  = fw.ReadDWord();
 			this_4  = fw.ReadDWord();
@@ -99,9 +99,9 @@ void EVENTPAGE_DATA::sub_D5E70(FileReader& fw)
 		}
 	}
 
-	if (g_ArcVersion >= 0x411)
+	if (g_ArcVersion >= 1041)
 	{
-		if (g_ArcVersion < 0x41B)
+		if (g_ArcVersion < 1051)
 		{
 			enDistance    = fw.ReadDWord();
 			this_44       = fw.ReadDWord();
@@ -118,17 +118,18 @@ void EVENTPAGE_DATA::sub_D5E70(FileReader& fw)
 			}
 		}
 	}
-	else if (g_ArcVersion >= 0x3F9)
+	else if (g_ArcVersion >= 1017)
 	{
 		enDistance = fw.ReadDWord();
 		this_44    = fw.ReadDWord();
 	}
 
-	allocAndSetCMenuOp(&this_46, SRPGClasses::TYPEIDDATA, fw);
+	if (g_ArcVersion >= 1017)
+		allocAndSetCMenuOp(&this_46, SRPGClasses::TYPEIDDATA, fw);
 
-	if (g_ArcVersion >= 0x418)
+	if (g_ArcVersion >= 1048)
 	{
-		if (g_ArcVersion < 0x41B)
+		if (g_ArcVersion < 1051)
 		{
 			this_52 = fw.ReadDWord();
 			this_53 = fw.ReadDWord();
@@ -151,7 +152,7 @@ void EVENTPAGE_DATA::sub_D5E70(FileReader& fw)
 		allocAndSetCMenuOp(&this_57, SRPGClasses::TYPEIDDATA, fw);
 	}
 
-	if (g_ArcVersion >= 0x41B)
+	if (g_ArcVersion >= 1051)
 	{
 		this_60 = fw.ReadDWord();
 		if (this_60)
@@ -422,7 +423,7 @@ void EVENTPAGE_DATA::initNewFormat(FileReader& fw)
 
 void EVENTPAGE_DATA::initOldFormat(FileReader& fw)
 {
-	if (g_ArcVersion < 0x41B)
+	if (g_ArcVersion < 1051)
 	{
 		this_0  = fw.ReadDWord();
 		this_1  = fw.ReadDWord();
@@ -502,7 +503,7 @@ void EVENTPAGE_DATA::initOldFormat(FileReader& fw)
 	this_90 = fw.ReadDWord();
 	this_92 = fw.ReadDWord();
 
-	if (g_ArcVersion < 0x3F5)
+	if (g_ArcVersion < 1013)
 	{
 		this_34 = fw.ReadDWord();
 		this_35 = fw.ReadDWord();
@@ -511,7 +512,7 @@ void EVENTPAGE_DATA::initOldFormat(FileReader& fw)
 	}
 	else
 	{
-		if (g_ArcVersion < 0x41B)
+		if (g_ArcVersion < 1051)
 		{
 			this_34 = fw.ReadDWord();
 			this_35 = fw.ReadDWord();
@@ -781,7 +782,7 @@ void EVENTPAGE_DATA::dumpNewFormat(FileWriter& fw) const
 
 void EVENTPAGE_DATA::dumpOldFormat(FileWriter& fw) const
 {
-	if (g_ArcVersion < 0x41B)
+	if (g_ArcVersion < 1051)
 	{
 		fw.Write(this_0);
 		fw.Write(this_1);
@@ -861,7 +862,7 @@ void EVENTPAGE_DATA::dumpOldFormat(FileWriter& fw) const
 	fw.Write(this_90);
 	fw.Write(this_92);
 
-	if (g_ArcVersion < 0x3F5)
+	if (g_ArcVersion < 1013)
 	{
 		fw.Write(this_34);
 		fw.Write(this_35);
@@ -870,7 +871,7 @@ void EVENTPAGE_DATA::dumpOldFormat(FileWriter& fw) const
 	}
 	else
 	{
-		if (g_ArcVersion < 0x41B)
+		if (g_ArcVersion < 1051)
 		{
 			fw.Write(this_34);
 			fw.Write(this_35);
@@ -892,24 +893,27 @@ void EVENTPAGE_DATA::dumpOldFormat(FileWriter& fw) const
 		}
 	}
 
-	if (g_ArcVersion >= 0x3F4)
+	if (g_ArcVersion >= 1012)
 	{
-		if (g_ArcVersion < 0x41B)
+		if (g_ArcVersion < 1051)
 		{
 			fw.Write(this_3);
-			fw.Write(this_4);
-			fw.Write(this_5);
-			fw.Write(this_6);
-			fw.Write(this_7);
-			fw.Write(this_8);
-			fw.Write(this_9);
-			fw.Write(this_10);
-			fw.Write(this_11);
-			fw.Write(this_12);
-			fw.Write(this_13);
-			fw.Write(this_14);
-			fw.Write(this_15);
-			fw.Write(this_16);
+			if (!g_writingProject)
+			{
+				fw.Write(this_4);
+				fw.Write(this_5);
+				fw.Write(this_6);
+				fw.Write(this_7);
+				fw.Write(this_8);
+				fw.Write(this_9);
+				fw.Write(this_10);
+				fw.Write(this_11);
+				fw.Write(this_12);
+				fw.Write(this_13);
+				fw.Write(this_14);
+				fw.Write(this_15);
+				fw.Write(this_16);
+			}
 
 			fw.Write(enProbability);
 			fw.Write(probability);
@@ -917,7 +921,7 @@ void EVENTPAGE_DATA::dumpOldFormat(FileWriter& fw) const
 		else
 		{
 			fw.Write(this_3);
-			if (this_3 > 0)
+			if (this_3 > 0 && !g_writingProject)
 			{
 				fw.Write(this_4);
 				fw.Write(this_5);
@@ -940,9 +944,9 @@ void EVENTPAGE_DATA::dumpOldFormat(FileWriter& fw) const
 		}
 	}
 
-	if (g_ArcVersion >= 0x411)
+	if (g_ArcVersion >= 1041)
 	{
-		if (g_ArcVersion < 0x41B)
+		if (g_ArcVersion < 1051)
 		{
 			fw.Write(enDistance);
 			fw.Write(this_44);
@@ -960,18 +964,19 @@ void EVENTPAGE_DATA::dumpOldFormat(FileWriter& fw) const
 	}
 	else
 	{
-		if (g_ArcVersion >= 0x3F9)
+		if (g_ArcVersion >= 1017)
 		{
 			fw.Write(enDistance);
 			fw.Write(this_44);
 		}
 	}
 
-	this_46->Dump(fw);
+	if (g_ArcVersion >= 1017)
+		this_46->Dump(fw);
 
-	if (g_ArcVersion >= 0x418)
+	if (g_ArcVersion >= 1048)
 	{
-		if (g_ArcVersion < 0x41B)
+		if (g_ArcVersion < 1051)
 		{
 			fw.Write(this_52);
 			fw.Write(this_53);
@@ -994,7 +999,7 @@ void EVENTPAGE_DATA::dumpOldFormat(FileWriter& fw) const
 		this_57->Dump(fw);
 	}
 
-	if (g_ArcVersion >= 0x41B)
+	if (g_ArcVersion >= 1051)
 	{
 		fw.Write(this_60);
 		if (this_60)

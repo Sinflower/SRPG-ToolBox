@@ -37,6 +37,8 @@
 #include "../Functions.h"
 #include "../Types.h"
 #include "../Version.h"
+#include "../Globals.h"
+
 
 class EDITDATA
 {

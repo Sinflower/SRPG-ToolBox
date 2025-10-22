@@ -36,9 +36,12 @@
 namespace fs = std::filesystem;
 
 DWORD g_ArcVersion = 0;
-UnitNamesCollection g_UnitNames;
+
+bool g_writingProject = false;
 std::string g_activeFile = "";
 std::ofstream g_debugMemDataLog;
+
+UnitNamesCollection g_UnitNames;
 
 SRPG_Project::SRPG_Project(const SRPG_ProjectData& projData) :
 	m_resources(projData.resFlag)
@@ -239,6 +242,8 @@ C:1B hash / checksum / ? no idea just copy
 
 void SRPG_Project::dumpAsProj(FileWriter& fw) const
 {
+	g_writingProject = true;
+
 	fw.WriteBytesVec({ 0x53, 0x52, 0x50, 0x47, 0x01, 0x00, 0x00, 0x01 });
 	fw.Write(g_ArcVersion);
 	fw.WriteArr<BYTE>(m_encryptionKey);
@@ -301,4 +306,6 @@ void SRPG_Project::dumpAsProj(FileWriter& fw) const
 
 	if (g_ArcVersion >= 1085)
 		m_baseSettings.Dump(fw);
+
+	g_writingProject = false;
 }

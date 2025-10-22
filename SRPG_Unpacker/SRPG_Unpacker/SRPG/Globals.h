@@ -29,5 +29,6 @@
 #include <string>
 #include <fstream>
 
+extern bool g_writingProject;
 extern std::string g_activeFile;
 extern std::ofstream g_debugMemDataLog;
