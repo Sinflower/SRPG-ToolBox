@@ -248,14 +248,13 @@ enum class PatchMode
 	Apply
 };
 
-void patch(const fs::path& dataFolder, const fs::path& patchFolder, const PatchMode& mode)
+SRPG_ProjectData initSRPGData(const fs::path& dataFolder)
 {
-	std::vector<BYTE> data;
 	nlohmann::ordered_json config;
-
+	std::vector<BYTE> data;
 	readDatFile(dataFolder, data);
-	readConfigFile(dataFolder, config);
 
+	readConfigFile(dataFolder, config);
 	DWORD version = 0;
 	DWORD resFlag = 0;
 
@@ -269,7 +268,14 @@ void patch(const fs::path& dataFolder, const fs::path& patchFolder, const PatchM
 	else
 		throw std::runtime_error("Config file does not contain 'segments'");
 
-	SRPG_Project sp({ version, resFlag, data });
+	return { version, resFlag, data };
+}
+
+void patch(const fs::path& dataFolder, const fs::path& patchFolder, const PatchMode& mode)
+{
+	SRPG_ProjectData projConfig = initSRPGData(dataFolder);
+
+	SRPG_Project sp(projConfig);
 
 	if (mode == PatchMode::Create)
 		sp.WritePatch(patchFolder);
@@ -280,6 +286,12 @@ void patch(const fs::path& dataFolder, const fs::path& patchFolder, const PatchM
 	}
 	else
 		throw std::runtime_error("Invalid patch mode");
+}
+
+void parseDatFile(const fs::path& datFile)
+{
+	SRPG_ProjectData projConfig = initSRPGData(datFile);
+	SRPG_Project sp(projConfig);
 }
 
 int main(int argc, char* argv[])
@@ -305,6 +317,9 @@ int main(int argc, char* argv[])
 
 	bool createMemDataLog = false;
 	app.add_flag("--log-mem-data", createMemDataLog, "Create a debug log file with the content of each mem data object initialized");
+
+	bool parseDat = false;
+	app.add_flag("--parse-dat", parseDat, "Parse the project.dat file (for debugging purposes only)");
 
 	CLI11_PARSE(app, argc, argv);
 
@@ -337,7 +352,15 @@ int main(int argc, char* argv[])
 			if (createPatch && applyPatch)
 				throw std::runtime_error("Cannot create and apply a patch at the same time");
 			if (!createPatch && !applyPatch)
-				throw std::runtime_error("Must specify either --create-patch or --apply-patch");
+			{
+				if (parseDat)
+				{
+					parseDatFile(inputPath.parent_path());
+					return 0;
+				}
+				else
+					throw std::runtime_error("Must specify either --create-patch or --apply-patch");
+			}
 
 			const fs::path patchPath = (output.empty() ? defaultPatch : output);
 			patch(inputPath.parent_path(), patchPath, (createPatch ? PatchMode::Create : PatchMode::Apply));
