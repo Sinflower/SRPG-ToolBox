@@ -72,7 +72,7 @@ public:
 
 	nlohmann::ordered_json GetJson() const
 	{
-		return Config.GetJson();
+		return ConfigManager::GetJson();
 	}
 
 private:

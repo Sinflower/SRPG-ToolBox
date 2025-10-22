@@ -70,7 +70,7 @@ void FileHeader::Unpack(const std::wstring &outputFolder)
 		// Switch the encryption key
 		std::array<uint8_t, 16> key = m_pSec.GetCryptKey();
 		Crypt::SwitchToCustomKey(key);
-		Config.Add("customKey", key);
+		ConfigManager::Add("customKey", key);
 	}
 
 	m_gSec.Unpack(outputFolder);
@@ -90,7 +90,7 @@ void FileHeader::Unpack(const std::wstring &outputFolder)
 	m_sSec.Unpack(outputFolder);
 	m_pSec.Unpack(outputFolder);
 
-	Config.Save(std::format(L"{}/{}", outputFolder, CONFIG_NAME));
+	ConfigManager::Save(std::format(L"{}/{}", outputFolder, CONFIG_NAME));
 }
 
 void FileHeader::Pack(const std::wstring &outputFile)
@@ -147,7 +147,7 @@ void FileHeader::Pack(const std::wstring &outputFile)
 	if(m_fileVersion >= NEW_CRYPT_START_VERSION)
 	{
 		// Switch the encryption key
-		std::array<uint8_t, 16> key = Config.Get<std::array<uint8_t, 16>>("customKey");
+		std::array<uint8_t, 16> key = ConfigManager::Get<std::array<uint8_t, 16>>("customKey");
 		Crypt::SwitchToCustomKey(key);
 	}
 
@@ -325,11 +325,11 @@ void FileHeader::initDTS(const std::filesystem::path &fileName)
 	for (SecInfo &info : m_sectionDataAddresses)
 		info.second += m_fileReader.GetOffset();
 
-	Config.Add("magicNumber", m_magicNumber);
-	Config.Add("encrypted", m_encrypted);
-	Config.Add("fileVersion", m_fileVersion);
-	Config.Add("loadRuntime", m_loadRuntime);
-	Config.Add("segments", m_presentSegments);
+	ConfigManager::Add("magicNumber", m_magicNumber);
+	ConfigManager::Add("encrypted", m_encrypted);
+	ConfigManager::Add("fileVersion", m_fileVersion);
+	ConfigManager::Add("loadRuntime", m_loadRuntime);
+	ConfigManager::Add("segments", m_presentSegments);
 
 	Crypt::EnableCrypt(m_encrypted == 1);
 }
@@ -358,13 +358,13 @@ void FileHeader::veryOldDtsCrypt(std::vector<uint8_t> &data, const uint32_t &mod
 
 void FileHeader::initFolder(const std::wstring &inputFolder)
 {
-	Config.Load(std::format(L"{}/{}", inputFolder, CONFIG_NAME));
+	ConfigManager::Load(std::format(L"{}/{}", inputFolder, CONFIG_NAME));
 
-	m_magicNumber     = Config.Get<uint32_t>("magicNumber");
-	m_encrypted       = Config.Get<uint32_t>("encrypted");
-	m_fileVersion     = Config.Get<uint32_t>("fileVersion");
-	m_loadRuntime     = Config.Get<uint32_t>("loadRuntime");
-	m_presentSegments = Config.Get<uint32_t>("segments");
+	m_magicNumber     = ConfigManager::Get<uint32_t>("magicNumber");
+	m_encrypted       = ConfigManager::Get<uint32_t>("encrypted");
+	m_fileVersion     = ConfigManager::Get<uint32_t>("fileVersion");
+	m_loadRuntime     = ConfigManager::Get<uint32_t>("loadRuntime");
+	m_presentSegments = ConfigManager::Get<uint32_t>("segments");
 
 	if (m_fileVersion < NEW_FILE_FORMAT_START_VERSION)
 		m_oldFormat = true;

@@ -36,7 +36,7 @@ ScriptSection::ScriptSection() :
 void ScriptSection::Init(FileReader *pFileReader, const bool &present, const bool &matPresent, std::deque<SecInfo> &secInfos)
 {
 	m_matPresent = matPresent;
-	Config.Add(MAT_PRESENT, m_matPresent);
+	ConfigManager::Add(MAT_PRESENT, m_matPresent);
 	// Call the base class Init
 	SectionBase::Init(pFileReader, present, secInfos);
 }
@@ -72,9 +72,9 @@ void ScriptSection::build(const std::wstring &inputFolder)
 			m_data.push_back(ScriptData(inputFolder, secIdx));
 	}
 
-	m_matPresent = Config.Get<bool>(MAT_PRESENT);
+	m_matPresent = ConfigManager::Get<bool>(MAT_PRESENT);
 
-	SecMap matSecElemCnt = Config.Get<SecMap>(MAT_SEC_NAME);
+	SecMap matSecElemCnt = ConfigManager::Get<SecMap>(MAT_SEC_NAME);
 	if (matSecElemCnt.empty())
 		return;
 
@@ -119,7 +119,7 @@ void ScriptSection::unpack(const std::wstring &outputFolder) const
 	{
 		SecMap matSecElemCnt;
 		matSecElemCnt[static_cast<uint32_t>(SECTION_NAMES.size() - 1)] = static_cast<uint32_t>(m_matData.size());
-		Config.Add(MAT_SEC_NAME, matSecElemCnt);
+		ConfigManager::Add(MAT_SEC_NAME, matSecElemCnt);
 	}
 }
 

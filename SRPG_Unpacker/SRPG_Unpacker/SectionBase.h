@@ -92,7 +92,7 @@ public:
 
 		unpack(outputFolder);
 
-		Config.Add(name(), m_secElemCnt);
+		ConfigManager::Add(name(), m_secElemCnt);
 
 		std::cout << "Done" << std::endl;
 	}
@@ -106,7 +106,7 @@ public:
 	{
 		std::cout << std::format("Building {} ... ", name()) << std::flush;
 
-		m_secElemCnt = Config.Get<SecMap>(name());
+		m_secElemCnt = ConfigManager::Get<SecMap>(name());
 
 		build(inputFolder);
 

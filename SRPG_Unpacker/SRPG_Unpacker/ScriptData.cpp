@@ -90,7 +90,7 @@ std::wstring ScriptData::buildOutDir(const std::wstring &outputFolder) const
 
 void ScriptData::add2Config(const fs::path &file) const
 {
-	Config.Add2Array(getFolderName(), file.wstring(), {});
+	ConfigManager::Add2Array(getFolderName(), file.wstring(), {});
 }
 
 void ScriptData::write2File(const std::filesystem::path &filePath, const std::vector<uint8_t> &data) const
@@ -145,9 +145,9 @@ void ScriptData::loadData()
 
 void ScriptData::buildData(const std::wstring &inputFolder)
 {
-	nlohmann::ordered_json j = Config.GetNext(SECTION_NAMES[m_idx]);
+	nlohmann::ordered_json j = ConfigManager::GetNext(SECTION_NAMES[m_idx]);
 	if (j.empty())
-		j = Config.GetNext("Plugin");
+		j = ConfigManager::GetNext("Plugin");
 
 	if (j.empty()) return;
 

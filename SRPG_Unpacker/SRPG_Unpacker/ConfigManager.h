@@ -37,8 +37,6 @@
 #include "Types.h"
 #include "Utils.h"
 
-#define Config ConfigManager::GetInstance()
-
 class ConfigManager
 {
 public:
@@ -51,14 +49,76 @@ public:
 	ConfigManager(ConfigManager const&)  = delete;
 	void operator=(ConfigManager const&) = delete;
 
+	
 	template<typename T>
-	void Add(const std::string& key, const T& value)
+	static void Add(const std::string& key, const T& value)
+	{
+		GetInstance().add<T>(key, value);
+	}
+
+	template<typename T>
+	static T Get(const std::string& key)
+	{
+		return GetInstance().get<T>(key);
+	}
+
+	static nlohmann::ordered_json GetJson()
+	{
+		return GetInstance().getJson();
+	}
+
+	static void Add2Array(const std::string& arr, const std::string& value, const std::vector<uint32_t>& elems)
+	{
+		GetInstance().add2Array(arr, value, elems);
+	}
+
+	static void Add2Array(const std::string& arr, const std::wstring& value, const std::vector<uint32_t>& elems)
+	{
+		GetInstance().add2Array(arr, value, elems);
+	}
+
+	static void Add2Array(const std::wstring& arr, const std::wstring& value, const std::vector<uint32_t>& elems)
+	{
+		GetInstance().add2Array(arr, value, elems);
+	}
+
+	static void Load(const std::wstring& filename)
+	{
+		GetInstance().load(filename);
+	}
+
+	static void Save(const std::wstring& filename)
+	{
+		GetInstance().save(filename);
+	}
+
+	static nlohmann::ordered_json& GetNext(const std::string& key)
+	{
+		return GetInstance().getNext(key);
+	}
+
+	static nlohmann::ordered_json& GetNext(const std::wstring& key)
+	{
+		return GetInstance().getNext(key);
+	}
+
+	static void Clear()
+	{
+		GetInstance().clear();
+	}
+
+private:
+	ConfigManager()  = default;
+	~ConfigManager() = default;
+
+	template<typename T>
+	void add(const std::string& key, const T& value)
 	{
 		m_json[key] = value;
 	}
 
 	template<typename T>
-	T Get(const std::string& key)
+	T get(const std::string& key)
 	{
 		if (!m_json.contains(key))
 			return T();
@@ -66,12 +126,12 @@ public:
 		return m_json[key].get<T>();
 	}
 
-	nlohmann::ordered_json GetJson() const
+	nlohmann::ordered_json getJson() const
 	{
 		return m_json;
 	}
 
-	void Add2Array(const std::string& arr, const std::string& value, const std::vector<uint32_t>& elems)
+	void add2Array(const std::string& arr, const std::string& value, const std::vector<uint32_t>& elems)
 	{
 		if (!m_json.contains(arr))
 			m_json[arr] = nlohmann::json::array();
@@ -85,27 +145,17 @@ public:
 		m_json[arr].push_back(obj);
 	}
 
-	void Add2Array(const std::string& arr, const std::wstring& value, const std::vector<uint32_t>& elems)
+	void add2Array(const std::string& arr, const std::wstring& value, const std::vector<uint32_t>& elems)
 	{
-		Add2Array(arr, ws2s(value), elems);
+		add2Array(arr, ws2s(value), elems);
 	}
 
-	void Add2Array(const std::wstring& arr, const std::wstring& value, const std::vector<uint32_t>& elems)
+	void add2Array(const std::wstring& arr, const std::wstring& value, const std::vector<uint32_t>& elems)
 	{
-		Add2Array(ws2s(arr), ws2s(value), elems);
+		add2Array(ws2s(arr), ws2s(value), elems);
 	}
 
-	void Load(const std::wstring& filename)
-	{
-		load(filename);
-	}
-
-	void Save(const std::wstring& filename)
-	{
-		save(filename);
-	}
-
-	nlohmann::ordered_json& GetNext(const std::string& key)
+	nlohmann::ordered_json& getNext(const std::string& key)
 	{
 		if (!m_json.contains(key) || !m_json[key].is_array())
 			return m_empty;
@@ -114,20 +164,16 @@ public:
 		return m_json[key][m_map[key]++];
 	}
 
-	nlohmann::ordered_json& GetNext(const std::wstring& key)
+	nlohmann::ordered_json& getNext(const std::wstring& key)
 	{
-		return GetNext(ws2s(key));
+		return getNext(ws2s(key));
 	}
 
-	void Clear()
+	void clear()
 	{
 		m_json.clear();
 		m_map.clear();
 	}
-
-private:
-	ConfigManager()  = default;
-	~ConfigManager() = default;
 
 	void load(const std::filesystem::path& filename)
 	{

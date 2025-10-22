@@ -146,7 +146,7 @@ void DataBase::add2Config(const fs::path &file) const
 {
 	if (m_idx == -1) return;
 
-	Config.Add2Array(SECTION_NAMES[m_idx], file.filename().wstring(), { m_reserved0, m_reserved1, m_subElemCount });
+	ConfigManager::Add2Array(SECTION_NAMES[m_idx], file.filename().wstring(), { m_reserved0, m_reserved1, m_subElemCount });
 }
 
 void DataBase::write2File(const std::filesystem::path &filePath, const std::vector<uint8_t> &data) const
@@ -194,7 +194,7 @@ void DataBase::loadData()
 void DataBase::buildData(const std::wstring &inputFolder)
 {
 	const std::wstring dirPath     = std::format(L"{}/{}", inputFolder, s2ws(SECTION_NAMES[m_idx]));
-	const nlohmann::ordered_json j = Config.GetNext(SECTION_NAMES[m_idx]);
+	const nlohmann::ordered_json j = ConfigManager::GetNext(SECTION_NAMES[m_idx]);
 
 	if (j.empty()) return;
 

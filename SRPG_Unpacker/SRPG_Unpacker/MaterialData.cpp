@@ -83,7 +83,7 @@ uint32_t MaterialData::Size() const
 
 void MaterialData::add2Config(const fs::path &file) const
 {
-	Config.Add2Array(SECTION_NAMES[m_idx], file.wstring(), {});
+	ConfigManager::Add2Array(SECTION_NAMES[m_idx], file.wstring(), {});
 }
 
 void MaterialData::loadData()
@@ -96,7 +96,7 @@ void MaterialData::loadData()
 void MaterialData::buildData(const std::wstring &inputFolder)
 {
 	const std::wstring dirPath     = std::format(L"{}/{}", inputFolder, s2ws(SECTION_NAMES[m_idx]));
-	const nlohmann::ordered_json j = Config.GetNext(SECTION_NAMES[m_idx]);
+	const nlohmann::ordered_json j = ConfigManager::GetNext(SECTION_NAMES[m_idx]);
 
 	if (j.empty()) return;
 
