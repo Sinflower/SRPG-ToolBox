@@ -482,7 +482,7 @@ public:
 	{
 		m_file = std::fstream(filename, std::ios::out | std::ios::binary);
 		if (!m_file.is_open())
-			throw(FileWriterException("Failed to open file"));
+			throw(FileWriterException(std::format("Failed to open file {}", filename.string())));
 		m_bufferMode = false;
 	}
 
