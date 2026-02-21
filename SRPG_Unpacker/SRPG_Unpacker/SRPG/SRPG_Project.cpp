@@ -76,17 +76,20 @@ SRPG_Project::~SRPG_Project()
 
 void SRPG_Project::Dump(const std::filesystem::path& outPath) const
 {
-	FileWriter fw(outPath / PROJECT_DAT_NAME);
-	fs::path outProject = outPath / PROJECT_FILE_NAME;
-	std::cout << "Dumping the project file to: " << ws2s(outProject.wstring()) << std::endl;
+	fs::path out = outPath / PROJECT_DAT_NAME;
+	FileWriter fw(out);
+	std::cout << "Dumping the dat file to: " << ws2s(out.wstring()) << std::endl;
 	dump(fw);
-	std::cout << "Finished dumping the project file" << std::endl;
+	std::cout << "Finished dumping the dat file" << std::endl;
 }
 
 void SRPG_Project::DumpProj(const std::filesystem::path& outPath) const
 {
-	FileWriter fw(outPath / PROJECT_FILE_NAME);
+	fs::path out = outPath / PROJECT_FILE_NAME;
+	FileWriter fw(out);
+	std::cout << "Dumping the project file to: " << ws2s(out.wstring()) << std::endl;
 	dumpAsProj(fw);
+	std::cout << "Finished dumping the project file" << std::endl;
 }
 
 void SRPG_Project::SetupInternalResources(const nlohmann::ordered_json& json)
