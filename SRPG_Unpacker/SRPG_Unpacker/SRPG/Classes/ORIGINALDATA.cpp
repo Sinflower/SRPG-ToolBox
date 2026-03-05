@@ -31,7 +31,7 @@
 
 void ORIGINALDATA::init(FileReader& fw)
 {
-	initMemData(this_3, fw);
+	initMemData(customParameters, fw);
 	LEGENDDATA::init(fw);
 
 	fw.ReadArr(this_4);
@@ -52,7 +52,7 @@ void ORIGINALDATA::init(FileReader& fw)
 
 void ORIGINALDATA::dump([[maybe_unused]] FileWriter& fw) const
 {
-	this_3.Write(fw);
+	customParameters.Write(fw);
 	LEGENDDATA::dump(fw);
 
 	fw.WriteArr(this_4);
@@ -69,4 +69,18 @@ void ORIGINALDATA::dump([[maybe_unused]] FileWriter& fw) const
 	}
 
 	this_11.Write(fw);
+}
+
+nlohmann::ordered_json ORIGINALDATA::toJson() const
+{
+	nlohmann::ordered_json j = LEGENDDATA::toJson();
+	j["customParameters"]    = customParameters.ToString();
+
+	return j;
+}
+
+void ORIGINALDATA::applyPatch(const nlohmann::ordered_json& json)
+{
+	LEGENDDATA::applyPatch(json);
+	SET_STRING_IF_IN_JSON(json, "customParameters", customParameters);
 }

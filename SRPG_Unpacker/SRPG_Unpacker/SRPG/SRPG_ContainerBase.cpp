@@ -112,6 +112,16 @@ std::filesystem::path SRPG_ContainerBase::WeaponTypesPath(const std::filesystem:
 	return buildFolder(basePath, WEAPON_TYPES_FOLDER);
 }
 
+std::filesystem::path SRPG_ContainerBase::OriginalsPath(const std::filesystem::path& basePath)
+{
+	return buildFolder(basePath, ORIGINALS_FOLDER);
+}
+
+std::filesystem::path SRPG_ContainerBase::VariablesPath(const std::filesystem::path& basePath)
+{
+	return buildFolder(basePath, VARIABLES_FOLDER);
+}
+
 UnitNameMap SRPG_ContainerBase::buildUnitNameMap(const CMenuOperation* pObjs, const DWORD& npcIdOffset)
 {
 	UnitNameMap names;

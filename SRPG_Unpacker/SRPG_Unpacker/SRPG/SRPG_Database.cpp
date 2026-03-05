@@ -256,6 +256,8 @@ void SRPG_Database::writePatches(const std::filesystem::path& outPath) const
 	const std::filesystem::path npcSettingsFolder = NPCSettingsPath(outPath);
 	const std::filesystem::path terrainFolder     = TerrainPath(outPath);
 	const std::filesystem::path weaponTypesFolder = WeaponTypesPath(outPath);
+	const std::filesystem::path originalsFolder   = OriginalsPath(outPath);
+	const std::filesystem::path variablesFolder   = VariablesPath(outPath);
 
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pClasses, commonsFolder, L"classes.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pClassGroups, commonsFolder, L"classesgroups.json");
@@ -279,14 +281,12 @@ void SRPG_Database::writePatches(const std::filesystem::path& outPath) const
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pCmdStrPlaceEv, cmdStrsFolder, L"placeevents.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pCmdStrTalkEv, cmdStrsFolder, L"talkevents.json");
 
-	for (uint32_t i = 0; i < m_pNPCSettings.size(); i++)
-	{
-		const std::wstring filename = std::format(L"npc{}.json", i + 1);
-		CHECK_OBJ_AND_WRITE_JSON_FILE(m_pNPCSettings[i], npcSettingsFolder, filename);
-	}
-
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pOriginalTerrains, terrainFolder, L"originalterrains.json");
 	CHECK_OBJ_AND_WRITE_JSON_FILE(m_pRuntimeTerrains, terrainFolder, L"runtimeterrains.json");
+
+	processArray(m_pNPCSettings, npcSettingsFolder, L"npc", true);
+	processArray(m_pOriginalData, originalsFolder, L"originaldata", true);
+	processArray(m_pVariableData, variablesFolder, L"variabledata", true);
 }
 
 void SRPG_Database::applyPatches(const std::filesystem::path& patchPath)
@@ -296,6 +296,8 @@ void SRPG_Database::applyPatches(const std::filesystem::path& patchPath)
 	const std::filesystem::path npcSettingsFolder = NPCSettingsPath(patchPath);
 	const std::filesystem::path terrainFolder     = TerrainPath(patchPath);
 	const std::filesystem::path weaponTypesFolder = WeaponTypesPath(patchPath);
+	const std::filesystem::path originalsFolder   = OriginalsPath(patchPath);
+	const std::filesystem::path variablesFolder   = VariablesPath(patchPath);
 
 	CHECK_OBJ_AND_APPLY_PATCH(m_pClasses, commonsFolder, L"classes.json");
 	CHECK_OBJ_AND_APPLY_PATCH(m_pClassGroups, commonsFolder, L"classesgroups.json");
@@ -319,14 +321,12 @@ void SRPG_Database::applyPatches(const std::filesystem::path& patchPath)
 	CHECK_OBJ_AND_APPLY_PATCH(m_pCmdStrPlaceEv, cmdStrsFolder, L"placeevents.json");
 	CHECK_OBJ_AND_APPLY_PATCH(m_pCmdStrTalkEv, cmdStrsFolder, L"talkevents.json");
 
-	for (std::size_t i = 0; i < m_pNPCSettings.size(); i++)
-	{
-		const std::wstring filename = std::format(L"npc{}.json", i + 1);
-		CHECK_OBJ_AND_APPLY_PATCH(m_pNPCSettings[i], npcSettingsFolder, filename);
-	}
-
 	CHECK_OBJ_AND_APPLY_PATCH(m_pOriginalTerrains, terrainFolder, L"originalterrains.json");
 	CHECK_OBJ_AND_APPLY_PATCH(m_pRuntimeTerrains, terrainFolder, L"runtimeterrains.json");
+
+	processArray(m_pNPCSettings, npcSettingsFolder, L"npc", false);
+	processArray(m_pOriginalData, originalsFolder, L"originaldata", false);
+	processArray(m_pVariableData, variablesFolder, L"variabledata", false);
 }
 
 void SRPG_Database::sub_F8E4E0(FileReader& fw)
@@ -793,4 +793,21 @@ void SRPG_Database::dump_sub_F7DD10(FileWriter& fw) const
 
 	if (g_ArcVersion >= 0x4D2)
 		fw.Write(this_230);
+}
+
+template<std::size_t S>
+void SRPG_Database::processArray(const std::array<CMenuOperation*, S>& arr, const std::filesystem::path& folderPath, const std::wstring& filePrefix, const bool& isCreate) const
+{
+	for (uint32_t i = 0; i < arr.size(); i++)
+	{
+		const std::wstring filename = std::format(L"{}{}.json", filePrefix, i + 1);
+		if (isCreate)
+		{
+			CHECK_OBJ_AND_WRITE_JSON_FILE(arr[i], folderPath, filename);
+		}
+		else
+		{
+			CHECK_OBJ_AND_APPLY_PATCH(arr[i], folderPath, filename);
+		}
+	}
 }

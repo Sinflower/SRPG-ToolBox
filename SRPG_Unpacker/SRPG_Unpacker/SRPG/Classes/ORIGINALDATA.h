@@ -30,7 +30,7 @@
 
 struct ORIGINALDATA : public LEGENDDATA
 {
-	MemData this_3;
+	MemData customParameters;
 	std::array<DWORD, 7> this_4;
 	std::array<DWORD, 6> this_5;
 	DWORD this_6 = 0;
@@ -45,4 +45,8 @@ struct ORIGINALDATA : public LEGENDDATA
 
 	void init(FileReader& fw) override;
 	void dump([[maybe_unused]] FileWriter& fw) const override;
+
+protected:
+	nlohmann::ordered_json toJson() const override;
+	void applyPatch(const nlohmann::ordered_json& json) override;
 };

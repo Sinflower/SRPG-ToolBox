@@ -67,6 +67,8 @@ protected:
 	static inline const std::wstring RESOURCE_LOC_FOLDER  = L"ResourceLocation";
 	static inline const std::wstring TERRAIN_FOLDER       = L"Terrain";
 	static inline const std::wstring WEAPON_TYPES_FOLDER  = L"WeaponTypes";
+	static inline const std::wstring ORIGINALS_FOLDER     = L"OriginalData";
+	static inline const std::wstring VARIABLES_FOLDER     = L"Variables";
 
 public:
 	SRPG_ContainerBase(const std::string& name) :
@@ -89,6 +91,8 @@ public:
 	static std::filesystem::path ResourceLocationPath(const std::filesystem::path& basePath);
 	static std::filesystem::path TerrainPath(const std::filesystem::path& basePath);
 	static std::filesystem::path WeaponTypesPath(const std::filesystem::path& basePath);
+	static std::filesystem::path OriginalsPath(const std::filesystem::path& basePath);
+	static std::filesystem::path VariablesPath(const std::filesystem::path& basePath);
 
 protected:
 	virtual void init(FileReader& fw)       = 0;

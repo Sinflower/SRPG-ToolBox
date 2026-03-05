@@ -74,6 +74,9 @@ private:
 	void dump_sub_F7DA50(FileWriter& fw) const;
 	void dump_sub_F7DD10(FileWriter& fw) const;
 
+	template<std::size_t S>
+	void processArray(const std::array<CMenuOperation*, S>& arr, const std::filesystem::path& folderPath, const std::wstring& filePrefix, const bool& isCreate) const;
+
 private:
 	CMenuOperation* m_pPlayerUnits      = nullptr;
 	CMenuOperation* m_pClasses          = nullptr;
