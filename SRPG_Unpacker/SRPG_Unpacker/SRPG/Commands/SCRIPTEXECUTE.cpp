@@ -33,7 +33,7 @@ void SCRIPTEXECUTE::init(FileReader& fw)
 {
 	this_3 = fw.ReadDWord();
 	initMemData(this_4, fw);
-	initMemData(this_5, fw);
+	initMemData(scriptData, fw);
 
 	if (g_ArcVersion >= 0x49F)
 		sub_EB6050(fw);
@@ -48,7 +48,7 @@ void SCRIPTEXECUTE::dump(FileWriter& fw) const
 {
 	fw.Write(this_3);
 	this_4.Write(fw);
-	this_5.Write(fw);
+	scriptData.Write(fw);
 
 	if (g_ArcVersion >= 0x49F)
 	{
@@ -74,6 +74,21 @@ void SCRIPTEXECUTE::dump(FileWriter& fw) const
 
 	if (HIWORD(this_3) == 1)
 		fw.Write(this_26);
+}
+
+nlohmann::ordered_json SCRIPTEXECUTE::toJson() const
+{
+	nlohmann::ordered_json j;
+	j["type"] = "script";
+	j["data"] = nlohmann::json::array({ scriptData.ToString() });
+
+	return j;
+}
+
+void SCRIPTEXECUTE::applyPatch(const nlohmann::ordered_json& json)
+{
+	if (json.contains("data") && json["data"].is_array() && !json["data"].empty() && json["data"][0].is_string())
+		scriptData = json["data"][0].get<std::string>();
 }
 
 void SCRIPTEXECUTE::sub_EB6050(FileReader& fw)

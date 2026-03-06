@@ -32,9 +32,13 @@ struct SCRIPTEXECUTE : public EDITDATA
 {
 	DWORD this_3 = 0;
 	MemData this_4;
-	MemData this_5;
+	MemData scriptData;
 	virtual void init(FileReader& fw);
 	virtual void dump([[maybe_unused]] FileWriter& fw) const;
+
+protected:
+	nlohmann::ordered_json toJson() const override;
+	void applyPatch(const nlohmann::ordered_json& json) override;
 
 private:
 	DWORD this_6  = 0;

@@ -47,7 +47,7 @@ void ITEMBASE::init(FileReader& fw)
 	sub_101AB0(fw);
 	LEGENDDATA::init(fw);
 
-	initMemData(this_41, fw);
+	initMemData(customParameters, fw);
 
 	if (g_ArcVersion >= 1002)
 		this_36 = fw.ReadDWord();
@@ -151,7 +151,7 @@ void ITEMBASE::dump(FileWriter& fw) const
 
 	LEGENDDATA::dump(fw);
 
-	this_41.Write(fw);
+	customParameters.Write(fw);
 
 	if (g_ArcVersion >= 0x3EA)
 		fw.Write(this_36);
@@ -161,6 +161,20 @@ void ITEMBASE::dump(FileWriter& fw) const
 		fw.Write(this_42);
 		this_43.Write(fw);
 	}
+}
+
+nlohmann::ordered_json ITEMBASE::toJson() const
+{
+	nlohmann::ordered_json j = LEGENDDATA::toJson();
+	j["customParameters"]    = customParameters.ToString();
+
+	return j;
+}
+
+void ITEMBASE::applyPatch(const nlohmann::ordered_json& json)
+{
+	LEGENDDATA::applyPatch(json);
+	SET_STRING_IF_IN_JSON(json, "customParameters", customParameters);
 }
 
 void ITEMBASE::sub_101AB0(FileReader& fw)
@@ -278,7 +292,7 @@ void ITEMBASE::print(std::ostream& os) const
 	os << "this_36 :" << this_36 << std::endl;
 	os << "this_37 :" << this_37 << std::endl;
 	os << "this_39 :" << this_39 << std::endl;
-	os << "this_41 :" << this_41 << std::endl;
+	os << "customParameters :" << customParameters << std::endl;
 	os << "this_42 :" << this_42 << std::endl;
 	os << "this_43 :" << this_43 << std::endl;
 	os << "==== ITEMBASE ====" << std::endl;

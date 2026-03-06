@@ -41,7 +41,7 @@ void SKILLDATA::init(FileReader& fw)
 	sub_1046E0(fw);
 
 	initMemData(this_10, fw);
-	initMemData(this_21, fw);
+	initMemData(customParameters, fw);
 
 	LEGENDDATA::init(fw);
 
@@ -175,7 +175,7 @@ void SKILLDATA::dump(FileWriter& fw) const
 	/////
 
 	this_10.Write(fw);
-	this_21.Write(fw);
+	customParameters.Write(fw);
 
 	LEGENDDATA::dump(fw);
 
@@ -205,6 +205,20 @@ void SKILLDATA::dump(FileWriter& fw) const
 			fw.Write(this_132);
 		}
 	}
+}
+
+nlohmann::ordered_json SKILLDATA::toJson() const
+{
+	nlohmann::ordered_json j = LEGENDDATA::toJson();
+	j["customParameters"]    = customParameters.ToString();
+
+	return j;
+}
+
+void SKILLDATA::applyPatch(const nlohmann::ordered_json& json)
+{
+	LEGENDDATA::applyPatch(json);
+	SET_STRING_IF_IN_JSON(json, "customParameters", customParameters);
 }
 
 void SKILLDATA::sub_1046E0(FileReader& fw)
@@ -311,7 +325,7 @@ void SKILLDATA::print(std::ostream& os) const
 	os << "this_16: " << this_16 << std::endl;
 	os << "this_17: " << this_17 << std::endl;
 	os << "this_20: " << this_20 << std::endl;
-	os << "this_21: " << this_21 << std::endl;
+	os << "customParameters: " << customParameters << std::endl;
 
 	for (uint32_t i = 0; i < 11; i++)
 		os << "this_22[" << i << "]: " << this_22[i] << std::endl;

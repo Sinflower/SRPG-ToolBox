@@ -41,7 +41,7 @@ struct SKILLDATA : public LEGENDDATA
 	DWORD this_16 = 0;
 	DWORD this_17 = 0;
 	DWORD this_20 = 0;
-	MemData this_21;
+	MemData customParameters;
 	DWORD this_22[11] = { 0 };
 	DWORD this_23[7]  = { 0 };
 	DWORD this_25     = 0;
@@ -61,6 +61,10 @@ struct SKILLDATA : public LEGENDDATA
 	void init(FileReader& fw) override;
 	void dump([[maybe_unused]] FileWriter& fw) const override;
 	void print(std::ostream& os) const override;
+
+protected:
+	nlohmann::ordered_json toJson() const override;
+	void applyPatch(const nlohmann::ordered_json& json) override;
 
 private:
 	DWORD this_18 = 0;

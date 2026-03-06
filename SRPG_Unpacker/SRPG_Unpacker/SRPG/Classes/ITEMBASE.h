@@ -73,7 +73,7 @@ struct ITEMBASE : public LEGENDDATA
 	class CMenuOperation* m_pTypeIDDataOld0 = nullptr;
 	class CMenuOperation* m_pTypeIDDataOld1 = nullptr;
 
-	MemData this_41;
+	MemData customParameters;
 	DWORD this_42 = 0;
 	MemData this_43;
 
@@ -85,6 +85,10 @@ struct ITEMBASE : public LEGENDDATA
 	void init(FileReader& fw) override;
 	void dump([[maybe_unused]] FileWriter& fw) const override;
 	void print(std::ostream& os) const override;
+
+protected:
+	nlohmann::ordered_json toJson() const override;
+	void applyPatch(const nlohmann::ordered_json& json) override;
 
 private:
 	void sub_101AB0(FileReader& fw);
