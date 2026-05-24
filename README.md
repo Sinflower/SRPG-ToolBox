@@ -3,13 +3,14 @@
 SRPG Unpacker is a small tool to unpack and repack SRPG Studio `.dts` archives, reconstruct `.srpgs` project files, and create as well as apply translation patches against project data.
 It is primarily intended for the translation of SRPG Studio games.
 
-SRPG Studio up to version 1.317 is supported.
+SRPG Studio up to version 1.322 is supported.
 
 ## Features
 
 - Unpack `.dts` archives into a reconstructed project folder (including `project.dat`, `project.srpgs`, and resources)
 - Repack an unpacked folder back into a `.dts` archive
 - Create and apply translation patches against `project.dat`
+- Repack resources back into srk files
 
 ## Quick usage
 
@@ -23,9 +24,13 @@ For unpacking and repacking drag & drop behavior is supported, alternatively the
 
   `SRPG_Unpacker.exe "C:\path\to\extracted_folder"`
 
+- Pack a folder back into a `.dts` file and also repack the resources into srk files:
+
+  `SRPG_Unpacker.exe "C:\path\to\extracted_folder" --repack-srk`
+
 - Specify an output path:
 
-  `SRPG_Unpacker.exe "C:\path\to\data.dts" -o "C:\out\my_project"`
+  `SRPG_Unpacker.exe "C:\path\to\data.dts|extracted_folder" -o "C:\out\my_project|output.dts"`
 
 - Create a translation patch from `project.dat`:
 
