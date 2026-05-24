@@ -24,7 +24,7 @@
  *
  */
 
-// Compatible up to v1.317
+// Compatible up to v1.322
 
 // TODO Rewrite part of this by reducing redundant code through an old flag that overrides the > 0 check
 

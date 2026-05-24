@@ -24,7 +24,7 @@
  *
  */
 
-// Compatible up to v1.317
+// Compatible up to v1.322
 
 #include "FONTGROUPDATA.h"
 
