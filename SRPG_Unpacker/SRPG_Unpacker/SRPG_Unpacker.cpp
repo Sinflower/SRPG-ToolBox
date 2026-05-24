@@ -42,7 +42,7 @@
 
 namespace fs = std::filesystem;
 
-static const std::string APP_NAME = "SRPG_Unpacker v0.1.1";
+static const std::string APP_NAME = "SRPG_Unpacker v0.1.2";
 
 static const std::string RES_MAPPINGS_FILE = "res_mapping.json";
 
