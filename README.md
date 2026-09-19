@@ -14,7 +14,7 @@ SRPG Studio up to version 1.322 is supported.
 
 ## Quick usage
 
-For unpacking and repacking drag & drop behavior is supported, alternatively the tool can run from the command line, e.g.:
+For unpacking and repacking, drag-and-drop behavior is supported; alternatively, the tool can run from the command line, e.g.:
 
 - Unpack a `.dts` file (default output folder: `output`):
 
@@ -40,11 +40,11 @@ For unpacking and repacking drag & drop behavior is supported, alternatively the
 
   `SRPG_Unpacker.exe "C:\path\to\project.dat" -a -o "C:\out\patch_folder"`
 
-For all available options check the built-in help (`SRPG_Unpacker.exe --help`).
+For all available options, check the built-in help (`SRPG_Unpacker.exe --help`).
 
 ## Notes regarding the translation files
 
-- When a translation patch is created the tool will extract all text data from the `project.dat` file and store it the form of several JSON files inside the patch folder.
+- When a translation patch is created, the tool will extract all text data from the `project.dat` file and store it in the form of several JSON files inside the patch folder.
 - The structure of these files is highly inspired by the localization format used by SRPG Studio itself, with the exception that individual maps are not split into multiple files but rather stored in a single `map_<map_id>.json` file for easier management.
 - Furthermore, event content is also not stored in txt files but directly inside the respective JSON files.
 - Finally, the `speaker` field for messages is a custom addition for the sole purpose of making it easier to identify who is speaking in dialogues during translation; this field is ignored when applying the patch.
@@ -62,8 +62,9 @@ Steps:
 2. Select the desired Configuration and Platform, e.g., `Release` and `x64`.
 3. Build the solution.
 
-## Known issues / limitations
+## Known issues/limitations
 
 - Not all project classes and commands are currently implemented. Should you encounter an unimplemented feature, please open an issue with details, including the name of the game.
-- Depending on the SRPG version used to create the original `.dts` file, the reconstructed `.srpgs` projects might not work (the editor crashes), currently there is no way to fix this unless I can get my hands on an older version of the editor
+- Depending on the SRPG version used to create the original `.dts` file, the reconstructed `.srpgs` projects might not work (the editor crashes), currently there is no way to fix this unless I can get my hands on an older version of the editor.
+- In case the game was shipped with a file called `localization.dat` (the localization feature of SRPG Studio), this file needs to be renamed or removed for the translations to properly appear. 
 - This is an ongoing project; please open issues for bugs or missing features.
